@@ -1,0 +1,35 @@
+.duyuruitem .jumbotron{
+	border-radius: 0px;
+	background: #f7f7f7;
+	padding: 20px 10px;
+	margin-bottom: 0px;
+}
+
+.duyuruitem .jumbotron .long{
+    font-size: 14px;
+    line-height: 1.4;
+}
+.duyuruitem .long-inner{
+	border-left: 2px solid #fff200; 
+	background: #ececec;
+	padding: 10px 10px;
+}
+.duyuruitem .long-inner p{
+	font-size: 14px;
+    line-height: 1.4;
+}
+.duyuruitem .left-div{
+	float: left;
+}
+.duyuruitem .right-div{
+	float: right;
+}
+.duyuruitem .info{
+	font-size: 12px;
+}
+.duyuruitem .media-body p{
+	margin-top: 20px;
+}
+.duyuruitem form input, .duyuruitem form textarea{
+	border-radius: 0px;
+}

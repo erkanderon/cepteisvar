@@ -1,0 +1,114 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+		<section id="main_content" style="margin-top: -20px;">
+    <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+        <div class="col-xs-12">
+            <h3>ISVEREN KAYIT</h3>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Isveren Kayit</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div class="register">
+                
+                        <form class="row" #f="ngForm"  novalidate>
+                            <div class="row" style="padding: 0px 15px; margin: 0px;">
+                                <div class="col-xs-3 text-center">
+                                    <input id="input-1" type="file" class="file">
+                                </div>
+                            </div>
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput">FIRMA / KISI ADI</label>
+                                <input name="firma" ngModel required #firma="ngModel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Firma Adi / Kisi Adi">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                <input name="yetkili" ngModel required #yetkili="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">E-POSTA</label>
+                                <input name="eposta" ngModel required #eposta="ngModel" type="email" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">VERGI DAIRESI</label>
+                                <input name="vergi" ngModel required #vergi="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Vergi Dairesi">
+                              </div>
+                              <div class="form-group">
+                                    
+                                  <label for="">SEHIR</label>
+                                  <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2">
+                                    <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                    
+                                  <label for="">IS ALANI</label>
+                                  <select id="" class="form-control" [ngModel]="ds" name="isalani">
+                                    <option  *ngFor="let area of areas.data" [value]="area.TYPE_ID">{{area.WORK_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">PAROLA</label>
+                                <input name="parola" ngModel required #parola="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola">
+                              </div>
+                              <div class="form-group">
+                                <label class="form-check-label txt">
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;"> Gizlilik Sartlarini Okudum Kabul Ediyorum.
+                                </label>
+                              </div>
+                          </div>
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput">TELEFON</label>
+                                <input name="telefon" ngModel required #telefon="ngModel" type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                <input name="yettel" ngModel required #yettel="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi Telefon">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                <input name="tckimlik" ngModel required #tckimlik="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="TC Kimlik No">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">ADRES</label>
+                                <input name="address" ngModel required #address="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Adres">
+                              </div>
+                              <div class="form-group">
+                                  <label for="" >ILCE</label>
+                                  <select id="" class="form-control" name="cname" [ngModel]="cname">
+                                    <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
+                                   
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
+                                <input name="parola2" ngModel required #parola2="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola Tekrar">
+                              </div>
+                          </div>
+                          <div class="row text-center" >
+                            <div class="col-xs-12">
+                                <a (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;">KAYIT OL</a>
+                                <h5 style="color: #747574;">Zaten hesabiniz var mi?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giris Yapin</a></h5>  
+                            </div>
+                          </div>
+                        </form>
+
+                        
+                    
+            </div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</section>
+	</div>
+</div>
+
+<footer-comp></footer-comp>

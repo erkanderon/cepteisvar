@@ -1,0 +1,432 @@
+
+
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+	</div>
+</div>
+
+<section id="main_content">
+	<div class="container-fluid" style="">
+		<div class="row">
+			<!-- Carousel -->
+	    	<div id="carousel-example-generic" class="carousel slide col-xs-12" data-ride="carousel">
+				<!-- Indicators -->
+				
+					<ol class="carousel-indicators">
+					  	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+				
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+				    <div class="item active">
+				    <img class="img img-responsive" src="assets/images/Banner1.png" alt="First slide">
+	                <!-- Static Header -->
+	                    
+				    </div>
+				    <div class="item">
+			    	<img class="img img-responsive" src="assets/images/Banner1.png" alt="Second slide">
+				    	<!-- Static Header -->
+	                    
+				    </div>
+				    <div class="item">
+			    	<img class="img img-responsive" src="assets/images/Banner1.png" alt="Third slide">
+			    	<!-- Static Header -->  		
+	                    
+	                    
+	                    <!-- /header-text -->
+				    </div>
+				</div>
+				<!-- Wrapper for slides -->
+
+
+			</div>
+			<div class="header-text hidden-xs col-xs-12" style="margin-top: -220px;">
+	    		<div class="container-fluid" style="padding: 0px 100px 0px 100px;">
+	    			<div class="row form-carousel" style="padding: 10px 10px 0px 10px; min-height: 150px; font-size:18px;">
+	    				<!--<div class="col-md-6">
+	    					<h4 class="text-center">CALISAN ARIYORUM</h4>
+	    				</div>
+	    				<div class="col-md-6">
+	    					<h4 class="text-center">KAYIT OLMAK ISTIYORUM</h4>
+	    				</div>-->
+	    				<div class="col-xs-12">
+		    				<ul class="nav nav-pills nav-justified" style="margin: 0 auto;">
+		    					<li class="active"><a href="#1a" data-toggle="tab" style="border-bottom: inherit; color: inherit; border-radius: inherit;">CALISAN ARIYORUM</a></li>
+							    <li><a href="#2a" data-toggle="tab" style="border-bottom: inherit; color:inherit;border-radius: inherit;">KAYIT OLMAK ISTIYORUM</a></li>
+							</ul>
+						</div>
+	    				<div class="col-md-12 text-center tab-content" style="margin-top: 20px;">
+	    					<form id="1a" class="form-inline tab-pane active">
+
+							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect">
+								    <option selected >Meslek Seciniz...</option>
+								    <option value="1" *ngFor="let job of jobs.data">{{job.JOB_NAME}}</option>
+								</select>
+							  </div>
+							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect">
+								    <option selected >Il Seciniz...</option>
+								    <option value="1" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
+								  </select>
+							  </div>
+							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+								    <option selected>Egitim Durumu Seciniz...</option>
+								    <option value="1" *ngFor="let edu of education.data">{{edu.EDUCATION_LEVEL}}</option>
+								    <option value="2">Ortaokul</option>
+								    <option value="3">Universite</option>
+								  </select>
+							  </div>
+							  <a routerLink="/calisan-arama" type="submit" class="form-control search"><i class="fa fa-search fa-2x" style="color:black; font-size: 16px;" aria-hidden="true"></i></a>
+							</form>
+							<div id="2a" class="text-center tab-pane" style="margin-bottom: 20px;">
+								<a routerLink="/isveren-kayit" class="btn btn-default isv">ISVEREN KAYIT</a>
+								<a routerLink="/calisan-kayit" class="btn btn-default kyt">CALISAN KAYIT</a>
+							</div>
+	    				</div>
+	    				<div class="col-md-12 text-center calisir">
+	    					<div class="btn" style="background: #373637; margin-top: 20px;">Nasil Calisir?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></div>
+	    				</div>
+	    			</div>
+	    		</div>
+	    	</div>
+		</div>
+	</div>
+
+	<!-- Neden Cepte Is Var -->
+	<!-- NEDEN CEPTE IS VAR? -->
+
+	<div class="container-fluid neden">
+		<div style="row text-center">
+			<div class="col-md-12">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.NED2">{{fields.NED2}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src='assets/images/HeaderBottomLine.png'>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/dogrukisiicon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.TRU1"><strong>{{fields.TRU1}}</strong></h4></span>
+					<p>CepteIsVar, aradiginiz pozisyona uygun en dogru kisiye ulasmanizi saglar. Cunku kime ulasmak istediginizi kendiniz bulursunuz.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/BeklemekYokIcon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.WAI1"><strong>{{fields.WAI1}}</strong></h4></span>
+					<p>CepteIsVar'da ihtiyaciniz olan personele ulasmak icin beklemenize gerek yok. Dogru kisiye istediginiz zaman ulasabilirsiniz.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/SadeceSMS.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.MES2"><strong>{{fields.MES2}}</strong></h4></span>
+					<p>Binlerce kisiye 1 SMS ile aninda ulasabileceksiniz. CepteIsVar iletisim yolu olarak SMS sistemini kullanir. Bu yuzden dogru kisiye ulasmak cok hizlidir.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/UygunFiyat.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.PRI1"><strong>{{fields.PRI1}}</strong></h4></span>
+					<p>CepteIsVar'da aradiginiz kisiye ulasmak icin yuksek ucretler odemezsiniz. Cok ucuza dogru kisiye aninda ulasirsiniz.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="    padding: 15px;">
+			<div style="width: 750px; margin: 0 auto; display: table;">
+               <img class="img img-responsive" src="assets/images/StatsBG.png">
+	               <div class="row text-center" style="margin-top: -135px; color:white;">
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 30%;" src="assets/images/kayitliisveren.png">
+                                      <h3>3500
+                                                      <strong *ngIf="fields.KAY1"><p>{{fields.KAY1}}</p></strong>
+                                      </h3></div>
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 35%;" src="assets/images/isarayan.png">
+                                      <h3>16000 <strong *ngIf="fields.KAY2"><p>{{fields.KAY2}}</p></strong></h3>
+                       </div>
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 27%;" src="assets/images/eslesme.png">
+                                      <h3>3500 <strong *ngIf="fields.ESL1"><p>{{fields.ESL1}}</p></strong></h3>
+                       </div>
+	               </div>
+				</div>
+		</div>
+	</div>
+	<!-- Kimler IS Ariyor? -->
+	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;">
+		<div class="row">
+			<div class="col-xs-12" style="margin-bottom: 20px;">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.KIM1">{{fields.KIM1}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src='assets/images/HeaderBottomLine.png'>
+			</div>
+		</div>
+		<div class="container containerx col-xs-12" >
+			<!--<a class="btn slick-prev slick-arrow" style="position:absolute; left: 10px; top: 40%;"></a>-->
+			<!--<a class="btn slick-next slick-arrow owl-next" style="position:absolute; right: 30px; top: 40%;"></a>-->
+
+			
+			<!--<div id="ss" style="font-size: 1vw;" *ngIf="!!profiles"> -->
+			<owl-carousel
+				[options]="{items: 4, dots: false, navigation: false, nav: true}"
+				[items]="profiles.data"
+				[carouselClasses]="['owl-theme', 'row', 'sliding']">
+
+				<div class="item" *ngFor="let profile of profiles.data;let i = index">
+		            <a href="isarayanprofil.html" style="text-decoration:none; color: inherit; border:none;"><div class="thumbnail">
+		                <img class="group list-group-image" src="{{profile.PHOTO_URL}}" onerror="this.src='https://organicthemes.com/demo/profile/files/2012/12/profile_img.png';" alt="" />
+		                <div class="caption">
+		                    <div class="row" style="margin: 0px 0px 0px 0px;">
+		                        <div class="col-xs-12 ratings-widget">
+		                            <div  style="float: right;">
+		                                <span class="glyphicon glyphicon-star"></span>
+		                                <span class="glyphicon glyphicon-star"></span>
+		                                <span class="glyphicon glyphicon-star"></span>
+		                                <span class="glyphicon glyphicon-star"></span>
+		                                <span class="glyphicon glyphicon-star-empty"></span>
+		                            </div>
+		                        </div>
+		                        <h4 class="group inner list-group-item-heading">
+		                        {{profile.PRIMARY_JOB}}</h4>
+		                        <h5 class="group inner list-group-item-heading">
+		                        {{profile.NAME}}</h5>
+		                        <div class="row" style="margin-bottom: 20px; font-size: 11px; white-space: nowrap;">
+		                        	<div class="col-xs-6">
+		                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+		                            Mesleki Yeterlilik
+		                        	</div>
+		                        	<div class="col-xs-6" style="padding: 0px;">
+			                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+			                            {{profile.CITY_NAME}}-{{profile.ADDRESS}}
+			                        </div>
+		                        </div>
+		                        <div class="row" style="margin-bottom: 20px; font-size: 12px;">
+		                        	<div class="col-xs-12">
+				                        <p class="group inner list-group-item-text">
+				                            {{profile.DESCRIPTION}}</p>
+				                    </div>
+				                </div>
+
+		                        <div class="row text-center">
+		                            <div class="col-xs-12" style="padding:0px;">
+
+		                                    <div style="margin: 0 auto; display: table; ">
+		                                    <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil" *ngIf="fields.PRF1">{{fields.PRF1}}</a>
+		                                    <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
+		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1">{{fields.SMS1}}</a>
+		    							</div>
+		                            </div> 
+		                              
+		                        </div>
+		                    </div>
+		                </div>
+		            </div></a>
+	        	</div>
+
+				 </owl-carousel>
+		<!--	KIMLER IS ARIYOR? End	-->
+		</div>
+	
+		<!-- Daha Fazla Is ilani gor -->
+		<div class="row text-center">
+			<div class="col-xs-12" style="margin-top: 20px;">
+				<a style="    background: #383838; color: white; border-color: #383838;" class="btn btn-default" *ngIf="fields.PRF2">{{fields.PRF2}}<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>
+			</div>
+		</div>
+		<!-- Daha Fazla Is ilani gor END -->
+		<!-- Kimler IS Ariyor END? -->
+		<!-- BANNER START -->
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10"  style="padding: 0px 200px; color: white;">
+				<img class="img img-responsive" src="assets/images/StatsBG.png" style="margin: 20px auto; width: 760px;  max-height:100px; max-width: 760px;">
+				<div class="row text-center" style="margin: 0px 0px 20px 10px; margin-top: -90px;">
+					<div class="col-xs-12" style="white-space:nowrap;padding: 0px 0px;">
+						<h4 style="padding: 5px 1px; float:left;" *ngIf="fields.PRF3">{{fields.PRF3}}</h4>
+						<a class="btn btn-warning" style="padding: 5px 1px; margin-left: 10px;"><h6  style="float: left; font-size: 11px;" *ngIf="fields.PRF4">{{fields.PRF4}}</h6><span><i class="fa fa-arrow-right" aria-hidden="true" style="margin: 10px 0px 0px 10px;"></i></span></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+		<!-- BANNER END -->
+	</div>
+	<!-- Populer Meslekler -->
+	<div class="container-fluid neden" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.POP1">{{fields.POP1}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src="assets/images/HeaderBottomLine.png">
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-desktop fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP2">{{fields.POP2}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-bank fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP3">{{fields.POP3}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-money fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP4">{{fields.POP4}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP5">{{fields.POP5}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-tachometer fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP6">{{fields.POP6}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-briefcase fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP7">{{fields.POP7}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-gavel fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP8">{{fields.POP8}}</h4>
+				</a>
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default pop-but">
+					<i class="fa fa-tags fa-3x" aria-hidden="true"></i>
+					<h4 *ngIf="fields.POP9">{{fields.POP9}}</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- Populer Meslekler FINISH -->
+	<!-- DUYURULAR ROW START -->
+	<div class="container-fluid duyurular" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.NEW1">{{fields.NEW1}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src="assets/images/HeaderBottomLine.png">
+			</div>
+		</div>
+		<div class="row" style="padding: 50px;">
+			<div class="col-xs-6">
+				<!-- Left-aligned media object -->
+			  <div class="media">
+			    <div class="media-left">
+			      <img src="assets/images/Employee1.png" class="media-object" style="">
+			    </div>
+			    <div class="media-body">
+			      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
+			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-xs-6">
+				<!-- Left-aligned media object -->
+			  <div class="media">
+			    <div class="media-left">
+			      <img src="assets/images/Employee1.png" class="media-object" style="">
+			    </div>
+			    <div class="media-body">
+			      <h4 class="media-heading">13-15 Haziran 2017 Is Fuari</h4>
+			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-xs-6">
+				<!-- Left-aligned media object -->
+			  <div class="media">
+			    <div class="media-left">
+			      <img src="assets/images/Employee1.png" class="media-object" style="">
+			    </div>
+			    <div class="media-body">
+			      <h4 class="media-heading">Evde Bakicilik Yapan Kadinlara Mujde!</h4>
+			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-xs-6">
+				<!-- Left-aligned media object -->
+			  <div class="media">
+			    <div class="media-left">
+			      <img src="assets/images/Employee1.png" class="media-object" style="">
+			    </div>
+			    <div class="media-body">
+			      <h4 class="media-heading">Mesleki Yeterlilik Belgenizi Aldiniz mi?</h4>
+			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 git">
+				<a class="text-center" routerLink="/duyurular" *ngIf="fields.NEW2"><p >{{fields.NEW2}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			</div>
+		</div>
+	</div>
+	<!-- DUYURULAR ROW FINISH -->
+	<!-- FIRMALAR ROW START -->
+	<div class="container-fluid neden firmalar" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.FIR1">{{fields.FIR1}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src="assets/images/HeaderBottomLine.png">
+			</div>
+		</div>
+		<div class="row">
+			<div class="container containerx" style="padding: 50px 100px 20px 100px;">
+				<div id="firms" data-slick='' style="font-size: 1vw; height:20%; min-height: 150px; min-width: 800px;">
+					<div class="">
+						<img class="img img-responsive" src="assets/images/dyo.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/immap.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/kizilay.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/Katal.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/mahir.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/undp.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/vestel.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/ets.png">
+					</div>
+					<div class="">
+						<img class="img img-responsive" src="assets/images/undp.png">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- FIRMALAR ROW Finish -->
+</section>
+<footer-comp></footer-comp>

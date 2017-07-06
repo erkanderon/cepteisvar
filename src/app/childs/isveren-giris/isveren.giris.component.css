@@ -1,0 +1,105 @@
+
+.left-panel{
+	float: left;
+}
+.left-panel a, .left-panel a:active, .left-panel a:hover{
+	text-decoration: none;
+	color: white;
+	padding: 0px 10px;
+}
+.right-panel a, .right-panel a:active, .right-panel a:hover{
+	text-decoration: none;
+	color: white;
+	padding: 0px 10px;
+}
+.right-panel{
+	float: right;
+}
+
+.navbar{
+	margin-bottom: 5px;
+}
+
+/* Menu Tab */
+/* Menu Tab */
+
+#menutab .tab a{
+	border: none;
+	background-color: white;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+.isveren, .isveren:hover, .isveren:active{
+	background-color: black;
+	color: #fff200;
+	border: #fff200;
+}
+.calisan, .calisan:hover, .calisan:active{
+	background-color: #fff200;
+	color: black;
+	border: black;
+}
+.isveren a{
+	color: #fff200;
+}
+.calisan a{
+	color: black;
+}
+.isveren a, .calisan a{
+	text-decoration: none;
+}
+#menutab .tab a{
+	border: none;
+	background-color: white;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+.isveren, .isveren:hover, .isveren:active{
+	background-color: black;
+	color: #fff200;
+	border: #fff200;
+}
+.calisan, .calisan:hover, .calisan:active{
+	background-color: #fff200;
+	color: black;
+	border: black;
+}
+.isveren a{
+	color: #fff200;
+}
+.calisan a{
+	color: black;
+}
+.isveren a, .calisan a{
+	text-decoration: none;
+}
+
+.tab, .but{
+	padding: 0px;
+	padding-top: 10px;
+}
+.btn{
+	border-radius: 0px;
+	font-size: 12px;
+}
+#menutab .tab a:active{
+	border-bottom: 1px solid #fff200;
+}
+
+
+
+/* IS ARAYAN GIRIS */
+
+.login{
+	border-top: 2px solid #fff200;
+	background-color: #f7f7f7;
+	margin: 50px 0px;
+	padding: 10px 30px;
+}
+
+.login .btn{
+	padding: 0px 0px;
+}
+.login input{
+	border-radius: 0px;
+}

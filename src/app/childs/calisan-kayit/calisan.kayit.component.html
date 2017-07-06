@@ -1,0 +1,162 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+		<section id="main_content" style="margin-top: -20px;">
+    <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+        <div class="col-xs-12">
+            <h3>IS ARAYAN KAYIT</h3>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Is Arayan Kayit</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <form #f="ngForm"  novalidate>
+            <div class="register">
+                
+                        <form class="row">
+                          <div class="row" style="padding: 0px 15px; margin: 0px;">
+                            <div class="col-xs-3 text-center">
+                                <input id="input-1" type="file" class="file">
+                            </div>
+                            <div class="col-xs-3"></div>
+                            <div class="col-xs-6">
+                              <div class="form-group txt">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" name="secenek" type="checkbox" style="font-size:600px;"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
+                                </label>
+                                <div class="form-group">
+                                  <label class="form-check-label">
+                                    <input name="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
+                                  </label>
+                                </div>
+                              </div>
+
+                            </div>
+                        </div>
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput">AD</label>
+                                <input type="text" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adinizi Giriniz">
+                              </div>
+                              
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">DOGUM TARIHI</label>
+                                <input type="date" name="dtarihi" class="form-control" id="formGroupDate">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
+                                <input type="number" name="contactno" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">E-POSTA</label>
+                                <input type="email" name="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">SEHIR</label>
+                                  <select id="" name="cityname" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)">
+                                    <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group row">
+                                   <div class="col-xs-6"> 
+                                      <label for="">BIRINCIL MESLEK</label>
+                                      <select id="" class="form-control" name="meslek">
+                                        <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-xs-6">
+                                      <label for="">TECRUBE</label>
+                                      <input type="text" name="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube">
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">ASKERLIK DURUMU</label>
+                                  <select id="" class="form-control" name="egitim">
+                                    <option>ASKERLIK Durumunuzu Seciniz</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">PAROLA</label>
+                                <input type="password" name="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola">
+                              </div>
+
+                              <div class="form-group txt">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="gizlilik"> Gizlilik Kurallari'nda belirtilen sart uyarinca Marti Kurumsal Hizmetler ve is ortaklari adina, benimle iletisime gecilmesine ve Marti Kurumsal Hizmetler tarafindan kisisel bilgilerimin islenmesine izin veriyorum.
+                                </label>
+                              </div>
+                              
+                          </div>
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput">SOYAD</label>
+                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Soyadinizi Giriniz" name="soyad">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">CINSIYET</label>
+                                  <select id="" class="form-control" name="cinsiyet">
+                                    <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">ADRES</label>
+                                <input type="text" name="adres" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">EGITIM DURUMU</label>
+                                  <select id="" class="form-control" name="egitim">
+                                    <option>Egitim Durumunuzu Seciniz</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">ILCE</label>
+                                  <select id="" class="form-control" name="cname" [ngModel]="cname">
+                                    <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">DIGER MESLEK</label>
+                                  <select id="" class="form-control" name="meslek2">
+                                    <option [value]="0">Seciniz</option>
+                                    <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">EHLIYET DURUMUNUZ</label>
+                                <input type="password" name="ehliyet" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz">
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
+                                <input type="password" name="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz">
+                              </div>
+                          </div>
+                          
+                        </form>
+
+                        <div class="row text-center">
+                            <div class="col-xs-12">
+                                <a (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;">KAYIT OL</a>
+                                <h5 style="color: #747574;">Zaten hesabiniz var mi?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giris Yapin</a> </h5> 
+                            </div>
+                        </div>
+                    
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</section>
+	</div>
+</div>
+
+
+<footer-comp></footer-comp>

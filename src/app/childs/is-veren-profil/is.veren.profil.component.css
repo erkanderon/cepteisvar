@@ -1,0 +1,341 @@
+body{
+	font-family: Myriad Pro;
+	font-size: 12px;
+
+    margin: 0 auto;
+}
+header{
+}
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+}
+
+.list-group-item {
+    padding: 0px;
+    margin-bottom: -1px;
+    border: 1px #ddd;
+}
+.list-group-item .text-center{
+    text-align: left;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+    width: 35%;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+    margin: 10px 15px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: white;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+.glyphicon-star{
+	color: yellow;
+} 
+.kimler{
+	background-color: white;
+	min-width: 1000px;
+}
+.kimler .container{
+	background-color: white;
+}
+.duyurular{
+	background-color: white;
+	min-width: 1000px;
+}
+.duyurular .container{
+	background-color: white;
+
+}
+.navbar{
+	min-height: 0px;
+	color: white;
+	border-radius: 0px;
+	font-size: 10px;
+}
+
+.navbar-default{
+	background-color: black;
+	border-color: black;
+}
+.left-panel{
+	float: left;
+}
+.left-panel a, .left-panel a:active, .left-panel a:hover{
+	text-decoration: none;
+	color: white;
+	padding: 0px 10px;
+}
+.right-panel a, .right-panel a:active, .right-panel a:hover{
+	text-decoration: none;
+	color: white;
+	padding: 0px 10px;
+}
+.right-panel{
+	float: right;
+}
+#menutab .container-fluid{
+
+}
+.navbar{
+	margin-bottom: 5px;
+}
+
+/* Menu Tab */
+/* Menu Tab */
+
+#menutab .tab a{
+	border: none;
+	background-color: white;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+.isveren, .isveren:hover, .isveren:active{
+	background-color: black;
+	color: #fff200;
+	border: #fff200;
+}
+.calisan, .calisan:hover, .calisan:active{
+	background-color: #fff200;
+	color: black;
+	border: black;
+}
+.isveren a{
+	color: #fff200;
+}
+.calisan a{
+	color: black;
+}
+.isveren a, .calisan a{
+	text-decoration: none;
+}
+#menutab .tab a{
+	border: none;
+	background-color: white;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+.isveren, .isveren:hover, .isveren:active{
+	background-color: black;
+	color: #fff200;
+	border: #fff200;
+}
+.calisan, .calisan:hover, .calisan:active{
+	background-color: #fff200;
+	color: black;
+	border: black;
+}
+.isveren a{
+	color: #fff200;
+}
+.calisan a{
+	color: black;
+}
+.isveren a, .calisan a{
+	text-decoration: none;
+}
+
+.tab, .but{
+	padding: 0px;
+	padding-top: 10px;
+}
+.btn{
+	border-radius: 0px;
+	font-size: 12px;
+}
+#menutab .tab a:active{
+	border-bottom: 1px solid #fff200;
+}
+
+/* FOOTER  */
+
+footer textarea{
+	border-radius: 0px !important;
+	background-color: #161b1e !important;
+	border-color: #161b1e !important;
+}
+footer{
+	 /* Footer yerine containera ver */
+	width: 100%;
+	background-color: black;
+	font-size: 12px;
+}
+
+footer .duyuru input,footer .duyuru span{
+	border-radius: 0px;
+}
+
+footer .duyuru h4{
+	color: #fff100;
+	font-size: 14px;
+
+}
+footer .social a{
+	padding: 10px 2px;
+    border-radius: 20px;
+    border: 1px solid #fff200;
+    color: white;
+}
+footer .duyuru .input-group, footer .duyuru .row, footer .duyuru input, footer .duyuru span{
+	font-size: 12px;
+}
+.social .row{
+	padding: 10px 0px;
+}
+.callus{
+	float: right;
+	color: white;
+	width: 100%;
+}
+.callus h3{
+	margin: 0px 0px;
+}
+footer .acik p{
+	color: white;
+	margin: 0px 0px 5px 0px;
+	font-size: 10px;
+}
+footer .aciklama h5{
+	color: #fff100;
+	font-size: 14px;
+}
+.aciklama .crumbs{
+	margin-top: 20px;
+}
+.aciklama .crumbs a{
+	text-decoration: none;
+	color: white;
+	white-space: nowrap;
+}
+.aciklama .input-group span, .aciklama .input-group input{
+	border-radius: 0px;
+}
+.aciklama .input-group input{
+	border-color: #161b1e !important;
+	background-color: #161b1e;
+	color: white;
+}
+.aciklama .form-elem{
+	border-color: #161b1e !important;
+	border-radius: 0px;
+	margin: 10px 0px;
+	background-color: #161b1e !important; 
+}
+
+.file-preview {
+    border-radius: 5px;
+    border: 1px solid #f7f7f7 !important;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.fileinput-remove{
+	display: none;
+}
+.fileinput-upload{
+	display: none;
+}
+.kv-fileinput-caption{
+	display: none !important;
+}
+.btn-file, .btn-file:hover, .btn-file:active{
+	color: black;
+	background: #fff200;
+	border-color: #fff200;
+}
+.register{
+	background: #f7f7f7;
+	padding: 30px 0px;
+	margin-top: 20px;
+	margin-bottom: 50px;
+	border-top: 2px solid #fff200;
+	border-bottom: 2px solid #fff200;
+}
+.register .form-group{
+	margin-top: 10px;
+}
+.register .form-group input, .register .form-group select{
+	border-radius: 0px;
+}
+.register label{
+	font-weight: 600;
+}
+.register .txt label{
+	font-size: 11px;
+	font-weight: 100;
+}
+.file-caption-main{
+	float: left;
+    text-align: left;
+    margin-top: 96px;
+}
+.file-input{
+	display: inline-flex;
+	    padding-left: 20px;
+}
+.btn:active, .btn-default:active{
+	border: none;
+	text-transform: none;
+	box-shadow: none;
+}
+.ratings-widget{
+	font-size: 20px;
+}
+.toogle .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle), .toogle .btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    border-radius: 0px;
+    border: none;
+}
+.toogle .btn-group button:active, .toogle .btn-group button:hover, .toogle .btn-group button:focus{
+	background-color: #fff200;
+	border-color: #fff200;
+}
+.toogle .btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default{
+	background-color: #fff200;
+	border-color: #fff200;
+}
+.yorumlar .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.yorumlar .timel{
+	border: 1px solid #e5e5e5;
+}
+.yorumlar .yorum{
+	border: 1px solid #e5e5e5;
+	border-top: none;
+	background-color: white;
+	min-height: 100px;
+}
+.yorumlar{
+	padding: 10px 100px;
+}

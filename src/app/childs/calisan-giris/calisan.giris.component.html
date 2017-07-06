@@ -1,0 +1,54 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+		<section id="main_content" style="margin-top: -20px;">
+    <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+        <div class="col-xs-12">
+            <h3>CALISAN GIRIS</h3>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Calisan Giris</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <div class="login">
+                <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput"><h4>E-POSTA</h4></label>
+                    <input type="email" class="form-control" id="formGroupExampleInput" placeholder="E-Mail" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+                  </div>
+                  saygin.savran@cboxprojects.com
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2"><h4>PAROLA</h4></label>
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola Giriniz" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" style="margin: 10px 4px 0;"> <h5 style="float:right;">Beni Hatirla</h5>
+                    </label>
+                    <a class="btn btn-default" style="float: right; background: #f7f7f7; border: none;"><h5>Sifremi Unuttum</h5></a>
+                  </div>
+                  <div class="row text-center">
+                    <div class="col-xs-12">
+                        <a (click)="login()"  class="btn btn-default" style="background: #fff100; border-color:#fff100; min-width:100px;"><h5>GIRIS</h5></a>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    </div>
+                    <div class="col-xs-12">
+                        <h5 style="font-size: 12px; color: #747574;">Henuz kayit olmadiysaniz burdan <a href="isarayankayit.html" style="text-decoration: none;"><strong>Kayit Olun</strong></a></h5>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+</section>
+	</div>
+</div>
+
+<footer-comp></footer-comp>

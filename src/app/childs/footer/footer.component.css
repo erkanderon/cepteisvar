@@ -1,0 +1,84 @@
+
+
+/* Menu Tab */
+
+.btn{
+	border-radius: 0px;
+	font-size: 12px;
+}
+
+/* FOOTER  */
+
+footer textarea{
+	border-radius: 0px !important;
+	background-color: #161b1e !important;
+	border-color: #161b1e !important;
+}
+footer{
+	 /* Footer yerine containera ver */
+	width: 100%;
+	background-color: black;
+	font-size: 12px;
+}
+
+footer .duyuru input,footer .duyuru span{
+	border-radius: 0px;
+}
+
+footer .duyuru h4{
+	color: #fff200;
+	font-size: 14px;
+
+}
+footer .social a{
+	padding: 10px 2px;
+    border-radius: 20px;
+    border: 1px solid #fff200;
+    color: white;
+}
+footer .duyuru .input-group, footer .duyuru .row, footer .duyuru input, footer .duyuru span{
+	font-size: 12px;
+}
+.social .row{
+	padding: 10px 0px;
+}
+.callus{
+	float: right;
+	color: white;
+	width: 100%;
+}
+.callus h3{
+	margin: 0px 0px;
+}
+footer .acik p{
+	color: white;
+	margin: 0px 0px 5px 0px;
+	font-size: 10px;
+}
+footer .aciklama h5{
+	color: #fff200;
+	font-size: 14px;
+}
+.aciklama .crumbs{
+	margin-top: 20px;
+}
+.aciklama .crumbs a{
+	text-decoration: none;
+	color: white;
+	white-space: nowrap;
+}
+.aciklama .input-group span, .aciklama .input-group input{
+	border-radius: 0px;
+}
+.aciklama .input-group input{
+	border-color: #161b1e !important;
+	background-color: #161b1e;
+	color: white;
+}
+.aciklama .form-elem{
+	border-color: #161b1e !important;
+	border-radius: 0px;
+	margin: 10px 0px;
+	background-color: #161b1e !important; 
+}
+
