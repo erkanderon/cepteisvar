@@ -1,16 +1,41 @@
 import { ElementRef, Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Pub } from '../../services/pub.service';
 
 @Component({
   moduleId: module.id,
   selector: 'duyuru-comp',
   templateUrl: './duyuru.component.html',
-  styleUrls: ['./duyuru.component.css']
+  styleUrls: ['./duyuru.component.css'],
+  providers: [Pub]
 })
 export class DuyuruComponent {
 
-	constructor() { 
+
+
+	sub: any;
+	id: any ="";
+	new: any={};
+	news: any={};
+
+
+	constructor( private route: ActivatedRoute, private _pub: Pub) { 
 
 	}
+
+
+	ngOnInit() {
+		this.sub = this.route.params.subscribe(params => {
+	       this.id = +params['id']; // (+) converts string 'id' to a number
+	       
+	       // In a real app: dispatch action to load the details here.
+	    });
+
+	    this.new = this._pub.getNew(this.id).then(res => this.new = res);
+	    this.news = this._pub.getNews().then(res => this.news = res);
+
+	    console.log(this.new);
+  	}
   
   	
 }

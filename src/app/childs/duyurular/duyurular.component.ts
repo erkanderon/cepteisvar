@@ -1,15 +1,21 @@
 import { ElementRef, Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Pub } from '../../services/pub.service';
+
 declare var jQuery : any;
 declare var List : any;
 @Component({
   moduleId: module.id,
   selector: 'duyurular-comp',
   templateUrl: './duyurular.component.html',
-  styleUrls: ['./duyurular.component.css']
+  styleUrls: ['./duyurular.component.css'],
+  providers: [Pub]
 })
 export class DuyurularComponent {
 
-	constructor(private elRef : ElementRef) { 
+	news: any = {};
+
+	constructor(private elRef : ElementRef, private _pub: Pub) { 
 		jQuery(document).ready(function () {
 
 	  		jQuery(function() {
@@ -22,6 +28,12 @@ export class DuyurularComponent {
 			});
   		});
 	}
-  
+
+	ngOnInit() {
+		
+	    this.news = this._pub.getNews().then(res => this.news = res);
+
+  	}
+	
   	
 }

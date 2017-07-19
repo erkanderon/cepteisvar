@@ -10,7 +10,7 @@ import {Comment} from '../../models/comment'
 })
 export class FooterComponent {
   
-  fields: any;
+  fields: any = {};
   obj: any;
 
 
@@ -20,7 +20,9 @@ export class FooterComponent {
 
   ngOnInit() {
   	this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
+    window.scrollTo(0, 0);
 
+    
   }
 
 

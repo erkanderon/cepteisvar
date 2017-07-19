@@ -1,0 +1,118 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+    <div class="container" style=" margin-bottom: 60px;">
+    	<header-comp></header-comp>
+    	<section id="main_content" style="margin-top: -20px;">
+            <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+                <div class="col-xs-12">
+                    <h3>ILETISIM</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Iletisim</a>
+                </div>
+            </div>
+
+
+            <!-- CONTENT FORM -->
+            <div class="register col-xs-8">
+                <form>
+                  <div class="form-group row">
+                    <div class="col-xs-6">
+                        <label for="formGroupExampleInput">ADINIZ SOYADINIZ</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                    <div class="col-xs-6">
+                        <label for="formGroupExampleInput">E-POSTA</label>
+                        <input type="email" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">KONU</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleTextarea">MESAJINIZ</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" style="min-height: 200px;"></textarea>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input">
+                      &nbsp; I'm not a robot
+                    </label>
+                  </div>
+                  <div  class="btn btn-info calisan text-center">
+                    <a  href="#" >GONDER</a>
+                  </div>
+                </form>
+            </div>
+
+            <!-- CONTENT FORM END -->
+
+            
+
+            <div class="col-xs-4">
+                <div class="register">
+                    <!-- Left-aligned -->
+                    <div class="media" style="padding-left: 30px; margin-top:0px;">
+                        <h4 class="head">ANKARA</h4>
+                      <div class="media-left">
+                        <i class="fa fa-map-marker fa-2x" aria-hidden="true" style="color:#ff9d12;"></i>
+                      </div>
+                      <div class="media-body medbod">
+                        <p>Reşit Galip Cad. No:111/30 Gaziosmanpaşa
+                        Çankaya / Ankara<br>
+                        0312 911 20 78</p>
+                      </div>
+                    </div>
+                    <!-- Left-aligned -->
+                    <div class="media" style="padding-left: 30px; margin-top:0px;">
+                        <h4 class="head">İSTANBUL</h4>
+                      <div class="media-left">
+                        <i class="fa fa-map-marker fa-2x" aria-hidden="true" style="color:#ff9d12;"></i>
+                      </div>
+                      <div class="media-body medbod">
+                        <p>Atatürk Mah.Meriç Cad. Botanik Çarşı 30/27 
+                        Ataşehir / İstanbul<br>
+                        0216 606 15 17</p>
+                      </div>
+                    </div>
+                    <!-- Left-aligned -->
+                    <div class="media" style="padding-left: 30px; margin-top:0px;">
+                        <h4 class="head">İZMİR</h4>
+                      <div class="media-left">
+                        <i class="fa fa-map-marker fa-2x" aria-hidden="true" style="color:#ff9d12;"></i>
+                      </div>
+                      <div class="media-body medbod">
+                        <p>Mansuroğlu Mah.286 Sk.No:16 Ali Çolakoğlu 
+                        Sitesi A1 Blok Kat:8 Daire:24 Bayraklı / İzmir<br>
+                        0232 344 42 42</p>
+                      </div>
+                    </div>
+                    <!-- Left-aligned -->
+                    <div class="media" style="padding-left: 30px; margin-top:0px;">
+                        <h4 class="head">GAZİANTEP</h4>
+                      <div class="media-left">
+                        <i class="fa fa-map-marker fa-2x" aria-hidden="true" style="color:#ff9d12;"></i>
+                      </div>
+                      <div class="media-body medbod">
+                        <p>Fatih Mah. 22047 Nolu Sk. No:9 Şehitkamil /
+                         Gaziantep<br>
+                        0342 606 03 12</p>
+                      </div>
+                    </div>
+                </div>
+
+                <img class="img img-responsive" style="height: 125px; width: 100%;" src="assets/images/ads@2x.png">
+            </div>
+
+        </section>
+        
+    </div>
+</div>
+
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+<div class="clearfix"> </div>
+<footer-comp></footer-comp>

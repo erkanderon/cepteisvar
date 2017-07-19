@@ -18,7 +18,7 @@
           <form #f="ngForm"  novalidate>
             <div class="register">
                 
-                        <form class="row">
+                        <form class="row" #f="ngForm"  novalidate>
                           <div class="row" style="padding: 0px 15px; margin: 0px;">
                             <div class="col-xs-3 text-center">
                                 <input id="input-1" type="file" class="file">
@@ -27,11 +27,11 @@
                             <div class="col-xs-6">
                               <div class="form-group txt">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" name="secenek" type="checkbox" style="font-size:600px;"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
+                                  <input class="form-check-input" name="secenek" [ngModel]="secenek" type="checkbox" style="font-size:600px;" > Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
                                 </label>
                                 <div class="form-group">
                                   <label class="form-check-label">
-                                    <input name="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
+                                    <input name="certificate" [ngModel]="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
                                   </label>
                                 </div>
                               </div>
@@ -41,55 +41,59 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">AD</label>
-                                <input type="text" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adinizi Giriniz">
+                                <input type="text" [ngModel]="isim" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adinizi Giriniz">
                               </div>
                               
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">DOGUM TARIHI</label>
-                                <input type="date" name="dtarihi" class="form-control" id="formGroupDate">
+                                <input type="date" [ngModel]="dtarihi" name="dtarihi" class="form-control" id="formGroupDate">
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
-                                <input type="number" name="contactno" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                                <input type="number" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="">
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">E-POSTA</label>
-                                <input type="email" name="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                                <input type="email" name="eposta" [ngModel]="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
                               </div>
                               <div class="form-group">
                                   <label for="">SEHIR</label>
-                                  <select id="" name="cityname" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)">
+                                  <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)">
                                     <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">IS KATEGORINIZ</label>
+                                  <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)">
+                                    <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
                                   </select>
                               </div>
                               <div class="form-group row">
                                    <div class="col-xs-6"> 
                                       <label for="">BIRINCIL MESLEK</label>
-                                      <select id="" class="form-control" name="meslek">
+                                      <select id="" class="form-control" name="meslek" [ngModel]="meslek">
                                         <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
                                       </select>
                                     </div>
                                     <div class="col-xs-6">
                                       <label for="">TECRUBE</label>
-                                      <input type="text" name="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube">
+                                      <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube">
                                     </div>
                               </div>
                               <div class="form-group">
                                   <label for="">ASKERLIK DURUMU</label>
-                                  <select id="" class="form-control" name="egitim">
-                                    <option>ASKERLIK Durumunuzu Seciniz</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                  <select id="" class="form-control" name="askerlik" [ngModel]="askerlik">
+                                    <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
                                   </select>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA</label>
-                                <input type="password" name="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola">
+                                <input type="password" name="parola" [ngModel]="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola">
                               </div>
 
                               <div class="form-group txt">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="gizlilik"> Gizlilik Kurallari'nda belirtilen sart uyarinca Marti Kurumsal Hizmetler ve is ortaklari adina, benimle iletisime gecilmesine ve Marti Kurumsal Hizmetler tarafindan kisisel bilgilerimin islenmesine izin veriyorum.
+                                  <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px;" name="gizlilik"> Gizlilik Kurallari'nda belirtilen sart uyarinca Marti Kurumsal Hizmetler ve is ortaklari adina, benimle iletisime gecilmesine ve Marti Kurumsal Hizmetler tarafindan kisisel bilgilerimin islenmesine izin veriyorum.
                                 </label>
                               </div>
                               
@@ -97,46 +101,48 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">SOYAD</label>
-                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Soyadinizi Giriniz" name="soyad">
+                                <input type="text" class="form-control" id="formGroupExampleInput" [ngModel]="soyad" placeholder="Soyadinizi Giriniz" name="soyad">
                               </div>
                               <div class="form-group">
                                   <label for="">CINSIYET</label>
-                                  <select id="" class="form-control" name="cinsiyet">
+                                  <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet">
                                     <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
                                   </select>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">ADRES</label>
-                                <input type="text" name="adres" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                                <input type="text" name="adres" class="form-control" [ngModel]="adres" id="formGroupExampleInput2" placeholder="">
                               </div>
                               <div class="form-group">
                                   <label for="">EGITIM DURUMU</label>
-                                  <select id="" class="form-control" name="egitim">
-                                    <option>Egitim Durumunuzu Seciniz</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                  <select id="" class="form-control" name="educate" [ngModel]="educate">
+                                    <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
+                                    
                                   </select>
                               </div>
                               <div class="form-group">
                                   <label for="">ILCE</label>
-                                  <select id="" class="form-control" name="cname" [ngModel]="cname">
+                                  <select id="" class="form-control" name="ilce" [ngModel]="ilce">
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                   </select>
                               </div>
                               <div class="form-group">
                                   <label for="">DIGER MESLEK</label>
-                                  <select id="" class="form-control" name="meslek2">
+                                  <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
                                     <option [value]="0">Seciniz</option>
                                     <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
                                   </select>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">EHLIYET DURUMUNUZ</label>
-                                <input type="password" name="ehliyet" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz">
+                                <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet">
+                                    <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
+                                    
+                                </select>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
-                                <input type="password" name="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz">
+                                <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz">
                               </div>
                           </div>
                           

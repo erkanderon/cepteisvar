@@ -1,29 +1,29 @@
 import { ElementRef, Component , ViewChild } from '@angular/core';
 import { Pub } from '../../services/pub.service';
-import { AuthService } from '../../services/auth.service';
-import {Return} from '../../models/return.model';
+import { AgmCoreModule } from '@agm/core';
+
+import {Return} from '../../models/return.model'
 declare var jQuery : any;
 
 @Component({
   moduleId: module.id,
-  selector: 'home-comp',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css'],
+  selector: 'contact-us',
+  templateUrl: './iletisim.component.html',
+  styleUrls: ['./iletisim.component.css'],
   providers: [Pub]
 })
-export class HomeComponent {
-	cities: any;
-	education: any;
-	jobs: any;
-	profiles: any;
+export class ContactUsComponent {
+	
 	fields: any;
 	obj: any;
-	news: any;
-	statistics: any;
+	lat: number = 39.8902323;
+  	lng: number = 32.8694131;
+  	zoom: number = 15;
+
 
 	
 
-	constructor(private elRef : ElementRef, private _pub: Pub,) { 
+	constructor(private elRef : ElementRef, private _pub: Pub) { 
 
 		// JQuery Defines
 		jQuery(document).ready(function () {
@@ -42,19 +42,10 @@ export class HomeComponent {
 			jQuery("#firms").slick({"slidesToShow": 8, "slidesToScroll": 1, "speed": 300, "infinite": true, "lazyLoad": 'ondemand'});
   		});
   		// JQuery finished
-
-  		
-
 	}
 	ngOnInit() {
 
-	    this.cities = this._pub.getCities().then(cities => this.cities = cities);
-	    this.education = this._pub.getEducationTypes().then(education => this.education = education);
-	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
-	    this.news = this._pub.getNews().then(res => this.news = res);
-	    this.statistics = this._pub.getJobStatistics().then(res => this.statistics = res);
-	    console.log(this.profiles)
 	}
 	ngAfterContentInit() {
 

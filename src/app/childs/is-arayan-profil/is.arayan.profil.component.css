@@ -30,7 +30,7 @@ header{
 .item.list-group-item .thumbnail
 {
     margin-bottom: 0px;
-    margin: 10px 15px;
+    margin: 10px 30px;
 }
 .item.list-group-item .caption
 {
@@ -338,4 +338,9 @@ footer .aciklama h5{
 }
 .yorumlar{
 	padding: 10px 100px;
+}
+
+.rem, .rem:hover, .rem:active{
+	text-decoration: none;
+	color: black;
 }

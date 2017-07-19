@@ -10,8 +10,12 @@ import 'rxjs/Rx';
 @Injectable()
 export class Pub {
 
+	
+	
 
-	constructor(private http: Http) { }
+	constructor(private http: Http) { 
+		
+	}
     
     //getting the languages
     getLanguages(): Promise<Return> {
@@ -33,14 +37,6 @@ export class Pub {
 	//getting company business area
 	getCompanyBusinessArea(): Promise<Return> {
 	    const url = AppSettings.API_ENDPOINT+'/app/get-company-business-area';
-	    return this.http.get(url)
-	      .toPromise()
-	      .then(response => response.json() as Return)
-	      .catch(this.handleError);
-	}
-	//getting company business area
-	getJobTypeList(): Promise<Return> {
-	    const url = AppSettings.API_ENDPOINT+'/app/get-job-type-list';
 	    return this.http.get(url)
 	      .toPromise()
 	      .then(response => response.json() as Return)
@@ -79,8 +75,48 @@ export class Pub {
 	      .catch(this.handleError);
 	}
 	//getting homepage profiles
+	getMilitaryChoices(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/list-military-status-types';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
+	//getting driver licenses
+	getDriverLicenseTypes(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/list-driver-licence-types';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
+	//getting job categories
+	getJobCategories(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/list-job-categories';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
+	//getting military services profiles
 	getHomepageMembers(): Promise<Return> {
 	    const url = AppSettings.API_ENDPOINT+'/acc/list-all-homepage-members';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
+	//getting news for home
+	getNews(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/list-all-news';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
+	//getting news for home
+	getJobStatistics(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/get-job-statistics';
 	    return this.http.get(url)
 	      .toPromise()
 	      .then(response => response.json() as Return)
@@ -91,6 +127,26 @@ export class Pub {
 	    let options = new RequestOptions({ headers: headers });
 
 	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-city-county-list', {"P_CITY_ID" : param}, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			   //used Arrow function here
+			   (success)=> {
+			      
+			      return success;
+			   }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			   }
+			)
+	}
+	getJobFieldList(param): Promise<void> {
+	    let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-job-type-list', {"P_JOB_CATEGORY_ID" : param}, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(
@@ -127,6 +183,53 @@ export class Pub {
 			)
                          
 	}
+	// GET SPECIFIC NEW
+	getNew(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/preview-news', {"p_haber_id": param}, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			   }
+			)
+
+	}
+	// USER RESET USER PASSWORD
+	resetPassword(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/reset-user-account', {"P_EMAIL": param}, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			   }
+			)
+
+	}
+
+	
 
 
 	private handleError(error: any): Promise<any> {

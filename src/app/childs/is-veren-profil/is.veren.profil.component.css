@@ -339,3 +339,25 @@ footer .aciklama h5{
 .yorumlar{
 	padding: 10px 100px;
 }
+.opti .btn{
+	min-height: 150px;
+}
+.opti .btn{
+	color: black;
+	border-color: black;
+	background: white;
+	text-decoration: none;
+}
+.opti .btn{
+	border-color: black;
+}
+.opti .hesap{
+	border: 1px solid black;
+    color: #fff200;
+    background: black;
+    float: right;
+    padding: 5px;
+}
+.input-block-level{
+	border: 1px solid black;
+}

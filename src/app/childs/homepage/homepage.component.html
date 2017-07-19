@@ -22,17 +22,17 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 				    <div class="item active">
-				    <img class="img img-responsive" src="assets/images/Banner1.png" alt="First slide">
+				    <img class="img img-responsive" src="assets/images/cepteban1.png" alt="First slide">
 	                <!-- Static Header -->
 	                    
 				    </div>
 				    <div class="item">
-			    	<img class="img img-responsive" src="assets/images/Banner1.png" alt="Second slide">
+			    	<img class="img img-responsive" src="assets/images/banner2.png" alt="Second slide">
 				    	<!-- Static Header -->
 	                    
 				    </div>
 				    <div class="item">
-			    	<img class="img img-responsive" src="assets/images/Banner1.png" alt="Third slide">
+			    	<img class="img img-responsive" src="assets/images/banner3.png" alt="Third slide">
 			    	<!-- Static Header -->  		
 	                    
 	                    
@@ -64,7 +64,7 @@
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect">
 								    <option selected >Meslek Seciniz...</option>
-								    <option value="1" *ngFor="let job of jobs.data">{{job.JOB_NAME}}</option>
+								    <option value="1" ></option>
 								</select>
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
@@ -138,21 +138,21 @@
 			</div>
 		</div>
 		<div class="row" style="    padding: 15px;">
-			<div style="width: 750px; margin: 0 auto; display: table;">
+			<div style="width: 750px; margin: 0 auto; display: table;" *ngIf="statistics.data">
                <img class="img img-responsive" src="assets/images/StatsBG.png">
 	               <div class="row text-center" style="margin-top: -135px; color:white;">
                        <div class="col-xs-4">
                                       <img class="img img-responsive" style="margin: 0 auto; width: 30%;" src="assets/images/kayitliisveren.png">
-                                      <h3>3500
+                                      <h3>{{statistics.data[0].TOTAL_COMPANIES}}
                                                       <strong *ngIf="fields.KAY1"><p>{{fields.KAY1}}</p></strong>
                                       </h3></div>
                        <div class="col-xs-4">
                                       <img class="img img-responsive" style="margin: 0 auto; width: 35%;" src="assets/images/isarayan.png">
-                                      <h3>16000 <strong *ngIf="fields.KAY2"><p>{{fields.KAY2}}</p></strong></h3>
+                                      <h3>{{statistics.data[0].TOTAL_JOB_SEEKERS}} <strong *ngIf="fields.KAY2"><p>{{fields.KAY2}}</p></strong></h3>
                        </div>
                        <div class="col-xs-4">
                                       <img class="img img-responsive" style="margin: 0 auto; width: 27%;" src="assets/images/eslesme.png">
-                                      <h3>3500 <strong *ngIf="fields.ESL1"><p>{{fields.ESL1}}</p></strong></h3>
+                                      <h3>{{statistics.data[0].ESLESME}} <strong *ngIf="fields.ESL1"><p>{{fields.ESL1}}</p></strong></h3>
                        </div>
 	               </div>
 				</div>
@@ -325,58 +325,21 @@
 			</div>
 		</div>
 		<div class="row" style="padding: 50px;">
-			<div class="col-xs-6">
+			<div class="col-xs-6" *ngFor="let nws of news.data;">
 				<!-- Left-aligned media object -->
 			  <div class="media">
 			    <div class="media-left">
-			      <img src="assets/images/Employee1.png" class="media-object" style="">
+			      <img src="{{nws.PHOTO_URL}}" class="media-object" style="" onerror="this.src='assets/images/Employee1.png';">
 			    </div>
 			    <div class="media-body">
-			      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+			      <h4 class="media-heading">{{nws.HEADER}}</h4>
+			      <p>{{nws.BODY}}</p>
+			      <a [routerLink]="['/duyuru', nws.HABER_ID]" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
 			    </div>
 			  </div>
 			</div>
-			<div class="col-xs-6">
-				<!-- Left-aligned media object -->
-			  <div class="media">
-			    <div class="media-left">
-			      <img src="assets/images/Employee1.png" class="media-object" style="">
-			    </div>
-			    <div class="media-body">
-			      <h4 class="media-heading">13-15 Haziran 2017 Is Fuari</h4>
-			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-			    </div>
-			  </div>
-			</div>
-			<div class="col-xs-6">
-				<!-- Left-aligned media object -->
-			  <div class="media">
-			    <div class="media-left">
-			      <img src="assets/images/Employee1.png" class="media-object" style="">
-			    </div>
-			    <div class="media-body">
-			      <h4 class="media-heading">Evde Bakicilik Yapan Kadinlara Mujde!</h4>
-			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-			    </div>
-			  </div>
-			</div>
-			<div class="col-xs-6">
-				<!-- Left-aligned media object -->
-			  <div class="media">
-			    <div class="media-left">
-			      <img src="assets/images/Employee1.png" class="media-object" style="">
-			    </div>
-			    <div class="media-body">
-			      <h4 class="media-heading">Mesleki Yeterlilik Belgenizi Aldiniz mi?</h4>
-			      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			      <a routerLink="/duyuru" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-			    </div>
-			  </div>
-			</div>
+			
+			
 		</div>
 		<div class="row">
 			<div class="col-xs-12 git">

@@ -5,8 +5,8 @@
   				<div class="row" style="min-width: 900px;">
 	  				<div class="col-md-6">
 	  					<div class="left-panel ">
-		  					<a href="" *ngIf="fields.HAK1">{{fields.HAK1}} </a>|
-		  					<a href="" *ngIf="fields.ILE1">{{fields.ILE1}} </a>|
+		  					<a href="" *ngIf="fields.HAK1" routerLink="/hakkimizda">{{fields.HAK1}} </a>|
+		  					<a href="" *ngIf="fields.ILE1" routerLink="/iletisim">{{fields.ILE1}} </a>|
 		  					<a href="cepteisvar@cepteisvar.com">MAIL: CEPTEISVAR@CEPTEISVAR.COM</a>
 		  				</div>
 	  				</div>
@@ -33,13 +33,20 @@
 		  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1">{{fields.MES1}}</a>
 		  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1">{{fields.DUY1}}</a>
 		  				</div>
-		  				<div class="col-xs-3 but">
+		  				<div class="col-xs-3 but" *ngIf="!checkUser">
+		  					<div style="float:left;" *ngIf="fields.LOG1">
+		  						<a routerLink="/isveren-giris" class="btn btn-info isveren" >{{fields.LOG1}}</a>
+		  					</div>
+		  					<div  class="btn btn-info calisan" *ngIf="fields.LOG2">
+		  						<a  routerLink="/calisan-giris" >{{fields.LOG2}}</a>
+		  					</div>
+		  				</div>
+		  				<div class="col-xs-3 but" *ngIf="checkUser">
 		  					<div style="float:left;">
-		  						<a routerLink="/isveren-giris" class="btn btn-info isveren" *ngIf="fields.LOG1">{{fields.LOG1}}</a>
+		  						<a (click)="logOut()" class="btn btn-info isveren">CIKIS YAP</a>
 		  					</div>
-		  					<div  class="btn btn-info calisan">
-		  						<a  routerLink="/calisan-giris" *ngIf="fields.LOG2">{{fields.LOG2}}</a>
-		  					</div>
+		  				
+		  					
 		  				</div>
 		  		</div>
 	  		</div>

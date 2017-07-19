@@ -15,10 +15,12 @@
     <div class="row text-center toogle" style="margin-top: 20px;">
       <div class="col-xs-12">
         <div class="btn-group btn-group-lg">
-          <button type="button" href="#1a" data-toggle="tab" class="btn btn-default active">PROFIL</button>
-          <button type="button" href="#3a" data-toggle="tab" class="btn btn-default" style="border:none;">GELEN SMSLERIM</button>
-          <button type="button" href="#2a" data-toggle="tab" class="btn btn-default" style="border:none;">YORUMLAR</button>
-          <button type="button" href="#4a" data-toggle="tab" class="btn btn-default" style="border:none;">PAROLA DEGISTIR</button>
+          <button type="button" id="profil" data-target="#1a" data-toggle="tab" class="btn btn-default">PROFIL</button>
+          <button type="button" id="mesleklerim" data-target="#5a" data-toggle="tab" class="btn btn-default">MESLEKLERIM</button>
+          <button type="button" id="smsler" data-target="#3a" data-toggle="tab" class="btn btn-default" style="border:none;">GELEN SMSLERIM</button>
+          <button type="button" id="yorumlar" data-target="#2a" data-toggle="tab" class="btn btn-default" style="border:none;">YORUMLAR</button>
+          <button type="button" id="parola" data-target="#4a" data-toggle="tab" class="btn btn-default" style="border:none;">PAROLA DEGISTIR</button>
+          
         </div>
       </div>
     </div>
@@ -45,104 +47,230 @@
                               </div>
                               <div class="form-group txt">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="secenek" [ngModel]="secenek"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
                                 </label>
                                 <div class="form-group">
                                   <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" style="font-size:600px;"> Gizlilik Kurallari'nda belirtilen sart uyarinca Marti Kurumsal Hizmetler ve is ortaklari adina, benimle iletisime gecilmesine ve Marti Kurumsal Hizmetler tarafindan kisisel bilgilerimin islenmesine izin veriyorum.
+                                    <input class="form-check-input" type="checkbox" style="font-size:600px;" name="certificate" [ngModel]="certificate"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
                                   </label>
                                 </div>
                               </div>
 
                             
                               <div class="col-xs-12">
-                                <h6  style="float:right;"><strong>Profilimi Duzenle</strong></h6>
+                                <h6  style="float:right;" (click)="setNumber(1)"><strong>Profilimi Duzenle</strong></h6>
                               </div>
                             </div>
                         </div>
-                          <div class="col-xs-6" style="padding: 0px 50px;">
-                              <div class="form-group">
-                                <label for="formGroupExampleInput2">AD</label>
-                                <div class="">
-                                  <p class="form-control-static">Haydar</p>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="formGroupExampleInput2">Dogum Tarihi</label>
-                                <div class="">
-                                  <p class="form-control-static">02-06-1992</p>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="formGroupExampleInput2">E-POSTA</label>
-                                <div class="">
-                                  <p class="form-control-static">haydar@hotmail.com</p>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="formGroupExampleInput2">SEHIR</label>
-                                <div class="">
-                                  <p class="form-control-static">IZMIR</p>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                   <div class="col-xs-6"> 
-                                      <label for="formGroupExampleInput2">BIRINCIL MESLEK</label>
-                                      <div class="">
-                                        <p class="form-control-static">Uretim Hatti Sefi</p>
-                                      </div>
+                        <div *ngIf="state === 0">
+                              <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">AD</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].NAME}}</p>
                                     </div>
-                                    <div class="col-xs-6">
-                                      <label for="formGroupExampleInput2">TECRUBE</label>
-                                      <div class="">
-                                        <p class="form-control-static">5 Yildan Fazla</p>
-                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">Dogum Tarihi</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].BDAY}}</p>
                                     </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">E-POSTA</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].EMAIL}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">SEHIR</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].CITY_NAME}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                       <div class="col-xs-6"> 
+                                          <label for="formGroupExampleInput2">BIRINCIL MESLEK</label>
+                                          <div class="">
+                                            <p class="form-control-static">{{profile.data[0].PRIMARY_JOB}}</p>
+                                          </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                          <label for="formGroupExampleInput2">TECRUBE</label>
+                                          <div class="">
+                                            <p class="form-control-static">{{profile.data[0].WORKING_EXPERIENCE}}</p>
+                                          </div>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">SOYAD</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].SURNAME}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">CINSIYET</label>
+                                      <div class="">
+                                        <p class="form-control-static">{{profile.data[0].GENDER}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">EGITIM DURUMU</label>
+                                      <div class="">
+                                        <p class="form-control-static">{{profile.data[0].EDUCATION_LEVEL}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">ILCE</label>
+                                      <div class="">
+                                        <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">DIGER MESLEK</label>
+                                      <div class="">
+                                        <p class="form-control-static">{{profile.data[0].SECONDARY_JOB}}</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row text-center" style="margin-top: 20px;">
+                                  <div class="col-xs-12">
+                                      <div class="btn-group">
+                                        
+                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;">GERI DON</a>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                          <div class="col-xs-6" style="padding: 0px 50px;">
-                              <div class="form-group">
-                                <label for="formGroupExampleInput2">SOYAD</label>
-                                <div class="">
-                                  <p class="form-control-static">Gercek</p>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput2">CINSIYET</label>
-                                  <div class="">
-                                    <p class="form-control-static">Erkek</p>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput2">EGITIM DURUMU</label>
-                                  <div class="">
-                                    <p class="form-control-static">Lise</p>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput2">ILCE</label>
-                                  <div class="">
-                                    <p class="form-control-static">Bagcilar</p>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput2">DIGER MESLEK</label>
-                                  <div class="">
-                                    <p class="form-control-static">Yok</p>
-                                  </div>
-                              </div>
-                          </div>
-                          
                         </form>
 
-                        <div class="row text-center" style="margin-top: 20px;">
-                            <div class="col-xs-12">
-                                <div class="btn-group">
-                                  
-                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;">GERI DON</a>
+                        <!-- EDIT PART OF THE PROFILE -->
+
+                        <form class="row" #editmember="ngForm">
+                          
+                        <div *ngIf="state === 1">
+                          <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">AD</label>
+                                    <div class="">
+                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">DOGUM TARIHI</label>
+                                    <div class="">
+                                      <input type="date" class="form-control" id="firma" name="dtarihi" [ngModel]="dtarihi" [value]="profile.data[0].BDAY" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">E-POSTA</label>
+                                    <div class="" required>
+                                      <p class="form-control-static">{{profile.data[0].EMAIL}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
+                                    <div class="">
+                                      <input type="number" class="form-control" id="firma" name="telefon" [ngModel]="telefon" [value]="profile.data[0].EMAIL" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">SEHIR</label>
+                                    <div class="">
+                                      <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
+                                        <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                       <div class="col-xs-6"> 
+                                          <label for="formGroupExampleInput2">ASKERLIK DURUMU</label>
+                                          <div class="">
+                                            <select id="" class="form-control" name="askerlik" [ngModel]="askerlik" required>
+                                              <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                          <label for="formGroupExampleInput2">TECRUBE</label>
+                                          <div class="">
+                                            <input type="text" class="form-control" id="firma" name="tecrube" [ngModel]="tecrube" [value]="profile.data[0].WORKING_EXPERIENCE" required>
+                                          </div>
+                                        </div>
+                                  </div>
+                                  <div class="form-group txt">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px;" name="gizlilik"> Gizlilik Kurallari'nda belirtilen sart uyarinca Marti Kurumsal Hizmetler ve is ortaklari adina, benimle iletisime gecilmesine ve Marti Kurumsal Hizmetler tarafindan kisisel bilgilerimin islenmesine izin veriyorum.
+                                    </label>
+                                  </div>
+                              </div>
+                              <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">SOYAD</label>
+                                    <div class="">
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">CINSIYET</label>
+                                      <div class="">
+                                        <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet" required>
+                                          <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">ADRES</label>
+                                    <div class="">
+                                      <input type="text" class="form-control" id="firma" [ngModel]="adres" name="adres" [value]="profile.data[0].SURNAME" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">EGITIM DURUMU</label>
+                                      <div class="">
+                                        <select id="" class="form-control" name="educate" [ngModel]="educate" required>
+                                          <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
+                                        
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">ILCE</label>
+                                      <div class="">
+                                        <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
+                                          <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="formGroupExampleInput2">EHLIYET</label>
+                                      <div class="">
+                                        <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet" required>
+                                            <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
+                                            
+                                        </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row text-center" style="margin-top: 20px;">
+                                <div class="col-xs-12">
+                                    <div class="btn-group">
+
+                                      <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
+                                      <a type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editMemberForm(editmember)">KAYDET</a> <!-- data-toggle="modal" data-target="#myModal" -->
+                                    
+                                    </div>
                                 </div>
+                              </div>
+                              
                             </div>
-                        </div>
+                        </form>
+
+                        <!-- FORM FINISH -->
+
+                        
                         
                     </div>
                     <!-- YORUMLAR -->
@@ -152,79 +280,29 @@
                               <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                          <div *ngIf="comments.data">
+                            <div class="row" *ngFor="let yorum of comments.data">
+                              <div class="col-xs-12">
+                                <div class="row timel">
+                                  <div class="col-xs-6">
+                                    <p style="margin-top: 10px;"><strong>{{yorum.REGISTERED_DATE}}</strong></p>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="ratings-widget" style="padding: 0px;">
+                                      <div  style="float: right;">
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star-empty"></span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
+                                <div class="row yorum">
+                                  <div class="col-xs-12">
+                                    <h5>{{yorum.C_COMMENT}}</h5>
                                   </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
                                 </div>
                               </div>
                             </div>
@@ -239,90 +317,39 @@
                         </div>
 
                         </div>
-                        <!-- YORUMLAR  -->
+
+
+                        <!-- GELEN SMS  -->
                         <div id="3a" class="tab-pane yorumlar">
                           <div class="row">
                             <div class="col-xs-12">
                               <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                          <div *ngIf="sms.data">
+                            <div class="row" *ngFor="let sms of sms.data">
+                              <div class="col-xs-12">
+                                <div class="row timel">
+                                  <div class="col-xs-6">
+                                    <p style="margin-top: 10px;"><strong>{{sms.CREATE_DATE}}</strong></p>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="ratings-widget" style="padding: 0px;">
+                                      <div  style="float: right;">
+                                          
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
+                                <div class="row yorum">
+                                  <div class="col-xs-12">
+                                    <h5>{{sms.SMS_TEXT}}</h5>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
 
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Haydar Bey cok basarili bir sekilde verilen isi bitirdi. Cok hizli calisiyor.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <div class="row text-center" style="margin-top: 20px;">
                             <div class="col-xs-12">
                                 <div class="btn-group">
@@ -334,28 +361,89 @@
                           
                         </div>
                         <div id="4a" class="tab-pane yorumlar">
-                          <form>
+                          <form class="row" #fav="ngForm"  novalidate>
                             <div class="form-group">
                               <label for="formGroupExampleInput">Eski Parolaniz</label>
-                              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Eski Parola">
+                              <input type="text" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola">
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolaniz</label>
-                              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yeni Parola">
+                              <input type="text" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola">
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanizi Tekrar Giriniz</label>
-                              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Tekrar Giriniz">
+                              <input type="text" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz">
                             </div>
                           </form>
                           <div class="row text-center">
                             <div class="col-xs-12">
                                 <div class="btn-group">
                                   <a type="button" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
-                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;">KAYDET</a>
+                                  <a type="button" (click)="changePassword(fav)" class="btn btn-default calisan" style="min-width: 100px;">KAYDET</a>
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        <!-- MESLEKLERIM -->
+                        <div id="5a" class="tab-pane yorumlar" *ngIf="profile.data">
+                          <h5 class="text-center">EN FAZLA 2 MESLEK SECEBILIRSINIZ</h5>
+
+                          <div class="row" style="margin: 20px 0px;">
+                            <div class="col-xs-12">
+                              <div class="row timel">
+                                <div class="col-xs-6">
+                                  <p style="margin-top: 10px;"><strong>MESLEK 1</strong></p>
+                                </div>
+                                <div class="col-xs-6">
+                                  <div class="ratings-widget" style="padding: 0px;">
+                                    <div  style="float: right; font-size: 14px; margin-top: 10px;">
+                                        <a class="rem" style="margin-top: 10px; "><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</a>&nbsp;&nbsp;&nbsp;
+                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job1"><span class="glyphicon glyphicon-wrench" style="font-size: 10px;"></span>&nbsp;Degistir</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row yorum">
+                                <div class="col-xs-12">
+                                  <h3>{{profile.data[0].PRIMARY_JOB}}</h3>
+                                  <h5>{{ profile.data[0].PRIMARY_JOB_DESCRIPTION }}</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row" style="margin: 20px 0px;">
+                            <div class="col-xs-12">
+                              <div class="row timel">
+                                <div class="col-xs-6">
+                                  <p style="margin-top: 10px;"><strong>MESLEK 2</strong></p>
+                                </div>
+                                <div class="col-xs-6">
+                                  <div class="ratings-widget" style="padding: 0px;">
+                                    <div  style="float: right; font-size: 14px; margin-top: 10px;">
+                                        <a class="rem" style="margin-top: 10px; "><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</a>&nbsp;&nbsp;&nbsp;
+                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job2"><span class="glyphicon glyphicon-wrench" style="font-size: 10px;" ></span>&nbsp;Degistir</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row yorum">
+                                <div class="col-xs-12">
+                                  <h3>{{profile.data[0].SECONDARY_JOB}}</h3>
+                                  <h5>{{ profile.data[0].SECONDARY_JOB_DESCRIPTION }}</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--<div class="row text-center">
+                            <div class="col-xs-12">
+                                <div class="btn-group">
+                                  <a type="button" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
+                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;">KAYDET</a>
+                                </div>
+                            </div>
+                          </div>-->
                         </div>
                         
             </div>
@@ -365,6 +453,129 @@
     </div>
 </section>
 	</div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">CEP TELEFONU DOGRULAMA</h4>
+      </div>
+      <div class="modal-body">
+        <p>Cep Telefonu numaranızda değişiklik yapmak istediğiniz için yeni numaranızı
+        doğrulamanız gerekmektedir. Lütfen vermiş olduğunuz yeni telefona gönderilen 
+        kodu aşağıdaki bölüme giriniz.</p>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-2 col-form-label" style="margin-top: 5px;">KOD:</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input" style="border-radius:0px;">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        <div class="btn-group">
+
+          <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">GONDER</a>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JOB 1 MODAL -->
+<div id="job1" class="modal fade" role="dialog" *ngIf="jobcategory.data">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">MESLEK DUZENLE</h4>
+      </div>
+      <div class="modal-body">
+        <form #meslek="ngForm">
+          <div class="form-group" *ngIf="jobcategory.data">
+              <label for="">IS KATEGORINIZ</label>
+              <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
+                <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+              </select>
+          </div>
+          <div class="form-group"> 
+            <label for="">BIRINCIL MESLEK</label>
+            <select id="" class="form-control" name="meslek" [ngModel]="meslek">
+              <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">Example textarea</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc1" name="desc1"></textarea>
+          </div>
+        </form>
+      <div class="modal-footer">
+        <div class="row text-center">
+          <div class="col-xs-12">
+              <div class="btn-group">
+                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changeJob1(meslek)">KAYDET</a>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+</div>
+</div>
+
+<!-- JOB 2 MODAL -->
+<div id="job2" class="modal fade" role="dialog" *ngIf="profile.data">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <form #meslekother="ngForm">
+          <div class="form-group">
+              <label for="">IS KATEGORINIZ</label>
+              <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
+                <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+              </select>
+          </div>
+          <div class="form-group"> 
+            <label for="">DIGER MESLEK</label>
+            <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
+              <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">Example textarea</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc2" name="desc2"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="row text-center">
+          <div class="col-xs-12">
+              <div class="btn-group">
+                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changeJob2(meslekother)">KAYDET</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <footer-comp></footer-comp>

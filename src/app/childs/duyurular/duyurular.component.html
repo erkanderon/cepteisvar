@@ -15,151 +15,22 @@
 		    </div>
 		    <div class="row">
 		    	<div class="col-xs-8 mediacenter" style="padding: 20px 50px 20px 30px;">
-		    		<div id="news" class="row list-group">
+		    		<div id="news" class="row list-group" *ngIf="news.data">
 		    			<ul class="row list">
-		    			<li><div class="col-xs-12" >
+		    			<li *ngFor="let nws of news.data;"><div class="col-xs-12" >
 		    			  <!-- Left-aligned media object -->
 						  <div class="media">
 						    <div class="media-left">
 						      <img src="assets/images/Employee1.png" class="media-object" style="">
 						    </div>
 						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
+						      <h4 class="media-heading">nws.HEADER</h4>
+						      <p>nws.BODY</p>
+						      <a [routerLink]="['/duyuru', nws.HABER_ID]"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
 						    </div>
 						  </div>
 		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
-		    			<li><div class="col-xs-12">
-		    			  <!-- Left-aligned media object -->
-						  <div class="media">
-						    <div class="media-left">
-						      <img src="assets/images/Employee1.png" class="media-object" style="">
-						    </div>
-						    <div class="media-body">
-						      <h4 class="media-heading">17-18 Mart 2017 Marangozluk Kursu</h4>
-						      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						      <a routerLink="/duyuru"><p>Devamini Oku<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
-						    </div>
-						  </div>
-		    			</div></li>
+		    			
 		    		</ul>
 		    		<ul class="col-xs-12 pagination" style="padding-left: 40%;"></ul>
 		    		</div>

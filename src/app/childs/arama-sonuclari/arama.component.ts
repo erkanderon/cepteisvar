@@ -1,4 +1,5 @@
-import { ElementRef, Component } from '@angular/core';
+import { ElementRef, Component, ViewChild } from '@angular/core';
+import { Pub } from '../../services/pub.service';
 declare var jQuery : any;
 declare var List : any;
 
@@ -6,13 +7,18 @@ declare var List : any;
   moduleId: module.id,
   selector: 'arama-comp',
   templateUrl: './arama.component.html',
-  styleUrls: ['./arama.component.css']
+  styleUrls: ['./arama.component.css'],
+  providers: [Pub]
 })
 export class AramaComponent {
 
-	constructor(private elRef : ElementRef) { 
-		jQuery(document).ready(function () {
+	profiles: any = {};
+	model: any = [];
+	saveUsername: any = false;
 
+	constructor(private elRef : ElementRef, private _pub: Pub,) { 
+
+		jQuery(document).ready(function () {
 	  		jQuery("#ss").slick({"slidesToShow": 4, "slidesToScroll": 1, "speed": 300, "infinite": true, "lazyLoad": 'ondemand'});
 
 
@@ -28,7 +34,29 @@ export class AramaComponent {
 
 			});
   		});
+		
+
 	}
+	ngOnInit() {
+
+	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
+
+	    
+	}
+
+	addToModel(val, user){
+
+		if(val.target.checked){
+			this.model.push(user);
+		}else{
+			let index = this.model.indexOf(user, 0);
+			if (index > -1) {
+			   this.model.splice(index, 1);
+			}
+		}
+	}
+
+	
   
   	
 }

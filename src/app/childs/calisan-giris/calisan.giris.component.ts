@@ -14,7 +14,7 @@ export class CalisanGirisComponent {
   
     model: any = {};
     loading = false;
-    returnUrl: string = "/calisan-arama";
+    returnUrl: string = "/is-arayan-profil";
     cities: any;
     apiResponse: any;
     fields: any;
@@ -34,7 +34,6 @@ export class CalisanGirisComponent {
 	}
   login() {
         this.loading = true;
-        this._authService.login(this.model.username, this.model.password);
-        //console.log(this._authService.getUser());
+        this._authService.login(this.model.username, this.model.password, this.returnUrl, "member");
   }
 }

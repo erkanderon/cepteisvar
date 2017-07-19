@@ -26,6 +26,13 @@ import { DuyurularComponent } from './childs/duyurular/duyurular.component';
 import { DuyurularRightSideComponent } from './childs/duyurular-rightside/duyurular.rightside';
 import { DuyuruComponent } from './childs/duyuru/duyuru.component';
 
+import { AboutUsComponent } from './childs/hakkimizda/hakkimizda.component';
+import { ContactUsComponent } from './childs/iletisim/iletisim.component';
+import { ResetPasswordComponent } from './childs/reset-password/reset.password.component';
+
+import { AgmCoreModule } from '@agm/core';
+
+
 // Import your library
 import { OwlModule } from 'angular-owl-carousel';
 
@@ -42,7 +49,10 @@ const appRoutes : Routes = [
   { path: 'is-veren-profil', component: IsVerenProfilComponent, data: { title: 'IsVerenProfilComponent'} },
   { path: 'meslek-haritasi', component: MeslekHaritasiComponent, data: { title: 'IsVerenProfilComponent'} },
   { path: 'duyurular', component: DuyurularComponent, data: { title: 'DuyurularComponent'} },
-  { path: 'duyuru', component: DuyuruComponent, data: { title: 'DuyuruComponent'} },
+  { path: 'duyuru/:id', component: DuyuruComponent, data: { title: 'DuyuruComponent'} },
+  { path: 'hakkimizda', component: AboutUsComponent, data: { title: 'AboutUsComponent'} },
+  { path: 'iletisim', component: ContactUsComponent, data: { title: 'ContactUsComponent'} },
+  { path: 'reset', component: ResetPasswordComponent, data: { title: 'ResetPasswordComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
   { path: '**', redirectTo: 'home' }
 ];
@@ -64,6 +74,9 @@ const appRoutes : Routes = [
     DuyurularComponent,
     DuyurularRightSideComponent,
     DuyuruComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    ResetPasswordComponent
 
 
   ],
@@ -72,7 +85,10 @@ const appRoutes : Routes = [
     FormsModule,
     HttpModule,
     OwlModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAfjFE_rSuwj5D8Q13rVC48aSaWzOUZXDk'
+    })
   ],
   providers: [
         Pub, PostService
