@@ -315,83 +315,34 @@
                               <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                          <div *ngIf="sms.data">
+                            <div class="row" *ngFor="let sms of sms.data">
+                              <div class="col-xs-12">
+                                <div class="row timel">
+                                  <div class="col-xs-6">
+                                    <p><strong>{{sms.CREATE_DATE}}</strong></p>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="ratings-widget" style="padding: 0px;">
+                                      <div  style="float: right;">
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star"></span>
+                                          <span class="glyphicon glyphicon-star-empty"></span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Sayin Haydar G., Manisa Fabrikamizda calismak uzere istihdam edecegimiz 200 kisi icinden biri olmak isterseniz 0232 455 36 36 numarali telefondan bize ulasabilirsiniz.</h5>
+                                <div class="row yorum">
+                                  <div class="col-xs-12">
+                                    <h5>{{sms.SMS_TEXT}}</h5>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Sayin Haydar G., Manisa Fabrikamizda calismak uzere istihdam edecegimiz 200 kisi icinden biri olmak isterseniz 0232 455 36 36 numarali telefondan bize ulasabilirsiniz.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="row timel">
-                                <div class="col-xs-6">
-                                  <p><strong>23/04/2017 - PERSEMBE 13:65</strong></p>
-                                </div>
-                                <div class="col-xs-6">
-                                  <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row yorum">
-                                <div class="col-xs-12">
-                                  <h5>Sayin Haydar G., Manisa Fabrikamizda calismak uzere istihdam edecegimiz 200 kisi icinden biri olmak isterseniz 0232 455 36 36 numarali telefondan bize ulasabilirsiniz.</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          
                           <div class="row text-center" style="margin-top: 20px;">
                             <div class="col-xs-12">
                                 <div class="btn-group">
@@ -463,6 +414,10 @@
 
                         <div id="6a" class="tab-pane yorumlar">
                           <div *ngIf="basket.length">
+                            <div class="row">
+                              <a class="btn btn-success" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: right; background: #fff200; border-color: #fff200; margin: 0px 30px;" routerLink="/sms-gonder">SMS GONDER</a>
+                            </div>
+
                             <div *ngFor="let sepet of basket" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
 
                                 <div class="thumbnail" style=" margin: 10px 30px;">
@@ -495,9 +450,8 @@
                                             <div class="group inner list-group-item-text text-center">
                                                 
                                                         <div style="margin: 0 auto; display: table; ">
-                                                        <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil">PROFILI GORUNTULE</a>
-                                                        <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
-                        background: #fff200; border-color: #fff200;" href="">SMS GONDER</a>
+                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil">PROFILI GORUNTULE</a>
+                                                        
                                                     </div>
                                                     
                                             </div>

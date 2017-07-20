@@ -1,0 +1,61 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+		<section id="main_content" style="margin-top: -20px;">
+    <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+        <div class="col-xs-12">
+            <h3>SMS GÖNDER</h3>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Sepetim >> SMS Gönder</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8" style="margin-top: 50px;">
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <h4 class="text-center">SMS OLUŞTUR</h4>
+              <img class="img img-responsive" style="margin: 0 auto; width: 50%;" src='assets/images/HeaderBottomLine.png'>
+            </div>
+          </div>
+          <form style="margin-top: 20px;" #frm="ngForm" novalidate>
+            <div class="form-group opti">
+              <label for="exampleTextarea" style="margin-bottom: 0px; margin-top: 10px;">SMS İçeriği:</label>
+              <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: 25</div>
+              <textarea class="form-control" id="exampleTextarea" placeholder="Lütfen adaylara göndermek istediğiniz SMS içeriğini buraya giriniz." rows="3" style="height:150px;" name="text" [(ngModel)]="text"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">SMS Gönderilecek Aday Sayısı: <span *ngIf="basket.length">{{basket.length}}</span></label>
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">Oluşturduğunuz SMS’in Uzunluğu:</label>
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">Toplam Ödeme Yapılacak Miktar:</label>
+            </div>
+
+            <div class="row text-center">
+              <a class="btn btn-success" style="font-size: 9px; border-radius: 0px;  color: black; background: #fff200; border-color: #fff200; margin: 0px 30px;" (click)="sendSMS(frm)">HESABIMDA TANIMLI KREDİLERİMLE ÖDE</a>
+            </div>
+          </form>
+          <div class="login">
+              <form name="form" >
+                <div class="form-group">
+                  <label for="formGroupExampleInput"><h4>E-POSTA</h4></label>
+                  <input type="email" class="form-control" id="formGroupExampleInput" placeholder="E-Mail" name="username" [(ngModel)]="username" required>
+                </div>
+                
+              </form>
+          </div>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+</section>
+	</div>
+</div>
+
+<footer-comp></footer-comp>

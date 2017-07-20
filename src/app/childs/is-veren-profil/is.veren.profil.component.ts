@@ -25,6 +25,7 @@ export class IsVerenProfilComponent {
 	selectedDevice : any ={};
 	comments: any = {};
 	basket:any = {};
+	sms:any={};
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
 		jQuery(document).ready(function () {
@@ -39,7 +40,6 @@ export class IsVerenProfilComponent {
 		this.company = new PreviewCompanyModel(localStorage.getItem('user'));
 		this.profile = this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.profile = res);
 		this.cities = this._pub.getCities().then(cities => this.cities = cities);
-
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 		this.basket = this.getBasketData();
 	}
@@ -47,10 +47,10 @@ export class IsVerenProfilComponent {
 	getop(res){
 	    if(res.data){
 	      this.comments = this._post.getCompanyComments({"P_COMPANY_ID": res.data[0].COMPANY_ID}).then(comments => this.comments = comments);
-	      //this.sms = this._post.getMemberSMS({"p_userid": res.data[0].USER_ID}).then(sms => this.sms = sms);
+	      this.sms = this._post.getCompanySMS({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
 	      
 	    }
-	    console.log(this.comments);
+	    console.log(this.sms);
 	}
 	getBasketData(){
 		let model = [];

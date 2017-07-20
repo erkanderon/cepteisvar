@@ -216,6 +216,52 @@ export class PostService {
 			)
 
 	}
+	// GET COMPANY SMS
+	getCompanySMS(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-company-sms-list?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			   }
+			)
+
+	}
+	// CREATE BASKET LIST SMS
+	createCompanyBasket(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/create-sms-basket?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			   }
+			)
+
+	}
 	
 	// CHANGE PASSWORD
 	changePassword(param): Promise<any> {
