@@ -10,7 +10,6 @@ declare var jQuery : any;
   selector: 'contact-us',
   templateUrl: './iletisim.component.html',
   styleUrls: ['./iletisim.component.css'],
-  providers: [Pub]
 })
 export class ContactUsComponent {
 	

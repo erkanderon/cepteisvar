@@ -9,7 +9,7 @@ declare var List : any;
   selector: 'duyurular-comp',
   templateUrl: './duyurular.component.html',
   styleUrls: ['./duyurular.component.css'],
-  providers: [Pub]
+
 })
 export class DuyurularComponent {
 

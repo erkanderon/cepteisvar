@@ -185,7 +185,7 @@
                                     </a>
                                 </div>
                                 <div class="btn-group" *ngIf="model.length">
-                                    <a href="#" id="sepet" class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
+                                    <a (click)="createSepet()" id="sepet" class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
                             background: #fff200; border-color: #fff200;"><span class="glyphicon glyphicon-plus">
                                     </span>SEPETE EKLE</a>
                                 </div>
@@ -193,7 +193,7 @@
                             <div id="products" class="row list-group" style="margin: 0px;" *ngIf="profiles.data">
                                 <ul class="row list" style="padding: 0px 0px;">
                                 <li *ngFor="let profile of profiles.data"><div class="item  col-xs-4 col-lg-4">
-                                    <input type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile.USER_ID)">
+                                    <input type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
                                     <div class="thumbnail">
                                         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                                         <div class="caption">

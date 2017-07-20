@@ -462,7 +462,8 @@
                         <!-- SEPETIM -->
 
                         <div id="6a" class="tab-pane yorumlar">
-                            <div class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
+                          <div *ngIf="basket.length">
+                            <div *ngFor="let sepet of basket" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
 
                                 <div class="thumbnail" style=" margin: 10px 30px;">
                                     <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
@@ -479,18 +480,17 @@
                                                 </div>
                                             </div>
                                             <h4 class="group inner list-group-item-heading">
-                                            Uretim Hatti Sefi</h4>
+                                            {{sepet.PRIMARY_JOB}}</h4>
                                             <h5 class="group inner list-group-item-heading">
-                                            Haydar G.</h5>
+                                            {{sepet.NAME}}</h5>
                                             <div class="" style="margin-bottom: 20px;">
                                                 <i class="fa fa-bookmark-o" aria-hidden="true"></i>
                                                 Mesleki Yeterlilik
                                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                Istanbul-Bagcilar
+                                                {{sepet.CITY_NAME}}-{{sepet.ADDRESS}}
                                             </div>
                                             <p class="group inner list-group-item-text">
-                                                Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                                                {{sepet.DESCRIPTION}}</p>
 
                                             <div class="group inner list-group-item-text text-center">
                                                 
@@ -505,6 +505,7 @@
                                     </div>
                                 </div>
                               </div>
+                            </div>
                         </div>
                         
             </div>

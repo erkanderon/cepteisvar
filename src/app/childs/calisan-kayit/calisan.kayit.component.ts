@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
   selector: 'calisan-comp',
   templateUrl: './calisan.kayit.component.html',
   styleUrls: ['./calisan.kayit.component.css'],
-  providers: [Pub,PostService]
+  
 })
 export class CalisanKayitComponent {
   

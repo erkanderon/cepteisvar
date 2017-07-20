@@ -9,7 +9,6 @@ import {Comment} from '../../models/comment'
   selector: 'header-comp',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [Pub, AuthService]
 })
 export class HeaderComponent {
   title = 'Never Back Down';

@@ -1,3 +1,4 @@
+import { ElementRef, Component, ViewChild } from '@angular/core';
 import { Injectable } from '@angular/core';
 import {AppSettings} from '../config/app.settings';
 import {Headers ,Http , RequestOptions, Response} from '@angular/http';
@@ -11,7 +12,7 @@ import 'rxjs/Rx';
 export class Pub {
 
 	
-	
+	public sepetModel:any={};
 
 	constructor(private http: Http) { 
 		
@@ -228,6 +229,10 @@ export class Pub {
 			)
 
 	}
+	
+	getSepetModel() {
+    	return this.sepetModel;
+    }
 
 	
 

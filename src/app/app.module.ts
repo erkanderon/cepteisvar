@@ -13,7 +13,8 @@ import { HomeComponent } from './childs/homepage/homepage.component';
 import { FooterComponent } from './childs/footer/footer.component';
 
 import { Pub } from './services/pub.service';
-import { PostService } from './services/post.service'
+import { PostService } from './services/post.service';
+import { AuthService } from './services/auth.service';
 import { IsverenGirisComponent } from './childs/isveren-giris/isveren.giris.component';
 import { CalisanGirisComponent } from './childs/calisan-giris/calisan.giris.component';
 import { CalisanKayitComponent } from './childs/calisan-kayit/calisan.kayit.component';
@@ -91,7 +92,7 @@ const appRoutes : Routes = [
     })
   ],
   providers: [
-        Pub, PostService
+         AuthService, Pub, PostService
         ],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,6 @@ declare var jQuery : any;
   selector: 'home-comp',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  providers: [Pub]
 })
 export class HomeComponent {
 	cities: any;

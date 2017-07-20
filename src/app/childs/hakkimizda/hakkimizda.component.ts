@@ -9,7 +9,7 @@ declare var jQuery : any;
   selector: 'about-us',
   templateUrl: './hakkimizda.component.html',
   styleUrls: ['./hakkimizda.component.css'],
-  providers: [Pub]
+ 
 })
 export class AboutUsComponent {
 	

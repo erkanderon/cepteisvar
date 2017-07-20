@@ -17,7 +17,6 @@ import {NgForm} from '@angular/forms';
   selector: 'isarayanprofil-comp',
   templateUrl: './is.arayan.profil.component.html',
   styleUrls: ['./is.arayan.profil.component.css'],
-  providers: [AuthService]
 })
 export class IsArayanProfilComponent {
 

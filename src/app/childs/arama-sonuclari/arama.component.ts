@@ -1,5 +1,6 @@
 import { ElementRef, Component, ViewChild } from '@angular/core';
 import { Pub } from '../../services/pub.service';
+import { Router, ActivatedRoute } from '@angular/router';
 declare var jQuery : any;
 declare var List : any;
 
@@ -8,7 +9,6 @@ declare var List : any;
   selector: 'arama-comp',
   templateUrl: './arama.component.html',
   styleUrls: ['./arama.component.css'],
-  providers: [Pub]
 })
 export class AramaComponent {
 
@@ -16,7 +16,7 @@ export class AramaComponent {
 	model: any = [];
 	saveUsername: any = false;
 
-	constructor(private elRef : ElementRef, private _pub: Pub,) { 
+	constructor(private elRef : ElementRef, private _pub: Pub, private router: Router) { 
 
 		jQuery(document).ready(function () {
 	  		jQuery("#ss").slick({"slidesToShow": 4, "slidesToScroll": 1, "speed": 300, "infinite": true, "lazyLoad": 'ondemand'});
@@ -56,7 +56,12 @@ export class AramaComponent {
 		}
 	}
 
-	
+	createSepet(){
+		
+		this._pub.sepetModel = this.model;
+		this.router.navigate(['/is-veren-profil']);
+
+	}
   
   	
 }

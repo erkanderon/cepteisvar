@@ -3,6 +3,7 @@ import { PostService } from '../../services/post.service';
 import { Pub } from '../../services/pub.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
+import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
 import {NgForm} from '@angular/forms';
@@ -13,7 +14,6 @@ declare var jQuery : any;
   selector: 'isverenprofil-comp',
   templateUrl: './is.veren.profil.component.html',
   styleUrls: ['./is.veren.profil.component.css'],
-  providers: [PostService]
 })
 export class IsVerenProfilComponent {
 
@@ -24,6 +24,7 @@ export class IsVerenProfilComponent {
 	ct : any ={};
 	selectedDevice : any ={};
 	comments: any = {};
+	basket:any = {};
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
 		jQuery(document).ready(function () {
@@ -40,7 +41,7 @@ export class IsVerenProfilComponent {
 		this.cities = this._pub.getCities().then(cities => this.cities = cities);
 
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
-
+		this.basket = this.getBasketData();
 	}
 
 	getop(res){
@@ -50,6 +51,13 @@ export class IsVerenProfilComponent {
 	      
 	    }
 	    console.log(this.comments);
+	}
+	getBasketData(){
+		let model = [];
+		if(this._pub.getSepetModel()){
+			model = this._pub.getSepetModel();
+		}
+		return model;
 	}
 
 

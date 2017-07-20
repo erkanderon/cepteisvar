@@ -9,7 +9,6 @@ import { Pub } from '../../services/pub.service';
   selector: 'calisan-giris-comp',
   templateUrl: './reset.password.component.html',
   styleUrls: ['./reset.password.component.css'],
-  providers: [AuthService]
 })
 export class ResetPasswordComponent {
   
