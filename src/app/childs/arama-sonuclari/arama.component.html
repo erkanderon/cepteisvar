@@ -193,7 +193,7 @@
                             <div id="products" class="row list-group" style="margin: 0px;" *ngIf="profiles.data">
                                 <ul class="row list" style="padding: 0px 0px;">
                                 <li *ngFor="let profile of profiles.data"><div class="item  col-xs-4 col-lg-4">
-                                    <input type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
+                                    <input *ngIf="isloggedin" type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
                                     <div class="thumbnail">
                                         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                                         <div class="caption">
@@ -223,9 +223,9 @@
                                                 <div class="group inner list-group-item-text text-center" >
                                                     
                                                         <div style="margin: 0 auto; display: table; ">
-                                                            <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil">PROFILI GORUNTULE</a>
+                                                            <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', profile.USER_ID]" >PROFILI GORUNTULE</a>
                                                             <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
-                            background: #fff200; border-color: #fff200;" href="">SMS GONDER</a>
+                            background: #fff200; border-color: #fff200;" [routerLink]="['/calisan-profil', profile.USER_ID]">SMS GONDER</a>
                                                         </div>
                                                         
                                                 </div>

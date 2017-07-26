@@ -31,6 +31,8 @@ import { AboutUsComponent } from './childs/hakkimizda/hakkimizda.component';
 import { ContactUsComponent } from './childs/iletisim/iletisim.component';
 import { ResetPasswordComponent } from './childs/reset-password/reset.password.component';
 import { SMSGonderComponent } from './childs/sms-gonder/sms.gonder';
+import { CalisanProfilComponent } from './childs/calisan-profil/calisan.profil.component';
+
 
 
 import { AgmCoreModule } from '@agm/core';
@@ -57,6 +59,7 @@ const appRoutes : Routes = [
   { path: 'iletisim', component: ContactUsComponent, data: { title: 'ContactUsComponent'} },
   { path: 'reset', component: ResetPasswordComponent, data: { title: 'ResetPasswordComponent'} },
   { path: 'sms-gonder', component: SMSGonderComponent, data: { title: 'SMSGonderComponent'} },
+  { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
   { path: '**', redirectTo: 'home' }
 ];
@@ -81,7 +84,8 @@ const appRoutes : Routes = [
     AboutUsComponent,
     ContactUsComponent,
     ResetPasswordComponent,
-    SMSGonderComponent
+    SMSGonderComponent,
+    CalisanProfilComponent
 
 
   ],

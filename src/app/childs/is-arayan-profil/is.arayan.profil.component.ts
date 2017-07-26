@@ -33,13 +33,18 @@ export class IsArayanProfilComponent {
   comments: any = {};
   sms: any = {};
   driver: any = {};
-  military: any = {}
+  military: any = {};
+  isim: any=""; dtarihi: any=""; telefon: any=""; sd: any=""; askerlik: any=""; tecrube: any=""; gizlilik: any=""; soyad: any=""; cinsiyet: any=""; adres: any=""; educate: any=""; ilce: any=""; ehliyet: any=""; secenek: any=""; certificate: any=""; 
 
 
 	constructor(
 		private _authService: AuthService, private router: Router, private _pub: Pub, private elRef : ElementRef, private _post: PostService) { 
 
 	  
+    if(!this._authService.isLoggedIn){
+      this._authService.logout();
+    }
+
     jQuery(document).ready(function () {
 
 	  });
@@ -49,6 +54,10 @@ export class IsArayanProfilComponent {
 
 	}
   ngOnInit() {
+
+    
+
+
     this.activaTab("#yorumlar")
     this.member = new PreviewMemberModel(localStorage.getItem('user'));
     this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.profile = res);
@@ -66,6 +75,23 @@ export class IsArayanProfilComponent {
     if(res.data){
       this.comments = this._post.getMemberComments({"p_userid": res.data[0].USER_ID}).then(comments => this.comments = comments);
       this.sms = this._post.getMemberSMS({"p_userid": res.data[0].USER_ID}).then(sms => this.sms = sms);
+      this.onChange(res.data[0].CITY_ID);
+
+      this.isim = res.data[0].NAME;
+      this.dtarihi = res.data[0].REGISTERED_DATE;
+      this.telefon = res.data[0].CONTACT_NO;
+      this.sd = res.data[0].CITY_ID;
+      this.askerlik = res.data[0].MILITARY_ID;
+      this.tecrube = res.data[0].WORKING_EXPERIENCE;
+      this.gizlilik = res.data[0].ALLOW_SMS;
+      this.soyad = res.data[0].SURNAME;
+      this.cinsiyet = res.data[0].GENDER_ID;
+      this.adres = res.data[0].ADDRESS;
+      this.educate = res.data[0].EDUCATION_ID;
+      this.ilce = res.data[0].COUNTY_ID;
+      this.ehliyet = res.data[0].LICENSE_ID;
+      this.secenek = res.data[0].HOMEPAGE_ACTIVE;
+      this.certificate = res.data[0].CERTIFICATE;
       
     }
     console.log(this.comments);
@@ -82,6 +108,7 @@ export class IsArayanProfilComponent {
   }
   public setNumber = (number) => {  
       this.state = number;
+      window.scrollTo(0, 0);
   }
   responser(obj) {
     if(obj.code === 200){
@@ -129,7 +156,7 @@ export class IsArayanProfilComponent {
   editMemberForm(f: NgForm) {
       let userid = this.profile.data[0].USER_ID;
       let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
-      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(f.value.secenek), this.checker(f.value.gizlilik), f.value.tecrube, this.checker(f.value.certificate), parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
+      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.secenek), this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.certificate), parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
 
       console.log(member);
       if(f.valid && !!member){
@@ -139,6 +166,7 @@ export class IsArayanProfilComponent {
             
             if(this.responser(success)){
               //refresh page
+              location.reload();
             }else{
               //give error
             }

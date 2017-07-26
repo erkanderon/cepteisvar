@@ -6,6 +6,8 @@ import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
+import { InsertCommentModel } from '../../models/insertUserComment.model';
+import { SetNoCommentModel } from '../../models/setNoCommentForUsers.model';
 import {NgForm} from '@angular/forms';
 declare var jQuery : any;
 
@@ -26,6 +28,14 @@ export class IsVerenProfilComponent {
 	comments: any = {};
 	basket:any = {};
 	sms:any={};
+  cn: any=""; rp: any=""; mail: any=""; ta: any=""; sd: any=""; tel: any=""; rpn: any=""; taxn: any=""; address: any=""; ilce: any="";
+  detail:any=0;
+  cid: any=0;
+  basketDetail:any={};
+  promotions: any={};
+  commentUser:any;
+  sepetid: any;
+  model: any = [];
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
 		jQuery(document).ready(function () {
@@ -40,6 +50,7 @@ export class IsVerenProfilComponent {
 		this.company = new PreviewCompanyModel(localStorage.getItem('user'));
 		this.profile = this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.profile = res);
 		this.cities = this._pub.getCities().then(cities => this.cities = cities);
+    this.promotions = this._pub.getSMSPromotions().then(promotions => this.promotions = promotions);
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 		this.basket = this.getBasketData();
 	}
@@ -47,7 +58,23 @@ export class IsVerenProfilComponent {
 	getop(res){
 	    if(res.data){
 	      this.comments = this._post.getCompanyComments({"P_COMPANY_ID": res.data[0].COMPANY_ID}).then(comments => this.comments = comments);
-	      this.sms = this._post.getCompanySMS({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
+        console.log(this.comments);
+	      this.sms = this._post.getCompanyBasket({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
+        this.onChange(res.data[0].CITY_ID);
+
+        this.cn = res.data[0].COMPANY_NAME;
+        this.rp = res.data[0].CONTACT_PERSON;
+        this.mail = res.data[0].EMAIL;
+        this.ta = res.data[0].TAX_REGION;
+        this.sd = res.data[0].CITY_ID;
+        this.rpn = res.data[0].CONTACT_PERSON_NO;
+        this.taxn = res.data[0].TAX_NUMBER;
+        this.address = res.data[0].ADDRESS;
+        this.ilce = res.data[0].COUNTY_ID;
+        this.tel = res.data[0].CONTACT_NO;
+
+        this.cid = res.data[0].COMPANY_ID;
+
 	      
 	    }
 	    console.log(this.sms);
@@ -60,7 +87,44 @@ export class IsVerenProfilComponent {
 		return model;
 	}
 
+  addModel(val, id){
 
+    if(val.target.checked){
+      this.model.push(id);
+    }else{
+      let index = this.model.indexOf(id, 0);
+      if (index > -1) {
+         this.model.splice(index, 1);
+      }
+    }
+  }
+
+
+  
+  public setDetail = (number, id) => {  
+      this.detail = number;
+      window.scrollTo(0, 0);
+      if(id){
+        this.getDetail(id);
+      }
+  }
+  setWillCommentedUser(id){
+    this.commentUser = id;
+  }
+  getWillCommentedUser(){
+    return this.commentUser;
+  }
+  setSepetId(id){
+    this.sepetid = id;
+  }
+  getSepetId(){
+    return this.sepetid;
+  }
+  public getDetail = (did) => {  
+      this.setSepetId(did);
+      this.basketDetail = this._post.getCompanyBasketDetail({"p_company_id": this.cid, "p_basket_id": did}).then(res => this.basketDetail = res);
+      window.scrollTo(0, 0);
+  }
 
 	public setNumber = (number) => {  
 	  	this.state = number;
@@ -74,11 +138,38 @@ export class IsVerenProfilComponent {
 	    }
 	}
 	onChange(newValue) {
-      
       this.ct = this._pub.getCityFieldList(newValue).then(ct => this.ct = ct);
       this.selectedDevice = newValue;
-  	}
+  }
 
+  // SET NO COMMENT
+  setNoComment(reason){
+    let mdl = this.model;
+    let companyid = this.profile.data[0].COMPANY_ID;
+    let sepet = this.getSepetId();
+    let com = new SetNoCommentModel(companyid, mdl, sepet, reason);
+
+    this._post.setNoComment(JSON.stringify(com)).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              location.reload();
+            }else{
+              //give error
+            }
+            console.log(success);
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+
+  }
+  // EDIT COMPANY
 	editCompanyForm(f: NgForm) {
       let companyid = this.profile.data[0].COMPANY_ID;
       //let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
@@ -91,7 +182,7 @@ export class IsVerenProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              //refresh page
+              location.reload();
             }else{
               //give error
             }
@@ -107,6 +198,38 @@ export class IsVerenProfilComponent {
     }
       
   }
+  // MAKE COMMENT
+  makeComment(fav: NgForm) {
+    
+    let companyid = this.profile.data[0].COMPANY_ID;
+    let userid = this.getWillCommentedUser();
+    let sepet = this.getSepetId();
+    let uri = '/home';
+    let model = new InsertCommentModel(companyid, fav.value.comment, parseInt(fav.value.performans), userid, sepet);
+
+    this._post.createComment(JSON.stringify(model)).then(
+        //used Arrow function here
+        (success)=> {
+          
+          if(this.responser(success)){
+            //this.router.navigate([uri]);
+            location.reload();
+          }else{
+            //give a message
+          }
+          
+        }
+    ).catch(
+       //used Arrow function here
+       (err)=> {
+       console.log(err);
+          this.router.navigate(['/home']);
+       }
+    )
+    
+    
+  }
+
   // CHANGE PASSWORD
   changePassword(fav: NgForm) {
     
@@ -139,6 +262,15 @@ export class IsVerenProfilComponent {
       )
     }
     
+  }
+
+  removeFromSepet(user){
+    let index = this.basket.indexOf(user, 0);
+    if (index > -1) {
+       this.basket.splice(index, 1);
+    }
+    this._pub.sepetModel = this.basket;
+    this.basket = this.getBasketData();
   }
   
   	

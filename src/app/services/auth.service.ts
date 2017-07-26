@@ -22,7 +22,8 @@ export class AuthService {
 	
 
 	constructor(private http: Http, private router: Router,private _post: PostService) { 
-		this.loggedIn = !!localStorage.getItem('user_access_token');
+		//this.loggedIn = !!localStorage.getItem('user_access_token');
+		this.loggedIn = !this.refreshToken();
 		this.username = localStorage.getItem("user")
 	}
 
@@ -74,7 +75,7 @@ export class AuthService {
     	
     	
     	this.router.navigate(['/home']);
-    	//location.reload();
+    	location.reload();
     }
 
     isLoggedIn() {
@@ -123,7 +124,7 @@ export class AuthService {
 				   (err)=> {
 				      console.log(err);
 				      this.logout();
-				      this.router.navigate(['/home']);
+				      
 				   }
 				)
     	}else if(this.checkIsExpired()===1){

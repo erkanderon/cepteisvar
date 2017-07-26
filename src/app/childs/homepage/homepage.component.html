@@ -216,9 +216,9 @@
 		                            <div class="col-xs-12" style="padding:0px;">
 
 		                                    <div style="margin: 0 auto; display: table; ">
-		                                    <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil" *ngIf="fields.PRF1">{{fields.PRF1}}</a>
+		                                    <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', profile.USER_ID]" *ngIf="fields.PRF1">{{fields.PRF1}}</a>
 		                                    <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
-		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1">{{fields.SMS1}}</a>
+		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1" [routerLink]="['/calisan-profil', profile.USER_ID]">{{fields.SMS1}}</a>
 		    							</div>
 		                            </div> 
 		                              

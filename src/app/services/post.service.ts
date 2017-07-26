@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AppSettings} from '../config/app.settings';
 import {Headers ,Http , RequestOptions} from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Return} from '../models/return.model'
 import 'rxjs/add/operator/toPromise';
@@ -9,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PostService {
 
-	constructor(private http: Http) { }
+	constructor(private http: Http, private router: Router) { }
 
 
 	insertNewCompanyAccount(param) {
@@ -50,6 +51,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -73,6 +75,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -96,6 +99,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -120,6 +124,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -143,6 +148,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -166,6 +172,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -189,6 +196,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -212,6 +220,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -235,6 +244,31 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// GET COMPANY BASKET
+	getCompanyBasket(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-company-basket-list?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -258,6 +292,79 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// INSERT USER COMMENT
+	createComment(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/insert-user-comment?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// SET NO COMMENT FOR USERS
+	setNoComment(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/set-no-comment-for-users?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// GET BASKET DETAIL
+	getCompanyBasketDetail(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-basket-details?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -282,6 +389,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 
@@ -306,6 +414,7 @@ export class PostService {
 			   //used Arrow function here
 			   (err)=> {
 			      console.log(err);
+			      this.router.navigate(['/home']);
 			   }
 			)
 

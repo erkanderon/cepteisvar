@@ -122,11 +122,11 @@
                         <form class="row" #editcompany="ngForm">
                           
                         <div *ngIf="state === 1">
-                            <div class="col-xs-6" style="padding: 0px 50px;">
+                            <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
                                   <div class="">
-                                     <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma">
+                                     <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma" [value]="">
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -151,7 +151,7 @@
                                   <label for="formGroupExampleInput2">SEHIR</label>
                                   <div class="">
                                     <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
-                                      <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                      <option  *ngFor="let city of cities.data"  [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                     </select>
                                   </div>
                                 </div>
@@ -310,47 +310,114 @@
                         </div>
                         <!-- GIDEN SMSLERIM PART -->
                         <div id="3a" class="tab-pane yorumlar">
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
-                            </div>
-                          </div>
-                          <div *ngIf="sms.data">
-                            <div class="row" *ngFor="let sms of sms.data">
+                          <div *ngIf="detail === 0">
+                            <div class="row">
                               <div class="col-xs-12">
-                                <div class="row timel">
-                                  <div class="col-xs-6">
-                                    <p><strong>{{sms.CREATE_DATE}}</strong></p>
-                                  </div>
-                                  <div class="col-xs-6">
-                                    <div class="ratings-widget" style="padding: 0px;">
-                                      <div  style="float: right;">
-                                          <span class="glyphicon glyphicon-star"></span>
-                                          <span class="glyphicon glyphicon-star"></span>
-                                          <span class="glyphicon glyphicon-star"></span>
-                                          <span class="glyphicon glyphicon-star"></span>
-                                          <span class="glyphicon glyphicon-star-empty"></span>
+                                <h5 class="text-center"><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
+                              </div>
+                            </div>
+                            <div *ngIf="sms.data">
+                              <div class="row" *ngFor="let sms of sms.data">
+                                <div class="col-xs-12">
+                                  <div class="row timel">
+                                    <div style="margin:10px 0px;">
+                                      <div class="col-xs-4">
+                                        <p><strong>{{sms.CREATE_DATE}}</strong></p>
+                                      </div>
+                                      <div class="col-xs-4">
+                                        <p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>
+                                      </div>
+                                      <div class="col-xs-4" >
+                                        <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KISIYE GONDERILDI</p></a>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="row yorum">
-                                  <div class="col-xs-12">
-                                    <h5>{{sms.SMS_TEXT}}</h5>
+                                  
+                                  <div class="row yorum">
+                                    <div class="col-xs-12">
+                                      <h5>{{sms.SMS_TEXT}}</h5>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          
-                          <div class="row text-center" style="margin-top: 20px;">
-                            <div class="col-xs-12">
-                                <div class="btn-group">
-                                  
-                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;">GERI DON</a>
+                          <div *ngIf="detail === 1">
+                            <div *ngIf="basketDetail.data">
+                            <!-- ITEMS -->
+                                        <div class="row" *ngIf="model.length">
+                                          <div class="col-xs-12" *ngIf="1" style="margin: 0 auto; display: table; ">
+                                            <div style="float:right; padding: 0px 15px;">
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: black; float: left; background: #fff200; border-color: #fff200;" (click)="setNoComment(3)">BU ADAY ILE CALISMADIK</a>
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="setNoComment(2)">YORUM YAPMAK ISTEMIYORUM</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                <div *ngFor="let bsk of basketDetail.data" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
+
+                                  <div class="thumbnail" style=" margin: 10px 30px;">
+                                      <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                      <input *ngIf="!bsk.COMMENTED_STATUS" type="checkbox" style="position: absolute; -ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); padding: 10px; top: 100px; left: 0px; right: 20px;" (change)="addModel($event, bsk.MEMBER_ID)">
+                                      <div class="caption">
+                                          <div class="row" style="margin: 0px 0px 0px 0px;">
+                                              <div class="ratings-widget">
+                                                  <div  style="float: right;">
+                                                      <span class="glyphicon glyphicon-star"></span>
+                                                      <span class="glyphicon glyphicon-star"></span>
+                                                      <span class="glyphicon glyphicon-star"></span>
+                                                      <span class="glyphicon glyphicon-star"></span>
+                                                      <span class="glyphicon glyphicon-star-empty"></span>
+                                                  </div>
+                                              </div>
+                                              <h4 class="group inner list-group-item-heading">
+                                              {{bsk.PRIMARY_JOB}}</h4>
+                                              <h5 class="group inner list-group-item-heading">
+                                              {{bsk.NAME}} {{bsk.SURNAME}}</h5>
+                                              <div class="" style="margin-bottom: 20px;">
+                                                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                  Mesleki Yeterlilik
+                                                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                  {{bsk.CITY_NAME}}-Bagcilar
+                                              </div>
+                                              <p class="group inner list-group-item-text">
+                                                  {{bsk.PRIMARY_JOB_DESCRIPTION}}</p>
+
+                                              <div class="group inner list-group-item-text text-center">
+                                                  
+                                                      <div *ngIf="!bsk.COMMENTED_STATUS" style="display: table; ">
+                                                          
+                                                          <a class="btn btn-success btn-group-lg" data-toggle="modal" data-target="#comment" style=" font-size: 9px; border-radius: 0px;  color: black; float: left;
+                          background: #fff200; border-color: #fff200;" (click)="setWillCommentedUser(bsk.MEMBER_ID)" href>YORUM YAP</a>
+                                                          
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===1">
+                                                        <strong>BU ADAY ICIN YORUM YAPTINIZ</strong>
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===2">
+                                                        <strong></strong>
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===3">
+                                                        <strong></strong>
+                                                      </div>
+                                                      
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                                 </div>
+                                <div class="row text-center" style="margin-top: 20px;">
+                                  <div class="col-xs-12">
+                                      <div class="btn-group" (click)="setDetail(0, null)">
+                                        
+                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;">GERI DON</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- ITEMS FINISH -->
                             </div>
-                        </div>
+                          </div>
+                          
+                          
                           
                         </div>
 
@@ -385,14 +452,20 @@
                             <form>
                               
                             </form>
-                            <div class="row opti">
-                              <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: 25</div>
-                              <label class="col-xs-12">SMS PAKETLERI:</label>
-                                
-                                <div class="col-xs-12">
-                                  <img class="img col-xs-4" src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png">
-                                  <img class="img col-xs-4" src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png">
-                                  <img class="img col-xs-4" src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png">
+                            <div class="row opti" *ngIf="promotions.data">
+                              <div style="padding: 0px 15px;">
+                                <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: 25</div>
+                                <label class="col-xs-12">SMS PAKETLERI:</label>
+                              </div>  
+                                <div class="col-xs-12 row">
+                                  <div class="col-xs-4" *ngFor="let prm of promotions.data">
+                                    <div class="card" style="background-color: #ffffff; border: solid 0.5px rgba(204, 204, 204, 0.5); padding: 20px;">
+                                      <div class="card-block text-center">
+                                        <p>{{prm.PROMO_HEADER}}</p><p> {{prm.PROMO_BODY}}</p>
+
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 <input type="checkbox" class="myCheckbox col-xs-4" value="1" />
                                 <input type="checkbox" class="myCheckbox col-xs-4" value="2" />
@@ -422,7 +495,7 @@
 
                                 <div class="thumbnail" style=" margin: 10px 30px;">
                                     <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
-                                    <img src="assets/images/removeicon.png" type="checkbox" style="position: absolute; left: -40px; top: 80px; width: 40px;">
+                                    <img src="assets/images/removeicon.png" (click)="removeFromSepet(sepet)" type="checkbox" style="position: absolute; left: -40px; top: 80px; width: 40px;">
                                     <div class="caption">
                                         <div class="row" style="margin: 0px 0px 0px 0px;">
                                             <div class="col-xs-12 ratings-widget">
@@ -621,5 +694,53 @@
   </div>
 </div>
 <!-- 3D SECURE Modal END -->
+
+<!-- MAKE COMMENT MODAL -->
+<div id="comment" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Yorum Ekle</h4>
+      </div>
+      <div class="modal-body">
+        <form #makecomment="ngForm">
+          <div class="form-group">
+              <label for="">PERFORMANS</label>
+              <select id="" name="performans" class="form-control" [ngModel]="performans">
+                <option  value="1">1</option>
+                <option  value="2">2</option>
+                <option  value="3">3</option>
+                <option  value="4">4</option>
+                <option  value="5">5</option>
+                <option  value="6">6</option>
+                <option  value="7">7</option>
+                <option  value="8">8</option>
+                <option  value="9">9</option>
+                <option  value="10">10</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">YORUMUNUZ</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="comment" name="comment"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="row text-center">
+          <div class="col-xs-12">
+              <div class="btn-group">
+                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="makeComment(makecomment)">KAYDET</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <footer-comp></footer-comp>

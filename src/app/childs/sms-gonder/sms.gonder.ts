@@ -35,7 +35,6 @@ export class SMSGonderComponent {
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 
 		this.basket = this.getBasketData();
-		console.log(this.basket);
 	}
 
 	getop(res){
@@ -72,20 +71,16 @@ export class SMSGonderComponent {
 	// CHANGE PASSWORD
 	sendSMS(fav: NgForm) {
 
-		let uri = '/isveren-giris';
-		let send = new CreateBasketModel(this.userModel, this.basket, fav.value.text);
-
-		console.log(send);
-
-		
+		let uri = '/is-veren-profil';
+		let send = new CreateBasketModel(this.userModel, this.basket, fav.value.text);		
 
 		this._post.createCompanyBasket(JSON.stringify(send)).then(
 		  //used Arrow function here
 		  (success)=> {
 		    
 		    if(this.responser(success)){
-		    console.log(success);
-		      //this.router.navigate([uri]);
+
+		     	this.router.navigate([uri]);
 		    }else{
 		      //give a message
 		      console.log(success);

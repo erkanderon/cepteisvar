@@ -37,7 +37,7 @@
                             <div class="col-xs-3"></div>
                             <div class="col-xs-6">
                               <div class="col-xs-12 ratings-widget" style="padding: 0px;">
-                                  <div  style="float: left;">
+                                  <div  style="float: right;">
                                       <span class="glyphicon glyphicon-star"></span>
                                       <span class="glyphicon glyphicon-star"></span>
                                       <span class="glyphicon glyphicon-star"></span>
@@ -45,13 +45,13 @@
                                       <span class="glyphicon glyphicon-star-empty"></span>
                                   </div>
                               </div>
-                              <div class="form-group txt">
+                              <div class="form-group txt" *ngIf="state === 1" >
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="secenek" [ngModel]="secenek"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="secenek" [(ngModel)]="secenek"> Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
                                 </label>
                                 <div class="form-group">
                                   <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" style="font-size:600px;" name="certificate" [ngModel]="certificate"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
+                                    <input class="form-check-input" type="checkbox" style="font-size:600px;" name="certificate" [(ngModel)]="certificate"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
                                   </label>
                                 </div>
                               </div>
@@ -148,7 +148,7 @@
 
                         <!-- EDIT PART OF THE PROFILE -->
 
-                        <form class="row" #editmember="ngForm">
+                        <form class="row" #editmember="ngForm" novalidate>
                           
                         <div *ngIf="state === 1">
                           <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
