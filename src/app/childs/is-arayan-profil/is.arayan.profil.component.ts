@@ -58,7 +58,7 @@ export class IsArayanProfilComponent {
     
 
 
-    this.activaTab("#yorumlar")
+    this.activaTab("#profil")
     this.member = new PreviewMemberModel(localStorage.getItem('user'));
     this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.profile = res);
     this.cities = this._pub.getCities().then(cities => this.cities = cities);

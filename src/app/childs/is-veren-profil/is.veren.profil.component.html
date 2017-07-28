@@ -126,25 +126,50 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
                                   <div class="">
-                                     <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma" [value]="">
+                                     <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma" [value]="" #firma="ngModel" required >
+
+                                  </div>
+                                  <div *ngIf="firma.errors && (firma.dirty || firma.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!firma.errors.required">
+                                      Firma Adi Bos Birakilamaz!
+                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">YETKILI KISI</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma">
+                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required >
+                                  </div>
+                                  <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!person.errors.required">
+                                      Yetkili Kisi Bos Birakilamaz!
+                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">E-POSTA</label>
                                   <div class="">
-                                    <input type="email" [ngModel]="mail" name="mail" class="form-control" id="firma">
+                                    <input type="email" [ngModel]="mail" name="mail" class="form-control" id="firma" #eposta="ngModel" required>
+                                  </div>
+                                  <div *ngIf="eposta.errors && (eposta.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!eposta.errors.required">
+                                      E-Posta Bos Birakilamaz!
+                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">VERGI ADRESI</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma">
+                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required>
+                                  </div>
+                                  <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!vergi.errors.required">
+                                      Vergi Adresi Bos Birakilamaz!
+                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -161,25 +186,49 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">TELEFON</label>
                                   <div class="">
-                                    <input type="number" [ngModel]="tel" name="tel" class="form-control" id="firma">
+                                    <input type="number" [ngModel]="tel" name="tel" class="form-control" id="firma" #telefon="ngModel" required>
+                                  </div>
+                                  <div *ngIf="telefon.errors && (telefon.dirty || telefon.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!telefon.errors.required">
+                                      Telefon Bos Birakilamaz!
+                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
                                     <div class="">
-                                      <input type="number" [ngModel]="rpn" name="rpn" class="form-control" id="firma">
+                                      <input type="number" [ngModel]="rpn" name="rpn" class="form-control" id="firma" #yetkilitel="ngModel" required>
+                                    </div>
+                                    <div *ngIf="yetkilitel.errors && (yetkilitel.dirty || yetkilitel.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!yetkilitel.errors.required">
+                                        Telefon Bos Birakilamaz!
+                                      </div>
+                                      
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
                                     <div class="">
-                                      <input type="number" [ngModel]="taxn" name="taxn" class="form-control" id="firma">
+                                      <input type="number" [ngModel]="taxn" name="taxn" class="form-control" id="firma" #tckimlik="ngModel" required>
+                                    </div>
+                                    <div *ngIf="tckimlik.errors && (tckimlik.dirty || tckimlik.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!tckimlik.errors.required">
+                                        Vergi Bos Birakilamaz!
+                                      </div>
+                                      
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">ADRES</label>
                                     <div class="">
-                                      <input type="text" [ngModel]="address" name="address" class="form-control" id="firma">
+                                      <input type="text" [ngModel]="address" name="address" class="form-control" id="firma" #adres="ngModel" required>
+                                    </div>
+                                    <div *ngIf="adres.errors && (adres.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!adres.errors.required">
+                                        Adres Bos Birakilamaz!
+                                      </div>
+                                      
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -189,6 +238,7 @@
                                         <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                       </select>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="row text-center" style="margin-top: 20px;">
@@ -196,7 +246,7 @@
                                   <div class="btn-group">
 
                                     <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
-                                    <a type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editCompanyForm(editcompany)">KAYDET</a>
+                                    <button type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editCompanyForm(editcompany)" [disabled]="!editcompany.form.valid">KAYDET</button>
                                   <!-- data-toggle="modal" data-target="#myModal" -->
                                   </div>
                               </div>
@@ -426,22 +476,40 @@
                           <form #passform="ngForm"  novalidate>
                             <div class="form-group">
                               <label for="formGroupExampleInput">Eski Parolaniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola">
+                              <input type="password" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola" #old="ngModel" required>
+                              <div *ngIf="old.errors && (old.dirty || old.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!old.errors.required">
+                                  Eski Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolaniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola">
+                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #new="ngModel" required>
+                              <div *ngIf="new.errors && (new.dirty || new.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!new.errors.required">
+                                  Yeni Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanizi Tekrar Giriniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz">
+                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newagain="ngModel" required>
+                              <div *ngIf="newagain.errors && (newagain.dirty || newagain.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!newagain.errors.required">
+                                  Yeni Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
                             </div>
                           </form>
                           <div class="row text-center">
                             <div class="col-xs-12">
                                 <div class="btn-group">
                                   <a type="button" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
-                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changePassword(passform)">KAYDET</a>
+                                  <button type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changePassword(passform)" [disabled]="!passform.form.valid">KAYDET</button>
                                 </div>
                             </div>
                         </div>
@@ -744,3 +812,4 @@
 </div>
 
 <footer-comp></footer-comp>
+

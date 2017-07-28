@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AppSettings} from '../../config/app.settings';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Pub } from '../../services/pub.service';
 import { AuthService } from '../../services/auth.service';
 import {Comment} from '../../models/comment'
@@ -18,7 +19,7 @@ export class HeaderComponent {
   obj: any;
   checkUser: any;
   
-  constructor(private _pub: Pub, private _auth: AuthService) {
+  constructor(private _pub: Pub, private _auth: AuthService, private router: Router) {
     
 
     if(this._auth.refreshToken() && this._auth.isLoggedIn()){
@@ -42,13 +43,31 @@ export class HeaderComponent {
   }
 
   formatFields(f) {
-  	this.obj = {};
-  	if(f.data){
-	  	for (let items of f.data) {
-	  		this.obj[items.ITEM] = items.TEXT
-		}
-	}
-	return this.obj;
+    	this.obj = {};
+    	if(f.data){
+  	  	for (let items of f.data) {
+  	  		this.obj[items.ITEM] = items.TEXT
+  		}
+  	}
+  	return this.obj;
+  }
+  goMyProfile(){
+    if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business'){
+      this.router.navigate(['/is-veren-profil']);
+    }else if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member'){
+      this.router.navigate(['/is-arayan-profil']);
+    }else{
+      this._auth.logout();
+    }
+  }
+  checkPerson(){
+    this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+    console.log(this.isloggedin);
+    if(this.isloggedin){
+      this.router.navigate(['/calisan-arama']);
+    }else{
+      this.router.navigate(['/isveren-giris']);
+    }
   }
   
 }

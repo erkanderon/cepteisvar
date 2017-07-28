@@ -56,6 +56,27 @@ export class PostService {
 			)
 
 	}
+	validateMemberAccount(param) {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/validate-sms-code', param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      return err;
+			   }
+			)
+
+	}
 	// PREVIEW MEMBER ACCOUNT
 	previewMemberAccount(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -304,6 +325,30 @@ export class PostService {
 	    let token = localStorage.getItem('user_access_token');
 	    
 	    return this.http.post(AppSettings.API_ENDPOINT+'/app/insert-user-comment?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// LIST HABER COMMENT
+	getListNewsComment(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/list-news-comments', param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(

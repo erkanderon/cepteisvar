@@ -8,6 +8,7 @@ import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
 import { InsertCommentModel } from '../../models/insertUserComment.model';
 import { SetNoCommentModel } from '../../models/setNoCommentForUsers.model';
+
 import {NgForm} from '@angular/forms';
 declare var jQuery : any;
 
@@ -175,7 +176,9 @@ export class IsVerenProfilComponent {
       //let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
       let company = new EditCompanyAccountModel(companyid, f.value.cn, f.value.taxn, f.value.ta, f.value.address , f.value.rpn , parseInt(f.value.sd), f.value.rp, f.value.tel, parseInt(f.value.ilce) , 21 );
 
-      console.log(company);
+      
+      //console.log(this.firma.errors && (this.firma.dirty || firma.touched));
+
       if(f.valid && !!company){
         this._post.editCompanyAccount(JSON.stringify(company)).then(
           //used Arrow function here
@@ -189,12 +192,12 @@ export class IsVerenProfilComponent {
             console.log(success);
             
           }
-      ).catch(
-         //used Arrow function here
-         (err)=> {
-            this.router.navigate(['/home']);
-         }
-      )
+        ).catch(
+           //used Arrow function here
+           (err)=> {
+              this.router.navigate(['/home']);
+           }
+        )
     }
       
   }

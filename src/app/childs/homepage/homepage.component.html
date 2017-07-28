@@ -178,7 +178,7 @@
 				[carouselClasses]="['owl-theme', 'row', 'sliding']">
 
 				<div class="item" *ngFor="let profile of profiles.data;let i = index">
-		            <a href="isarayanprofil.html" style="text-decoration:none; color: inherit; border:none;"><div class="thumbnail">
+		            <a style="text-decoration:none; color: inherit; border:none;"><div class="thumbnail">
 		                <img class="group list-group-image" src="{{profile.PHOTO_URL}}" onerror="this.src='https://organicthemes.com/demo/profile/files/2012/12/profile_img.png';" alt="" />
 		                <div class="caption">
 		                    <div class="row" style="margin: 0px 0px 0px 0px;">
@@ -197,7 +197,8 @@
 		                        {{profile.NAME}}</h5>
 		                        <div class="row" style="margin-bottom: 20px; font-size: 11px; white-space: nowrap;">
 		                        	<div class="col-xs-6">
-		                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+		                            <i *ngIf="profile.CERTIFICATE===0" class="fa fa-bookmark-o" aria-hidden="true"></i>
+		                            <i *ngIf="profile.CERTIFICATE===1" class="fa fa-bookmark-o" aria-hidden="true" style="color: black !important;"></i>
 		                            Mesleki Yeterlilik
 		                        	</div>
 		                        	<div class="col-xs-6" style="padding: 0px;">
@@ -215,10 +216,10 @@
 		                        <div class="row text-center">
 		                            <div class="col-xs-12" style="padding:0px;">
 
-		                                    <div style="margin: 0 auto; display: table; ">
-		                                    <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', profile.USER_ID]" *ngIf="fields.PRF1">{{fields.PRF1}}</a>
+		                                <div style="margin: 0 auto; display: table; ">
+		                                    <button class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="checkCompany(profile.USER_ID)"  *ngIf="fields.PRF1">{{fields.PRF1}}</button>
 		                                    <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
-		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1" [routerLink]="['/calisan-profil', profile.USER_ID]">{{fields.SMS1}}</a>
+		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1" (click)="checkCompany(profile.USER_ID)">{{fields.SMS1}}</a>
 		    							</div>
 		                            </div> 
 		                              
@@ -235,7 +236,7 @@
 		<!-- Daha Fazla Is ilani gor -->
 		<div class="row text-center">
 			<div class="col-xs-12" style="margin-top: 20px;">
-				<a style="    background: #383838; color: white; border-color: #383838;" class="btn btn-default" *ngIf="fields.PRF2">{{fields.PRF2}}<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>
+				<a style="    background: #383838; color: white; border-color: #383838;" class="btn btn-default" *ngIf="fields.PRF2" (click)="checkUser()">{{fields.PRF2}}<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>
 			</div>
 		</div>
 		<!-- Daha Fazla Is ilani gor END -->
@@ -248,7 +249,7 @@
 				<div class="row text-center" style="margin: 0px 0px 20px 10px; margin-top: -90px;">
 					<div class="col-xs-12" style="white-space:nowrap;padding: 0px 0px;">
 						<h4 style="padding: 5px 1px; float:left;" *ngIf="fields.PRF3">{{fields.PRF3}}</h4>
-						<a class="btn btn-warning" style="padding: 5px 1px; margin-left: 10px;"><h6  style="float: left; font-size: 11px;" *ngIf="fields.PRF4">{{fields.PRF4}}</h6><span><i class="fa fa-arrow-right" aria-hidden="true" style="margin: 10px 0px 0px 10px;"></i></span></a>
+						<a class="btn btn-warning" style="padding: 5px 1px; margin-left: 10px;" (click)="checkMember()"><h6  style="float: left; font-size: 11px;" *ngIf="fields.PRF4" >{{fields.PRF4}}</h6><span><i class="fa fa-arrow-right" aria-hidden="true" style="margin: 10px 0px 0px 10px;"></i></span></a>
 					</div>
 				</div>
 			</div>

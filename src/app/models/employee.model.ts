@@ -5,8 +5,8 @@ export class Employee {
     public P_GENDER: number;
     public P_ADDRESS: string;
     public P_CITY: number;
-    public P_EMAIL: string;
-    public P_CONTACT_NO: string;
+    public p_email: string;
+    public p_contact_no: string;
     public P_COUNTY: number;
     public P_EDUCATION_TYPE: number;
     public P_BDAY: string;
@@ -27,8 +27,8 @@ export class Employee {
 		P_GENDER: any, 
 		P_ADDRESS: any, 
         P_CITY: any,
-		P_EMAIL: any,
-        P_CONTACT_NO: any,
+		p_email: any,
+        p_contact_no: any,
         P_COUNTY: any, 
         P_EDUCATION_TYPE: any,
         P_BDAY: any, 
@@ -48,9 +48,9 @@ export class Employee {
     	this.P_ADDRESS = P_ADDRESS
     	this.P_EDUCATION_TYPE = P_EDUCATION_TYPE
     	this.P_CITY = P_CITY
-    	this.P_EMAIL = P_EMAIL
+    	this.p_email = p_email
     	this.P_BDAY = P_BDAY
-    	this.P_CONTACT_NO = P_CONTACT_NO
+    	this.p_contact_no = p_contact_no
     	this.P_COUNTY = P_COUNTY
     	this.P_HOMEPAGE_ACTIVE = P_HOMEPAGE_ACTIVE
     	this.P_ALLOW_SMS = P_ALLOW_SMS

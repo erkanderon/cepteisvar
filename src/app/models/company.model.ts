@@ -8,7 +8,7 @@ export class Company {
     public P_CITY: string;
     public P_EMAIL: string;
     public P_CONTACT_PERSON: string;
-    public P_CONTACT_NO: string;
+    public p_contact_no: string;
     public P_COUNTY: number;
     public P_BUSINESS_TYPE: string;
     public P_PWD: string;
@@ -23,7 +23,7 @@ export class Company {
 		P_CITY: any, 
 		P_EMAIL: any, 
 		P_CONTACT_PERSON: any, 
-		P_CONTACT_NO: any, 
+		p_contact_no: any, 
 		P_COUNTY: any, 
 		P_BUSINESS_TYPE: any, 
 		P_PWD: any 
@@ -36,7 +36,7 @@ export class Company {
     	this.P_CITY = P_CITY
     	this.P_EMAIL = P_EMAIL
     	this.P_CONTACT_PERSON = P_CONTACT_PERSON
-    	this.P_CONTACT_NO = P_CONTACT_NO
+    	this.p_contact_no = p_contact_no
     	this.P_COUNTY = P_COUNTY
     	this.P_BUSINESS_TYPE = P_BUSINESS_TYPE
     	this.P_PWD = P_PWD

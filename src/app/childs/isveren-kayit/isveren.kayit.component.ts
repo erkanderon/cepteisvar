@@ -19,15 +19,12 @@ export class IsverenKayitComponent {
   ct: any = 0;
   selectedDevice: any;
   areas: any;
+  epost: any;
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router,) { 
 		jQuery(document).ready(function () {
 
-	  		jQuery("#input-1").fileinput({
-			    defaultPreviewContent: '<img src="./assets/images/Employee1.png" alt="Your Avatar" style="width:160px">',
-			    browseLabel: '',
-			    browseIcon: "Dosya Sec"
-			});
+	  		
   		});
 	}
 	ngOnInit() {
@@ -41,29 +38,66 @@ export class IsverenKayitComponent {
 	    console.log(this.ct.data);
 	    this.selectedDevice = newValue;
 	}
+	checker(value) {
+		if(value){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	responser(obj) {
+		if(obj.code === 200){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	onSubmit(f: NgForm) {
     	//console.log(f.value.yetkili);  // { first: '', last: '' }
     	//console.log(f.valid);  // false
     	let comp = new Company(f.value.firma, f.value.tckimlik.toString(), f.value.vergi, f.value.address, f.value.telefon.toString(), parseInt(f.value.sel2), f.value.eposta, f.value.yetkili, f.value.yettel.toString(), parseInt(f.value.cname), parseInt(f.value.isalani), f.value.parola);
 
     	//console.log(JSON.stringify(comp))
-
+    	this.epost = f.value.eposta;
     	if(f.valid && f.value.parola===f.value.parola2 && !!comp){
     		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
 			    //used Arrow function here
 			    (success)=> {
 			      
 			      console.log("oldu")
-			      this.router.navigate(['/isveren-giris']);
+			      //this.router.navigate(['/isveren-giris']);
 			    }
 			).catch(
 			   //used Arrow function here
 			   (err)=> {
 			      console.log("olmadi");
-			      this.router.navigate(['/home']);
+			      //this.router.navigate(['/home']);
 			   }
 			)
     	}
+    	
+    }
+    validate(f: NgForm) {
+
+   		
+		this._pservice.validateMemberAccount({ "p_email": this.epost, "p_sms_code": f.value.validatekod }).then(
+		    //used Arrow function here
+		    (success)=> {
+		      
+		      if(this.responser(success)){
+		      	this.router.navigate(['/isveren-giris']);
+		      }else{
+		      	console.log(success);
+		      }
+		      
+		    }
+		).catch(
+		   //used Arrow function here
+		   (err)=> {
+		      this.router.navigate(['/home']);
+		   }
+		)
+    	
     	
     }
 }

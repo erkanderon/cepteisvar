@@ -29,7 +29,7 @@
 		  				</div>
 		  				<div class="col-xs-7 tab text-center" style="vertical-align: center;">
 		  					<a class="btn btn-default active" routerLink="/home" *ngIf="fields.ANA1" > {{fields.ANA1}}</a>
-		  					<a routerLink="/calisan-arama" class="btn btn-default" *ngIf="fields.KIM1">{{fields.KIM1}}</a>
+		  					<a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1">{{fields.KIM1}}</a>
 		  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1">{{fields.MES1}}</a>
 		  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1">{{fields.DUY1}}</a>
 		  				</div>
@@ -44,6 +44,9 @@
 		  				<div class="col-xs-3 but" *ngIf="checkUser">
 		  					<div style="float:left;">
 		  						<a (click)="logOut()" class="btn btn-info isveren">CIKIS YAP</a>
+		  					</div>
+		  					<div  class="btn btn-info calisan">
+		  						<a (click)="goMyProfile()" >PROFILIM</a>
 		  					</div>
 		  				
 		  					

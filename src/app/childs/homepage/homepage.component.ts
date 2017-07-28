@@ -1,6 +1,7 @@
 import { ElementRef, Component , ViewChild } from '@angular/core';
 import { Pub } from '../../services/pub.service';
 import { AuthService } from '../../services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Return} from '../../models/return.model';
 declare var jQuery : any;
 
@@ -9,6 +10,7 @@ declare var jQuery : any;
   selector: 'home-comp',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
+  providers: [AuthService]
 })
 export class HomeComponent {
 	cities: any;
@@ -19,10 +21,11 @@ export class HomeComponent {
 	obj: any;
 	news: any;
 	statistics: any;
+	isloggedin: any=false;
 
 	
 
-	constructor(private elRef : ElementRef, private _pub: Pub,) { 
+	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router) { 
 
 		// JQuery Defines
 		jQuery(document).ready(function () {
@@ -66,5 +69,34 @@ export class HomeComponent {
 			}
 		}
 		return this.obj;
+	}
+	checkUser(){
+		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		console.log(this.isloggedin);
+		if(this.isloggedin){
+			this.router.navigate(['/calisan-arama']);
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+	}
+	checkCompany(param){
+		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		
+		console.log(this.isloggedin);
+		if(this.isloggedin){
+			this.router.navigate(['/calisan-profil', param]);
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+	}
+	checkMember(){
+		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
+		
+		console.log(this.isloggedin);
+		if(this.isloggedin){
+			this.router.navigate(['/is-arayan-profil']);
+		}else{
+			this.router.navigate(['/calisan-giris']);
+		}
 	}
 }

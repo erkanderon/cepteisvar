@@ -28,15 +28,12 @@ export class CalisanKayitComponent {
   driver: any;
   jobcategory: any;
   education: any;
+  epost: any;
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router) { 
 		jQuery(document).ready(function () {
 
-	  		jQuery("#input-1").fileinput({
-			    defaultPreviewContent: '<img src="./assets/images/Employee1.png" alt="Your Avatar" style="width:160px">',
-			    browseLabel: '',
-			    browseIcon: "Dosya Sec"
-			});
+	  		
   		});
 	}
 	ngOnInit() {
@@ -74,6 +71,8 @@ export class CalisanKayitComponent {
 	onSubmit(f: NgForm) {
     	//console.log(f.value.yetkili);  // { first: '', last: '' }
     	//console.log(f.valid);  // false
+
+    	this.epost = f.value.eposta;
    		let par = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy')
     	let pers = new Employee(f.value.isim,f.value.soyad ,parseInt(f.value.cinsiyet) ,f.value.adres ,parseInt(f.value.sd) ,f.value.eposta ,f.value.contact.toString() ,parseInt(f.value.ilce), parseInt(f.value.educate), par ,this.checker(f.value.secenek) ,this.checker(f.value.gizlilik) ,parseInt(f.value.meslek) ,parseInt(f.value.meslek2) ,f.value.tecrube ,this.checker(f.value.certificate), parseInt(f.value.ehliyet), parseInt(f.value.askerlik), f.value.parola);
 
@@ -84,9 +83,10 @@ export class CalisanKayitComponent {
 			    (success)=> {
 			      
 			      if(this.responser(success)){
-			      	this.router.navigate(['/calisan-giris']);
+			      	//this.router.navigate(['/calisan-giris']);
 			      }else{
-			      	this.router.navigate(['/home']);
+			      	//this.router.navigate(['/home']);
+			      	console.log(success);
 			      }
 			      
 			    }
@@ -97,6 +97,32 @@ export class CalisanKayitComponent {
 			   }
 			)
     	}
+    	
+    }
+    validate(f: NgForm) {
+
+   		
+
+    	
+    	
+		this._pservice.validateMemberAccount({ "p_email": this.epost, "p_sms_code": f.value.validatekod }).then(
+		    //used Arrow function here
+		    (success)=> {
+		      
+		      if(this.responser(success)){
+		      	this.router.navigate(['/calisan-giris']);
+		      }else{
+		      	console.log(success);
+		      }
+		      
+		    }
+		).catch(
+		   //used Arrow function here
+		   (err)=> {
+		      this.router.navigate(['/home']);
+		   }
+		)
+    	
     	
     }
 }
