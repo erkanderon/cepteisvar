@@ -344,3 +344,7 @@ footer .aciklama h5{
 	text-decoration: none;
 	color: black;
 }
+.image[_ngcontent-c3]{
+	width: 200px !important;
+	height: 200px !important;
+}

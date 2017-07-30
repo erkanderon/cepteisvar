@@ -31,8 +31,14 @@
                 <div id="1a" class="tab-pane active">
                         <form class="row">
                           <div class="row" style="padding: 0px 15px; margin: 0px;">
-                            <div class="col-xs-3 text-center">
+                            <div class="col-xs-3 text-center" *ngIf="state === 0">
+                              
                                 <img class="img img-responsive" src="assets/images/Employee1.png">
+                                
+                            </div>
+                            <div class="col-xs-3 text-center" *ngIf="state === 1">
+
+                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEC'" [dropBoxMessage]="'Buraya Surukleyebilirsin'"></image-upload>
                             </div>
                             <div class="col-xs-3"></div>
                             <div class="col-xs-6">

@@ -375,3 +375,22 @@ footer .aciklama h5{
     background-color: #fff200 !important;
     border-color: #fff200 !important;
 }
+.image[_ngcontent-c3]{
+	width: 200px !important;
+	height: 200px !important;
+}
+.image{
+	width: 200px !important;
+	height: 200px !important;
+	margin: 2px !important;
+}
+.image-container{
+	padding: 0px !important;
+}
+.clear{
+	display: none !important;
+}
+.upload{
+	margin: 0 30px !important;
+	background-color: #fff200 !important;
+}

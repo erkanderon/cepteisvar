@@ -97,6 +97,9 @@ export class IsArayanProfilComponent {
     }
     console.log(this.comments);
   }
+  imageUploaded(event){
+    console.log(event.file);
+  }
   onChange(newValue) {
       
       this.ct = this._pub.getCityFieldList(newValue).then(ct => this.ct = ct);

@@ -36,6 +36,7 @@ import { CalisanProfilComponent } from './childs/calisan-profil/calisan.profil.c
 
 
 import { AgmCoreModule } from '@agm/core';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 
 // Import your library
@@ -97,7 +98,8 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAfjFE_rSuwj5D8Q13rVC48aSaWzOUZXDk'
-    })
+    }),
+    ImageUploadModule.forRoot()
   ],
   providers: [
          AuthService, Pub, PostService
