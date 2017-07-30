@@ -237,7 +237,7 @@ footer .aciklama h5{
 }
 
 .form-inline .input-group{
-	margin: 0px 50px;
+	margin: 0px 4px;
 }
 .calisir .btn.focus, .btn:focus, .btn:hover {
     color: white;
@@ -545,3 +545,5 @@ footer .aciklama h5{
 .neden strong p{
 	color: #fdf9f9;
 }
+
+

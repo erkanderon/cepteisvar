@@ -15,13 +15,14 @@ declare var jQuery : any;
 export class HomeComponent {
 	cities: any;
 	education: any;
-	jobs: any;
+	jobs: any={};
 	profiles: any;
 	fields: any;
 	obj: any;
 	news: any;
 	statistics: any;
-	isloggedin: any=false;
+	islogged: any=false;
+	jobcategory: any={};
 
 	
 
@@ -39,6 +40,7 @@ export class HomeComponent {
 			  		"lazyLoad": 'ondemand'
 		  		}
 	  		);*/
+
 			
 	  		
 			jQuery("#firms").slick({"slidesToShow": 8, "slidesToScroll": 1, "speed": 300, "infinite": true, "lazyLoad": 'ondemand'});
@@ -52,6 +54,7 @@ export class HomeComponent {
 
 	    this.cities = this._pub.getCities().then(cities => this.cities = cities);
 	    this.education = this._pub.getEducationTypes().then(education => this.education = education);
+	    this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
 	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
 	    this.news = this._pub.getNews().then(res => this.news = res);
@@ -70,30 +73,36 @@ export class HomeComponent {
 		}
 		return this.obj;
 	}
+
+	onJobChange(newValue) {
+    
+    this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
+
+  	}
 	checkUser(){
-		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
-		console.log(this.isloggedin);
-		if(this.isloggedin){
+		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		console.log(this.islogged);
+		if(this.islogged){
 			this.router.navigate(['/calisan-arama']);
 		}else{
 			this.router.navigate(['/isveren-giris']);
 		}
 	}
 	checkCompany(param){
-		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		
-		console.log(this.isloggedin);
-		if(this.isloggedin){
+		console.log(this.islogged);
+		if(this.islogged){
 			this.router.navigate(['/calisan-profil', param]);
 		}else{
 			this.router.navigate(['/isveren-giris']);
 		}
 	}
 	checkMember(){
-		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
+		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
 		
-		console.log(this.isloggedin);
-		if(this.isloggedin){
+		console.log(this.islogged);
+		if(this.islogged){
 			this.router.navigate(['/is-arayan-profil']);
 		}else{
 			this.router.navigate(['/calisan-giris']);

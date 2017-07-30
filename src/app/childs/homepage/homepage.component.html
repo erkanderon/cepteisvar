@@ -62,9 +62,16 @@
 	    					<form id="1a" class="form-inline tab-pane active">
 
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect">
-								    <option selected >Meslek Seciniz...</option>
-								    <option value="1" ></option>
+							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
+								    
+                					<option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+              
+								</select>
+							  </div>
+							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" name="meslek2" [ngModel]="meslek2">
+							    	
+								    <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
 								</select>
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
@@ -191,24 +198,24 @@
 		                                <span class="glyphicon glyphicon-star-empty"></span>
 		                            </div>
 		                        </div>
-		                        <h4 class="group inner list-group-item-heading">
+		                        <h4 class="group inner list-group-item-heading" style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
 		                        {{profile.PRIMARY_JOB}}</h4>
-		                        <h5 class="group inner list-group-item-heading">
+		                        <h5 class="group inner list-group-item-heading" style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
 		                        {{profile.NAME}}</h5>
-		                        <div class="row" style="margin-bottom: 20px; font-size: 11px; white-space: nowrap;">
+		                        <div class="row" style="margin-bottom: 20px; font-size: 11px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
 		                        	<div class="col-xs-6">
 		                            <i *ngIf="profile.CERTIFICATE===0" class="fa fa-bookmark-o" aria-hidden="true"></i>
 		                            <i *ngIf="profile.CERTIFICATE===1" class="fa fa-bookmark-o" aria-hidden="true" style="color: black !important;"></i>
 		                            Mesleki Yeterlilik
 		                        	</div>
-		                        	<div class="col-xs-6" style="padding: 0px;">
+		                        	<div class="col-xs-6" style="padding: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
 			                            <i class="fa fa-map-marker" aria-hidden="true"></i>
 			                            {{profile.CITY_NAME}}-{{profile.ADDRESS}}
 			                        </div>
 		                        </div>
 		                        <div class="row" style="margin-bottom: 20px; font-size: 12px;">
 		                        	<div class="col-xs-12">
-				                        <p class="group inner list-group-item-text">
+				                        <p class="group inner list-group-item-text" style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
 				                            {{profile.DESCRIPTION}}</p>
 				                    </div>
 				                </div>
@@ -333,8 +340,8 @@
 			      <img src="{{nws.PHOTO_URL}}" class="media-object" style="" onerror="this.src='assets/images/Employee1.png';">
 			    </div>
 			    <div class="media-body">
-			      <h4 class="media-heading">{{nws.HEADER}}</h4>
-			      <p>{{nws.BODY}}</p>
+			      <h4 class="media-heading" style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">{{nws.HEADER}}</h4>
+			      <p style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">{{nws.BODY}}</p>
 			      <a [routerLink]="['/duyuru', nws.HABER_ID]" *ngIf="fields.REA1"><p>{{fields.REA1}}<span style="margin-left: 5px;"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></span></p></a>
 			    </div>
 			  </div>

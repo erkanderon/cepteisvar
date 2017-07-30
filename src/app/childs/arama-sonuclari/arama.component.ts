@@ -7,22 +7,22 @@ declare var List : any;
 
 @Component({
   moduleId: module.id,
-  selector: 'arama-comp',
+  selector: 'src-comp',
   templateUrl: './arama.component.html',
   styleUrls: ['./arama.component.css'],
-  providers: [AuthService]
+  
 })
 export class AramaComponent {
 
 	profiles: any = {};
 	model: any = [];
 	saveUsername: any = false;
-	isloggedin:any = false;
+	islogged:any = false;
 
-	constructor(private elRef : ElementRef, private _pub: Pub, private router: Router, private _auth: AuthService) { 
+	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router) {}
 
+	ngOnInit() {
 		jQuery(document).ready(function () {
-	  		jQuery("#ss").slick({"slidesToShow": 4, "slidesToScroll": 1, "speed": 300, "infinite": true, "lazyLoad": 'ondemand'});
 
 
 		    jQuery('#list').click(function(event){event.preventDefault();jQuery('#products .item').addClass('list-group-item');});
@@ -38,15 +38,11 @@ export class AramaComponent {
 			});
   		});
 
-  		this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
-  		console.log(this.isloggedin);
-  		console.log(localStorage.getItem('userrole'));
-		
-
-	}
-	ngOnInit() {
-
 	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
+
+	    if(!!localStorage.getItem('userrole')){
+  			this.islogged = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='business');
+  		}
 
 	    
 	}

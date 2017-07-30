@@ -193,8 +193,8 @@
                             <div id="products" class="row list-group" style="margin: 0px;" *ngIf="profiles.data">
                                 <ul class="row list" style="padding: 0px 0px;">
                                 <li *ngFor="let profile of profiles.data"><div class="item  col-xs-4 col-lg-4">
-                                    <input *ngIf="isloggedin" type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
-                                    <div class="thumbnail" style="min-height: 350px; max-height: 350px;">
+                                    <input *ngIf="islogged" type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
+                                    <div class="thumbnail" style="">
                                         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                                         <div class="caption">
                                             <div class="row" style="margin: 0px 0px 0px 0px;">
@@ -207,18 +207,18 @@
                                                         <span class="glyphicon glyphicon-star-empty"></span>
                                                     </div>
                                                 </div>
-                                                <h4 class="group inner list-group-item-heading">
+                                                <h4 class="group inner list-group-item-heading" style="padding: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                                 {{profile.PRIMARY_JOB}}</h4>
-                                                <h5 class="group inner list-group-item-heading">
+                                                <h5 class="group inner list-group-item-heading" style="padding: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                                 {{profile.NAME}}</h5>
-                                                <div class="" style="margin-bottom: 20px;">
+                                                <div class="" style="margin-bottom: 20px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                                     <i *ngIf="profile.CERTIFICATE===0" class="fa fa-bookmark-o" aria-hidden="true" style="color: green !important;"></i>
                                                     <i *ngIf="profile.CERTIFICATE===1" class="fa fa-bookmark-o" aria-hidden="true" style="color: black !important;"></i>
                                                     Mesleki Yeterlilik
                                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                                     {{profile.CITY_NAME}}-{{profile.ADDRESS}}
                                                 </div>
-                                                <p class="group inner list-group-item-text">
+                                                <p class="group inner list-group-item-text" style="padding: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                                     {{profile.DESCRIPTION}}</p>
 
                                                 <div class="group inner list-group-item-text text-center" >

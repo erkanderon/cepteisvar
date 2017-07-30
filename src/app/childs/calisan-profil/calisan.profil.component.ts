@@ -13,6 +13,7 @@ import { PostService } from '../../services/post.service';
   selector: 'calisanprofil-comp',
   templateUrl: './calisan.profil.component.html',
   styleUrls: ['./calisan.profil.component.css'],
+  providers: [AuthService]
 })
 
 

@@ -8,6 +8,7 @@ import { Pub } from '../../services/pub.service';
   selector: 'calisan-giris-comp',
   templateUrl: './calisan.giris.component.html',
   styleUrls: ['./calisan.giris.component.css'],
+  providers: [AuthService]
 })
 export class CalisanGirisComponent {
   

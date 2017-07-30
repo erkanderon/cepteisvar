@@ -10,7 +10,6 @@ import {Comment} from '../../models/comment'
   selector: 'header-comp',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [AuthService]
 })
 export class HeaderComponent {
   title = 'Never Back Down';
@@ -18,6 +17,7 @@ export class HeaderComponent {
   ex: any;
   obj: any;
   checkUser: any;
+  islogged: any= false;
   
   constructor(private _pub: Pub, private _auth: AuthService, private router: Router) {
     
@@ -31,12 +31,7 @@ export class HeaderComponent {
     this.checkUser = this._auth.isLoggedIn();
     
   }
-  ngAfterViewInit() {
-  	
-  	/*setTimeout(()=>{   
-	      
-	 },9000);*/
-  }
+  
 
   logOut() {
     this._auth.logout();
@@ -61,9 +56,9 @@ export class HeaderComponent {
     }
   }
   checkPerson(){
-    this.isloggedin = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
-    console.log(this.isloggedin);
-    if(this.isloggedin){
+    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+    console.log(this.islogged);
+    if(this.islogged){
       this.router.navigate(['/calisan-arama']);
     }else{
       this.router.navigate(['/isveren-giris']);

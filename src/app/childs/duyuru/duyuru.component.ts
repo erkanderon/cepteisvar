@@ -21,7 +21,7 @@ export class DuyuruComponent {
 	new: any={};
 	news: any={};
 	comments: any={};
-	isloggedin: any=false;
+	islogged: any=false;
 
 
 	constructor( private route: ActivatedRoute, private _pub: Pub, private router: Router, private _post: PostService, private _auth: AuthService) { 
@@ -32,7 +32,7 @@ export class DuyuruComponent {
 	       // In a real app: dispatch action to load the details here.
 	    });
 
-		this.isloggedin = (this._auth.isLoggedIn());
+		this.islogged = (this._auth.isLoggedIn());
 		
 	}
 

@@ -106,6 +106,7 @@ export class AuthService {
 	    body.set('client_secret', AppSettings.client_secret);
 	    body.set('refresh_token', localStorage.getItem("user_refresh_token"));
     	if (this.checkIsExpired()===2){
+		
     		this.http.post(AppSettings.API_ENDPOINT+'/refresh/oauth/token', body, {headers})
 		    .toPromise()
 		      .then(response => response.json())
@@ -117,13 +118,14 @@ export class AuthService {
 				      localStorage.setItem("user_refresh_token", success.refresh_token);
 				      localStorage.setItem("user_token_type", success.token_type);
 				      localStorage.setItem("timestamp", new Date().toString());
+				      console.log("refreshed");
 				      return false;
 				   }
 				).catch(
 				   //used Arrow function here
 				   (err)=> {
 				      console.log(err);
-				      this.logout();
+				      //this.logout();
 				      
 				   }
 				)
