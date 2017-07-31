@@ -35,8 +35,8 @@ export class AramaComponent {
 			      pagination: true
 			    });
 
-			});
-  		});
+				});
+	  		});
 
 	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
 

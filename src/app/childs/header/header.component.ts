@@ -25,6 +25,7 @@ export class HeaderComponent {
     if(this._auth.refreshToken() && this._auth.isLoggedIn()){
         this._auth.logout();
     }
+    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
   }  
   ngOnInit() {
   	this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
@@ -56,9 +57,9 @@ export class HeaderComponent {
     }
   }
   checkPerson(){
-    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
     console.log(this.islogged);
-    if(this.islogged){
+    if(!this.islogged){
       this.router.navigate(['/calisan-arama']);
     }else{
       this.router.navigate(['/isveren-giris']);

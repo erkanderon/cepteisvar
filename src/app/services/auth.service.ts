@@ -54,7 +54,7 @@ export class AuthService {
 
 			      this.updateUser(success, role);
 
-			      this.router.navigate([uri]);
+			      this.router.navigate([uri, { foo: "profil" }]);
 			   }
 			).catch(
 			   //used Arrow function here

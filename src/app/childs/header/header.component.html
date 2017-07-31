@@ -29,7 +29,7 @@
 		  				</div>
 		  				<div class="col-xs-7 tab text-center" style="vertical-align: center;">
 		  					<a class="btn btn-default active" routerLink="/home" *ngIf="fields.ANA1" > {{fields.ANA1}}</a>
-		  					<a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1">{{fields.KIM1}}</a>
+		  					<span *ngIf="!islogged"><a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1">{{fields.KIM1}}</a></span>
 		  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1">{{fields.MES1}}</a>
 		  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1">{{fields.DUY1}}</a>
 		  				</div>

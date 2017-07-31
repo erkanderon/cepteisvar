@@ -8,6 +8,7 @@ import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
 import { InsertCommentModel } from '../../models/insertUserComment.model';
 import { SetNoCommentModel } from '../../models/setNoCommentForUsers.model';
+import { Location } from '@angular/common';
 
 import {NgForm} from '@angular/forms';
 declare var jQuery : any;
@@ -38,7 +39,12 @@ export class IsVerenProfilComponent {
   sepetid: any;
   model: any = [];
 
-	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
+  param: any;
+  sub: any;
+  foo: any;
+  fileImage: any = false;
+
+	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
 			jQuery('.myCheckbox').click(function() {
 			      jQuery(this).siblings('input:checkbox').prop('checked', false);
@@ -47,6 +53,16 @@ export class IsVerenProfilComponent {
 	}
 
 	ngOnInit() {
+    this.router.events
+      .subscribe((event) => {
+        // example: NavigationStart, RoutesRecognized, NavigationEnd
+          this.sub = this.route.params.subscribe(params => {
+           this.param = params['foo']; // (+) converts string 'id' to a number
+           this.activaTab("#"+this.param);
+           
+        });
+        
+      });
 
 		this.company = new PreviewCompanyModel(localStorage.getItem('user'));
 		this.profile = this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.profile = res);
@@ -57,6 +73,7 @@ export class IsVerenProfilComponent {
 	}
 
 	getop(res){
+    if(res){
 	    if(res.data){
 	      this.comments = this._post.getCompanyComments({"P_COMPANY_ID": res.data[0].COMPANY_ID}).then(comments => this.comments = comments);
         console.log(this.comments);
@@ -78,8 +95,8 @@ export class IsVerenProfilComponent {
 
 	      
 	    }
-	    console.log(this.sms);
-	}
+	  }
+  }
 	getBasketData(){
 		let model = [];
 		if(this._pub.getSepetModel()){
@@ -87,6 +104,21 @@ export class IsVerenProfilComponent {
 		}
 		return model;
 	}
+
+  navigateParam(par){
+    this.activaTab(par);
+    this.router.navigate(['/is-veren-profil', { foo: par }]);
+  }
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+  imageUploaded(event){
+    this.fileImage = event.file;
+    console.log(this.fileImage);
+  }
+  activaTab(tab){
+    jQuery(tab).tab('show');
+  };
 
   addModel(val, id){
 
@@ -185,7 +217,27 @@ export class IsVerenProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+            if(this.fileImage){
+                this._post.uploadPhoto(companyid, 4200, this.fileImage).then(
+                    //used Arrow function here
+                    (success)=> {
+                      
+                      if(this.responser(success)){
+                        location.reload();
+                      }else{
+                        //give a message
+                        console.log(success)
+                      }
+                      
+                    }
+                ).catch(
+                   //used Arrow function here
+                   (err)=> {
+                      //this.router.navigate(['/home']);
+                   }
+                )
+              }
+             // location.reload();
             }else{
               //give error
             }

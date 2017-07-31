@@ -174,6 +174,34 @@ export class PostService {
 			)
 
 	}
+	// UPLOAD PHOTO SERVICE
+	uploadPhoto(userid, groupid, file): Promise<any> {
+		let headers = new Headers({});
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    const formData = new FormData();
+    	formData.append('p_userid', userid);
+    	formData.append('p_group_id', groupid);
+    	formData.append('p_file', file);
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/upload-profile-photo?access_token='+token, formData, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      //this.router.navigate(['/home']);
+			   }
+			)
+
+	}
 	// GET USER COMMENTS
 	getMemberComments(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });

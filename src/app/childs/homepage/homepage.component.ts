@@ -47,7 +47,9 @@ export class HomeComponent {
   		});
   		// JQuery finished
 
-  		
+  		if(!!localStorage.getItem('userrole')){
+  			this.islogged = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='member');
+  		}
 
 	}
 	ngOnInit() {
@@ -82,7 +84,7 @@ export class HomeComponent {
 	checkUser(){
 		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		console.log(this.islogged);
-		if(this.islogged){
+		if(!this.islogged){
 			this.router.navigate(['/calisan-arama']);
 		}else{
 			this.router.navigate(['/isveren-giris']);

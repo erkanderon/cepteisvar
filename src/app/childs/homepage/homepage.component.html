@@ -84,8 +84,6 @@
 								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
 								    <option selected>Egitim Durumu Seciniz...</option>
 								    <option value="1" *ngFor="let edu of education.data">{{edu.EDUCATION_LEVEL}}</option>
-								    <option value="2">Ortaokul</option>
-								    <option value="3">Universite</option>
 								  </select>
 							  </div>
 							  <a routerLink="/calisan-arama" type="submit" class="form-control search"><i class="fa fa-search fa-2x" style="color:black; font-size: 16px;" aria-hidden="true"></i></a>
@@ -166,7 +164,7 @@
 		</div>
 	</div>
 	<!-- Kimler IS Ariyor? -->
-	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;">
+	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;" *ngIf="!islogged">
 		<div class="row">
 			<div class="col-xs-12" style="margin-bottom: 20px;">
 				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.KIM1">{{fields.KIM1}}</h3>

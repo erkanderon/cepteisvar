@@ -11,6 +11,7 @@ import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.m
 import { UpdateUserLoginModel } from '../../models/updateUserLogInfo.model'
 import { DatePipe } from '@angular/common';
 import {NgForm} from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   moduleId: module.id,
@@ -37,9 +38,14 @@ export class IsArayanProfilComponent {
   military: any = {};
   isim: any=""; dtarihi: any=""; telefon: any=""; sd: any=""; askerlik: any=""; tecrube: any=""; gizlilik: any=""; soyad: any=""; cinsiyet: any=""; adres: any=""; educate: any=""; ilce: any=""; ehliyet: any=""; secenek: any=""; certificate: any=""; 
 
+  param: any;
+  sub: any;
+  foo: any;
+  fileImage: any = false;
+
 
 	constructor(
-		private _authService: AuthService, private router: Router, private _pub: Pub, private elRef : ElementRef, private _post: PostService) { 
+		private _authService: AuthService, private router: Router, private _pub: Pub, private elRef : ElementRef, private _post: PostService, private route: ActivatedRoute, private location: Location) { 
 
 	  
     if(!this._authService.isLoggedIn){
@@ -51,15 +57,22 @@ export class IsArayanProfilComponent {
 	  });
 
 		
-
+    
 
 	}
   ngOnInit() {
-
     
+    this.router.events
+      .subscribe((event) => {
+        // example: NavigationStart, RoutesRecognized, NavigationEnd
+          this.sub = this.route.params.subscribe(params => {
+           this.param = params['foo']; // (+) converts string 'id' to a number
+           this.activaTab("#"+this.param);
+           
+        });
+        
+      });
 
-
-    this.activaTab("#profil")
     this.member = new PreviewMemberModel(localStorage.getItem('user'));
     this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.profile = res);
     this.cities = this._pub.getCities().then(cities => this.cities = cities);
@@ -73,32 +86,41 @@ export class IsArayanProfilComponent {
     
   }
   getop(res){
-    if(res.data){
-      this.comments = this._post.getMemberComments({"p_userid": res.data[0].USER_ID}).then(comments => this.comments = comments);
-      this.sms = this._post.getMemberSMS({"p_userid": res.data[0].USER_ID}).then(sms => this.sms = sms);
-      this.onChange(res.data[0].CITY_ID);
+    if(res){
+      if(res.data){
+        this.comments = this._post.getMemberComments({"p_userid": res.data[0].USER_ID}).then(comments => this.comments = comments);
+        this.sms = this._post.getMemberSMS({"p_userid": res.data[0].USER_ID}).then(sms => this.sms = sms);
+        this.onChange(res.data[0].CITY_ID);
 
-      this.isim = res.data[0].NAME;
-      this.dtarihi = res.data[0].REGISTERED_DATE;
-      this.telefon = res.data[0].CONTACT_NO;
-      this.sd = res.data[0].CITY_ID;
-      this.askerlik = res.data[0].MILITARY_ID;
-      this.tecrube = res.data[0].WORKING_EXPERIENCE;
-      this.gizlilik = res.data[0].ALLOW_SMS;
-      this.soyad = res.data[0].SURNAME;
-      this.cinsiyet = res.data[0].GENDER_ID;
-      this.adres = res.data[0].ADDRESS;
-      this.educate = res.data[0].EDUCATION_ID;
-      this.ilce = res.data[0].COUNTY_ID;
-      this.ehliyet = res.data[0].LICENSE_ID;
-      this.secenek = res.data[0].HOMEPAGE_ACTIVE;
-      this.certificate = res.data[0].CERTIFICATE;
-      
+        this.isim = res.data[0].NAME;
+        this.dtarihi = res.data[0].REGISTERED_DATE;
+        this.telefon = res.data[0].CONTACT_NO;
+        this.sd = res.data[0].CITY_ID;
+        this.askerlik = res.data[0].MILITARY_ID;
+        this.tecrube = res.data[0].WORKING_EXPERIENCE;
+        this.gizlilik = res.data[0].ALLOW_SMS;
+        this.soyad = res.data[0].SURNAME;
+        this.cinsiyet = res.data[0].GENDER_ID;
+        this.adres = res.data[0].ADDRESS;
+        this.educate = res.data[0].EDUCATION_ID;
+        this.ilce = res.data[0].COUNTY_ID;
+        this.ehliyet = res.data[0].LICENSE_ID;
+        this.secenek = res.data[0].HOMEPAGE_ACTIVE;
+        this.certificate = res.data[0].CERTIFICATE;
+        
+      }
     }
-    console.log(this.comments);
+  }
+  navigateParam(par){
+    this.activaTab(par);
+    this.router.navigate(['/is-arayan-profil', { foo: par }]);
+  }
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
   imageUploaded(event){
-    console.log(event.file);
+    this.fileImage = event.file;
+    console.log(this.fileImage);
   }
   onChange(newValue) {
       
@@ -114,6 +136,7 @@ export class IsArayanProfilComponent {
       this.state = number;
       window.scrollTo(0, 0);
   }
+
   responser(obj) {
     if(obj.code === 200){
       return true;
@@ -170,7 +193,27 @@ export class IsArayanProfilComponent {
             
             if(this.responser(success)){
               //refresh page
-              location.reload();
+              if(this.fileImage){
+                this._post.uploadPhoto(userid, 4000, this.fileImage).then(
+                    //used Arrow function here
+                    (success)=> {
+                      
+                      if(this.responser(success)){
+                        location.reload();
+                      }else{
+                        //give a message
+                        console.log(success)
+                      }
+                      
+                    }
+                ).catch(
+                   //used Arrow function here
+                   (err)=> {
+                      //this.router.navigate(['/home']);
+                   }
+                )
+              }
+              //location.reload();
             }else{
               //give error
             }
@@ -179,7 +222,7 @@ export class IsArayanProfilComponent {
       ).catch(
          //used Arrow function here
          (err)=> {
-            this.router.navigate(['/home']);
+            //this.router.navigate(['/home']);
          }
       )
     }
