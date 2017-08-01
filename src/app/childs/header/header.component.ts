@@ -22,10 +22,10 @@ export class HeaderComponent {
   constructor(private _pub: Pub, private _auth: AuthService, private router: Router) {
     
 
-    if(this._auth.refreshToken() && this._auth.isLoggedIn()){
-        this._auth.logout();
+    if(!this._auth.refreshToken()){
+        this.islogged = true;
     }
-    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
+    //this.islogged = (this._auth.isLoggedIn());
   }  
   ngOnInit() {
   	this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
@@ -49,9 +49,9 @@ export class HeaderComponent {
   }
   goMyProfile(){
     if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business'){
-      this.router.navigate(['/is-veren-profil']);
+      this.router.navigate(['/is-veren-profil', { foo: "profil" }]);
     }else if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member'){
-      this.router.navigate(['/is-arayan-profil']);
+      this.router.navigate(['/is-arayan-profil', { foo: "profil" }]);
     }else{
       this._auth.logout();
     }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AppSettings} from '../config/app.settings';
 import {Headers ,Http, URLSearchParams, RequestOptions} from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { UpdateUserLoginModel } from '../models/updateUserLogInfo.model';
 import { PreviewMemberModel } from '../models/previewMemberAccount.model';
 import { PreviewCompanyModel } from '../models/previewCompanyAccount.model';
@@ -23,11 +24,11 @@ export class AuthService {
 
 	constructor(private http: Http, private router: Router,private _post: PostService) { 
 		//this.loggedIn = !!localStorage.getItem('user_access_token');
-		this.loggedIn = !this.refreshToken();
+		
 		this.username = localStorage.getItem("user")
 	}
 
-	login(username, password, uri, role) {
+	async login(username, password, uri, role) {
 		var headers = new Headers();
     	headers.append('Content-Type', 'application/x-www-form-urlencoded');
 	    let body = new URLSearchParams();
@@ -53,6 +54,8 @@ export class AuthService {
 			      localStorage.setItem("userrole", role);
 
 			      this.updateUser(success, role);
+
+			      this.loggedIn = true;
 
 			      this.router.navigate([uri, { foo: "profil" }]);
 			   }
@@ -81,6 +84,10 @@ export class AuthService {
     isLoggedIn() {
     	return this.loggedIn;
     }
+    async checkTokenIs(){
+    	//this.loggedIn = !this.refreshToken();
+    	return !this.refreshToken();
+    }
     
     getUser() {
     	return this.username;
@@ -90,50 +97,60 @@ export class AuthService {
     	this.date2 = new Date(localStorage.getItem("timestamp"));
 
     	if(this.date1-this.date2 > AppSettings.ten_minutes && this.date1-this.date2 < AppSettings.fifteen_minutes){
+    	console.log(2);
     		return 2;
     	}else if(this.date1-this.date2 <= AppSettings.ten_minutes){
+    		console.log(1);
     		return 1;
     	}else{
+    		console.log(0);
     		return 0;
     	}
     }
-    refreshToken() {
-    	var headers = new Headers();
-    	headers.append('Content-Type', 'application/x-www-form-urlencoded');
-	    let body = new URLSearchParams();
-	    body.set('grant_type', AppSettings.grant_type2);
-	    body.set('client_id', AppSettings.client_id);
-	    body.set('client_secret', AppSettings.client_secret);
-	    body.set('refresh_token', localStorage.getItem("user_refresh_token"));
+    async refreshToken() {
+    	
+
     	if (this.checkIsExpired()===2){
-		
-    		this.http.post(AppSettings.API_ENDPOINT+'/refresh/oauth/token', body, {headers})
-		    .toPromise()
-		      .then(response => response.json())
-		      .then(
-				   //used Arrow function here
-				   (success)=> {
-				      
-				      localStorage.setItem("user_access_token", success.access_token);
-				      localStorage.setItem("user_refresh_token", success.refresh_token);
-				      localStorage.setItem("user_token_type", success.token_type);
-				      localStorage.setItem("timestamp", new Date().toString());
-				      console.log("refreshed");
-				      return false;
-				   }
-				).catch(
-				   //used Arrow function here
-				   (err)=> {
-				      console.log(err);
-				      //this.logout();
-				      
-				   }
-				)
+			return this.reftok();
+    		
     	}else if(this.checkIsExpired()===1){
     		return false;
     	}else{
     		return true;
     	}
+    }
+    reftok(){
+    	var headers = new Headers();
+    	headers.append('Content-Type', 'application/x-www-form-urlencoded');
+	    let body = new URLSearchParams();
+    	body.set('grant_type', AppSettings.grant_type2);
+	    body.set('client_id', AppSettings.client_id);
+	    body.set('client_secret', AppSettings.client_secret);
+	    body.set('refresh_token', localStorage.getItem("user_refresh_token"));
+
+	    this.http.post(AppSettings.API_ENDPOINT+'/refresh/oauth/token', body, {headers})
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			   //used Arrow function here
+			   (success)=> {
+			  
+			      localStorage.setItem("user_access_token", success.access_token);
+			      localStorage.setItem("user_refresh_token", success.refresh_token);
+			      localStorage.setItem("user_token_type", success.token_type);
+			      localStorage.setItem("timestamp", new Date().toString());
+			      console.log("refreshed");
+			      console.log("Refreshed:" +success.access_token);
+			      return false;
+			   }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      //this.logout();
+			      
+			   }
+			)
     }
     // UPDATE USER LOGINFO
 	updateUserLogin(param): Promise<any> {

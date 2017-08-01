@@ -62,6 +62,7 @@ const appRoutes : Routes = [
   { path: 'sms-gonder', component: SMSGonderComponent, data: { title: 'SMSGonderComponent'} },
   { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
+  /* /webapi/payment/result */
   { path: '**', redirectTo: 'home' }
 ];
 

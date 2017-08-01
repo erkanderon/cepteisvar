@@ -2,7 +2,9 @@ import { ElementRef, Component } from '@angular/core';
 declare var jQuery : any;
 import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { PostService } from '../../services/post.service';
+
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { ChangeJobModel } from '../../models/changeJob.model';
 import { Pub } from '../../services/pub.service';
@@ -18,9 +20,9 @@ import { Location } from '@angular/common';
   selector: 'isarayanprofil-comp',
   templateUrl: './is.arayan.profil.component.html',
   styleUrls: ['./is.arayan.profil.component.css'],
-  providers: [AuthService]
+  
 })
-export class IsArayanProfilComponent {
+export class IsArayanProfilComponent implements CanActivate{
 
   profile: any;
   member:  any;
@@ -42,24 +44,29 @@ export class IsArayanProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
+  picture: any = false;
 
 
 	constructor(
 		private _authService: AuthService, private router: Router, private _pub: Pub, private elRef : ElementRef, private _post: PostService, private route: ActivatedRoute, private location: Location) { 
 
 	  
-    if(!this._authService.isLoggedIn){
-      this._authService.logout();
-    }
 
+    
+    
     jQuery(document).ready(function () {
 
 	  });
 
-		
-    
+		this._authService.checkTokenIs().then((response) => {
+        
+    });
 
 	}
+  canActivate() {
+      return this._authService.checkTokenIs()
+        
+  }
   ngOnInit() {
     
     this.router.events
@@ -72,7 +79,7 @@ export class IsArayanProfilComponent {
         });
         
       });
-
+    
     this.member = new PreviewMemberModel(localStorage.getItem('user'));
     this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.profile = res);
     this.cities = this._pub.getCities().then(cities => this.cities = cities);
@@ -85,12 +92,17 @@ export class IsArayanProfilComponent {
     this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.getop(res));
     
   }
+  ngAfterContentInit() {
+
+  }
   getop(res){
     if(res){
       if(res.data){
         this.comments = this._post.getMemberComments({"p_userid": res.data[0].USER_ID}).then(comments => this.comments = comments);
         this.sms = this._post.getMemberSMS({"p_userid": res.data[0].USER_ID}).then(sms => this.sms = sms);
         this.onChange(res.data[0].CITY_ID);
+
+        this.picture = this._pub.getProfilePicture(res.data[0].PHOTO_URL).then(picture => this.picture = picture);
 
         this.isim = res.data[0].NAME;
         this.dtarihi = res.data[0].REGISTERED_DATE;

@@ -3,12 +3,14 @@ import { PostService } from '../../services/post.service';
 import { Pub } from '../../services/pub.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
+import { BuySmsModel } from '../../models/buySmsRequest.model';
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
 import { InsertCommentModel } from '../../models/insertUserComment.model';
 import { SetNoCommentModel } from '../../models/setNoCommentForUsers.model';
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import {NgForm} from '@angular/forms';
 declare var jQuery : any;
@@ -18,6 +20,7 @@ declare var jQuery : any;
   selector: 'isverenprofil-comp',
   templateUrl: './is.veren.profil.component.html',
   styleUrls: ['./is.veren.profil.component.css'],
+ 
 })
 export class IsVerenProfilComponent {
 
@@ -43,12 +46,16 @@ export class IsVerenProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
+  bankImage: any = "Yukleniyor";
 
-	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
+	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location, private domSanitizer: DomSanitizer) { 
 		jQuery(document).ready(function () {
 			jQuery('.myCheckbox').click(function() {
 			      jQuery(this).siblings('input:checkbox').prop('checked', false);
 			  });
+      
+
+
   		});
 	}
 
@@ -70,7 +77,22 @@ export class IsVerenProfilComponent {
     this.promotions = this._pub.getSMSPromotions().then(promotions => this.promotions = promotions);
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 		this.basket = this.getBasketData();
+
+
+
 	}
+  
+  ngDoCheck(){
+
+  }
+
+  ngAfterViewInit(){
+    //const fragment = document.createRange().createContextualFragment(this.bankImage);
+    //jQuery("#iyzipay-checkout-form").appendChild(fragment);
+    //document.getElementById("modalbody").innerHTML = this.bankImage;
+
+  
+  }
 
 	getop(res){
     if(res){
@@ -269,6 +291,46 @@ export class IsVerenProfilComponent {
           if(this.responser(success)){
             //this.router.navigate([uri]);
             location.reload();
+          }else{
+            //give a message
+          }
+          
+        }
+    ).catch(
+       //used Arrow function here
+       (err)=> {
+       console.log(err);
+          this.router.navigate(['/home']);
+       }
+    )
+    
+    
+  }
+
+  // BUY SMS REQUEST
+  buySms() {
+    
+    let companyid = this.profile.data[0].COMPANY_ID;
+    let packetid = 0;
+    let smscount = 20;
+    let model = new BuySmsModel(companyid, packetid, smscount);
+
+    this._post.buySmsRequest(JSON.stringify(model)).then(
+        //used Arrow function here
+        (success)=> {
+          
+          if(this.responser(success)){
+
+          var jstext = success.data[0].BANK_SCRIPT.replace(/<script.*?>/,"");
+          jstext = jstext.replace(/<\/script.*?>/,"");
+
+          var bankForm = document.createElement('script');
+          bankForm.innerHTML = jstext;
+
+          document.getElementById("modalbody").appendChild(bankForm);
+          console.log(success);
+            //location.reload();
+
           }else{
             //give a message
           }

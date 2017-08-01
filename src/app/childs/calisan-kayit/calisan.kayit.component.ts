@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './calisan.kayit.component.html',
   styleUrls: ['./calisan.kayit.component.css'],
   
+  
 })
 export class CalisanKayitComponent {
   
