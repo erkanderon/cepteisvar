@@ -6,6 +6,7 @@ import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { EditCompanyAccountModel } from '../../models/editCompanyAccount.model';
 import { ChangeAccountPasswordModel } from '../../models/changeAccountPassword.model';
+import { BuySmsModel } from '../../models/buySmsModel';
 import { InsertCommentModel } from '../../models/insertUserComment.model';
 import { SetNoCommentModel } from '../../models/setNoCommentForUsers.model';
 import { Location } from '@angular/common';
@@ -43,6 +44,7 @@ export class IsVerenProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
+  bankSms: any = "f";
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
@@ -317,6 +319,43 @@ export class IsVerenProfilComponent {
       )
     }
     
+  }
+  // BUY SMS
+  buySms(){
+    let companyid = this.profile.data[0].COMPANY_ID;
+    let packetid = 0;
+    let smscount= 20;
+    let bankmodel = new BuySmsModel(companyid, packetid, smscount);
+
+    this._post.buySmsRequest(JSON.stringify(bankmodel)).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              //this.router.navigate([uri]);
+
+              console.log(success);
+
+              this.bankSms = success.data[0].BANK_SCRIPT;
+              this.bankSms = this.bankSms.replace(/(<([^>]+)>)/ig, "");
+              console.log(this.bankSms);
+
+              var bankModel = document.createElement('script');
+              bankModel.innerHTML = this.bankSms;
+              document.getElementById("modelcontent").appendChild(bankModel);
+
+            }else{
+              //give a message
+              console.log(success);
+            }
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
   }
 
   removeFromSepet(user){
