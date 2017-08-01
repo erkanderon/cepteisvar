@@ -49,9 +49,9 @@ export class HeaderComponent {
   }
   goMyProfile(){
     if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business'){
-      this.router.navigate(['/is-veren-profil']);
+      this.router.navigate(['/is-veren-profil', { foo: "profil" }]);
     }else if(this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member'){
-      this.router.navigate(['/is-arayan-profil']);
+      this.router.navigate(['/is-arayan-profil', { foo: "profil" }]);
     }else{
       this._auth.logout();
     }
