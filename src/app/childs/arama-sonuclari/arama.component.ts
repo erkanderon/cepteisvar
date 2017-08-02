@@ -62,7 +62,7 @@ export class AramaComponent {
 	createSepet(){
 		
 		this._pub.sepetModel = this.model;
-		this.router.navigate(['/is-veren-profil']);
+		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
 
 	}
   

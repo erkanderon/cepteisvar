@@ -64,13 +64,14 @@
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
 								    
+								    <option selected>Kategori Seciniz</option>
                 					<option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
               
 								</select>
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" name="meslek2" [ngModel]="meslek2">
-							    	
+							    	<option selected>Meslek Seciniz</option>
 								    <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
 								</select>
 							  </div>
