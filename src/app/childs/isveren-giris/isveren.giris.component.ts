@@ -18,6 +18,7 @@ export class IsverenGirisComponent {
     cities: any;
     apiResponse: any;
     fields: any;
+    wrong: any=false;
 
 
   constructor(
@@ -35,7 +36,11 @@ export class IsverenGirisComponent {
 	}
 	login() {
 	    this.loading = true;
-	    this._authService.login(this.model.username, this.model.password, this.returnUrl, "business");
+	    this._authService.login(this.model.username, this.model.password, this.returnUrl, "business").then(res => this.getMessage());
 	    //console.log(this._authService.getUser());
 	}
+  getMessage(){
+    this.wrong = true;
+    this.loading = false;
+  }
 }

@@ -26,7 +26,7 @@ export class HomeComponent {
 	islogged: any=false;
 	jobcategory: any={};
 
-	jobcat: any="Kategori Seciniz";
+	il: any; jobcat: any;
 	searchIsModel: any=[];
 
 	
@@ -37,6 +37,8 @@ export class HomeComponent {
 		jQuery(document).ready(function () {
 
 			var options = [];
+
+			
 
 			jQuery( '.dropdown-menu a' ).on( 'click', function( event ) {
 
@@ -72,6 +74,9 @@ export class HomeComponent {
 	}
 	ngOnInit() {
 
+		this.il = -10;
+		this.jobcat = -10;
+
 	    this.cities = this._pub.getCities().then(cities => this.cities = cities);
 	    this.education = this._pub.getEducationTypes().then(education => this.education = education);
 	    this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
@@ -79,6 +84,7 @@ export class HomeComponent {
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
 	    this.news = this._pub.getNews().then(res => this.news = res);
 	    this.statistics = this._pub.getJobStatistics().then(res => this.statistics = res);
+
 	    console.log(this.profiles)
 	}
 	ngAfterContentInit() {
@@ -96,7 +102,7 @@ export class HomeComponent {
 
 	onJobChange(newValue) {
     
-    this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
+    	this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
 
   	}
 	checkUser(){

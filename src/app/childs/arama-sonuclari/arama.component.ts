@@ -26,6 +26,7 @@ export class AramaComponent {
 	jobs: any={};
 	cities: any;
 	searchIsModel: any=[];
+	il: any; jobcat: any;
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
@@ -72,6 +73,8 @@ export class AramaComponent {
 
 	ngOnInit() {
 		
+		this.il = -10;
+		this.jobcat = -10;
 
 	  	if(!this._pub.getSearchModel() && !this._pub.getSearchParams()){
 	  		console.log("burdayim");

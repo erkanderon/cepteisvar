@@ -62,10 +62,12 @@
 	    					<form id="1a" class="form-inline tab-pane active" #searchPerson="ngForm">
 
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" #jobcat="ngModel" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required>
+							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required >
 								    
-								    <option  value="" disabled selected hidden>Kategori Seciniz</option>
+								    <option [value]="-10" disabled hidden>Kategori Seciniz</option>
                 					<option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+
+
               
 								</select>
 								
@@ -88,8 +90,8 @@
 									</div>
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" required [(ngModel)]="il" name="il">
-								    <option value="" disabled selected hidden>Il Seciniz...</option>
+								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="" required [ngModel]="il" name="il">
+								  	<option [value]="-10">Sehir Seciniz</option>
 								    <option [value]="city.CITY_ID" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
 								  </select>
 							  </div>

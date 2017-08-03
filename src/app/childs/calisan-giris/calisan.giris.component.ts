@@ -18,6 +18,7 @@ export class CalisanGirisComponent {
     cities: any;
     apiResponse: any;
     fields: any;
+    wrong: any=false;
 
   constructor(
   	private _authService: AuthService,
@@ -34,6 +35,10 @@ export class CalisanGirisComponent {
 	}
   login() {
         this.loading = true;
-        this._authService.login(this.model.username, this.model.password, this.returnUrl, "member");
+        this._authService.login(this.model.username, this.model.password, this.returnUrl, "member").then(res => this.getMessage());
+  }
+  getMessage(){
+    this.wrong = true;
+    this.loading = false;
   }
 }

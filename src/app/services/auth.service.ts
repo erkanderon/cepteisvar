@@ -59,7 +59,7 @@ export class AuthService {
 			).catch(
 			   //used Arrow function here
 			   (err)=> {
-			      this.router.navigate(['/home']);
+			      return err;
 			   }
 			)
 	}

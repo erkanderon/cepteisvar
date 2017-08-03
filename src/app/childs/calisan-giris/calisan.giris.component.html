@@ -18,6 +18,9 @@
         <div class="col-xs-4">
             <div class="login">
                 <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate>
+                  <div class="alert alert-danger" *ngIf="wrong">
+                    <strong>Wrong Credentials!</strong> Please Check The Credentials
+                  </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput"><h4>E-POSTA</h4></label>
                     <input type="email" class="form-control" id="formGroupExampleInput" placeholder="E-Mail" name="username" [(ngModel)]="model.username" #username="ngModel" required>
