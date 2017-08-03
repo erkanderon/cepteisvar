@@ -3,6 +3,8 @@ import { Pub } from '../../services/pub.service';
 import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Return} from '../../models/return.model';
+import {NgForm} from '@angular/forms';
+import { SearchModel } from '../../models/searchModel';
 declare var jQuery : any;
 
 @Component({
@@ -24,6 +26,9 @@ export class HomeComponent {
 	islogged: any=false;
 	jobcategory: any={};
 
+	jobcat: any="Kategori Seciniz";
+	searchIsModel: any=[];
+
 	
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router) { 
@@ -31,15 +36,28 @@ export class HomeComponent {
 		// JQuery Defines
 		jQuery(document).ready(function () {
 
-			/*jQuery("#ss").slick(
-		  		{
-			  		"slidesToShow": 4, 
-			  		"slidesToScroll": 1, 
-			  		"speed": 300, 
-			  		"infinite": true, 
-			  		"lazyLoad": 'ondemand'
-		  		}
-	  		);*/
+			var options = [];
+
+			jQuery( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+			   var $target = jQuery( event.currentTarget ),
+			       val = $target.attr( 'data-value' ),
+			       $inp = $target.find( 'input' ),
+			       idx;
+
+			   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+			      options.splice( idx, 1 );
+			      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+			   } else {
+			      options.push( val );
+			      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+			   }
+
+			   jQuery( event.target ).blur();
+			      
+			   console.log( options );
+			   return false;
+			});
 
 			
 	  		
@@ -109,5 +127,33 @@ export class HomeComponent {
 		}else{
 			this.router.navigate(['/calisan-giris']);
 		}
+	}
+	addToModel(val, jid){
+
+		if(val.target.checked){
+			this.searchIsModel.push(jid);
+		}else{
+			let index = this.searchIsModel.indexOf(jid, 0);
+			if (index > -1) {
+			   this.searchIsModel.splice(index, 1);
+			}
+		}
+	}
+	search(fav: NgForm) {
+
+		console.log(this.cities);
+
+	
+	    if(!parseInt(fav.value.il)===false && !parseInt(fav.value.jobcat)===false && this.searchIsModel.length != 0){ 
+
+	    	this._pub.searchParams = new SearchModel(parseInt(fav.value.il), this.searchIsModel, null)
+	    	this._pub.searchModel = parseInt(fav.value.jobcat);
+	    	this.router.navigate( ['/calisan-arama']);
+	    }else{
+	    	//Give Message Not Valid Form
+	    }
+	 
+	      
+	    
 	}
 }

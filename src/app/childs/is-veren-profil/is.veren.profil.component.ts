@@ -35,6 +35,7 @@ export class IsVerenProfilComponent {
   detail:any=0;
   cid: any=0;
   basketDetail:any={};
+  balance:any={};
   promotions: any={};
   commentUser:any;
   sepetid: any;
@@ -72,6 +73,7 @@ export class IsVerenProfilComponent {
     this.promotions = this._pub.getSMSPromotions().then(promotions => this.promotions = promotions);
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 		this.basket = this.getBasketData();
+
 	}
 
 	getop(res){
@@ -95,6 +97,7 @@ export class IsVerenProfilComponent {
 
         this.cid = res.data[0].COMPANY_ID;
 
+        this.balance = this._post.previewAccountBalance({ "p_email": res.data[0].EMAIL}).then(balance => this.balance = balance);
 	      
 	    }
 	  }
@@ -238,6 +241,8 @@ export class IsVerenProfilComponent {
                       //this.router.navigate(['/home']);
                    }
                 )
+              }else{
+                location.reload();
               }
              // location.reload();
             }else{
