@@ -13,7 +13,7 @@ declare var List : any;
   moduleId: module.id,
   selector: 'src-comp',
   templateUrl: './arama.component.html',
-  styleUrls: ['./arama.component.css'],
+  styleUrls: ['./arama.component.css']
   
 })
 export class AramaComponent {

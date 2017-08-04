@@ -1,6 +1,7 @@
 import { ElementRef, Component } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { Pub } from '../../services/pub.service';
+import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
@@ -18,7 +19,7 @@ declare var jQuery : any;
   moduleId: module.id,
   selector: 'isverenprofil-comp',
   templateUrl: './is.veren.profil.component.html',
-  styleUrls: ['./is.veren.profil.component.css'],
+  styleUrls: ['./is.veren.profil.component.css']
 })
 export class IsVerenProfilComponent {
 
