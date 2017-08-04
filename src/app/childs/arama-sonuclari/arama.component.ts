@@ -119,6 +119,15 @@ export class AramaComponent {
 		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
 
 	}
+	directSms(user){
+		if(this.islogged){
+			this.model.push(user);
+			this.createSepet();
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+		
+	}
 	addToSearchModel(val, jid){
 
 		if(val.target.checked){
