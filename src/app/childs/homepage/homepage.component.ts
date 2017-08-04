@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Return} from '../../models/return.model';
 import {NgForm} from '@angular/forms';
 import { SearchModel } from '../../models/searchModel';
+import { FlashMessagesService } from 'angular2-flash-messages';
 declare var jQuery : any;
 
 @Component({
@@ -30,7 +31,7 @@ export class HomeComponent {
 
 	
 
-	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router) { 
+	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _flashMessagesService: FlashMessagesService) { 
 
 		// JQuery Defines
 		jQuery(document).ready(function () {
@@ -72,6 +73,8 @@ export class HomeComponent {
 
 	}
 	ngOnInit() {
+
+		//this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000000 });
 
 		this.il = -10;
 		this.jobcat = -10;

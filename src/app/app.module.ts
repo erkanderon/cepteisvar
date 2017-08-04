@@ -37,6 +37,7 @@ import { CalisanProfilComponent } from './childs/calisan-profil/calisan.profil.c
 
 import { AgmCoreModule } from '@agm/core';
 import { ImageUploadModule } from 'angular2-image-upload';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 // Import your library
@@ -94,6 +95,7 @@ const appRoutes : Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    FlashMessagesModule,
     OwlModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
