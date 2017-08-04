@@ -1,0 +1,835 @@
+<div style="min-width: 1120px; max-width: 1400px; margin:0 auto;">
+	<div class="container">
+		<header-comp></header-comp>
+		<section id="main_content" style="margin-top: -20px;">
+    <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
+        <div class="col-xs-12">
+            <h3>ISVEREN PROFIL</h3>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Is Veren Profil</a>
+        </div>
+    </div>
+    <div class="row text-center toogle" style="margin-top: 20px;">
+      <div class="col-xs-12">
+        <div class="btn-group btn-group-lg">
+          <button type="button" id="profil" (click)="navigateParam('profil')" data-toggle="tab" data-target="#1a" class="btn btn-default">PROFIL</button>
+          <button type="button"  id="smslerim" (click)="navigateParam('smslerim')" data-toggle="tab" data-target="#3a"  class="btn btn-default" style="border:none;">GIDEN SMSLERIM</button>
+          <button type="button"  id="yorumlar" (click)="navigateParam('yorumlar')" data-toggle="tab" data-target="#2a"  class="btn btn-default" style="border:none;">YORUMLAR</button>
+          <button type="button"  id="password" (click)="navigateParam('password')" data-toggle="tab" data-target="#4a"  class="btn btn-default" style="border:none;">PAROLA DEGISTIR</button>
+          <button type="button"  id="hesabim" (click)="navigateParam('hesabim')" data-toggle="tab" data-target="#5a"  class="btn btn-default" style="border:none;">HESABIM</button>
+          <button type="button"  id="sepetim" (click)="navigateParam('sepetim')" data-toggle="tab" data-target="#6a"  class="btn btn-default" style="border:none;">SEPETIM</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div  class="register tab-content">
+                <!-- PROFIL PART -->
+                <div id="1a" class="tab-pane" >
+                        <div class="row" *ngIf="profile.data">
+                          <div class="row" style="padding: 0px 15px; margin: 0px;">
+                            <div class="col-xs-3 text-center" *ngIf="state === 0">
+                                <img class="img img-responsive" src="assets/images/indir.png">
+                            </div>
+                            <div class="col-xs-3 text-center" *ngIf="state === 1">
+
+                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEC'" [dropBoxMessage]="'Buraya Surukleyebilirsin'"></image-upload>
+                            </div>
+                            <div class="col-xs-3 text-center"></div>
+                            <div class="col-xs-6">
+                              <div class="col-xs-12">
+                                <h6  style="float:right;" (click)="setNumber(1)"><strong>Profilimi Duzenle</strong></h6>
+                              </div>
+                            </div>
+                        </div>
+                        <div *ngIf="state === 0">
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].COMPANY_NAME}}</p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].CONTACT_PERSON}}</p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">E-POSTA</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].EMAIL}}</p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">VERGI ADRESI</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].TAX_REGION}}</p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">SEHIR</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].CITY}}</p>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="col-xs-6" style="padding: 0px 50px;">
+                              <div class="form-group">
+                                <label for="formGroupExampleInput2">TELEFON</label>
+                                <div class="">
+                                  <p class="form-control-static">{{profile.data[0].CONTACT_NO}}</p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                  <div class="">
+                                    <p class="form-control-static">{{profile.data[0].CONTACT_PERSON_NO}}</p>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                  <div class="">
+                                    <p class="form-control-static">{{profile.data[0].TAX_NUMBER}}</p>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput2">ADRES</label>
+                                  <div class="">
+                                    <p class="form-control-static">{{profile.data[0].ADDRESS}}</p>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput2">ILCE</label>
+                                  <div class="">
+                                    <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row text-center" style="margin-top: 20px;">
+                            <div class="col-xs-12">
+                                
+                            </div>
+                        </div>
+                          </div>
+                        </div>
+                          <!-- EDIT PART OF THE PROFILE -->
+
+                        <form class="row" #editcompany="ngForm">
+                          
+                        <div *ngIf="state === 1">
+                            <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
+                                  <div class="">
+                                     <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma" [value]="" #firma="ngModel" required >
+
+                                  </div>
+                                  <div *ngIf="firma.errors && (firma.dirty || firma.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!firma.errors.required">
+                                      Firma Adi Bos Birakilamaz!
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                  <div class="">
+                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required >
+                                  </div>
+                                  <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!person.errors.required">
+                                      Yetkili Kisi Bos Birakilamaz!
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">E-POSTA</label>
+                                  <div class="">
+                                    <input type="email" [ngModel]="mail" name="mail" class="form-control" id="firma" #eposta="ngModel" required>
+                                  </div>
+                                  <div *ngIf="eposta.errors && (eposta.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!eposta.errors.required">
+                                      E-Posta Bos Birakilamaz!
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">VERGI ADRESI</label>
+                                  <div class="">
+                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required>
+                                  </div>
+                                  <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!vergi.errors.required">
+                                      Vergi Adresi Bos Birakilamaz!
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">SEHIR</label>
+                                  <div class="">
+                                    <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
+                                      <option  *ngFor="let city of cities.data"  [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-6" style="padding: 0px 50px;">
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">TELEFON</label>
+                                  <div class="">
+                                    <input type="number" [ngModel]="tel" name="tel" class="form-control" id="firma" #telefon="ngModel" required>
+                                  </div>
+                                  <div *ngIf="telefon.errors && (telefon.dirty || telefon.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                    <div [hidden]="!telefon.errors.required">
+                                      Telefon Bos Birakilamaz!
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                    <div class="">
+                                      <input type="number" [ngModel]="rpn" name="rpn" class="form-control" id="firma" #yetkilitel="ngModel" required>
+                                    </div>
+                                    <div *ngIf="yetkilitel.errors && (yetkilitel.dirty || yetkilitel.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!yetkilitel.errors.required">
+                                        Telefon Bos Birakilamaz!
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                    <div class="">
+                                      <input type="number" [ngModel]="taxn" name="taxn" class="form-control" id="firma" #tckimlik="ngModel" required>
+                                    </div>
+                                    <div *ngIf="tckimlik.errors && (tckimlik.dirty || tckimlik.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!tckimlik.errors.required">
+                                        Vergi Bos Birakilamaz!
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">ADRES</label>
+                                    <div class="">
+                                      <input type="text" [ngModel]="address" name="address" class="form-control" id="firma" #adres="ngModel" required>
+                                    </div>
+                                    <div *ngIf="adres.errors && (adres.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!adres.errors.required">
+                                        Adres Bos Birakilamaz!
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">ILCE</label>
+                                    <div class="">
+                                      <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
+                                        <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
+                                      </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row text-center" style="margin-top: 20px;">
+                              <div class="col-xs-12">
+                                  <div class="btn-group">
+
+                                    <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
+                                    <button type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editCompanyForm(editcompany)" [disabled]="!editcompany.form.valid">KAYDET</button>
+                                  <!-- data-toggle="modal" data-target="#myModal" -->
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+                        </form>
+
+                        <!-- FORM FINISH -->
+                        
+
+                        
+                        
+                    </div>
+                    <!-- YORUMLAR -->
+                        <div id="2a" class="tab-pane yorumlar">
+                          <!--<div class="row">
+                            <div class="col-xs-12">
+                              <h5><strong>Son 60 gun icerisinde ise aldiginiz ve yorum yapmadiginiz insanlar asagida listelenmektedir</strong></h5>
+                            </div>
+                          </div>-->
+                          <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-xs-12">
+                             <!-- <div class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
+
+                                <div class="thumbnail" style=" margin: 10px 30px;">
+                                    <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                    <input type="checkbox" style="position: absolute; -ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); padding: 10px; top: 100px; left: 0px; right: 20px;">
+                                    <div class="caption">
+                                        <div class="row" style="margin: 0px 0px 0px 0px;">
+                                            <div class="col-xs-12 ratings-widget">
+                                                <div  style="float: right;">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                                </div>
+                                            </div>
+                                            <h4 class="group inner list-group-item-heading">
+                                            Uretim Hatti Sefi</h4>
+                                            <h5 class="group inner list-group-item-heading">
+                                            Haydar G.</h5>
+                                            <div class="" style="margin-bottom: 20px;">
+                                                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                Mesleki Yeterlilik
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Istanbul-Bagcilar
+                                            </div>
+                                            <p class="group inner list-group-item-text">
+                                                Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+                                            <div class="group inner list-group-item-text text-center">
+                                                
+                                                        <div style="margin: 0 auto; display: table; ">
+                                                        <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil">PROFILI GORUNTULE</a>
+                                                        <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
+                        background: #fff200; border-color: #fff200;" href="">SMS GONDER</a>
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div> -->
+        
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
+                            </div>
+                          </div>
+                          <div *ngIf="comments.data">
+                              <div class="row" *ngFor="let cmt of comments.data">
+                                <div class="col-xs-12">
+                                  <div class="row timel">
+                                    <div class="col-xs-6">
+                                      <p><strong>{{cmt.REGISTERED_DATE}}</strong></p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                      <div class="ratings-widget" style="padding: 0px;">
+                                        <div  style="float: right;">
+                                            
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row yorum">
+                                    <div class="col-xs-12">
+                                      <h5>{{cmt.C_COMMENT}}</h5>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+
+                          <div class="row text-center" style="margin-top: 20px;">
+                            <div class="col-xs-12">
+                                <div class="btn-group">
+                                  
+                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="cancel()">GERI DON</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                        <!-- GIDEN SMSLERIM PART -->
+                        <div id="3a" class="tab-pane yorumlar">
+                          <div *ngIf="detail === 0">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <h5 class="text-center"><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
+                              </div>
+                            </div>
+                            <div *ngIf="sms.data">
+                              <div class="row" *ngFor="let sms of sms.data">
+                                <div class="col-xs-12">
+                                  <div class="row timel">
+                                    <div style="margin:10px 0px;">
+                                      <div class="col-xs-4">
+                                        <p><strong>{{sms.CREATE_DATE}}</strong></p>
+                                      </div>
+                                      <div class="col-xs-4">
+                                        <p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>
+                                      </div>
+                                      <div class="col-xs-4" >
+                                        <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KISIYE GONDERILDI</p></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="row yorum">
+                                    <div class="col-xs-12">
+                                      <h5>{{sms.SMS_TEXT}}</h5>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="detail === 1">
+                            <div *ngIf="basketDetail.data">
+                            <!-- ITEMS -->
+                                        <div class="row" *ngIf="model.length">
+                                          <div class="col-xs-12" *ngIf="1" style="margin: 0 auto; display: table; ">
+                                            <div style="float:right; padding: 0px 15px;">
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: black; float: left; background: #fff200; border-color: #fff200;" (click)="setNoComment(3)">BU ADAY ILE CALISMADIK</a>
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="setNoComment(2)">YORUM YAPMAK ISTEMIYORUM</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                <div *ngFor="let bsk of basketDetail.data" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
+
+                                  <div class="thumbnail" style=" margin: 10px 30px;">
+                                      <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                      <input *ngIf="!bsk.COMMENTED_STATUS" type="checkbox" style="position: absolute; -ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); padding: 10px; top: 100px; left: 0px; right: 20px;" (change)="addModel($event, bsk.MEMBER_ID)">
+                                      <div class="caption">
+                                          <div class="row" style="margin: 0px 0px 0px 0px;">
+                                              <div class="ratings-widget">
+                                                  <div  style="float: right;">
+                                                      
+                                                  </div>
+                                              </div>
+                                              <h4 class="group inner list-group-item-heading">
+                                              {{bsk.PRIMARY_JOB}}</h4>
+                                              <h5 class="group inner list-group-item-heading">
+                                              {{bsk.NAME}} {{bsk.SURNAME}}</h5>
+                                              <div class="" style="margin-bottom: 20px;">
+                                                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                  Mesleki Yeterlilik
+                                                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                  {{bsk.CITY_NAME}}-Bagcilar
+                                              </div>
+                                              <p class="group inner list-group-item-text">
+                                                  {{bsk.PRIMARY_JOB_DESCRIPTION}}</p>
+
+                                              <div class="group inner list-group-item-text text-center">
+                                                  
+                                                      <div *ngIf="!bsk.COMMENTED_STATUS" style="display: table; ">
+                                                          
+                                                          <a class="btn btn-success btn-group-lg" data-toggle="modal" data-target="#comment" style=" font-size: 9px; border-radius: 0px;  color: black; float: left;
+                          background: #fff200; border-color: #fff200;" (click)="setWillCommentedUser(bsk.MEMBER_ID)" href>YORUM YAP</a>
+                                                          
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===1">
+                                                        <strong>BU ADAY ICIN YORUM YAPTINIZ</strong>
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===2">
+                                                        <strong></strong>
+                                                      </div>
+                                                      <div *ngIf="bsk.COMMENTED_STATUS===3">
+                                                        <strong></strong>
+                                                      </div>
+                                                      
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="row text-center" style="margin-top: 20px;">
+                                  <div class="col-xs-12">
+                                      <div class="btn-group" (click)="setDetail(0, null)">
+                                        
+                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" >GERI DON</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- ITEMS FINISH -->
+                            </div>
+                          </div>
+                          
+                          
+                          
+                        </div>
+
+                        <!-- CHANGE PASSWORD PART -->
+                        <div id="4a" class="tab-pane yorumlar">
+                          <form #passform="ngForm"  novalidate>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput">Eski Parolaniz</label>
+                              <input type="password" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola" #old="ngModel" required>
+                              <div *ngIf="old.errors && (old.dirty || old.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!old.errors.required">
+                                  Eski Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2">Yeni Parolaniz</label>
+                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #new="ngModel" required>
+                              <div *ngIf="new.errors && (new.dirty || new.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!new.errors.required">
+                                  Yeni Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2">Yeni Parolanizi Tekrar Giriniz</label>
+                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newagain="ngModel" required>
+                              <div *ngIf="newagain.errors && (newagain.dirty || newagain.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                <div [hidden]="!newagain.errors.required">
+                                  Yeni Parolaniz Bos Birakilamaz!
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </form>
+                          <div class="row text-center">
+                            <div class="col-xs-12">
+                                <div class="btn-group">
+                                  <a type="button" class="btn btn-default isveren" style="min-width: 100px;" (click)="cancel()">VAZGEC</a>
+                                  <button type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changePassword(passform)" [disabled]="!passform.form.valid">KAYDET</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- HESABIM -->
+
+                        <div id="5a" class="tab-pane yorumlar">
+                            <form>
+                              
+                            </form>
+                            <div class="row opti" *ngIf="promotions.data">
+                              <div style="padding: 0px 15px;" *ngIf="balance.data">
+                                <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: {{balance.data.ACCOUNT_BALANCE}}</div>
+                                <label class="col-xs-12">SMS PAKETLERI:</label>
+                              </div>  
+                                <div class="col-xs-12 row">
+                                  <div class="col-xs-4" *ngFor="let prm of promotions.data">
+                                    <div class="card" style="background-color: #ffffff; border: solid 0.5px rgba(204, 204, 204, 0.5); padding: 20px;">
+                                      <div class="card-block text-center">
+                                        <p>{{prm.PROMO_HEADER}}</p><p> {{prm.PROMO_BODY}}</p>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <input type="checkbox" class="myCheckbox col-xs-4" value="1" />
+                                <input type="checkbox" class="myCheckbox col-xs-4" value="2" />
+                                <input type="checkbox" class="myCheckbox col-xs-4" value="3" />
+                              
+                            </div>
+
+                            <div class="row text-center" style="margin-top: 50px; min-width: 400px;">
+                              <div class="col-xs-12">
+                                  <div class="btn-group">
+                                    <a type="button" class="btn btn-default isveren" style="min-width: 200px;" (click)="buySms()" data-toggle="modal" data-target="#krediModal">KREDI KARTI ILE ODE</a>
+                                    <a type="button" class="btn btn-default calisan" style="min-width: 200px;" data-toggle="modal" data-target="#eftModal">EFT/HAVALE ILE ODEME YAP</a>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <!-- SEPETIM -->
+
+                        <div id="6a" class="tab-pane yorumlar">
+                          <div *ngIf="basket.length">
+                            <div class="row">
+                              <a class="btn btn-success" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: right; background: #fff200; border-color: #fff200; margin: 0px 30px;" routerLink="/sms-gonder">SMS GONDER</a>
+                            </div>
+
+                            <div *ngFor="let sepet of basket" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
+
+                                <div class="thumbnail" style=" margin: 10px 30px;">
+                                    <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                    <img src="assets/images/removeicon.png" (click)="removeFromSepet(sepet)" type="checkbox" style="position: absolute; left: -40px; top: 80px; width: 40px;">
+                                    <div class="caption">
+                                        <div class="row" style="margin: 0px 0px 0px 0px;">
+                                            <div class="col-xs-12 ratings-widget">
+                                                <div  style="float: right;">
+                                                    
+                                                </div>
+                                            </div>
+                                            <h4 class="group inner list-group-item-heading">
+                                            {{sepet.PRIMARY_JOB}}</h4>
+                                            <h5 class="group inner list-group-item-heading">
+                                            {{sepet.NAME}}</h5>
+                                            <div class="" style="margin-bottom: 20px;">
+                                                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                Mesleki Yeterlilik
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                {{sepet.CITY_NAME}}-{{sepet.ADDRESS}}
+                                            </div>
+                                            <p class="group inner list-group-item-text">
+                                                {{sepet.DESCRIPTION}}</p>
+
+                                            <div class="group inner list-group-item-text text-center">
+                                                
+                                                        <div style="margin: 0 auto; display: table; ">
+                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" routerLink="/is-arayan-profil">PROFILI GORUNTULE</a>
+                                                        
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        
+            </div>
+            
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</section>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">CEP TELEFONU DOGRULAMA</h4>
+      </div>
+      <div class="modal-body">
+        <p>Cep Telefonu numaranızda değişiklik yapmak istediğiniz için yeni numaranızı
+        doğrulamanız gerekmektedir. Lütfen vermiş olduğunuz yeni telefona gönderilen 
+        kodu aşağıdaki bölüme giriniz.</p>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-2 col-form-label" style="margin-top: 5px;">KOD:</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input" style="border-radius:0px;">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        <div class="btn-group">
+
+          <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">GONDER</a>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal -->
+
+<!-- EFT Modal -->
+<div id="eftModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- EFT Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">EFT/HAVALE İLE ÖDE</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12" style="margin-left: 20%;">
+            <h4>Sirket Unvani: <span class="label label-default">Marti Kurumsal Hizmetler</span></h4>
+            <h4>Banka Adi: <span class="label label-default">Yapi Kredi Bankasi</span></h4>
+            <h4>IBAN No: <span class="label label-default">TR98 0006 7010 0000 0048 4363 51</span></h4>
+          </div>
+        </div>
+        <p>Banka hesaplarımıza yapacağınız EFT/Havale  ödemesi sonrasında kredileriniz 
+        hesabınıza otomatik olarak yüklenecektir.</p>
+        
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        <div class="btn-group">
+
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">TAMAM</a>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- EFT Modal END -->
+
+<!-- 3D SECURE Modal -->
+<div id="krediModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- EFT Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">KREDİ KARTI İLE ÖDEME</h4>
+      </div>
+      <div class="modal-body" id="modelcontent">
+
+        <div id="iyzipay-checkout-form" class="responsive"></div>
+        
+
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- 3D SECURE Modal END -->
+
+
+<!-- 3D SECURE Modal -->
+<div id="krediModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- EFT Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">KREDİ KARTI İLE ÖDEME</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">Lütfen ödeme yapmak istediğiniz kart bilgilerini giriniz:</p>
+          <form class="form-horizontal" role="form">
+    <fieldset>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-holder-name">Kart Üzerindeki İsim</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Kart Üzerindeki İsim">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">Kart Numarası</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Kart Numarası">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+        <div class="col-sm-9">
+          <div class="row">
+            <div class="col-xs-3">
+              <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                <option>Month</option>
+                <option value="01">Jan</option>
+                <option value="02">Feb</option>
+                <option value="03">Mar</option>
+                <option value="04">Apr</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">Aug</option>
+                <option value="09">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <select class="form-control" name="expiry-year">
+                <option value="13">2013</option>
+                <option value="14">2014</option>
+                <option value="15">2015</option>
+                <option value="16">2016</option>
+                <option value="17">2017</option>
+                <option value="18">2018</option>
+                <option value="19">2019</option>
+                <option value="20">2020</option>
+                <option value="21">2021</option>
+                <option value="22">2022</option>
+                <option value="23">2023</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="cvv">CVV</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        <div class="btn-group">
+
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">ODEME YAP</a>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- 3D SECURE Modal END -->
+
+<!-- MAKE COMMENT MODAL -->
+<div id="comment" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Yorum Ekle</h4>
+      </div>
+      <div class="modal-body">
+        <form #makecomment="ngForm">
+          <div class="form-group">
+              <label for="">PERFORMANS</label>
+              <select id="" name="performans" class="form-control" [ngModel]="performans">
+                <option  value="1">1</option>
+                <option  value="2">2</option>
+                <option  value="3">3</option>
+                <option  value="4">4</option>
+                <option  value="5">5</option>
+                <option  value="6">6</option>
+                <option  value="7">7</option>
+                <option  value="8">8</option>
+                <option  value="9">9</option>
+                <option  value="10">10</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">YORUMUNUZ</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="comment" name="comment"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="row text-center">
+          <div class="col-xs-12">
+              <div class="btn-group">
+                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="makeComment(makecomment)">KAYDET</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer-comp></footer-comp>
+

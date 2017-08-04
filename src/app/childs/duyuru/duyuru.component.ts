@@ -9,7 +9,7 @@ import { Pub } from '../../services/pub.service';
   selector: 'duyuru-comp',
   templateUrl: './duyuru.component.html',
   styleUrls: ['./duyuru.component.css'],
-  
+  providers: [AuthService]
   
 })
 export class DuyuruComponent {

@@ -134,16 +134,6 @@ export class Pub {
 	      .then(response => response.json() as Return)
 	      .catch(this.handleError);
 	}
-	//GET PROFILE PICTURE
-	getProfilePicture(uri): Promise<Return> {
-		let token = localStorage.getItem('user_access_token');
-	    const url = uri + '?access_token='+token;
-	    
-	    return this.http.get(url)
-	      .toPromise()
-	      .then(response => response)
-	      .catch(this.handleError);
-	}
 	getCityFieldList(param): Promise<void> {
 	    let headers = new Headers({ 'Content-Type': 'application/json' });
 	    let options = new RequestOptions({ headers: headers });

@@ -22,10 +22,10 @@ export class HeaderComponent {
   constructor(private _pub: Pub, private _auth: AuthService, private router: Router) {
     
 
-    if(!this._auth.refreshToken()){
-        this.islogged = true;
+    if(this._auth.refreshToken() && this._auth.isLoggedIn()){
+        this._auth.logout();
     }
-    //this.islogged = (this._auth.isLoggedIn());
+    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
   }  
   ngOnInit() {
   	this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));

@@ -5,7 +5,7 @@ declare var jQuery : any;
   moduleId: module.id,
   selector: 'meslekharitasi-comp',
   templateUrl: './meslek.haritasi.component.html',
-  styleUrls: ['./meslek.haritasi.component.css'],
+  styleUrls: ['./meslek.haritasi.component.css']
 })
 export class MeslekHaritasiComponent {
 

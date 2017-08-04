@@ -12,7 +12,6 @@ declare var FileInput : any;
   selector: 'isveren-comp',
   templateUrl: './isveren.kayit.component.html',
   styleUrls: ['./isveren.kayit.component.css'],
- 
 })
 export class IsverenKayitComponent {
   
