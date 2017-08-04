@@ -80,7 +80,9 @@ export class SMSGonderComponent {
 		    
 		    if(this.responser(success)){
 
+		    	this._pub.sepetModel ={};
 		     	this.router.navigate([uri]);
+
 		    }else{
 		      //give a message
 		      console.log(success);

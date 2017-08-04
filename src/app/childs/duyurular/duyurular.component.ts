@@ -1,6 +1,7 @@
 import { ElementRef, Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Pub } from '../../services/pub.service';
+import { AuthService } from '../../services/auth.service';
 
 declare var jQuery : any;
 declare var List : any;
@@ -8,7 +9,7 @@ declare var List : any;
   moduleId: module.id,
   selector: 'duyurular-comp',
   templateUrl: './duyurular.component.html',
-  styleUrls: ['./duyurular.component.css'],
+  styleUrls: ['./duyurular.component.css']
 
 })
 export class DuyurularComponent {

@@ -117,8 +117,8 @@ export class IsArayanProfilComponent implements CanActivate{
         this.educate = res.data[0].EDUCATION_ID;
         this.ilce = res.data[0].COUNTY_ID;
         this.ehliyet = res.data[0].LICENSE_ID;
-        this.secenek = res.data[0].HOMEPAGE_ACTIVE;
-        this.certificate = res.data[0].CERTIFICATE;
+        this.secenek = !res.data[0].HOMEPAGE_ACTIVE;
+        this.certificate = !res.data[0].CERTIFICATE;
         
       }
     }
@@ -224,6 +224,8 @@ export class IsArayanProfilComponent implements CanActivate{
                       //this.router.navigate(['/home']);
                    }
                 )
+              }else{
+                location.reload();
               }
               //location.reload();
             }else{

@@ -8,7 +8,7 @@ import { Pub } from '../../services/pub.service';
   moduleId: module.id,
   selector: 'calisan-giris-comp',
   templateUrl: './reset.password.component.html',
-  styleUrls: ['./reset.password.component.css'],
+  styleUrls: ['./reset.password.component.css']
 })
 export class ResetPasswordComponent {
   

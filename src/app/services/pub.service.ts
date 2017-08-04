@@ -14,6 +14,9 @@ export class Pub {
 	
 	public sepetModel:any={};
 
+	public searchParams:any=false;
+	public searchModel:any=false;
+
 	constructor(private http: Http) { 
 		
 	}
@@ -250,6 +253,12 @@ export class Pub {
 
 	getSepetModel() {
     	return this.sepetModel;
+    }
+    getSearchParams() {
+    	return this.searchParams;
+    }
+    getSearchModel() {
+    	return this.searchModel;
     }
 
 	

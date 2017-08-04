@@ -18,6 +18,9 @@
         <div class="col-xs-4">
             <div class="login">
                 <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate>
+                  <div class="alert alert-danger" *ngIf="wrong">
+                    <strong>Yanlis Kullanici Adi ya da Parola!</strong> Lutfen Bilgileri Kontrol Ediniz
+                  </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput"><h4>E-POSTA</h4></label>
                     <input type="email" class="form-control" id="formGroupExampleInput" placeholder="E-Mail" name="username" [(ngModel)]="model.username" #username="ngModel" required>
