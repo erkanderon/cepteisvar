@@ -12,8 +12,7 @@ import { PostService } from '../../services/post.service';
   moduleId: module.id,
   selector: 'calisanprofil-comp',
   templateUrl: './calisan.profil.component.html',
-  styleUrls: ['./calisan.profil.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./calisan.profil.component.css']
 })
 
 

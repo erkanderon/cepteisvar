@@ -23,7 +23,7 @@ export class AuthService {
 
 	constructor(private http: Http, private router: Router,private _post: PostService) { 
 		//this.loggedIn = !!localStorage.getItem('user_access_token');
-		this.loggedIn = !this.refreshToken();
+		this.loggedIn = false;	//!this.refreshToken();
 		this.username = localStorage.getItem("user")
 	}
 
@@ -119,6 +119,7 @@ export class AuthService {
 				      localStorage.setItem("user_token_type", success.token_type);
 				      localStorage.setItem("timestamp", new Date().toString());
 				      console.log("refreshed");
+				      this.loggedIn = true;
 				      return false;
 				   }
 				).catch(
@@ -129,9 +130,15 @@ export class AuthService {
 				      
 				   }
 				)
+				
+				return false;
     	}else if(this.checkIsExpired()===1){
+    		
+    		this.loggedIn = true;
     		return false;
     	}else{
+    		
+    		this.loggedIn = false;
     		return true;
     	}
     }

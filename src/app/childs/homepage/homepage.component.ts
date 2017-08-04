@@ -11,8 +11,7 @@ declare var jQuery : any;
   moduleId: module.id,
   selector: 'home-comp',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./homepage.component.css']
 })
 export class HomeComponent {
 	cities: any;

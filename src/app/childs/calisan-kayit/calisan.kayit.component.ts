@@ -1,6 +1,7 @@
 import { ElementRef, Component, } from '@angular/core';
 import { Pub } from '../../services/pub.service';
 import { PostService } from '../../services/post.service';
+import { AuthService } from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
 import {Employee} from '../../models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,7 +13,7 @@ import { DatePipe } from '@angular/common';
   moduleId: module.id,
   selector: 'calisan-comp',
   templateUrl: './calisan.kayit.component.html',
-  styleUrls: ['./calisan.kayit.component.css'],
+  styleUrls: ['./calisan.kayit.component.css']
   
 })
 export class CalisanKayitComponent {

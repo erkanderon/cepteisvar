@@ -7,8 +7,7 @@ import { Pub } from '../../services/pub.service';
   moduleId: module.id,
   selector: 'isveren-giris-comp',
   templateUrl: './isveren.giris.component.html',
-  styleUrls: ['./isveren.giris.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./isveren.giris.component.css']
 })
 export class IsverenGirisComponent {
 

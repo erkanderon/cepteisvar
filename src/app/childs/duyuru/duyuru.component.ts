@@ -8,8 +8,7 @@ import { Pub } from '../../services/pub.service';
   moduleId: module.id,
   selector: 'duyuru-comp',
   templateUrl: './duyuru.component.html',
-  styleUrls: ['./duyuru.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./duyuru.component.css']
   
 })
 export class DuyuruComponent {
