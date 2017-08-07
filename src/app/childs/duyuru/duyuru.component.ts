@@ -25,11 +25,11 @@ export class DuyuruComponent {
 
 	constructor( private route: ActivatedRoute, private _pub: Pub, private router: Router, private _post: PostService, private _auth: AuthService) { 
 
-		this.sub = this.route.params.subscribe(params => {
+		/*this.sub = this.route.params.subscribe(params => {
 	       this.id = +params['id']; // (+) converts string 'id' to a number
 	       
 	       // In a real app: dispatch action to load the details here.
-	    });
+	    });*/
 
 		this.islogged = (this._auth.isLoggedIn());
 		
@@ -52,11 +52,12 @@ export class DuyuruComponent {
 		      
 		    });
 
-	    this.news = this._pub.getNews().then(res => this.news = res);
+	    
 
   	}
   	getComments(id){
   		this.comments = this._post.getListNewsComment({ "p_haber_id": id }).then(res => this.comments = res);
+  		this.news = this._pub.getNews().then(res => this.news = res);
   	}
   
   	

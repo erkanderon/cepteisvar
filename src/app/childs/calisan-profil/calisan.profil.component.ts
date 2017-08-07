@@ -23,6 +23,8 @@ export class CalisanProfilComponent {
 	id: any ="";
 	profile: any ={};
 	comments: any={};
+	model: any=[];
+	islogged: any=false;
 
 	constructor( private route: ActivatedRoute, private _pub: Pub, private router: Router, private _post: PostService, private _authService: AuthService) { 
 
@@ -59,5 +61,22 @@ export class CalisanProfilComponent {
 	    	}
 	    }
   	}
+  	checkCompanyForSMS(user){
+		this.islogged = (this._authService.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		
+		console.log(this.islogged);
+		if(this.islogged){
+			this.model.push(user);
+			this.createSepet();
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+	}
+	createSepet(){
+		
+		this._pub.sepetModel = this.model;
+		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+
+	}
 
 }

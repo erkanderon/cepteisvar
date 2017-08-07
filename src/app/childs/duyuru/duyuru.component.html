@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="row duyuruitem">
 		    	<div class="col-xs-8" style="padding: 20px 50px 20px 30px;" *ngIf="new.data">
-		    		<img class="img img-responsive" src="assets/images/Blogbanner.png">
+		    		<img class="img img-responsive" src="{{new.data[0].PHOTO_URL}}" onerror="this.src='assets/images/Blogbanner.png';" style="width: 700px; height: 225px;">
 		    		<div class="jumbotron">
 		    			<div class="container-fluid">
 		    				<h3><strong>{{new.data[0].HEADER}}</strong></h3>
