@@ -20,6 +20,7 @@ export class SMSGonderComponent {
 	basket:any = {};
 	sms:any={};
 	userModel: any={};
+	balance:any={};
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
 		jQuery(document).ready(function () {
@@ -43,6 +44,8 @@ export class SMSGonderComponent {
 	      this.sms = this._post.getCompanySMS({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
 
 	      this.userModel = res.data[0].COMPANY_ID;
+
+	      this.balance = this._post.previewAccountBalance({ "p_email": res.data[0].EMAIL}).then(balance => this.balance = balance);
 	      
 	    }
 	    console.log(this.sms);

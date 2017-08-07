@@ -91,7 +91,7 @@
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="" required [ngModel]="il" name="il">
-								  	<option [value]="-10">Sehir Seciniz</option>
+								  	<option [value]="-10" disabled hidden>Sehir Seciniz</option>
 								    <option [value]="city.CITY_ID" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
 								  </select>
 							  </div>
@@ -238,7 +238,7 @@
 		                                <div style="margin: 0 auto; display: table; ">
 		                                    <button class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="checkCompany(profile.USER_ID)"  *ngIf="fields.PRF1">{{fields.PRF1}}</button>
 		                                    <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
-		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1" (click)="checkCompany(profile.USER_ID)">{{fields.SMS1}}</a>
+		    background: #fff200; border-color: #fff200;" *ngIf="fields.SMS1" (click)="checkCompanyForSMS(profile)">{{fields.SMS1}}</a>
 		    							</div>
 		                            </div> 
 		                              

@@ -23,9 +23,9 @@
             </div>
           </div>
           <form style="margin-top: 20px;" #frm="ngForm" novalidate>
-            <div class="form-group opti">
+            <div class="form-group opti" *ngIf="balance.data">
               <label for="exampleTextarea" style="margin-bottom: 0px; margin-top: 10px;">SMS İçeriği:</label>
-              <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: 25</div>
+              <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: {{balance.data.ACCOUNT_BALANCE}}</div>
               <textarea class="form-control" id="exampleTextarea" placeholder="Lütfen adaylara göndermek istediğiniz SMS içeriğini buraya giriniz." rows="3" style="height:150px;" name="text" [(ngModel)]="text"></textarea>
             </div>
             <div class="form-group">

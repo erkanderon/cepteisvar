@@ -126,6 +126,31 @@ export class PostService {
 
 	}
 
+	// SHOW MEMBER PRIVATE ACCOUNT
+	showMemberPrivateAccount(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/show-member-private-info?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+
 	// EDIT USER
 	editMemberAccount(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -209,6 +234,30 @@ export class PostService {
 	    let token = localStorage.getItem('user_access_token');
 	    
 	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-user-comments-owner?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// GET USER COMMENTS OTHERS
+	getMemberCommentsOthers(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-user-comments-other?access_token='+token, param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(
@@ -546,6 +595,30 @@ export class PostService {
 	    let token = localStorage.getItem('user_access_token');
 	    
 	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/preview-account-balance?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// GET PROFILE PHOTO
+	getProfilePhoto(param, groupid, userid): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/photo/'+ groupid +'/'+userid+'?access_token='+token, param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(

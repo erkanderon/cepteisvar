@@ -25,6 +25,7 @@ export class HomeComponent {
 	statistics: any;
 	islogged: any=false;
 	jobcategory: any={};
+	model: any = [];
 
 	il: any; jobcat: any;
 	searchIsModel: any=[];
@@ -125,6 +126,23 @@ export class HomeComponent {
 		}else{
 			this.router.navigate(['/isveren-giris']);
 		}
+	}
+	checkCompanyForSMS(user){
+		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		
+		console.log(this.islogged);
+		if(this.islogged){
+			this.model.push(user);
+			this.createSepet();
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+	}
+	createSepet(){
+		
+		this._pub.sepetModel = this.model;
+		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+
 	}
 	checkMember(){
 		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
