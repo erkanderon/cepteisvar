@@ -280,6 +280,7 @@ export class PostService {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 	    let options = new RequestOptions({ headers: headers });
 	    
+	    console.log(param);
 	    
 	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/validate-reset-account', param, options)
 	    .toPromise()

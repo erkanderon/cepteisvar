@@ -61,7 +61,7 @@ const appRoutes : Routes = [
   { path: 'hakkimizda', component: AboutUsComponent, data: { title: 'AboutUsComponent'} },
   { path: 'iletisim', component: ContactUsComponent, data: { title: 'ContactUsComponent'} },
   { path: 'reset', component: ResetPasswordComponent, data: { title: 'ResetPasswordComponent'} },
-  { path: 'reset-password', component: ResetPasswordNew, data: { title: 'ResetPasswordNew'} },
+  { path: 'reset_password', component: ResetPasswordNew, data: { title: 'ResetPasswordNew'} },
   { path: 'sms-gonder', component: SMSGonderComponent, data: { title: 'SMSGonderComponent'} },
   { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/

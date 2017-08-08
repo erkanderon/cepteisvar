@@ -20,6 +20,7 @@ export class ResetPasswordNew {
     p_reset_code:any="";
 
 
+
   constructor(private _authService: AuthService, private route: ActivatedRoute, private router: Router, private _pub: Pub, private _post: PostService){ 
 
   }
@@ -63,13 +64,14 @@ export class ResetPasswordNew {
 		        (success)=> {
 		          
 		          if(this.responser(success)){
-		          	if(this.p_group_id===4000){
+		          	if(this.p_group_id==="4000"){
 		            	this.router.navigate(['/calisan-giris']);
 		            }else{
 		            	this.router.navigate(['/isveren-giris']);
 		            }
 		          }else{
 		            //give a message
+                console.log(success);
 		          }
 		          
 		        }
