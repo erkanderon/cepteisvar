@@ -275,6 +275,31 @@ export class PostService {
 			)
 
 	}
+	// VALIDATE RESET ACCOUNT
+	validateResetAccount(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/validate-reset-account', param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
 	// GET COMPANY COMMENTS
 	getCompanyComments(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });

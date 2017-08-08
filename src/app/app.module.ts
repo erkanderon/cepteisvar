@@ -32,6 +32,7 @@ import { ContactUsComponent } from './childs/iletisim/iletisim.component';
 import { ResetPasswordComponent } from './childs/reset-password/reset.password.component';
 import { SMSGonderComponent } from './childs/sms-gonder/sms.gonder';
 import { CalisanProfilComponent } from './childs/calisan-profil/calisan.profil.component';
+import { ResetPasswordNew } from './childs/reset-password-new/reset.password';
 
 
 
@@ -60,6 +61,7 @@ const appRoutes : Routes = [
   { path: 'hakkimizda', component: AboutUsComponent, data: { title: 'AboutUsComponent'} },
   { path: 'iletisim', component: ContactUsComponent, data: { title: 'ContactUsComponent'} },
   { path: 'reset', component: ResetPasswordComponent, data: { title: 'ResetPasswordComponent'} },
+  { path: 'reset-password', component: ResetPasswordNew, data: { title: 'ResetPasswordNew'} },
   { path: 'sms-gonder', component: SMSGonderComponent, data: { title: 'SMSGonderComponent'} },
   { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
@@ -87,7 +89,8 @@ const appRoutes : Routes = [
     ContactUsComponent,
     ResetPasswordComponent,
     SMSGonderComponent,
-    CalisanProfilComponent
+    CalisanProfilComponent,
+    ResetPasswordNew
 
 
   ],
