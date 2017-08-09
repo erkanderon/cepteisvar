@@ -33,6 +33,8 @@ import { ResetPasswordComponent } from './childs/reset-password/reset.password.c
 import { SMSGonderComponent } from './childs/sms-gonder/sms.gonder';
 import { CalisanProfilComponent } from './childs/calisan-profil/calisan.profil.component';
 import { ResetPasswordNew } from './childs/reset-password-new/reset.password';
+import { PaymentResult } from './childs/payment-result/payment.result';
+
 
 
 
@@ -63,6 +65,7 @@ const appRoutes : Routes = [
   { path: 'reset', component: ResetPasswordComponent, data: { title: 'ResetPasswordComponent'} },
   { path: 'reset_password', component: ResetPasswordNew, data: { title: 'ResetPasswordNew'} },
   { path: 'sms-gonder', component: SMSGonderComponent, data: { title: 'SMSGonderComponent'} },
+  { path: 'webapi/payment/result', component: PaymentResult, data: { title: 'PaymentResult'} },
   { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
   { path: '**', redirectTo: 'home' }
@@ -90,7 +93,8 @@ const appRoutes : Routes = [
     ResetPasswordComponent,
     SMSGonderComponent,
     CalisanProfilComponent,
-    ResetPasswordNew
+    ResetPasswordNew,
+    PaymentResult
 
 
   ],

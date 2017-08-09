@@ -17,6 +17,8 @@ export class Pub {
 	public searchParams:any=false;
 	public searchModel:any=false;
 
+	public bankQueryResult: any={};
+
 	constructor(private http: Http) { 
 		
 	}
@@ -249,6 +251,9 @@ export class Pub {
     }
     getSearchModel() {
     	return this.searchModel;
+    }
+    getBankResult() {
+    	return this.bankQueryResult;
     }
 
 	

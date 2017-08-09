@@ -275,6 +275,30 @@ export class PostService {
 			)
 
 	}
+	// GET BANK RESULT
+	getBankResult(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/bank-result?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
 	// VALIDATE RESET ACCOUNT
 	validateResetAccount(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });

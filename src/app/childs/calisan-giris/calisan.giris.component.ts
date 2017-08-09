@@ -18,6 +18,7 @@ export class CalisanGirisComponent {
     apiResponse: any;
     fields: any;
     wrong: any=false;
+    loginState: any=1;
 
   constructor(
   	private _authService: AuthService,
@@ -39,5 +40,8 @@ export class CalisanGirisComponent {
   getMessage(){
     this.wrong = true;
     this.loading = false;
+  }
+  setState(state){
+    this.loginState = state;
   }
 }

@@ -47,6 +47,7 @@ export class IsVerenProfilComponent {
   foo: any;
   fileImage: any = false;
   bankSms: any = "f";
+  bankSuccessModel: any={};
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
@@ -340,11 +341,18 @@ export class IsVerenProfilComponent {
             if(this.responser(success)){
               //this.router.navigate([uri]);
 
-              console.log(success);
+
+              //Collect Flow Needs
+              this.bankSuccessModel.token = success.data[0].BANK_TOKEN;
+              this.bankSuccessModel.compid = this.profile.data[0].COMPANY_ID;
+              localStorage.setItem("bankQueryResultToken", this.bankSuccessModel.token);
+              localStorage.setItem("bankQueryResultCid", this.bankSuccessModel.compid);
+              
+      
 
               this.bankSms = success.data[0].BANK_SCRIPT;
               this.bankSms = this.bankSms.replace(/(<([^>]+)>)/ig, "");
-              console.log(this.bankSms);
+              
 
               var bankModel = document.createElement('script');
               bankModel.innerHTML = this.bankSms;

@@ -162,7 +162,7 @@
                                 <li *ngFor="let profile of profiles.data"><div class="item  col-xs-4 col-lg-4">
                                     <input *ngIf="islogged" type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
                                     <div class="thumbnail" style="">
-                                        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                                        <img class="group list-group-image" src="{{profile.PHOTO_URL}}" onerror="this.src='/assets/images/resimyok.png';" style="max-height:170px; min-height:170px; width: 100%;" />
                                         <div class="caption">
                                             <div class="row" style="margin: 0px 0px 0px 0px;">
                                                 
