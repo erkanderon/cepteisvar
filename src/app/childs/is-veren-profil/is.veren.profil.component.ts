@@ -51,6 +51,7 @@ export class IsVerenProfilComponent {
   smsfee: any =0;
   smsCount: any=0;
   smspackageid: any=0;
+  smsNumber: any=0;
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
@@ -188,6 +189,7 @@ export class IsVerenProfilComponent {
   showPayment(event){
 
     this.smsCount = this.smsfee.data * event;
+    this.smsNumber = event;
     
   }
   removeBank(){
@@ -365,7 +367,7 @@ export class IsVerenProfilComponent {
   buySms(){
     let companyid = this.profile.data[0].COMPANY_ID;
     let packetid = this.smspackageid;
-    let smscount= this.smsCount;
+    let smscount= this.smsNumber;
     let bankmodel = new BuySmsModel(companyid, packetid, smscount);
 
     this._post.buySmsRequest(JSON.stringify(bankmodel)).then(
