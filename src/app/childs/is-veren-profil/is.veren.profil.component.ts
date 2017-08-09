@@ -48,6 +48,9 @@ export class IsVerenProfilComponent {
   fileImage: any = false;
   bankSms: any = "f";
   bankSuccessModel: any={};
+  smsfee: any =0;
+  smsCount: any=0;
+  smspackageid: any=0;
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
@@ -73,6 +76,7 @@ export class IsVerenProfilComponent {
 		this.profile = this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.profile = res);
 		this.cities = this._pub.getCities().then(cities => this.cities = cities);
     this.promotions = this._pub.getSMSPromotions().then(promotions => this.promotions = promotions);
+    this.smsfee = this._pub.getSMSFee().then(smsfee => this.smsfee = smsfee);
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 		this.basket = this.getBasketData();
 
@@ -180,6 +184,36 @@ export class IsVerenProfilComponent {
 	onChange(newValue) {
       this.ct = this._pub.getCityFieldList(newValue).then(ct => this.ct = ct);
       this.selectedDevice = newValue;
+  }
+  showPayment(event){
+
+    this.smsCount = this.smsfee.data * event;
+    
+  }
+  removeBank(){
+    location.reload();
+    
+  }
+
+  setPacketId(event, number){
+    if(event){
+      if(number===1){
+        this.smspackageid = 1;
+        jQuery('#myCheckbox'+2).prop('checked', false);
+        jQuery('#myCheckbox'+3).prop('checked', false);
+      }else if(number===2){
+        this.smspackageid = 2;
+        jQuery('#myCheckbox'+1).prop('checked', false);
+        jQuery('#myCheckbox'+3).prop('checked', false);
+      }else{
+        this.smspackageid = 3;
+        jQuery('#myCheckbox'+1).prop('checked', false);
+        jQuery('#myCheckbox'+2).prop('checked', false);
+      }
+      
+    }else{
+      this.smspackageid = 0;
+    }
   }
 
   // SET NO COMMENT
@@ -330,8 +364,8 @@ export class IsVerenProfilComponent {
   // BUY SMS
   buySms(){
     let companyid = this.profile.data[0].COMPANY_ID;
-    let packetid = 0;
-    let smscount= 20;
+    let packetid = this.smspackageid;
+    let smscount= this.smsCount;
     let bankmodel = new BuySmsModel(companyid, packetid, smscount);
 
     this._post.buySmsRequest(JSON.stringify(bankmodel)).then(
@@ -342,6 +376,8 @@ export class IsVerenProfilComponent {
               //this.router.navigate([uri]);
 
 
+
+              console.log(success);
               //Collect Flow Needs
               this.bankSuccessModel.token = success.data[0].BANK_TOKEN;
               this.bankSuccessModel.compid = this.profile.data[0].COMPANY_ID;

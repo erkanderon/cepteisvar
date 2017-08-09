@@ -510,9 +510,7 @@
                         <!-- HESABIM -->
 
                         <div id="5a" class="tab-pane yorumlar">
-                            <form>
-                              
-                            </form>
+                            
                             <div class="row opti" *ngIf="promotions.data">
                               <div style="padding: 0px 15px;" *ngIf="balance.data">
                                 <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: {{balance.data.ACCOUNT_BALANCE}}</div>
@@ -528,11 +526,25 @@
                                     </div>
                                   </div>
                                 </div>
-                                <input type="checkbox" class="myCheckbox col-xs-4" value="1" />
-                                <input type="checkbox" class="myCheckbox col-xs-4" value="2" />
-                                <input type="checkbox" class="myCheckbox col-xs-4" value="3" />
+                                <input type="checkbox" id="myCheckbox1" class="myCheckbox col-xs-4" value="1" [ngModel]="packet1" (ngModelChange)="setPacketId($event, 1)" />
+                                <input type="checkbox" id="myCheckbox2" class="myCheckbox col-xs-4" value="2"  [ngModel]="packet2" (ngModelChange)="setPacketId($event, 2)" />
+                                <input type="checkbox" id="myCheckbox3" class="myCheckbox col-xs-4" value="3" [ngModel]="packet3" (ngModelChange)="setPacketId($event, 3)" />
                               
                             </div>
+                            
+                            <form class="form-inline">
+                              <div class="row text-center">
+                                <h4  style="font-family: MyriadPro; font-size: 12px; font-weight: bold; line-height: 1; letter-spacing: 0.4px; color: #000000; margin-top: 20px;">Eğer bu paketlerden satın almak istemiyorsanız lütfen almak istedğiniz sms miktarını giriniz.</h4>
+                              </div>
+                            <div class="text-center">
+                              <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="SMS Sayisi" style="width: 150px; height: 50px; border-radius: 0px;" [ngModel]="range" (ngModelChange)="showPayment($event)" name="range">
+
+                              <img class="form-control mb-2 mr-sm-2 mb-sm-0" style="background: inherit; border: none; text-shadow: none; box-shadow: none;" src="/assets/images/nextt.png">
+
+                              <p type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" style="width: 150px; height: 50px; border-radius: 0px; margin-bottom: 0px;"><span style="vertical-align: middle; height: 100%; margin-top: 5px;">{{smsCount}}</span></p>
+                            </div>
+                             
+                            </form>
 
                             <div class="row text-center" style="margin-top: 50px; min-width: 400px;">
                               <div class="col-xs-12">
@@ -677,7 +689,7 @@
 <!-- EFT Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" (click)="removeBank()">&times;</button>
         <h4 class="modal-title text-center">KREDİ KARTI İLE ÖDEME</h4>
       </div>
       <div class="modal-body" id="modelcontent">

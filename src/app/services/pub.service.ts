@@ -136,6 +136,14 @@ export class Pub {
 	      .then(response => response.json() as Return)
 	      .catch(this.handleError);
 	}
+	//getting sms fee
+	getSMSFee(): Promise<Return> {
+	    const url = AppSettings.API_ENDPOINT+'/app/get-sms-fee';
+	    return this.http.get(url)
+	      .toPromise()
+	      .then(response => response.json() as Return)
+	      .catch(this.handleError);
+	}
 	getCityFieldList(param): Promise<void> {
 	    let headers = new Headers({ 'Content-Type': 'application/json' });
 	    let options = new RequestOptions({ headers: headers });
