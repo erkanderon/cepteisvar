@@ -33,7 +33,7 @@
                         <div class="row" *ngIf="profile.data">
                           <div class="row" style="padding: 0px 15px; margin: 0px;">
                             <div class="col-xs-3 text-center" *ngIf="state === 0">
-                                <img class="img img-responsive" src="assets/images/indir.png">
+                                <img class="img img-responsive" *ngIf="pphoto" src="{{pphoto}}" onerror="this.src='/assets/images/resimyok.png';" style="width: 206px; height: 150px;">
                             </div>
                             <div class="col-xs-3 text-center" *ngIf="state === 1">
 
@@ -567,7 +567,7 @@
                             <div *ngFor="let sepet of basket" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
 
                                 <div class="thumbnail" style=" margin: 10px 30px;">
-                                    <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                    <img class="group list-group-image" src="{{sepet.PHOTO_URL}}" onerror="this.src='/assets/images/resimyok.png';" alt="" style="width: 236px; height: 180px;" />
                                     <img src="assets/images/removeicon.png" (click)="removeFromSepet(sepet)" type="checkbox" style="position: absolute; left: -40px; top: 80px; width: 40px;">
                                     <div class="caption">
                                         <div class="row" style="margin: 0px 0px 0px 0px;">

@@ -33,7 +33,7 @@
                           <div class="row" style="padding: 0px 15px; margin: 0px;">
                             <div class="col-xs-3 text-center" *ngIf="state === 0">
                               <div *ngIf="profile.data">
-                                <img class="img img-responsive" src="{{profile.data[0].PHOTO_URL}}" onerror="this.src='https://organicthemes.com/demo/profile/files/2012/12/profile_img.png';">
+                                <img class="img img-responsive" *ngIf="pphoto" src="{{pphoto}}" onerror="this.src='/assets/images/resimyok.png';" style="width: 206px; height: 150px;">
                               </div>
                             </div>
                             <div class="col-xs-3 text-center" *ngIf="state === 1">

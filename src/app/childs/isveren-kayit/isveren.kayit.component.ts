@@ -20,6 +20,7 @@ export class IsverenKayitComponent {
   selectedDevice: any;
   areas: any;
   epost: any;
+  sozlesmeerror: any=false;
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router,) { 
 		jQuery(document).ready(function () {
@@ -57,25 +58,28 @@ export class IsverenKayitComponent {
     	//console.log(f.valid);  // false
     	let comp = new Company(f.value.firma, f.value.tckimlik.toString(), f.value.vergi, f.value.address, f.value.telefon.toString(), parseInt(f.value.sel2), f.value.eposta, f.value.yetkili, f.value.yettel.toString(), parseInt(f.value.cname), parseInt(f.value.isalani), f.value.parola);
 
-    	//console.log(JSON.stringify(comp))
-    	this.epost = f.value.eposta;
-    	if(f.valid && f.value.parola===f.value.parola2 && !!comp){
-    		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
-			    //used Arrow function here
-			    (success)=> {
-			      
-			      console.log("oldu")
-			      //this.router.navigate(['/isveren-giris']);
-			    }
-			).catch(
-			   //used Arrow function here
-			   (err)=> {
-			      console.log("olmadi");
-			      //this.router.navigate(['/home']);
-			   }
-			)
-    	}
     	
+    	this.epost = f.value.eposta;
+    	if(f.value.sozles){
+	    	if(f.valid && f.value.parola===f.value.parola2 && !!comp){
+	    		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
+				    //used Arrow function here
+				    (success)=> {
+				      
+				      console.log("oldu")
+				      //this.router.navigate(['/isveren-giris']);
+				    }
+				).catch(
+				   //used Arrow function here
+				   (err)=> {
+				      console.log("olmadi");
+				      //this.router.navigate(['/home']);
+				   }
+				)
+	    	}
+    	}else{
+    		this.sozlesmeerror = true;
+    	}
     }
     validate(f: NgForm) {
 

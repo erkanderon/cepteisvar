@@ -52,6 +52,7 @@ export class IsVerenProfilComponent {
   smsCount: any=0;
   smspackageid: any=0;
   smsNumber: any=0;
+  pphoto: any;
 
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
@@ -104,6 +105,8 @@ export class IsVerenProfilComponent {
         this.cid = res.data[0].COMPANY_ID;
 
         this.balance = this._post.previewAccountBalance({ "p_email": res.data[0].EMAIL}).then(balance => this.balance = balance);
+        this.pphoto = this._post.getProfilePhoto(4200, res.data[0].COMPANY_ID);
+        console.log(this.pphoto)
 	      
 	    }
 	  }

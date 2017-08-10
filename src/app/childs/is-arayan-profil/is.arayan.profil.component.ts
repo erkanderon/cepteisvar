@@ -41,6 +41,7 @@ export class IsArayanProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
+  pphoto: any = {};
 
 
 	constructor(
@@ -106,6 +107,8 @@ export class IsArayanProfilComponent {
         this.ehliyet = res.data[0].LICENSE_ID;
         this.secenek = !res.data[0].HOMEPAGE_ACTIVE;
         this.certificate = !res.data[0].CERTIFICATE;
+
+        this.pphoto = this._post.getProfilePhoto(4000, res.data[0].USER_ID);
         
       }
     }

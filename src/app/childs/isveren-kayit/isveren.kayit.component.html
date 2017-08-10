@@ -90,8 +90,13 @@
                                 </div>
                               <div class="form-group">
                                 <label class="form-check-label txt">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;"> Gizlilik Sartlarini Okudum Kabul Ediyorum.
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet</a> &amp; <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik</a> &amp; <a href="http://cepteisvar.cboxpay.com/agreements/mesafeli.html" target="_blank">Mesafeli Satis</a> Sozlesmelerini Kabul Ediyorum
                                 </label>
+                                <div *ngIf="sozlesmeerror" class="alert alert-danger" style="margin-top: 5px;">
+                                  <div >
+                                    Guvenlik Sozlesmesini Kabul Etmelisiniz!
+                                  </div>
+                                </div>
                                 
                               </div>
                           </div>

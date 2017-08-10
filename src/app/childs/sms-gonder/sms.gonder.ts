@@ -22,6 +22,9 @@ export class SMSGonderComponent {
 	userModel: any={};
 	balance:any={};
 
+	lengthChar: any=0;
+	willPay: any=0;
+
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub) { 
 		jQuery(document).ready(function () {
 			jQuery('.myCheckbox').click(function() {
@@ -99,6 +102,40 @@ export class SMSGonderComponent {
 		 }
 		)
 		
+
+	}
+	showPayment(event){
+		let whatChanged = event.target.getAttribute('ng-reflect-name');
+    	let newValue = this[whatChanged];
+
+    	if(newValue.length !==0 ){
+
+	    	this._post.smsEstimator({"p_receiver_count": this.basket.length, "p_sms_text": newValue }).then(
+			  //used Arrow function here
+			  (success)=> {
+			    
+			    if(this.responser(success)){
+
+			    	this.lengthChar = success.data.SMS_PAGE_SIZE;
+			    	this.willPay = success.data.AMOUNT;
+
+			    }else{
+			      //give a message
+			      console.log(success);
+			    }
+			    
+			  }
+			).catch(
+			 //used Arrow function here
+			 (err)=> {
+			    this.router.navigate(['/home']);
+			 }
+			)
+		}else{
+			this.lengthChar = 0;
+			this.willPay = 0;
+		}
+
 
 	}
   

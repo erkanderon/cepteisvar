@@ -30,6 +30,7 @@ export class CalisanKayitComponent {
   jobcategory: any;
   education: any;
   epost: any;
+  sozlesmeerror: any=false;
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router) { 
 		jQuery(document).ready(function () {
@@ -78,26 +79,30 @@ export class CalisanKayitComponent {
     	let pers = new Employee(f.value.isim,f.value.soyad ,parseInt(f.value.cinsiyet) ,f.value.adres ,parseInt(f.value.sd) ,f.value.eposta ,f.value.contact.toString() ,parseInt(f.value.ilce), parseInt(f.value.educate), par ,this.checker(f.value.secenek) ,this.checker(f.value.gizlilik) ,parseInt(f.value.meslek) ,parseInt(f.value.meslek2) ,f.value.tecrube ,this.checker(f.value.certificate), parseInt(f.value.ehliyet), parseInt(f.value.askerlik), f.value.parola);
 
     	console.log(pers);
-    	if(f.valid && f.value.parola===f.value.parola2 && !!pers){
-    		this._pservice.insertNewMemberAccount(JSON.stringify(pers)).then(
-			    //used Arrow function here
-			    (success)=> {
-			      
-			      if(this.responser(success)){
-			      	//this.router.navigate(['/calisan-giris']);
-			      }else{
-			      	//this.router.navigate(['/home']);
-			      	console.log(success);
-			      }
-			      
-			    }
-			).catch(
-			   //used Arrow function here
-			   (err)=> {
-			      this.router.navigate(['/home']);
-			   }
-			)
-    	}
+    	if(f.value.sozles){
+	    	if(f.valid && f.value.parola===f.value.parola2 && !!pers){
+	    		this._pservice.insertNewMemberAccount(JSON.stringify(pers)).then(
+				    //used Arrow function here
+				    (success)=> {
+				      
+				      if(this.responser(success)){
+				      	//this.router.navigate(['/calisan-giris']);
+				      }else{
+				      	//this.router.navigate(['/home']);
+				      	console.log(success);
+				      }
+				      
+				    }
+				).catch(
+				   //used Arrow function here
+				   (err)=> {
+				      this.router.navigate(['/home']);
+				   }
+				)
+	    	}
+	    }else{
+	    	this.sozlesmeerror = true;
+	    }
     	
     }
     validate(f: NgForm) {
