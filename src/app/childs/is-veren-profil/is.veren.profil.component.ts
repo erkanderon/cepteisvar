@@ -87,7 +87,6 @@ export class IsVerenProfilComponent {
     if(res){
 	    if(res.data){
 	      this.comments = this._post.getCompanyComments({"P_COMPANY_ID": res.data[0].COMPANY_ID}).then(comments => this.comments = comments);
-        console.log(this.comments);
 	      this.sms = this._post.getCompanyBasket({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
         this.onChange(res.data[0].CITY_ID);
 

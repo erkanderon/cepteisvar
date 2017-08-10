@@ -109,13 +109,13 @@ export class HomeComponent {
 
   	}
 	checkUser(){
-		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		/*this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		console.log(this.islogged);
-		if(!this.islogged){
+		if(!this.islogged){*/
 			this.router.navigate(['/calisan-arama']);
-		}else{
+		/*}else{
 			this.router.navigate(['/isveren-giris']);
-		}
+		}*/
 	}
 	checkCompany(param){
 		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');

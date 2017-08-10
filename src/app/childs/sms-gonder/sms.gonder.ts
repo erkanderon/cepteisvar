@@ -84,7 +84,7 @@ export class SMSGonderComponent {
 		    if(this.responser(success)){
 
 		    	this._pub.sepetModel ={};
-		     	this.router.navigate([uri]);
+		     	this.router.navigate([uri, {foo: "profil"}]);
 
 		    }else{
 		      //give a message

@@ -325,6 +325,58 @@ export class PostService {
 			)
 
 	}
+	// ACTIVATE OLD ACCOUNT
+	activateOldAccount(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    
+	    console.log(param);
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/activate-old-account', param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// SEND SMS PRICE ESTIMATOR
+	smsEstimator(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    
+	    console.log(param);
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/sms-price-estimate', param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
 	// GET COMPANY COMMENTS
 	getCompanyComments(param): Promise<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
