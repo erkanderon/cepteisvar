@@ -15,8 +15,8 @@
     <div class="alert alert-success" *ngIf="operation">
       <strong>SMS Gonderildi!</strong> Giden SMS'lerim sayfasini Kontrol Edebilirsiniz..
     </div>
-    <div class="alert alert-danger" *ngIf="operationfault">
-    <strong>SMS Gonderilemedi!</strong> Hesabinizdan Kredi Dusulmedi.
+    <div class="alert alert-danger" *ngIf="operationfault.status">
+    <strong>SMS Gonderilemedi!</strong> {{operationfault.text}}
   </div>
 
     <div class="row">

@@ -22,7 +22,7 @@ export class SMSGonderComponent {
 	userModel: any={};
 	balance:any={};
 	operation: any=false;
-	operationfault: any=false;
+	operationfault: any={};
 
 	lengthChar: any=0;
 	willPay: any=0;
@@ -82,40 +82,46 @@ export class SMSGonderComponent {
 		let uri = '/is-veren-profil';
 		let send = new CreateBasketModel(this.userModel, this.basket, fav.value.text);		
 
-		this._post.createCompanyBasket(JSON.stringify(send)).then(
-		  //used Arrow function here
-		  (success)=> {
-		    
-		    if(this.responser(success)){
+		if(parseInt(this.balance.data.ACCOUNT_BALANCE)!==0){
 
-		    	this._pub.sepetModel ={};
-		    	this.operation = true;
-
-		    	setTimeout(()=>{ 
-				   this.router.navigate([uri, {foo: "profil"}]);
-				  }, 3000);
-			      
+			this._post.createCompanyBasket(JSON.stringify(send)).then(
+			  //used Arrow function here
+			  (success)=> {
 			    
-		     	
+			    if(this.responser(success)){
 
-		    }else{
-		      //give a message
-		      this.operationfault = true;
-		      setTimeout(()=>{ 
-				   this.router.navigate([uri, {foo: "profil"}]);
-				  }, 3000);
-		    }
-		    
-		  }
-		).catch(
-		 //used Arrow function here
-		 (err)=> {
-		    this.router.navigate(['/home']);
-		 }
-		)
-		
+			    	this._pub.sepetModel ={};
+			    	this.operation = true;
 
-	}
+			    	setTimeout(()=>{ 
+					   this.router.navigate([uri, {foo: "profil"}]);
+					  }, 3000);
+				      
+				    
+			     	
+
+			    }else{
+			      //give a message
+			      this.operationfault.status = true;
+				  this.operationfault.text = success.userMessage;
+			      //this.operationText = success.userMessage;
+			      setTimeout(()=>{ 
+					   this.router.navigate([uri, {foo: "profil"}]);
+					  }, 3000);
+			    }
+			    
+			  }
+			).catch(
+			 //used Arrow function here
+			 (err)=> {
+			    this.router.navigate(['/home']);
+			 }
+			)
+		}else{
+			this.operationfault.status = true;
+			this.operationfault.text = "Bakiyeniz Yetersiz."
+		}
+}
 	showPayment(e){
 		
     	let newValue = e.target.value;
