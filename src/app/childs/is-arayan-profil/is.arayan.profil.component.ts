@@ -108,6 +108,8 @@ export class IsArayanProfilComponent {
         this.secenek = !res.data[0].HOMEPAGE_ACTIVE;
         this.certificate = !res.data[0].CERTIFICATE;
 
+        console.log(res);
+
         this.pphoto = this._post.getProfilePhoto(4000, res.data[0].USER_ID);
         
       }
@@ -148,9 +150,9 @@ export class IsArayanProfilComponent {
   }
   checker(value) {
     if(value){
-      return 1;
-    }else{
       return 0;
+    }else{
+      return 1;
     }
   }
   changePassword(fav: NgForm) {
@@ -185,9 +187,10 @@ export class IsArayanProfilComponent {
   editMemberForm(f: NgForm) {
       let userid = this.profile.data[0].USER_ID;
       let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
-      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.certificate), this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.secenek) , parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
+      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.secenek), !this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.certificate) , parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
 
       console.log(member);
+      console.log(this.checker(this.secenek));
       if(f.valid && !!member){
         this._post.editMemberAccount(JSON.stringify(member)).then(
           //used Arrow function here
@@ -215,7 +218,7 @@ export class IsArayanProfilComponent {
                    }
                 )
               }else{
-                location.reload();
+                //location.reload();
               }
               //location.reload();
             }else{
