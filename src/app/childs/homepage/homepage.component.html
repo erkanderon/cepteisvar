@@ -58,10 +58,12 @@
 							    <li><a href="#2a" data-toggle="tab" style="border-bottom: inherit; color:inherit;border-radius: inherit;">KAYIT OLMAK ISTIYORUM</a></li>
 							</ul>
 						</div>
+
 	    				<div class="col-md-12 text-center tab-content" style="margin-top: 20px;">
 	    					<form id="1a" class="form-inline tab-pane active" #searchPerson="ngForm">
 
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+
 							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required >
 								    
 								    <option [value]="-10" disabled hidden>Kategori Seciniz</option>
@@ -72,6 +74,7 @@
 								</select>
 								
 							  </div>
+							  	
 							  <!--<div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" name="meslek2" [ngModel]="meslek2">
 							    	<option selected>Meslek Seciniz</option>

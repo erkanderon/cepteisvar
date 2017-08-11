@@ -41,7 +41,7 @@ export class IsArayanProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
-  pphoto: any = {};
+  pphoto: any;
 
 
 	constructor(
@@ -93,7 +93,7 @@ export class IsArayanProfilComponent {
         this.onChange(res.data[0].CITY_ID);
 
         this.isim = res.data[0].NAME;
-        this.dtarihi = res.data[0].REGISTERED_DATE;
+        this.dtarihi = res.data[0].REGISTERED_DATE.split("-").reverse().join("-");
         this.telefon = res.data[0].CONTACT_NO;
         this.sd = res.data[0].CITY_ID;
         this.askerlik = res.data[0].MILITARY_ID;
@@ -185,7 +185,7 @@ export class IsArayanProfilComponent {
   editMemberForm(f: NgForm) {
       let userid = this.profile.data[0].USER_ID;
       let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
-      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.secenek), this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.certificate), parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
+      let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.certificate), this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.secenek) , parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
 
       console.log(member);
       if(f.valid && !!member){

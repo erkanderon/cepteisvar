@@ -65,18 +65,22 @@
                                 </div>
                               </div>
                               <div class="form-group">
+                                <div class="dropdown">
                                     
                                   <label for="">SEHIR</label>
                                   <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2">
                                     <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                   </select>
+                                </div>
                               </div>
                               <div class="form-group">
+                                <div class="dropdown">
                                     
                                   <label for="">IS ALANI</label>
                                   <select id="" class="form-control" [ngModel]="ds" name="isalani">
                                     <option  *ngFor="let area of areas.data" [value]="area.TYPE_ID">{{area.WORK_NAME}}</option>
                                   </select>
+                                </div>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA</label>
@@ -90,14 +94,13 @@
                                 </div>
                               <div class="form-group">
                                 <label class="form-check-label txt">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet</a> &amp; <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik</a> &amp; <a href="http://cepteisvar.cboxpay.com/agreements/mesafeli.html" target="_blank">Mesafeli Satis</a> Sozlesmelerini Kabul Ediyorum
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası</a> ve <a href="http://cepteisvar.cboxpay.com/agreements/mesafeli.html" target="_blank">Mesafeli Satış Sözleşmesi'ni</a> onayliyorum.
                                 </label>
                                 <div *ngIf="sozlesmeerror" class="alert alert-danger" style="margin-top: 5px;">
                                   <div >
                                     Guvenlik Sozlesmesini Kabul Etmelisiniz!
                                   </div>
-                                </div>
-                                
+                                </div>                          
                               </div>
                           </div>
                           <div class="col-xs-6" style="padding: 0px 50px;">
@@ -142,11 +145,13 @@
                                 </div>
                               </div>
                               <div class="form-group">
+                                <div class="dropdown">
                                   <label for="" >ILCE</label>
                                   <select id="" class="form-control" name="cname" [ngModel]="cname">
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                    
                                   </select>
+                                </div>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA TEKRAR</label>

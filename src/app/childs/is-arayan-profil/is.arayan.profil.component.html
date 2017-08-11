@@ -173,8 +173,8 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SEHIR</label>
-                                    <div class="">
-                                      <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
+                                    <div class="dropdown">
+                                      <select id="dropdown" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
                                         <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                       </select>
                                     </div>
@@ -182,7 +182,7 @@
                                   <div class="form-group row">
                                        <div class="col-xs-6"> 
                                           <label for="formGroupExampleInput2">ASKERLIK DURUMU</label>
-                                          <div class="">
+                                          <div class="dropdown">
                                             <select id="" class="form-control" name="askerlik" [ngModel]="askerlik" required>
                                               <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
                                             </select>
@@ -205,17 +205,21 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SOYAD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required>
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1">
+
                                     </div>
                                   </div>
                                   <div class="form-group">
                                       <label for="formGroupExampleInput2">CINSIYET</label>
-                                      <div class="">
+                                      <div class="dropdown">
+
                                         <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet" required>
                                           <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
                                         </select>
+
                                       </div>
                                   </div>
+                                  
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">ADRES</label>
                                     <div class="">
@@ -224,7 +228,7 @@
                                   </div>
                                   <div class="form-group">
                                       <label for="formGroupExampleInput2">EGITIM DURUMU</label>
-                                      <div class="">
+                                      <div class="dropdown">
                                         <select id="" class="form-control" name="educate" [ngModel]="educate" required>
                                           <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
                                         
@@ -233,7 +237,7 @@
                                   </div>
                                   <div class="form-group">
                                       <label for="formGroupExampleInput2">ILCE</label>
-                                      <div class="">
+                                      <div class="dropdown">
                                         <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
                                           <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                         </select>
@@ -241,7 +245,7 @@
                                   </div>
                                   <div class="form-group">
                                       <label for="formGroupExampleInput2">EHLIYET</label>
-                                      <div class="">
+                                      <div class="dropdown">
                                         <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet" required>
                                             <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
                                             

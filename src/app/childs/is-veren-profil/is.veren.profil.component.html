@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">SEHIR</label>
-                                  <div class="">
+                                  <div class="dropdown">
                                     <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
                                       <option  *ngFor="let city of cities.data"  [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                     </select>
@@ -234,7 +234,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">ILCE</label>
-                                    <div class="">
+                                    <div class="dropdown">
                                       <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
                                         <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                       </select>

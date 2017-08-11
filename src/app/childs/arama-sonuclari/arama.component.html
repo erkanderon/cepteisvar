@@ -208,6 +208,30 @@
                             </ul>
                             <ul class="col-xs-12 pagination" style="padding-left: 40%;"></ul>
                         </div>
+                        <div *ngIf="!profiles.data">
+                            <div class="row">
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                              <br>
+                              
+                              <p><img src="/assets/images/profilenotfound.png" alt=""></p>
+
+                              <h2><i class="fa fa-exclamation-triangle" style="color:red"></i>
+                             
+                         Boyle bir profil bulunamadi. </h2>
+                              <p>Aradiginiz Kriterlere Uygun Kayitli Kullanici Bulunamadi.
+
+                                <br>
+                              </p>
+
+                              <p>Lutfen tekrar deneyiniz</p>
+
+                            
+
+                            </div>
+
+                          </div>
+                          
+                        </div>
                 </div>
             </div>
         </div>

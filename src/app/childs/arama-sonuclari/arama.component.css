@@ -177,6 +177,10 @@
     margin-right: 10px;
     width: 35%;
 }
+.list-group-item img{
+	height: 200px !important;
+    width: 200px !important;
+}
 .item.list-group-item .thumbnail
 {
     margin-bottom: 0px;

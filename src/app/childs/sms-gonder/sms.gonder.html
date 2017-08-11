@@ -12,6 +12,12 @@
             <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Sepetim >> SMS Gönder</a>
         </div>
     </div>
+    <div class="alert alert-success" *ngIf="operation">
+      <strong>SMS Gonderildi!</strong> Giden SMS'lerim sayfasini Kontrol Edebilirsiniz..
+    </div>
+    <div class="alert alert-danger" *ngIf="operationfault">
+    <strong>SMS Gonderilemedi!</strong> Hesabinizdan Kredi Dusulmedi.
+  </div>
 
     <div class="row">
         <div class="col-xs-2"></div>

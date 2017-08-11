@@ -21,6 +21,8 @@ export class SMSGonderComponent {
 	sms:any={};
 	userModel: any={};
 	balance:any={};
+	operation: any=false;
+	operationfault: any=false;
 
 	lengthChar: any=0;
 	willPay: any=0;
@@ -87,11 +89,21 @@ export class SMSGonderComponent {
 		    if(this.responser(success)){
 
 		    	this._pub.sepetModel ={};
-		     	this.router.navigate([uri, {foo: "profil"}]);
+		    	this.operation = true;
+
+		    	setTimeout(()=>{ 
+				   this.router.navigate([uri, {foo: "profil"}]);
+				  }, 3000);
+			      
+			    
+		     	
 
 		    }else{
 		      //give a message
-		      console.log(success);
+		      this.operationfault = true;
+		      setTimeout(()=>{ 
+				   this.router.navigate([uri, {foo: "profil"}]);
+				  }, 3000);
 		    }
 		    
 		  }
@@ -104,9 +116,9 @@ export class SMSGonderComponent {
 		
 
 	}
-	showPayment(event){
-		let whatChanged = event.target.getAttribute('ng-reflect-name');
-    	let newValue = this[whatChanged];
+	showPayment(e){
+		
+    	let newValue = e.target.value;
 
     	if(newValue.length !==0 ){
 
