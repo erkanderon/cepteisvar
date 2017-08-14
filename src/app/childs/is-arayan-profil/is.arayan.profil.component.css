@@ -31,6 +31,33 @@ body{
     border-right: 5px solid transparent;
     border-top: 5px solid black;
 }
+.dropdownPopup {
+    position: relative;
+}
+
+.dropdownPopup:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+}
+
+.dropdownPopup:after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+}
 header{
 }
 .item.list-group-item

@@ -189,8 +189,7 @@ export class IsArayanProfilComponent {
       let dt = new DatePipe('en-US').transform(f.value.dtarihi, 'dd/MM/yyyy');
       let member = new EditMemberAccountModel(userid, f.value.isim, f.value.soyad, parseInt(f.value.cinsiyet), f.value.adres, parseInt(f.value.sd), f.value.telefon.toString(), parseInt(f.value.ilce), parseInt(f.value.educate), dt, this.checker(this.secenek), !this.checker(f.value.gizlilik), f.value.tecrube, this.checker(this.certificate) , parseInt(f.value.ehliyet), parseInt(f.value.askerlik) );
 
-      console.log(member);
-      console.log(this.checker(this.secenek));
+
       if(f.valid && !!member){
         this._post.editMemberAccount(JSON.stringify(member)).then(
           //used Arrow function here
@@ -220,7 +219,7 @@ export class IsArayanProfilComponent {
               }else{
                 //location.reload();
               }
-              //location.reload();
+              location.reload();
             }else{
               //give error
             }
@@ -242,6 +241,62 @@ export class IsArayanProfilComponent {
     let secjob = this.profile.data[0].SECONDARY_JOB_ID;
     let secjobdesc = this.profile.data[0].SECONDARY_JOB_DESCRIPTION;
     let job = new ChangeJobModel(userid, f.value.meslek,secjob,f.value.desc1,secjobdesc)
+
+    console.log(job);
+
+    this._post.changeJob(JSON.stringify(job)).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              location.reload();
+            }else{
+              //give a message
+              console.log(success)
+            }
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+  }
+  removeJob1() {
+
+    let userid = this.profile.data[0].USER_ID;
+    let secjob = this.profile.data[0].SECONDARY_JOB_ID;
+    let secjobdesc = this.profile.data[0].SECONDARY_JOB_DESCRIPTION;
+    let job = new ChangeJobModel(userid, 0,secjob,0,secjobdesc)
+
+    console.log(job);
+
+    this._post.changeJob(JSON.stringify(job)).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              location.reload();
+            }else{
+              //give a message
+              console.log(success)
+            }
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+  }
+  removeJob2() {
+
+    let userid = this.profile.data[0].USER_ID;
+    let prmjob = this.profile.data[0].PRIMARY_JOB_ID;
+    let prmjobdesc = this.profile.data[0].PRIMARY_JOB_DESCRIPTION;
+    let job = new ChangeJobModel(userid, prmjob,0,prmjobdesc,0)
 
     console.log(job);
 

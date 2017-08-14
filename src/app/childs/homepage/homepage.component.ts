@@ -30,6 +30,8 @@ export class HomeComponent {
 	il: any; jobcat: any;
 	searchIsModel: any=[];
 
+	ismember: any =false;
+
 	
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _flashMessagesService: FlashMessagesService) { 
@@ -74,6 +76,8 @@ export class HomeComponent {
 
 	}
 	ngOnInit() {
+
+		this.ismember = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
 
 		//this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000000 });
 

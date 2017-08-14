@@ -16,7 +16,7 @@
       <div class="col-xs-12">
         <div class="btn-group btn-group-lg">
           <button type="button" id="profil" (click)="navigateParam('profil')" data-target="#1a" data-toggle="tab" class="btn btn-default">PROFIL</button>
-          <button type="button" id="mesleklerim" (click)="navigateParam('mesleklerim')" data-target="#5a" data-toggle="tab" class="btn btn-default">MESLEKLERIM</button>
+          <button type="button" id="mesleklerim" (click)="navigateParam('mesleklerim')" data-target="#5a" data-toggle="tab" class="btn btn-default" style="border: none;">MESLEKLERIM</button>
           <button type="button" id="smsler" (click)="navigateParam('smsler')" data-target="#3a" data-toggle="tab" class="btn btn-default" style="border:none;">GELEN SMSLERIM</button>
           <button type="button" id="yorumlar" (click)="navigateParam('yorumlar')" data-target="#2a" data-toggle="tab" class="btn btn-default" style="border:none;">YORUMLAR</button>
           <button type="button" id="parola" (click)="navigateParam('parola')" data-target="#4a" data-toggle="tab" class="btn btn-default" style="border:none;">PAROLA DEGISTIR</button>
@@ -60,7 +60,7 @@
 
                             
                               <div class="col-xs-12">
-                                <h6  style="float:right;" (click)="setNumber(1)" *ngIf="state === 0"><strong>Profilimi Duzenle</strong></h6>
+                                <h6  style="float:right;" (click)="setNumber(1)" *ngIf="state === 0"><button style="text-decoration: none; color: black;">Profilimi Duzenle</button></h6>
                               </div>
                             </div>
                         </div>
@@ -73,9 +73,15 @@
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label for="formGroupExampleInput2">Dogum Tarihi</label>
+                                    <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
                                     <div class="">
                                       <p class="form-control-static">{{profile.data[0].BDAY}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">TELEFON</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].CONTACT_NO}}</p>
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -91,12 +97,12 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                       <div class="col-xs-6"> 
-                                          <label for="formGroupExampleInput2">BIRINCIL MESLEK</label>
-                                          <div class="">
-                                            <p class="form-control-static">{{profile.data[0].PRIMARY_JOB}}</p>
-                                          </div>
-                                        </div>
+                                       <div class="col-xs-6">
+                                      <label for="formGroupExampleInput2">ILCE</label>
+                                      <div class="">
+                                        <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
+                                      </div>
+                                  </div>
                                         <div class="col-xs-6">
                                           <label for="formGroupExampleInput2">TECRUBE</label>
                                           <div class="">
@@ -119,23 +125,25 @@
                                       </div>
                                   </div>
                                   <div class="form-group">
+                                    <label for="formGroupExampleInput2">EHLIYET DURUMU</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].DRIVER_LICENSE}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="formGroupExampleInput2">ASKERLIK DURUMU</label>
+                                    <div class="">
+                                      <p class="form-control-static">{{profile.data[0].MILITARY_SERVICE_STATUS}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
                                       <label for="formGroupExampleInput2">EGITIM DURUMU</label>
                                       <div class="">
                                         <p class="form-control-static">{{profile.data[0].EDUCATION_LEVEL}}</p>
                                       </div>
                                   </div>
-                                  <div class="form-group">
-                                      <label for="formGroupExampleInput2">ILCE</label>
-                                      <div class="">
-                                        <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="formGroupExampleInput2">DIGER MESLEK</label>
-                                      <div class="">
-                                        <p class="form-control-static">{{profile.data[0].SECONDARY_JOB}}</p>
-                                      </div>
-                                  </div>
+                                  
+                                  
                               </div>
                               
                           </div>
@@ -190,8 +198,17 @@
                                         </div>
                                         <div class="col-xs-6">
                                           <label for="formGroupExampleInput2">TECRUBE</label>
-                                          <div class="">
+                                          <!--<div class="">
                                             <input type="text" class="form-control" id="firma" name="tecrube" [ngModel]="tecrube" [value]="profile.data[0].WORKING_EXPERIENCE" required>
+                                          </div>-->
+                                          <div class="dropdown">
+                                            <select id="" class="form-control" name="tecrube" [ngModel]="tecrube" required>
+                                              
+                                              <option value="0-3 YIL">0-3 YIL</option>
+                                              <option value="3-5 YIL">3-5 YIL</option>
+                                              <option value="5-10 YIL">5-10 YIL</option>
+                                              <option value="10+ YIL">10+ YIL</option>
+                                            </select>
                                           </div>
                                         </div>
                                   </div>
@@ -306,7 +323,7 @@
                             <div class="col-xs-12">
                                 <div class="btn-group">
                                   
-                                  <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="cancel()">GERI DON</a>
+                                  <!--<a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="cancel()">GERI DON</a> -->
                                 </div>
                             </div>
                         </div>
@@ -359,15 +376,15 @@
                           <form class="row" #fav="ngForm"  novalidate>
                             <div class="form-group">
                               <label for="formGroupExampleInput">Eski Parolaniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola">
+                              <input type="password" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola">
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolaniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola">
+                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola">
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanizi Tekrar Giriniz</label>
-                              <input type="text" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz">
+                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz">
                             </div>
                           </form>
                           <div class="row text-center">
@@ -391,9 +408,9 @@
                                 </div>
                                 <div class="col-xs-6">
                                   <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right; font-size: 14px; margin-top: 10px;">
-                                        <a class="rem" style="margin-top: 10px; "><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</a>&nbsp;&nbsp;&nbsp;
-                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job1"><span class="glyphicon glyphicon-wrench" style="font-size: 10px;"></span>&nbsp;Degistir</a>
+                                    <div  style="float: right; font-size: 14px;">
+                                        <button class="rem" style="margin-top: 10px; " (click)="removeJob1()"><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</button>&nbsp;&nbsp;&nbsp;
+                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job1" href><span class="glyphicon glyphicon-wrench" style="font-size: 10px;"></span>&nbsp;Degistir</a>
                                     </div>
                                   </div>
                                 </div>
@@ -415,9 +432,9 @@
                                 </div>
                                 <div class="col-xs-6">
                                   <div class="ratings-widget" style="padding: 0px;">
-                                    <div  style="float: right; font-size: 14px; margin-top: 10px;">
-                                        <a class="rem" style="margin-top: 10px; "><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</a>&nbsp;&nbsp;&nbsp;
-                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job2"><span class="glyphicon glyphicon-wrench" style="font-size: 10px;" ></span>&nbsp;Degistir</a>
+                                    <div  style="float: right; font-size: 14px;">
+                                        <button class="rem" style="margin-top: 10px; " (click)="removeJob2()"><span class="glyphicon glyphicon-trash pull-left" style="font-size: 10px; margin-top: 3px;"></span>&nbsp;Sil</button>&nbsp;&nbsp;&nbsp;
+                                        <a class="rem" style="margin-top: 10px;" data-toggle="modal" data-target="#job2" href><span class="glyphicon glyphicon-wrench" style="font-size: 10px;" ></span>&nbsp;Degistir</a>
                                     </div>
                                   </div>
                                 </div>
@@ -496,20 +513,24 @@
       <div class="modal-body">
         <form #meslek="ngForm">
           <div class="form-group" *ngIf="jobcategory.data">
+            <div class="dropdownPopup">
               <label for="">IS KATEGORINIZ</label>
               <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
                 <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
               </select>
+            </div>
           </div>
           <div class="form-group"> 
-            <label for="">BIRINCIL MESLEK</label>
-            <select id="" class="form-control" name="meslek" [ngModel]="meslek">
-              <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
-            </select>
+            <div class="dropdownPopup">
+              <label for="">BIRINCIL MESLEK</label>
+              <select id="" class="form-control" name="meslek" [ngModel]="meslek">
+                <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
-            <label for="exampleTextarea">Example textarea</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc1" name="desc1"></textarea>
+            <label for="exampleTextarea">İŞ AÇIKLAMASI</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc1" name="desc1" [maxLength]="120"></textarea>
           </div>
         </form>
       <div class="modal-footer">
@@ -541,20 +562,24 @@
       <div class="modal-body">
         <form #meslekother="ngForm">
           <div class="form-group">
-              <label for="">IS KATEGORINIZ</label>
-              <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
-                <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
-              </select>
+            <div class="dropdownPopup">
+                <label for="">IS KATEGORINIZ</label>
+                <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
+                  <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+                </select>
+            </div>
           </div>
           <div class="form-group"> 
-            <label for="">DIGER MESLEK</label>
-            <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
-              <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
-            </select>
+            <div class="dropdownPopup">
+              <label for="">DIGER MESLEK</label>
+              <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
+                <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
-            <label for="exampleTextarea">Example textarea</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc2" name="desc2"></textarea>
+            <label for="exampleTextarea">İŞ AÇIKLAMASI</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc2" name="desc2" [maxLength]="120"></textarea>
           </div>
         </form>
       </div>
