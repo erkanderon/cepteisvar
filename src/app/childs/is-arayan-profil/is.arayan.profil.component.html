@@ -381,8 +381,8 @@
                         </div>
                         <div id="4a" class="tab-pane yorumlar">
                           <form class="row" #fav="ngForm"  novalidate>
-                            <div class="alert alert-danger">
-                              <div *ngIf="notequal">
+                            <div class="alert alert-danger" *ngIf="notequal">
+                              <div >
                                 Parolalar Eşleşmiyor!
                               </div>
                             </div>

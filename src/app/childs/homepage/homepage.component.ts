@@ -77,7 +77,7 @@ export class HomeComponent {
 	}
 	ngOnInit() {
 
-		this.ismember = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
+		this.ismember = (this._auth.isLoggedIn());
 
 		//this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000000 });
 
