@@ -4,13 +4,20 @@
 		<section id="main_content" style="margin-top: -20px;">
     <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
         <div class="col-xs-12">
-            <h3>IS ARAYAN KAYIT</h3>
+            <h3>İŞ ARAYAN KAYIT</h3>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-xs-12">
-            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Is Arayan Kayit</a>
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İş Arayan Kayıt</a>
         </div>
+    </div>
+    <!-- MESSAGE SERVICE -->
+    <div class="alert alert-success" *ngIf="operation.status">
+      <strong>{{operation.status}}!</strong>&nbsp;&nbsp;{{operation.text}}
+    </div>
+    <div class="alert alert-danger" *ngIf="operationfault.status">
+      <strong>{{operationfault.status}}!</strong>&nbsp;&nbsp; {{operationfault.text}}
     </div>
     <div class="row">
         <div class="col-xs-1"></div>
@@ -27,11 +34,11 @@
                             <div class="col-xs-6">
                               <div class="form-group txt">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" name="secenek" [ngModel]="secenek" type="checkbox" style="font-size:600px;" > Profilimin CepteIsVar anasayfasinda <strong>"Kimler Is Ariyor"</strong> bolumunde gosterilmesini istiyorum. 
+                                  <input class="form-check-input" name="secenek" [ngModel]="secenek" type="checkbox" style="font-size:600px;" > Profilimin CepteIşVar anasayfasında <strong>"Kimler İş Arıyor"</strong> bölümünde gösterilmesini istiyorum. 
                                 </label>
                                 <div class="form-group">
                                   <label class="form-check-label">
-                                    <input name="certificate" [ngModel]="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiginde isverenime sunabilirim.
+                                    <input name="certificate" [ngModel]="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiğinde işverenime sunabilirim.
                                   </label>
                                 </div>
                               </div>
@@ -51,7 +58,7 @@
                               </div>
                               
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">DOGUM TARIHI</label>
+                                <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
                                 <input type="date" [ngModel]="dtarihi" name="dtarihi" class="form-control" id="formGroupDate" #dtarih="ngModel" required>
                                 <div *ngIf="dtarih.errors && (dtarih.dirty || dtarih.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!dtarih.errors.required">
@@ -90,7 +97,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                    <label for="">IS KATEGORINIZ</label>
+                                    <label for="">IŞ KATEGORİNİZ</label>
                                     <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)">
                                       <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
                                     </select>
@@ -99,14 +106,14 @@
                               <div class="form-group row">
                                    <div class="col-xs-6"> 
                                       <div class="dropdown">
-                                        <label for="">BIRINCIL MESLEK</label>
+                                        <label for="">BİRİNCİL MESLEK</label>
                                         <select id="" class="form-control" name="meslek" [ngModel]="meslek">
                                           <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
                                         </select>
                                       </div>
                                     </div>
                                     <div class="col-xs-6">
-                                      <label for="">TECRUBE</label>
+                                      <label for="">TECRÜBE</label>
                                       <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube" #tecr="ngModel" required>
                                       <div *ngIf="tecr.errors && (tecr.dirty || tecr.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                         <div [hidden]="!tecr.errors.required">
@@ -118,7 +125,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="">ASKERLIK DURUMU</label>
+                                  <label for="">ASKERLİK DURUMU</label>
                                   <select id="" class="form-control" name="askerlik" [ngModel]="askerlik">
                                     <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
                                   </select>
@@ -138,17 +145,17 @@
 
                               <div class="form-group txt">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px;" name="gizlilik" > SMS Almak Istemiyorum.
+                                  <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px;" name="gizlilik" > SMS Almak İstemiyorum.
                                 </label>
                               </div>
                               <div class="form-group">
                                 <label class="form-check-label txt">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası'nı</a> onayliyorum.
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası'nı</a> onaylıyorum.
                                 </label>
                                 
                                 <div *ngIf="sozlesmeerror" class="alert alert-danger" style="margin-top: 5px;">
                                   <div >
-                                    Guvenlik Sozlesmesini Kabul Etmelisiniz!
+                                    Güvenlik Sözleşmesini Kabul Etmelisiniz!
                                   </div>
                                 </div>
                                 
@@ -168,7 +175,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="">CINSIYET</label>
+                                  <label for="">CİNSİYET</label>
                                   <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet">
                                     <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
                                   </select>
@@ -186,7 +193,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="">EGITIM DURUMU</label>
+                                  <label for="">EĞİTİM DURUMU</label>
                                   <select id="" class="form-control" name="educate" [ngModel]="educate">
                                     <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
                                     
@@ -195,7 +202,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="">ILCE</label>
+                                  <label for="">İLÇE</label>
                                   <select id="" class="form-control" name="ilce" [ngModel]="ilce">
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                   </select>
@@ -203,16 +210,24 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="">DIGER MESLEK</label>
+                                    <label for="">İŞ KATEGORİNİZ</label>
+                                    <select id="" name="digercat" class="form-control" [ngModel]="digercat" (ngModelChange)="onJobChangeDiger($event)">
+                                      <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="dropdown">
+                                  <label for="">DİĞER MESLEK</label>
                                   <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
                                     <option [value]="0">Seciniz</option>
-                                    <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
+                                    <option  *ngFor="let jbs of digerjobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
                                   </select>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="formGroupExampleInput2">EHLIYET DURUMUNUZ</label>
+                                  <label for="formGroupExampleInput2">EHLİYET DURUMUNUZ</label>
                                   <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet">
                                       <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
                                       
@@ -236,7 +251,7 @@
                         <div class="row text-center">
                             <div class="col-xs-12">
                                 <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" data-toggle="modal" data-target="#somemod" [disabled]="!f.form.valid">KAYIT OL</button>
-                                <h5 style="color: #747574;">Zaten hesabiniz var mi?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giris Yapin</a> </h5> 
+                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giriş Yapın</a> </h5> 
                             </div>
                         </div>
                     

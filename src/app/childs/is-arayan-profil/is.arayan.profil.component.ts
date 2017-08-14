@@ -42,6 +42,10 @@ export class IsArayanProfilComponent {
   foo: any;
   fileImage: any = false;
   pphoto: any;
+  notequal: any =false;
+
+  operation: any = {};
+  operationfault: any = {};
 
 
 	constructor(
@@ -169,9 +173,16 @@ export class IsArayanProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              this.router.navigate([uri]);
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
+              
             }else{
-              //give a message
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -181,6 +192,8 @@ export class IsArayanProfilComponent {
             this.router.navigate(['/home']);
          }
       )
+    }else{
+      this.notequal = true;
     }
     
   }
@@ -203,10 +216,14 @@ export class IsArayanProfilComponent {
                     (success)=> {
                       
                       if(this.responser(success)){
-                        location.reload();
+                        this.operation.status = success.status;
+                        this.operation.text = success.userMessage;
+                        setTimeout(()=>{ 
+                         location.reload();
+                        }, 3000);
                       }else{
-                        //give a message
-                        console.log(success)
+                        this.operationfault.status = success.status;
+                        this.operationfault.text = success.userMessage;
                       }
                       
                     }
@@ -216,12 +233,16 @@ export class IsArayanProfilComponent {
                       //this.router.navigate(['/home']);
                    }
                 )
-              }else{
-                //location.reload();
               }
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
+              
             }else{
-              //give error
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -249,10 +270,14 @@ export class IsArayanProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
             }else{
-              //give a message
-              console.log(success)
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -277,10 +302,14 @@ export class IsArayanProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
             }else{
-              //give a message
-              console.log(success)
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -305,10 +334,14 @@ export class IsArayanProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
             }else{
-              //give a message
-              console.log(success)
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -333,10 +366,14 @@ export class IsArayanProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 3000);
             }else{
-              //give a message
-              console.log(success)
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }

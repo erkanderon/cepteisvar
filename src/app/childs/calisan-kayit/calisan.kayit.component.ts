@@ -23,6 +23,7 @@ export class CalisanKayitComponent {
   ct: any = 0;
   selectedDevice: any;
   jobs: any = 0;
+  digerjobs: any = 0;
   genders: any;
   fields: any;
   military: any;
@@ -31,6 +32,9 @@ export class CalisanKayitComponent {
   education: any;
   epost: any;
   sozlesmeerror: any=false;
+
+  operation: any={};
+  operationfault: any={};
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router) { 
 		jQuery(document).ready(function () {
@@ -54,6 +58,11 @@ export class CalisanKayitComponent {
 	onJobChange(newValue) {
 		
 		this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
+
+	}
+	onJobChangeDiger(newValue) {
+		
+		this.digerjobs = this._pub.getJobFieldList(newValue).then(jobs => this.digerjobs = jobs);
 
 	}
 	checker(value) {
@@ -87,9 +96,13 @@ export class CalisanKayitComponent {
 				      
 				      if(this.responser(success)){
 				      	//this.router.navigate(['/calisan-giris']);
+				      	this.operation.status = success.status;
+						this.operation.text = success.userMessage;
+
+						
 				      }else{
-				      	//this.router.navigate(['/home']);
-				      	console.log(success);
+				      	this.operationfault.status = success.status;
+              			this.operationfault.text = success.userMessage;
 				      }
 				      
 				    }
@@ -116,9 +129,16 @@ export class CalisanKayitComponent {
 		    (success)=> {
 		      
 		      if(this.responser(success)){
-		      	this.router.navigate(['/calisan-giris']);
+		      	
+		      	this.operation.status = success.status;
+				this.operation.text = success.userMessage;
+
+				setTimeout(()=>{ 
+	               this.router.navigate(['/calisan-giris']);
+	              }, 3000);
 		      }else{
-		      	console.log(success);
+		      	this.operationfault.status = success.status;
+              	this.operationfault.text = success.userMessage;
 		      }
 		      
 		    }
