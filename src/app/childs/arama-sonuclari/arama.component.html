@@ -91,21 +91,38 @@
                                       <option>2</option>
                                       <option>3</option>
                                     </select>
+
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <select id="" class="form-control" name="educate" [ngModel]="educate">
-                                    <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
-                                    
-                                </select>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">Egitim Durumu Seciniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
+                                    <ul class="dropdown-menu" style="width: 225px; height: 120px; overflow: auto;     position: relative;">
+                                      <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of education.data" ><input (change)="xxx($event, jbs.TYPE_ID)" type="checkbox" [value]="jbs.TYPE_ID" />&nbsp;{{jbs.EDUCATION_LEVEL}}</a></li>
+                                      
+                                    </ul>
+                                </div>
                             </div>
                             
                             <div class="form-group">
-                                <select id="" class="form-control">
-                                  <option hidden>Mesleki Yeterlilik Sertifikasi Seciniz</option>
-                                  <option>VAR</option>
-                                  <option>YOK</option>
-                                </select>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">Askerlik Durumu Seciniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
+                                    <ul class="dropdown-menu" style="width: 225px; height: 120px; overflow: auto;     position: relative;">
+                                      <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of military.data" ><input (change)="xxx($event, jbs.TYPE)" type="checkbox" [value]="jbs.TYPE" />&nbsp;{{jbs.STATUS}}</a></li>
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">Ehliyet Seciniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
+                                    <ul class="dropdown-menu" style="width: 225px; height: 120px; overflow: auto;     position: relative;">
+                                      <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of driver.data" ><input (change)="xxx($event, jbs.ID)" type="checkbox" [value]="jbs.ID" />&nbsp;{{jbs.LICENSE_TYPE}}</a></li>
+                                      
+                                    </ul>
+                                </div>
                             </div>
 
                             

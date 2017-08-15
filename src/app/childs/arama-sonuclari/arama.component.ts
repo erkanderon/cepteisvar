@@ -28,7 +28,7 @@ export class AramaComponent {
 	searchIsModel: any=[];
 	il: any; jobcat: any; cinsiyet: any;
 
-	genders: any; education:any;
+	genders: any; education:any; military: any; driver:any;
 
 
 	filterClear: any = {};
@@ -98,9 +98,10 @@ export class AramaComponent {
   			this.islogged = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='business');
   		}
 
-
+  		this.military = this._pub.getMilitaryChoices().then(military => this.military = military);
   		this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
   		this.cities = this._pub.getCities().then(cities => this.cities = cities);
+  		this.driver = this._pub.getDriverLicenseTypes().then(driver => this.driver = driver);
 	    
 	}
 
