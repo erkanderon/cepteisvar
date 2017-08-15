@@ -93,9 +93,9 @@ export class SMSGonderComponent {
 			    	this._pub.sepetModel ={};
 			    	this.operation = true;
 
-			    	setTimeout(()=>{ 
+			    	/*setTimeout(()=>{ 
 					   this.router.navigate([uri, {foo: "profil"}]);
-					  }, 3000);
+					  }, 3000);*/
 				      
 				    
 			     	
@@ -105,9 +105,9 @@ export class SMSGonderComponent {
 			      this.operationfault.status = true;
 				  this.operationfault.text = success.userMessage;
 			      //this.operationText = success.userMessage;
-			      setTimeout(()=>{ 
-					   this.router.navigate([uri, {foo: "profil"}]);
-					  }, 3000);
+			      /*setTimeout(()=>{ 
+				   this.router.navigate([uri, {foo: "profil"}]);
+				  }, 3000);*/
 			    }
 			    
 			  }

@@ -128,6 +128,14 @@ export class AramaComponent {
 		}
 		
 	}
+	canSeeProfile(id){
+		if(this.islogged){
+			this.router.navigate(['/calisan-profil', id]);
+		}else{
+			this.router.navigate(['/isveren-giris']);
+		}
+		
+	}
 	addToSearchModel(val, jid){
 
 		if(val.target.checked){
@@ -150,7 +158,7 @@ export class AramaComponent {
 
     this.profiles = this._post.searchWorker(JSON.stringify(model)).then(profiles => this.profiles = profiles);
     
-    
+    console.log(this._post.searchWorker(JSON.stringify(model)).then(profiles => this.profiles = profiles));
   }
   
   	

@@ -61,7 +61,7 @@
                             </div>
                             <hr>
                             <div class="form-group" style="padding: 10px 20px 40px 20px;">
-                                <button href class="btn btn-default col-xs-6 isveren">TEMIZLE</button>
+                                <button href class="btn btn-default col-xs-6 isveren" style="color:#fff200;">TEMIZLE</button>
                                 <button class="btn btn-default col-xs-6 calisan" (click)="searchPerson(searchForm)">ARA</button>
                             </div>
                             <hr>
@@ -69,13 +69,7 @@
                                 <h4 class="text-center">FİLTRELER</h4>
                                 <img class="img img-responsive" style="margin: 0 auto; width: 50%;" src='assets/images/HeaderBottomLine.png'>
                             </div>
-                            <div class="form-group">
-                                <select id="" class="form-control">
-                                  <option>Ilce Seciniz</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                            </div>
+                            
                             <div class="form-group">
                                 <select id="" class="form-control">
                                   <option>Cinsiyet Seciniz</option>
@@ -106,13 +100,7 @@
                                   <option>3</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <select id="" class="form-control">
-                                  <option>Engelli Durumu Seciniz</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                            </div>
+                            
                             <div class="form-group">
                                 <select id="" class="form-control">
                                   <option>Mesleki Yeterlilik Sertifikasi Seciniz</option>
@@ -129,10 +117,10 @@
             </div>
             <div class="col-xs-9">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <!--<div class="col-xs-12">
                         <h4 class="text-center">ARAMA SONUCLARI</h4>
                         <img class="img img-responsive" style="margin: 0 auto; width: 25%;" src='assets/images/HeaderBottomLine.png'>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
@@ -175,7 +163,7 @@
                                                     <i *ngIf="profile.CERTIFICATE===1" class="fa fa-bookmark-o" aria-hidden="true" style="color: black !important;"></i>
                                                     Mesleki Yeterlilik
                                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                    {{profile.CITY_NAME}}-{{profile.ADDRESS}}
+                                                    {{profile.CITY_NAME}}-{{profile.COUNTY_NAME}}
                                                 </div>
                                                 <p class="group inner list-group-item-text" style="padding: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                                     {{profile.DESCRIPTION}}</p>
@@ -183,7 +171,7 @@
                                                 <div class="group inner list-group-item-text text-center" >
                                                     
                                                         <div style="margin: 0 auto; display: table; ">
-                                                            <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', profile.USER_ID]" >PROFILI GORUNTULE</a>
+                                                            <a class="btn btn-success btn-group-lg" style=" width: 106px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="canSeeProfile(profile.USER_ID)" >PROFILI GORUNTULE</a>
                                                             <a class="btn btn-success btn-group-lg" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: left;
                             background: #fff200; border-color: #fff200;" (click)="directSms(profile)">SMS GONDER</a>
                                                         </div>
