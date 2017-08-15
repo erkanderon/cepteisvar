@@ -106,7 +106,7 @@ export class IsVerenProfilComponent {
 
         this.balance = this._post.previewAccountBalance({ "p_email": res.data[0].EMAIL}).then(balance => this.balance = balance);
         this.pphoto = this._post.getProfilePhoto(4200, res.data[0].COMPANY_ID);
-        console.log(this.pphoto)
+        console.log(this._post.getCompanyBasket({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms))
 	      
 	    }
 	  }

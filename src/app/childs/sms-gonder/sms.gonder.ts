@@ -119,7 +119,7 @@ export class SMSGonderComponent {
 			)
 		}else{
 			this.operationfault.status = true;
-			this.operationfault.text = "Bakiyeniz Yetersiz."
+			this.operationfault.text = " Hesabınızda yeterli miktarda SMS kredisi bulunmamaktadır. Lütfen Hesabım sayfasından SMS kredisi satın alınız."
 		}
 }
 	showPayment(e){

@@ -365,6 +365,7 @@
                             </div>
                             <div *ngIf="sms.data">
                               <div class="row" *ngFor="let sms of sms.data">
+
                                 <div class="col-xs-12">
                                   <div class="row timel">
                                     <div style="margin:10px 0px;">
@@ -372,7 +373,8 @@
                                         <p><strong>{{sms.CREATE_DATE}}</strong></p>
                                       </div>
                                       <div class="col-xs-4">
-                                        <p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>
+                                        <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->
+                                        <p>GONDERI STATUS:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
                                       </div>
                                       <div class="col-xs-4" >
                                         <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KISIYE GONDERILDI</p></a>

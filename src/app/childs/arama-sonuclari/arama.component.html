@@ -61,7 +61,7 @@
                             </div>
                             <hr>
                             <div class="form-group" style="padding: 10px 20px 40px 20px;">
-                                <button href class="btn btn-default col-xs-6 isveren" style="color:#fff200;">TEMIZLE</button>
+                                <button href class="btn btn-default col-xs-6 isveren" style="color:#fff200;" (click)="clearGender()">TEMIZLE</button>
                                 <button class="btn btn-default col-xs-6 calisan" (click)="searchPerson(searchForm)">ARA</button>
                             </div>
                             <hr>
@@ -71,10 +71,10 @@
                             </div>
                             
                             <div class="form-group">
-                                <select id="" class="form-control">
-                                  <option>Cinsiyet Seciniz</option>
-                                  <option>2</option>
-                                  <option>3</option>
+                                
+                                <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet" (ngModelChange)="onChangeGender($event)">
+                                    <option [value]="4">Seciniz</option>
+                                    <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
                                 </select>
                             </div>
                             <div class="row">
@@ -94,20 +94,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <select id="" class="form-control">
-                                  <option>Egitim Durumu Seciniz</option>
-                                  <option>2</option>
-                                  <option>3</option>
+                                <select id="" class="form-control" name="educate" [ngModel]="educate">
+                                    <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
+                                    
                                 </select>
                             </div>
                             
                             <div class="form-group">
                                 <select id="" class="form-control">
-                                  <option>Mesleki Yeterlilik Sertifikasi Seciniz</option>
-                                  <option>2</option>
-                                  <option>3</option>
+                                  <option hidden>Mesleki Yeterlilik Sertifikasi Seciniz</option>
+                                  <option>VAR</option>
+                                  <option>YOK</option>
                                 </select>
                             </div>
+
+                            
                             
                         </form>
                     </div>

@@ -26,7 +26,12 @@ export class AramaComponent {
 	jobs: any={};
 	cities: any;
 	searchIsModel: any=[];
-	il: any; jobcat: any;
+	il: any; jobcat: any; cinsiyet: any;
+
+	genders: any; education:any;
+
+
+	filterClear: any = {};
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
@@ -75,14 +80,18 @@ export class AramaComponent {
 		
 		this.il = -10;
 		this.jobcat = -10;
+		this.cinsiyet = 4;
+
+		this.genders = this._pub.getGenderTypes().then(genders => this.genders = genders);
+		this.education = this._pub.getEducationTypes().then(education => this.education = education);
 
 	  	if(!this._pub.getSearchModel() && !this._pub.getSearchParams()){
 	  		console.log("burdayim");
-	    	this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
+	    	this._pub.getHomepageMembers().then(profiles => this.setProfiles(profiles));
 	    }else{
 	    	console.log("degilim");
 	    	console.log(this._pub.getSearchParams());
-	    	this.profiles = this._post.searchWorker(this._pub.getSearchParams()).then(profiles => this.profiles = profiles);
+	    	this._post.searchWorker(this._pub.getSearchParams()).then(profiles => this.setProfiles(profiles));
 
 	    }
 	    if(!!localStorage.getItem('userrole')){
@@ -111,6 +120,12 @@ export class AramaComponent {
     
     	this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
 
+  	}
+
+  	setProfiles(param){
+  		this.profiles = param;
+  		this.filterClear = param;
+  		console.log(this.profiles);
   	}
 
 	createSepet(){
@@ -156,9 +171,30 @@ export class AramaComponent {
     console.log(model);
 
 
-    this.profiles = this._post.searchWorker(JSON.stringify(model)).then(profiles => this.profiles = profiles);
+    this._post.searchWorker(JSON.stringify(model)).then(profiles => this.setProfiles(profiles));
     
-    console.log(this._post.searchWorker(JSON.stringify(model)).then(profiles => this.profiles = profiles));
+  }
+
+
+
+
+  /* FILTER OPERATIONS */
+
+  clearFilter(){
+  	this.profiles = this.filterClear;
+  }
+  clearGender(){
+  	this.cinsiyet = '4';
+  }
+
+  onChangeGender(e){
+  	let temp = [];
+  	if(e==='1' || e==='2'){
+
+  		
+  	}else{
+  	
+  	}
   }
   
   	

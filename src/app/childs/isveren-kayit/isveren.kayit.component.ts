@@ -56,7 +56,7 @@ export class IsverenKayitComponent {
 	onSubmit(f: NgForm) {
     	//console.log(f.value.yetkili);  // { first: '', last: '' }
     	//console.log(f.valid);  // false
-    	let comp = new Company(f.value.firma, f.value.tckimlik.toString(), f.value.vergi, f.value.address, f.value.telefon.toString(), parseInt(f.value.sel2), f.value.eposta, f.value.yetkili, f.value.yettel.toString(), parseInt(f.value.cname), parseInt(f.value.isalani), f.value.parola);
+    	let comp = new Company(f.value.firma, f.value.tckimlik.toString(), f.value.vergi, f.value.address, f.value.telefon.toString(), parseInt(f.value.sel2), f.value.eposta, f.value.yetkili, f.value.yettel.toString(), parseInt(f.value.cname), "static", f.value.parola);
 
     	
     	this.epost = f.value.eposta;
