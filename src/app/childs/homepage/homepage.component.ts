@@ -59,6 +59,7 @@ export class HomeComponent {
 			   }
 
 			   jQuery( event.target ).blur();
+
 			      
 			   console.log( options );
 			   return false;
@@ -95,6 +96,8 @@ export class HomeComponent {
 	    console.log(this.profiles)
 	}
 	ngAfterContentInit() {
+
+	jQuery(".owl-prev" ).has("i").addClass("fa");
 
 	}
 	formatFields(f) {
