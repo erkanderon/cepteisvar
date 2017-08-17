@@ -32,7 +32,7 @@ export class AramaComponent {
 
 
 	filterClear: any = {};
-	filterParams: any = {};
+	filterParams: any = {}; homePageMembers:any = [];
 	filterEducation: any=[]; filterMilitary: any=[]; filterDriver:any =[]; filterGender: any; highAge: any; lowAge: any;
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
@@ -104,6 +104,7 @@ export class AramaComponent {
   		this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
   		this.cities = this._pub.getCities().then(cities => this.cities = cities);
   		this.driver = this._pub.getDriverLicenseTypes().then(driver => this.driver = driver);
+  		this._pub.getHomepageMembers().then(profiles => this.setHomePageProfiles(profiles));
 	    
 	}
 
@@ -127,8 +128,16 @@ export class AramaComponent {
 
   	setProfiles(param){
   		this.profiles = param;
-  		this.filterClear = param;
+  		this.filterClear = param.data;
   		console.log(this.profiles);
+  	}
+  	setHomePageProfiles(param){
+
+  		this.homePageMembers = param.data;
+  		console.log(this.homePageMembers);
+  	}
+  	clearSearch(){
+  		this.profiles.data = this.homePageMembers;
   	}
 
 	createSepet(){
@@ -184,7 +193,8 @@ export class AramaComponent {
   /* FILTER OPERATIONS */
 
   clearFilter(){
-  	this.profiles = this.filterClear;
+  	
+  	this.profiles.data = this.filterClear;
   }
   clearGender(){
   	this.cinsiyet = '4';
@@ -260,34 +270,12 @@ export class AramaComponent {
   	
   }
 
-  getFilterParams(){
-  	if(this.filterGender){
-  		this.filterParams.GENDER_ID = this.filterGender;
-  	}
-  	/*if(this.highAge && this.lowAge){
-  		this.filterParams.highAge = this.highAge;
-  		this.filterParams.lowAge = this.lowAge;
-  	}*/
-  	if(this.filterDriver.length!==0){
-  		this.filterParams.LICENSE_ID = this.filterDriver;
-  	}
-  	if(this.filterMilitary.length!==0){
-  		this.filterParams.MILITARY_ID = this.filterMilitary;
-  	}
-  	if(this.filterEducation.length!==0){
-  		this.filterParams.EDUCATION_ID = this.filterEducation;
-  	}
-  	for (var prop in this.filterParams) {
-        console.log("Key:" + prop);
-        console.log("Value:" + this.filterParams[prop]);
-    }
-  	return this.filterParams;
-  }
+  
 
   makeFilter(){
 
-  	let filt = this.getFilterParams();
-  	console.log(this.getAgePeople());
+  	
+  	
   	console.log(this.filterGender + " "+ this.highAge + " "+ this.lowAge + " "+ this.filterDriver.length + " "+ this.filterMilitary.length + " "+ this.filterEducation.length);
 
   	let result = [];
@@ -298,57 +286,77 @@ export class AramaComponent {
 
 	// Eger Her get fonksiyonu field kontrol edip aldigi arrayi filter edip yada direk geri donerse bu is cozulur.
 
+	this.profiles.data = this.getEducation(this.getAgePeople(this.getDriver(this.getMilitary(this.getGender(temp)))));
+
   	
   	console.log(result);
   }
 
-  getEducation(){
+  getEducation(array){
   	var result = [];
-  	for(let v of this.profiles.data){
-  		for(let k of this.filterEducation)
-  			if(v.EDUCATION_ID === k){
-  				result.push(v);
-  			}
-  	}
+  	if(this.filterEducation.length !== 0){
+	  	for(let v of array){
+	  		for(let k of this.filterEducation)
+	  			if(v.EDUCATION_ID === k){
+	  				result.push(v);
+	  			}
+	  	}
+	}else{
+		return array;
+	}
   	return result;
   }
-  getMilitary(){
+  getMilitary(array){
   	var result = [];
-  	for(let v of this.profiles.data){
-  		for(let k of this.filterMilitary)
-  			if(v.MILITARY_ID === k){
-  				result.push(v);
-  			}
-  	}
+  	if(this.filterMilitary.length !== 0){
+	  	for(let v of array){
+	  		for(let k of this.filterMilitary)
+	  			if(v.MILITARY_ID === k){
+	  				result.push(v);
+	  			}
+	  	}
+	}else{
+		return array;
+	}
   	return result;
   }
-  getDriver(){
+  getDriver(array){
   	var result = [];
-  	for(let v of this.profiles.data){
-  		for(let k of this.filterDriver)
-  			if(v.LICENSE_ID === k){
-  				result.push(v);
-  			}
-  	}
+  	if(this.filterDriver.length !== 0){
+	  	for(let v of array){
+	  		for(let k of this.filterDriver)
+	  			if(v.LICENSE_ID === k){
+	  				result.push(v);
+	  			}
+	  	}
+	}else{
+		return array;
+	}
   	return result;
   }
-  getGender(){
+  getGender(array){
   	var result = [];
-  	for(let v of this.profiles.data){
-  		if(v.GENDER_ID === this.filterGender){
-  		    result.push(v);
-  		}
-  	}
+  	if(this.filterGender){
+	  	for(let v of array){
+	  		if(v.GENDER_ID === this.filterGender){
+	  		    result.push(v);
+	  		}
+	  	}
+	}else{
+		return array;
+	}
   	return result;
   }
-  getAgePeople(){
+  getAgePeople(array){
   	var result = [];
   	if(this.lowAge && this.highAge){
-	  	for(let v of this.profiles.data){
+	  	for(let v of array){
 	  		if(v.AGE >= this.lowAge && v.AGE <=this.highAge){
 	  		    result.push(v);
 	  		}
 	  	}
+	}else{
+		return array;
 	}
   	return result;
   }
