@@ -5,18 +5,18 @@
       <section id="main_content" style="margin-top: -20px;">
           <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
               <div class="col-xs-12">
-                  <h3>IS ARAYAN PROFILI</h3>
+                  <h3>İŞ ARAYAN PROFİLİ</h3>
               </div>
           </div>
           <div class="row text-center">
               <div class="col-xs-12">
-                  <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Is Arayan Profili</a>
+                  <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İs Arayan Profili</a>
               </div>
           </div>
           <div class="row text-center toogle" style="margin-top: 20px;">
             <div class="col-xs-12">
               <div class="btn-group btn-group-lg">
-                <button type="button" href="#1a" data-toggle="tab" class="btn btn-default">PROFIL</button>
+                <button type="button" href="#1a" data-toggle="tab" class="btn btn-default">PROFİL</button>
                 <button type="button" href="#2a" data-toggle="tab" class="btn btn-default">YORUMLAR</button>
               </div>
             </div>
@@ -46,19 +46,19 @@
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                        <label for="formGroupExampleInput2">DOGUM TARIHI</label>
+                                        <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].BDAY}}</p>
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                        <label for="formGroupExampleInput2">SEHIR</label>
+                                        <label for="formGroupExampleInput2">ŞEHİR</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].CITY_NAME}}</p>
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">EGITIM DURUMU</label>
+                                          <label for="formGroupExampleInput2">EĞİTİM DURUMU</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].EDUCATION_LEVEL}}</p>
                                           </div>
@@ -70,13 +70,13 @@
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">DIGER MESLEK AÇIKLAMASI</label>
+                                          <label for="formGroupExampleInput2">DİĞER MESLEK AÇIKLAMASI</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].SECONDARY_JOB_DESCRIPTION}}</p>
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">EHLIYET DURUMU</label>
+                                          <label for="formGroupExampleInput2">EHLİYET DURUMU</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].DRIVER_LICENSE}}</p>
                                           </div>
@@ -92,20 +92,20 @@
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">CINSIYET</label>
+                                          <label for="formGroupExampleInput2">CİNSİYET</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].GENDER}}</p>
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">ILCE</label>
+                                          <label for="formGroupExampleInput2">İLÇE</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
                                           </div>
                                       </div>
                                       <div class="form-group row">
                                            <div class="col-xs-6"> 
-                                              <label for="formGroupExampleInput2">BIRINCIL MESLEK</label>
+                                              <label for="formGroupExampleInput2">BİRİNCİL MESLEK</label>
                                               <div class="">
                                                 <p class="form-control-static">{{profile.data[0].PRIMARY_JOB}}</p>
                                               </div>
@@ -118,13 +118,13 @@
                                             </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">DIGER MESLEK</label>
+                                          <label for="formGroupExampleInput2">DİĞER MESLEK</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].SECONDARY_JOB}}</p>
                                           </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="formGroupExampleInput2">ASKERLIK DURUMU</label>
+                                          <label for="formGroupExampleInput2">ASKERLİK DURUMU</label>
                                           <div class="">
                                             <p class="form-control-static">{{profile.data[0].MILITARY_SERVICE_STATUS}}</p>
                                           </div>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-xs-12 text-center">
-                                    <h5><strong>Son 60 gun icerisinde calistigi islere yapilan yorumlar asagida listelenmektedir</strong></h5>
+                                    <h5><strong>Son 60 gün içerisinde çalıştığı işlere yapılan yorumlar aşağıda listelenmektedir</strong></h5>
                                   </div>
                                 </div>
                                 <div *ngIf="comments.data">
@@ -180,8 +180,8 @@
                               <div class="row text-center">
                                   <div class="col-xs-12" *ngIf="profile.data">
                                       <div class="btn-group">
-                                        <a type="button" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
-                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="checkCompanyForSMS(profile.data[0])">SMS GONDER</a>
+                                        <a type="button" class="btn btn-default isveren" style="min-width: 100px;">VAZGEÇ</a>
+                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="checkCompanyForSMS(profile.data[0])">SMS GÖNDER</a>
                                       </div>
                                   </div>
                               </div>

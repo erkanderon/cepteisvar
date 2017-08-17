@@ -51,7 +51,7 @@
                                 <input type="text" [ngModel]="isim" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adinizi Giriniz" #ad="ngModel" required>
                                 <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!ad.errors.required">
-                                    Ad Bos Birakilamaz!
+                                    Ad Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -62,7 +62,7 @@
                                 <input type="date" [ngModel]="dtarihi" name="dtarihi" class="form-control" id="formGroupDate" #dtarih="ngModel" required>
                                 <div *ngIf="dtarih.errors && (dtarih.dirty || dtarih.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!dtarih.errors.required">
-                                    Dogum Tarihi Bos Birakilamaz!
+                                    Doğum Tarihi Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -72,7 +72,7 @@
                                 <input type="number" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="" #cont="ngModel" required>
                                 <div *ngIf="cont.errors && (cont.dirty || cont.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!cont.errors.required">
-                                    Telefon Bos Birakilamaz!
+                                    Telefon Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -82,14 +82,14 @@
                                 <input type="email" name="eposta" [ngModel]="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta" #eps="ngModel" required>
                                 <div *ngIf="eps.errors && (eps.dirty || eps.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!eps.errors.required">
-                                    E-Posta Bos Birakilamaz!
+                                    E-Posta Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
                                   <div class="dropdown">
-                                    <label for="">SEHIR</label>
+                                    <label for="">ŞEHİR</label>
                                     <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)">
                                       <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                     </select>
@@ -97,7 +97,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                    <label for="">IŞ KATEGORİNİZ</label>
+                                    <label for="">İŞ KATEGORİNİZ</label>
                                     <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)">
                                       <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
                                     </select>
@@ -117,7 +117,7 @@
                                       <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube" #tecr="ngModel" required>
                                       <div *ngIf="tecr.errors && (tecr.dirty || tecr.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                         <div [hidden]="!tecr.errors.required">
-                                          Tecrube Bos Birakilamaz!
+                                          Tecrube Boş Bırakılamaz!
                                         </div>
                                         
                                       </div>
@@ -136,7 +136,7 @@
                                 <input type="password" name="parola" [ngModel]="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola" #par="ngModel" required>
                                 <div *ngIf="par.errors && (par.dirty || par.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!par.errors.required">
-                                    Parola Bos Birakilamaz!
+                                    Parola Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -150,7 +150,7 @@
                               </div>
                               <div class="form-group">
                                 <label class="form-check-label txt">
-                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="http://cepteisvar.cboxpay.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="http://cepteisvar.cboxpay.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası'nı</a> onaylıyorum.
+                                  <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="https://www.cepteisvar.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="https://www.cepteisvar.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası'nı</a> onaylıyorum.
                                 </label>
                                 
                                 <div *ngIf="sozlesmeerror" class="alert alert-danger" style="margin-top: 5px;">
@@ -168,7 +168,7 @@
                                 <input type="text" class="form-control" id="formGroupExampleInput" [ngModel]="soyad" placeholder="Soyadinizi Giriniz" name="soyad" #soad="ngModel" required>
                                 <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!soad.errors.required">
-                                    Soyad Bos Birakilamaz!
+                                    Soyad Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -186,7 +186,7 @@
                                 <input type="text" name="adres" class="form-control" [ngModel]="adres" id="formGroupExampleInput2" placeholder="" #res="ngModel" required>
                                 <div *ngIf="res.errors && (res.dirty || res.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!res.errors.required">
-                                    Adres Bos Birakilamaz!
+                                    Adres Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -239,7 +239,7 @@
                                 <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz" #par2="ngModel" required>
                                 <div *ngIf="par2.errors && (par2.dirty || par2.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!par2.errors.required">
-                                    Parola Bos Birakilamaz!
+                                    Parola Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -290,8 +290,8 @@
       <div class="modal-footer" style="text-align: center;">
         <div class="btn-group">
 
-          <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
-          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GONDER</a>
+          <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GÖNDER</a>
         
         </div>
       </div>

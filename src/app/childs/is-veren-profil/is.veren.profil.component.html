@@ -4,23 +4,23 @@
 		<section id="main_content" style="margin-top: -20px;">
     <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
         <div class="col-xs-12">
-            <h3>ISVEREN PROFIL</h3>
+            <h3>İŞVEREN PROFİL</h3>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-xs-12">
-            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Is Veren Profil</a>
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İş Veren Profil</a>
         </div>
     </div>
     <div class="row text-center toogle" style="margin-top: 20px;">
       <div class="col-xs-12">
         <div class="btn-group btn-group-lg">
-          <button type="button" id="profil" (click)="navigateParam('profil')" data-toggle="tab" data-target="#1a" class="btn btn-default">PROFIL</button>
-          <button type="button"  id="smslerim" (click)="navigateParam('smslerim')" data-toggle="tab" data-target="#3a"  class="btn btn-default" style="border:none;">GIDEN SMSLERIM</button>
+          <button type="button" id="profil" (click)="navigateParam('profil')" data-toggle="tab" data-target="#1a" class="btn btn-default">PROFİL</button>
+          <button type="button"  id="smslerim" (click)="navigateParam('smslerim')" data-toggle="tab" data-target="#3a"  class="btn btn-default" style="border:none;">GİDEN SMSLERİM</button>
           <button type="button"  id="yorumlar" (click)="navigateParam('yorumlar')" data-toggle="tab" data-target="#2a"  class="btn btn-default" style="border:none;">YORUMLAR</button>
-          <button type="button"  id="password" (click)="navigateParam('password')" data-toggle="tab" data-target="#4a"  class="btn btn-default" style="border:none;">PAROLA DEGISTIR</button>
+          <button type="button"  id="password" (click)="navigateParam('password')" data-toggle="tab" data-target="#4a"  class="btn btn-default" style="border:none;">PAROLA DEĞİŞTİR</button>
           <button type="button"  id="hesabim" (click)="navigateParam('hesabim')" data-toggle="tab" data-target="#5a"  class="btn btn-default" style="border:none;">HESABIM</button>
-          <button type="button"  id="sepetim" (click)="navigateParam('sepetim')" data-toggle="tab" data-target="#6a"  class="btn btn-default" style="border:none;">SEPETIM</button>
+          <button type="button"  id="sepetim" (click)="navigateParam('sepetim')" data-toggle="tab" data-target="#6a"  class="btn btn-default" style="border:none;">SEPETİM</button>
         </div>
       </div>
     </div>
@@ -42,20 +42,20 @@
                             <div class="col-xs-3 text-center"></div>
                             <div class="col-xs-6">
                               <div class="col-xs-12">
-                                <h6  style="float:right;" (click)="setNumber(1)"><button style="text-decoration: none; color: black;"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>&nbsp;Profilimi Duzenle</button></h6>
+                                <h6  style="float:right;" (click)="setNumber(1)"><button style="text-decoration: none; color: black;"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>&nbsp;Profilimi Düzenle</button></h6>
                               </div>
                             </div>
                         </div>
                         <div *ngIf="state === 0">
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
+                                <label for="formGroupExampleInput2">FİRMA / KİŞİ ADI</label>
                                 <div class="">
                                   <p class="form-control-static">{{profile.data[0].COMPANY_NAME}}</p>
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                 <div class="">
                                   <p class="form-control-static">{{profile.data[0].CONTACT_PERSON}}</p>
                                 </div>
@@ -67,13 +67,13 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">VERGI ADRESI</label>
+                                <label for="formGroupExampleInput2">VERGİ ADRESİ</label>
                                 <div class="">
                                   <p class="form-control-static">{{profile.data[0].TAX_REGION}}</p>
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">SEHIR</label>
+                                <label for="formGroupExampleInput2">ŞEHİR</label>
                                 <div class="">
                                   <p class="form-control-static">{{profile.data[0].CITY}}</p>
                                 </div>
@@ -87,13 +87,13 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                  <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                  <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
                                   <div class="">
                                     <p class="form-control-static">{{profile.data[0].CONTACT_PERSON_NO}}</p>
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                  <label for="formGroupExampleInput2">VERGİ / TC KİMLİK NO</label>
                                   <div class="">
                                     <p class="form-control-static">{{profile.data[0].TAX_NUMBER}}</p>
                                   </div>
@@ -105,7 +105,7 @@
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label for="formGroupExampleInput2">ILCE</label>
+                                  <label for="formGroupExampleInput2">İLÇE</label>
                                   <div class="">
                                     <p class="form-control-static">{{profile.data[0].COUNTY_NAME}}</p>
                                   </div>
@@ -125,26 +125,26 @@
                         <div *ngIf="state === 1">
                             <div class="col-xs-6" style="padding: 0px 50px;" *ngIf="profile.data">
                                 <div class="form-group">
-                                  <label for="formGroupExampleInput2">FIRMA / KISI ADI</label>
+                                  <label for="formGroupExampleInput2">FİRMA / KİŞİ ADI</label>
                                   <div class="">
                                      <input type="text" [ngModel]="cn" name="cn" class="form-control" id="firma" [value]="" #firma="ngModel" required >
 
                                   </div>
                                   <div *ngIf="firma.errors && (firma.dirty || firma.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!firma.errors.required">
-                                      Firma Adi Bos Birakilamaz!
+                                      Firma Adı Boş Bırakılamaz!
                                     </div>
                                     
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                  <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                   <div class="">
                                     <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required >
                                   </div>
                                   <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!person.errors.required">
-                                      Yetkili Kisi Bos Birakilamaz!
+                                      Yetkili Kişi Boş Bırakılamaz!
                                     </div>
                                     
                                   </div>
@@ -156,25 +156,25 @@
                                   </div>
                                   <div *ngIf="eposta.errors && (eposta.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!eposta.errors.required">
-                                      E-Posta Bos Birakilamaz!
+                                      E-Posta Boş Bırakılamaz!
                                     </div>
                                     
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="formGroupExampleInput2">VERGI ADRESI</label>
+                                  <label for="formGroupExampleInput2">VERGİ ADRESİ</label>
                                   <div class="">
                                     <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required>
                                   </div>
                                   <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!vergi.errors.required">
-                                      Vergi Adresi Bos Birakilamaz!
+                                      Vergi Adresi Boş Bırakılamaz!
                                     </div>
                                     
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="formGroupExampleInput2">SEHIR</label>
+                                  <label for="formGroupExampleInput2">ŞEHİR</label>
                                   <div class="dropdown">
                                     <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
                                       <option  *ngFor="let city of cities.data"  [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
@@ -191,31 +191,31 @@
                                   </div>
                                   <div *ngIf="telefon.errors && (telefon.dirty || telefon.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!telefon.errors.required">
-                                      Telefon Bos Birakilamaz!
+                                      Telefon Boş Bırakılamaz!
                                     </div>
                                     
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                    <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
                                     <div class="">
                                       <input type="number" [ngModel]="rpn" name="rpn" class="form-control" id="firma" #yetkilitel="ngModel" required>
                                     </div>
                                     <div *ngIf="yetkilitel.errors && (yetkilitel.dirty || yetkilitel.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!yetkilitel.errors.required">
-                                        Telefon Bos Birakilamaz!
+                                        Telefon Boş Bırakılamaz!
                                       </div>
                                       
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                    <label for="formGroupExampleInput2">VERGİ / TC KİMLİK NO</label>
                                     <div class="">
                                       <input type="number" [ngModel]="taxn" name="taxn" class="form-control" id="firma" #tckimlik="ngModel" required>
                                     </div>
                                     <div *ngIf="tckimlik.errors && (tckimlik.dirty || tckimlik.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!tckimlik.errors.required">
-                                        Vergi Bos Birakilamaz!
+                                        Vergi Boş Bırakılamaz!
                                       </div>
                                       
                                     </div>
@@ -227,13 +227,13 @@
                                     </div>
                                     <div *ngIf="adres.errors && (adres.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!adres.errors.required">
-                                        Adres Bos Birakilamaz!
+                                        Adres Boş Bırakılamaz!
                                       </div>
                                       
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">ILCE</label>
+                                    <label for="formGroupExampleInput2">İLÇE</label>
                                     <div class="dropdown">
                                       <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
                                         <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
@@ -246,7 +246,7 @@
                               <div class="col-xs-12">
                                   <div class="btn-group">
 
-                                    <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEC</a>
+                                    <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEÇ</a>
                                     <button type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editCompanyForm(editcompany)" [disabled]="!editcompany.form.valid">KAYDET</button>
                                   <!-- data-toggle="modal" data-target="#myModal" -->
                                   </div>
@@ -318,7 +318,7 @@
                           </div>
                           <div class="row">
                             <div class="col-xs-12">
-                              <h5><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
+                              <h5><strong>Son 60 gün içerisinde aldığınız mesajlar aşağıda listelenmektedir</strong></h5>
                             </div>
                           </div>
                           <div *ngIf="comments.data">
@@ -360,7 +360,7 @@
                           <div *ngIf="detail === 0">
                             <div class="row">
                               <div class="col-xs-12">
-                                <h5 class="text-center"><strong>Son 60 gun icerisinde aldiginiz mesajlar asagida listelenmektedir</strong></h5>
+                                <h5 class="text-center"><strong>Son 60 gün içerisinde aldığınız mesajlar aşağıda listelenmektedir</strong></h5>
                               </div>
                             </div>
                             <div *ngIf="sms.data">
@@ -374,10 +374,10 @@
                                       </div>
                                       <div class="col-xs-4">
                                         <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->
-                                        <p>GONDERI STATUS:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
+                                        <p>GONDERİ STATÜSÜ:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
                                       </div>
                                       <div class="col-xs-4" >
-                                        <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KISIYE GONDERILDI</p></a>
+                                        <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KİŞİYE GÖNDERİLDİ</p></a>
                                       </div>
                                     </div>
                                   </div>
@@ -397,8 +397,8 @@
                                         <div class="row" *ngIf="model.length">
                                           <div class="col-xs-12" *ngIf="1" style="margin: 0 auto; display: table; ">
                                             <div style="float:right; padding: 0px 15px;">
-                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: black; float: left; background: #fff200; border-color: #fff200;" (click)="setNoComment(3)">BU ADAY ILE CALISMADIK</a>
-                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="setNoComment(2)">YORUM YAPMAK ISTEMIYORUM</a>
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: black; float: left; background: #fff200; border-color: #fff200;" (click)="setNoComment(3)">BU ADAY İLE ÇALIŞMADIK</a>
+                                              <a class="btn btn-success btn-group-lg" style=" font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" (click)="setNoComment(2)">YORUM YAPMAK İSTEMİYORUM</a>
                                             </div>
                                           </div>
                                         </div>
@@ -436,7 +436,7 @@
                                                           
                                                       </div>
                                                       <div *ngIf="bsk.COMMENTED_STATUS===1">
-                                                        <strong>BU ADAY ICIN YORUM YAPTINIZ</strong>
+                                                        <strong>BU ADAY İÇİN YORUM YAPTINIZ</strong>
                                                       </div>
                                                       <div *ngIf="bsk.COMMENTED_STATUS===2">
                                                         <strong></strong>
@@ -454,7 +454,7 @@
                                   <div class="col-xs-12">
                                       <div class="btn-group" (click)="setDetail(0, null)">
                                         
-                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" >GERI DON</a>
+                                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" >GERI DÖN</a>
                                       </div>
                                   </div>
                               </div>
@@ -474,7 +474,7 @@
                               <input type="password" class="form-control" [(ngModel)]="oldpass" name="oldpass" id="formGroupExampleInput" placeholder="Eski Parola" #old="ngModel" required>
                               <div *ngIf="old.errors && (old.dirty || old.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                 <div [hidden]="!old.errors.required">
-                                  Eski Parolaniz Bos Birakilamaz!
+                                  Eski Parolaniz Boş Bırakılamaz!
                                 </div>
                                 
                               </div>
@@ -484,7 +484,7 @@
                               <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #new="ngModel" required>
                               <div *ngIf="new.errors && (new.dirty || new.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                 <div [hidden]="!new.errors.required">
-                                  Yeni Parolaniz Bos Birakilamaz!
+                                  Yeni Parolaniz Boş Bırakılamaz!
                                 </div>
                                 
                               </div>
@@ -494,7 +494,7 @@
                               <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newagain="ngModel" required>
                               <div *ngIf="newagain.errors && (newagain.dirty || newagain.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                 <div [hidden]="!newagain.errors.required">
-                                  Yeni Parolaniz Bos Birakilamaz!
+                                  Yeni Parolaniz Boş Bırakılamaz!
                                 </div>
                                 
                               </div>
@@ -503,7 +503,7 @@
                           <div class="row text-center">
                             <div class="col-xs-12">
                                 <div class="btn-group">
-                                  <a type="button" class="btn btn-default isveren" style="min-width: 100px;" (click)="cancel()">VAZGEC</a>
+                                  <a type="button" class="btn btn-default isveren" style="min-width: 100px;" (click)="cancel()">VAZGEÇ</a>
                                   <button type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changePassword(passform)" [disabled]="!passform.form.valid">KAYDET</button>
                                 </div>
                             </div>
@@ -515,8 +515,8 @@
                             
                             <div class="row opti" *ngIf="promotions.data">
                               <div style="padding: 0px 15px;" *ngIf="balance.data">
-                                <div class="hesap" style="margin-right: 15px;">HESABIMDA TANIMLI SMS KREDISI: {{balance.data.ACCOUNT_BALANCE}}</div>
-                                <label class="col-xs-12">SMS PAKETLERI:</label>
+                                <div class="hesap" style="margin-right: 15px;">HESABIMDA TANIMLI SMS KREDİSİ: {{balance.data.ACCOUNT_BALANCE}}</div>
+                                <label class="col-xs-12">SMS PAKETLERİ:</label>
                               </div>  
                                 <div class="col-xs-12 row">
                                   <div class="col-xs-4" *ngFor="let prm of promotions.data">
@@ -551,8 +551,8 @@
                             <div class="row text-center" style="margin-top: 50px; min-width: 400px;">
                               <div class="col-xs-12">
                                   <div class="btn-group">
-                                    <a type="button" class="btn btn-default isveren" style="min-width: 200px;" (click)="buySms()" data-toggle="modal" data-target="#krediModal">KREDI KARTI ILE ODE</a>
-                                    <a type="button" class="btn btn-default calisan" style="min-width: 200px;" data-toggle="modal" data-target="#eftModal">EFT/HAVALE ILE ODEME YAP</a>
+                                    <a type="button" class="btn btn-default isveren" style="min-width: 200px;" (click)="buySms()" data-toggle="modal" data-target="#krediModal">KREDİ KARTI İLE ÖDE</a>
+                                    <a type="button" class="btn btn-default calisan" style="min-width: 200px;" data-toggle="modal" data-target="#eftModal">EFT/HAVALE İLE ÖDEME YAP</a>
                                   </div>
                               </div>
                             </div>
@@ -563,7 +563,7 @@
                         <div id="6a" class="tab-pane yorumlar">
                           <div *ngIf="basket.length">
                             <div class="row">
-                              <a class="btn btn-success" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: right; background: #fff200; border-color: #fff200; margin: 0px 30px;" routerLink="/sms-gonder">SMS GONDER</a>
+                              <a class="btn btn-success" style="width: 106px; font-size: 9px; border-radius: 0px;  color: black; float: right; background: #fff200; border-color: #fff200; margin: 0px 30px;" routerLink="/sms-gonder">SMS GÖNDER</a>
                             </div>
 
                             <div *ngFor="let sepet of basket" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
@@ -594,7 +594,7 @@
                                             <div class="group inner list-group-item-text text-center">
                                                 
                                                         <div style="margin: 0 auto; display: table; ">
-                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', sepet.USER_ID]">PROFILI GORUNTULE</a>
+                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', sepet.USER_ID]">PROFİLİ GÖRÜNTÜLE</a>
                                                         
                                                     </div>
                                                     
@@ -624,7 +624,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-center">CEP TELEFONU DOGRULAMA</h4>
+        <h4 class="modal-title text-center">CEP TELEFONU DOĞRULAMA</h4>
       </div>
       <div class="modal-body">
         <p>Cep Telefonu numaranızda değişiklik yapmak istediğiniz için yeni numaranızı
@@ -640,8 +640,8 @@
       <div class="modal-footer" style="text-align: center;">
         <div class="btn-group">
 
-          <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
-          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">GONDER</a>
+          <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">GÖNDER</a>
         
         </div>
       </div>
@@ -663,8 +663,8 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-xs-12" style="margin-left: 20%;">
-            <h4>Sirket Unvani: <span class="label label-default">Marti Kurumsal Hizmetler</span></h4>
-            <h4>Banka Adi: <span class="label label-default">Yapi Kredi Bankasi</span></h4>
+            <h4>Şirket Unvanı: <span class="label label-default">Marti Kurumsal Hizmetler</span></h4>
+            <h4>Banka Adı: <span class="label label-default">Yapı Kredi Bankasi</span></h4>
             <h4>IBAN No: <span class="label label-default">TR98 0006 7010 0000 0048 4363 51</span></h4>
           </div>
         </div>
@@ -787,7 +787,7 @@
       <div class="modal-footer" style="text-align: center;">
         <div class="btn-group">
 
-          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">ODEME YAP</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal">ÖDEME YAP</a>
         
         </div>
       </div>
@@ -834,7 +834,7 @@
         <div class="row text-center">
           <div class="col-xs-12">
               <div class="btn-group">
-                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
+                <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
                 <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="makeComment(makecomment)">KAYDET</a>
               </div>
           </div>

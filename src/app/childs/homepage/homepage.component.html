@@ -54,8 +54,8 @@
 	    				</div>-->
 	    				<div class="col-xs-12" >
 		    				<ul class="nav nav-pills nav-justified" style="margin: 0 auto;">
-		    					<li class="active"><a href="#1a" data-toggle="tab" style="border-bottom: inherit; color: inherit; border-radius: inherit;">CALISAN ARIYORUM</a></li>
-							    <li><a href="#2a" data-toggle="tab" style="border-bottom: inherit; color:inherit;border-radius: inherit;">KAYIT OLMAK ISTIYORUM</a></li>
+		    					<li class="active"><a href="#1a" data-toggle="tab" style="border-bottom: inherit; color: inherit; border-radius: inherit;">ÇALIŞAN ARIYORUM</a></li>
+							    <li><a href="#2a" data-toggle="tab" style="border-bottom: inherit; color:inherit;border-radius: inherit;">KAYIT OLMAK İSTİYORUM</a></li>
 							</ul>
 						</div>
 
@@ -66,7 +66,7 @@
 
 							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required >
 								    
-								    <option [value]="-10" disabled hidden>Kategori Seciniz</option>
+								    <option [value]="-10" disabled hidden>Kategori Seçiniz</option>
                 					<option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
 
 
@@ -84,7 +84,7 @@
 							  <div class="row input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 							       <div class="col-lg-12">
 							     <div class="button-group">
-							        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">Is Seciniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
+							        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">İş Seçiniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
 									<ul class="dropdown-menu" style="width: 300px; height: 200px; overflow: auto">
 									  <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of jobs.data" ><input (change)="addToModel($event, jbs.ID)" type="checkbox" [value]="jbs.ID" />&nbsp;{{jbs.JOB_NAME}}</a></li>
 									  
@@ -94,7 +94,7 @@
 							  </div>
 							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
 								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="" required [ngModel]="il" name="il">
-								  	<option [value]="-10" disabled hidden>Sehir Seciniz</option>
+								  	<option [value]="-10" disabled hidden>Şehir Seçiniz</option>
 								    <option [value]="city.CITY_ID" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
 								  </select>
 							  </div>
@@ -102,12 +102,12 @@
 							  <button type="submit" class="form-control search" (click)="search(searchPerson)"><i class="fa fa-search fa-2x" style="color:black; font-size: 16px;" aria-hidden="true"></i></button>
 							</form>
 							<div id="2a" class="text-center tab-pane" style="margin-bottom: 20px;">
-								<a routerLink="/isveren-kayit" class="btn btn-default isv">ISVEREN KAYIT</a>
-								<a routerLink="/calisan-kayit" class="btn btn-default kyt">CALISAN KAYIT</a>
+								<a routerLink="/isveren-kayit" class="btn btn-default isv">İŞVEREN KAYIT</a>
+								<a routerLink="/calisan-kayit" class="btn btn-default kyt">ÇALIŞAN KAYIT</a>
 							</div>
 	    				</div>
 	    				<div class="col-md-12 text-center calisir">
-	    					<div class="btn" style="background: #373637; margin-top: 20px;">Nasil Calisir?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></div>
+	    					<div class="btn" style="background: #373637; margin-top: 20px;">Nasıl Çalısır?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></div>
 	    				</div>
 	    			</div>
 	    		</div>
@@ -134,28 +134,28 @@
 				<div class="impl">
 					<img class="img img-responsive" src="assets/images/dogrukisiicon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
 					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.TRU1"><strong>{{fields.TRU1}}</strong></h4></span>
-					<p>CepteIsVar, aradiginiz pozisyona uygun en dogru kisiye ulasmanizi saglar. Cunku kime ulasmak istediginizi kendiniz bulursunuz.</p>
+					<p>CepteIsVar, aradığınız pozisyona uygun en doğru kişiye ulaşmanızı sağlar. Çünkü kime ulaşmak istediğinizi kendiniz bulursunuz.</p>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div class="impl">
 					<img class="img img-responsive" src="assets/images/BeklemekYokIcon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
 					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.WAI1"><strong>{{fields.WAI1}}</strong></h4></span>
-					<p>CepteIsVar'da ihtiyaciniz olan personele ulasmak icin beklemenize gerek yok. Dogru kisiye istediginiz zaman ulasabilirsiniz.</p>
+					<p>CepteIsVar'da ihtiyacınız olan personele ulaşmak için beklemenize gerek yok. Doğru kişiye istediğiniz zaman ulaşabilirsiniz.</p>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div class="impl">
 					<img class="img img-responsive" src="assets/images/SadeceSMS.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
 					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.MES2"><strong>{{fields.MES2}}</strong></h4></span>
-					<p>Binlerce kisiye 1 SMS ile aninda ulasabileceksiniz. CepteIsVar iletisim yolu olarak SMS sistemini kullanir. Bu yuzden dogru kisiye ulasmak cok hizlidir.</p>
+					<p>Binlerce kişiye 1 SMS ile anında ulaşabileceksiniz. CepteIsVar iletişim yolu olarak SMS sistemini kullanır. Bu yüzden doğru kişiye ulaşmak cok hızlıdır.</p>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div class="impl">
 					<img class="img img-responsive" src="assets/images/UygunFiyat.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
 					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.PRI1"><strong>{{fields.PRI1}}</strong></h4></span>
-					<p>CepteIsVar'da aradiginiz kisiye ulasmak icin yuksek ucretler odemezsiniz. Cok ucuza dogru kisiye aninda ulasirsiniz.</p>
+					<p>CepteIsVar'da aradiğiniz kişiye ulaşmak için yüksek ücretler ödemezsiniz. Çok ucuza doğru kişiye anında ulaşırsınız.</p>
 				</div>
 			</div>
 		</div>

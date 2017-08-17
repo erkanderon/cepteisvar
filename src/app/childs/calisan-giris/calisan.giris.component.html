@@ -4,12 +4,12 @@
 		<section id="main_content" style="margin-top: -20px;">
     <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
         <div class="col-xs-12">
-            <h3>CALISAN GIRIS</h3>
+            <h3>ÇALIŞAN GİRİŞ</h3>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-xs-12">
-            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Calisan Giris</a>
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Çalışan Giriş</a>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
             <div class="login">
                 <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate *ngIf="loginState===1">
                   <div class="alert alert-danger" *ngIf="wrong">
-                    <strong>Yanlis Kullanici Adi ya da Parola!</strong> Lutfen Bilgileri Kontrol Ediniz
+                    <strong>Yanlış Kullanıcı Adı ya da Parola!</strong> Lütfen Bilgileri Kontrol Ediniz
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput"><h4>E-POSTA</h4></label>
@@ -31,33 +31,33 @@
                   </div>
                   <div class="form-group">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" style="margin: 10px 4px 0;"> <h5 style="float:right;">Beni Hatirla</h5>
+                      <input class="form-check-input" type="checkbox" style="margin: 10px 4px 0;"> <h5 style="float:right;">Beni Hatırla</h5>
                     </label>
-                    <a class="btn btn-default" style="float: right; background: #f7f7f7; border: none;" routerLink="/reset"><h5>Sifremi Unuttum</h5></a>
+                    <a class="btn btn-default" style="float: right; background: #f7f7f7; border: none;" routerLink="/reset"><h5>Şifremi Unuttum</h5></a>
                   </div>
                   
                   
                 </form>
                 <div class="row" *ngIf="loginState===1">
-                  <a class="btn btn-default" style="float: left; background: #f7f7f7; border: none; padding: 0px 15px; font-weight: bold; color:blue;" (click)="setState(2)"><h5>Ben Eski Kullaniciyim</h5></a>
+                  <a class="btn btn-default" style="float: left; background: #f7f7f7; border: none; padding: 0px 15px; font-weight: bold; color:blue;" (click)="setState(2)"><h5>Ben Eski Kullanıcıyım</h5></a>
                 </div>
                 <div class="row text-center" *ngIf="loginState===1">
                   <div class="col-xs-12">
-                      <a (click)="login()"  class="btn btn-default" style="background: #fff100; border-color:#fff100; min-width:100px;"><h5>GIRIS</h5></a>
+                      <a (click)="login()"  class="btn btn-default" style="background: #fff100; border-color:#fff100; min-width:100px;"><h5>GİRİŞ</h5></a>
                       <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                   </div>
                   <div class="col-xs-12">
-                      <h5 style="font-size: 12px; color: #747574;">Henuz kayit olmadiysaniz burdan <a href routerLink="/calisan-kayit" style="text-decoration: none;"><strong>Kayit Olun</strong></a></h5>
+                      <h5 style="font-size: 12px; color: #747574;">Henüz kayıt olmadıysanız burdan <a href routerLink="/calisan-kayit" style="text-decoration: none;"><strong>Kayıt Olun</strong></a></h5>
                   </div>
                 </div>
 
                 <!-- OLD USER FLOWS -->
                 <form name="form" #old="ngForm" novalidate *ngIf="loginState===2">
                   <div class="alert alert-danger" *ngIf="wrong">
-                    <strong>Yanlis Kullanici Adi ya da Parola!</strong> Lutfen Bilgileri Kontrol Ediniz
+                    <strong>Yanlış Kullanıcı Adı ya da Parola!</strong> Lütfen Bilgileri Kontrol Ediniz
                   </div>
                   <div class="alert alert-danger" *ngIf="notequal">
-                    <strong>Parolalariniz Eslesmiyor!</strong> Lutfen Bilgileri Kontrol Ediniz
+                    <strong>Parolalarınız Eşleşmiyor!</strong> Lütfen Bilgileri Kontrol Ediniz
                   </div>
                   
                   <div class="form-group">
@@ -65,13 +65,13 @@
                     <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon Numarasi" name="oldtel" [(ngModel)]="oldtel" #oltel="ngModel" required>
                     <div *ngIf="oltel.errors && (oltel.dirty || oltel.touched)" class="alert alert-danger" style="margin-top: 5px;" minlength="11" maxlength="11">
                       <div [hidden]="!oltel.errors.required">
-                        Telefon Bos Birakilamaz!
+                        Telefon Boş Bırakılamaz!
                       </div>
                       <div [hidden]="!oltel.errors.minlength">
-                        Telefon 11 karakterden olusmali.
+                        Telefon 11 karakterden oluşmalı.
                       </div>
                       <div [hidden]="!oltel.errors.maxlength">
-                        Telefon 11 karakterden olusmali.
+                        Telefon 11 karakterden oluşmalı.
                       </div>
                       
                     </div>
@@ -84,7 +84,7 @@
                     <input type="email" class="form-control" id="formGroupExampleInput" placeholder="E-Posta Adresinizi Giriniz" name="oldmail" [(ngModel)]="oldmail" #mail="ngModel" required>
                     <div *ngIf="mail.errors && (mail.dirty || mail.touched)" class="alert alert-danger" style="margin-top: 5px;">
                       <div [hidden]="!mail.errors.required">
-                        E-Posta Bos Birakilamaz!
+                        E-Posta Boş Bırakılamaz!
                       </div>
                       
                     </div>
@@ -94,7 +94,7 @@
                     <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Eski Parolanizi Giriniz" name="oldpass" [(ngModel)]="oldpass" #olpas="ngModel" required>
                     <div *ngIf="olpas.errors && (olpas.dirty || olpas.touched)" class="alert alert-danger" style="margin-top: 5px;">
                       <div [hidden]="!olpas.errors.required">
-                        Eski Parola Bos Birakilamaz!
+                        Eski Parola Boş Bırakılamaz!
                       </div>
                       
                     </div>
@@ -104,23 +104,23 @@
                     <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Yeni Parolanizi Giriniz" name="newpass" [(ngModel)]="newpass" #nepas="ngModel" required minlength="5">
                     <div *ngIf="nepas.errors && (nepas.dirty || nepas.touched)" class="alert alert-danger" style="margin-top: 5px;">
                       <div [hidden]="!nepas.errors.required">
-                        Yeni Parola Bos Birakilamaz!
+                        Yeni Parola Boş Bırakılamaz!
                       </div>
                       <div [hidden]="!nepas.errors.minlength">
-                        Parola 5 karakterden fazla olmali.
+                        Parola 5 karakterden fazla olmalı.
                       </div>
                       
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="formGroupExampleInput2"><h4>YENI PAROLA TEKRAR</h4></label>
+                    <label for="formGroupExampleInput2"><h4>YENİ PAROLA TEKRAR</h4></label>
                     <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Yeni Parolanizi Giriniz" name="newpass2" [(ngModel)]="newpass2" #nepass="ngModel" required minlength="5">
                     <div *ngIf="nepass.errors && (nepass.dirty || nepass.touched)" class="alert alert-danger" style="margin-top: 5px;">
                       <div [hidden]="!nepass.errors.required">
-                        Yeni Parola Bos Birakilamaz!
+                        Yeni Parola Boş Bırakılamaz!
                       </div>
                       <div [hidden]="!nepass.errors.minlength">
-                        Parola 5 karakterden fazla olmali.
+                        Parola 5 karakterden fazla olmalı.
                       </div>
                       
                     </div>
