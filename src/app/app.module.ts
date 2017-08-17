@@ -27,6 +27,8 @@ import { DuyurularComponent } from './childs/duyurular/duyurular.component';
 import { DuyurularRightSideComponent } from './childs/duyurular-rightside/duyurular.rightside';
 import { DuyuruComponent } from './childs/duyuru/duyuru.component';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { AboutUsComponent } from './childs/hakkimizda/hakkimizda.component';
 import { ContactUsComponent } from './childs/iletisim/iletisim.component';
 import { ResetPasswordComponent } from './childs/reset-password/reset.password.component';
@@ -104,6 +106,7 @@ const appRoutes : Routes = [
     HttpModule,
     FlashMessagesModule,
     OwlModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAfjFE_rSuwj5D8Q13rVC48aSaWzOUZXDk'

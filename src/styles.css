@@ -399,3 +399,14 @@ footer .aciklama h5{
 	margin: 0 30px !important;
 	background-color: #fff200 !important;
 }
+
+/* NGX PAGINATION START */
+
+
+.ngx-pagination .current{
+	padding: 5px 10px !important;
+    border-radius: 16px !important;
+    background-color: #fff100 !important;
+    color: #010101 !important;
+}
+/* NGX PAGINATION END */
