@@ -32,6 +32,8 @@ export class AramaComponent {
 
 
 	filterClear: any = {};
+	filterParams: any = {};
+	filterEducation: any=[]; filterMilitary: any=[]; filterDriver:any =[]; filterGender: any; highAge: any; lowAge: any;
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
@@ -187,16 +189,171 @@ export class AramaComponent {
   clearGender(){
   	this.cinsiyet = '4';
   }
+  setEdu(event, obj){
+
+  	if(event.target.checked){
+		this.filterEducation.push(obj);
+	}else{
+		let index = this.filterEducation.indexOf(obj, 0);
+		if (index > -1) {
+		   this.filterEducation.splice(index, 1);
+		}
+	}
+	
+  }
+
+  setMil(event, obj){
+
+  	if(event.target.checked){
+		this.filterMilitary.push(obj);
+	}else{
+		let index = this.filterMilitary.indexOf(obj, 0);
+		if (index > -1) {
+		   this.filterMilitary.splice(index, 1);
+		}
+	}
+	
+  }
+
+  setDri(event, obj){
+
+  	if(event.target.checked){
+		this.filterDriver.push(obj);
+	}else{
+		let index = this.filterDriver.indexOf(obj, 0);
+		if (index > -1) {
+		   this.filterDriver.splice(index, 1);
+		}
+	}
+	
+  }
+
+  setAgeLow(event){
+  	
+  	if(event !== null){
+  		
+  		this.lowAge = parseInt(event);
+  	}else{
+  		
+  		this.lowAge = undefined;
+  	}
+  }
+  setAgeHigh(event){
+  	if(event !== null){
+  		
+  		this.highAge = parseInt(event);
+  	}else{
+  		
+  		this.highAge = undefined;
+  	}
+  }
 
   onChangeGender(e){
   	let temp = [];
   	if(e==='1' || e==='2'){
 
+  		this.filterGender = parseInt(e);
   		
   	}else{
-  	
+  		this.filterGender = undefined;
   	}
+  	
   }
+
+  getFilterParams(){
+  	if(this.filterGender){
+  		this.filterParams.GENDER_ID = this.filterGender;
+  	}
+  	/*if(this.highAge && this.lowAge){
+  		this.filterParams.highAge = this.highAge;
+  		this.filterParams.lowAge = this.lowAge;
+  	}*/
+  	if(this.filterDriver.length!==0){
+  		this.filterParams.LICENSE_ID = this.filterDriver;
+  	}
+  	if(this.filterMilitary.length!==0){
+  		this.filterParams.MILITARY_ID = this.filterMilitary;
+  	}
+  	if(this.filterEducation.length!==0){
+  		this.filterParams.EDUCATION_ID = this.filterEducation;
+  	}
+  	for (var prop in this.filterParams) {
+        console.log("Key:" + prop);
+        console.log("Value:" + this.filterParams[prop]);
+    }
+  	return this.filterParams;
+  }
+
+  makeFilter(){
+
+  	let filt = this.getFilterParams();
+  	console.log(this.getAgePeople());
+  	console.log(this.filterGender + " "+ this.highAge + " "+ this.lowAge + " "+ this.filterDriver.length + " "+ this.filterMilitary.length + " "+ this.filterEducation.length);
+
+  	let result = [];
+  	let temp = this.profiles.data;
+
+  	
+
+
+	// Eger Her get fonksiyonu field kontrol edip aldigi arrayi filter edip yada direk geri donerse bu is cozulur.
+
+  	
+  	console.log(result);
+  }
+
+  getEducation(){
+  	var result = [];
+  	for(let v of this.profiles.data){
+  		for(let k of this.filterEducation)
+  			if(v.EDUCATION_ID === k){
+  				result.push(v);
+  			}
+  	}
+  	return result;
+  }
+  getMilitary(){
+  	var result = [];
+  	for(let v of this.profiles.data){
+  		for(let k of this.filterMilitary)
+  			if(v.MILITARY_ID === k){
+  				result.push(v);
+  			}
+  	}
+  	return result;
+  }
+  getDriver(){
+  	var result = [];
+  	for(let v of this.profiles.data){
+  		for(let k of this.filterDriver)
+  			if(v.LICENSE_ID === k){
+  				result.push(v);
+  			}
+  	}
+  	return result;
+  }
+  getGender(){
+  	var result = [];
+  	for(let v of this.profiles.data){
+  		if(v.GENDER_ID === this.filterGender){
+  		    result.push(v);
+  		}
+  	}
+  	return result;
+  }
+  getAgePeople(){
+  	var result = [];
+  	if(this.lowAge && this.highAge){
+	  	for(let v of this.profiles.data){
+	  		if(v.AGE >= this.lowAge && v.AGE <=this.highAge){
+	  		    result.push(v);
+	  		}
+	  	}
+	}
+  	return result;
+  }
+
+
   
   	
 }
