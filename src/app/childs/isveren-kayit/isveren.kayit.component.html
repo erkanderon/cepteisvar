@@ -4,12 +4,12 @@
 		<section id="main_content" style="margin-top: -20px;">
     <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
         <div class="col-xs-12">
-            <h3>ISVEREN KAYIT</h3>
+            <h3>İŞVEREN KAYIT</h3>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-xs-12">
-            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Isveren Kayit</a>
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İşveren Kayıt</a>
         </div>
     </div>
     <div class="row">
@@ -25,21 +25,21 @@
                             </div>
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
-                                <label for="formGroupExampleInput">FIRMA / KISI ADI</label>
+                                <label for="formGroupExampleInput">FİRMA / KİŞİ ADI</label>
                                 <input name="firma"  [(ngModel)]="firma" #firm="ngModel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Firma Adi / Kisi Adi" required>
                                 <div *ngIf="firm.errors && (firm.dirty || firm.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!firm.errors.required">
-                                    Firma Adi Bos Birakilamaz!
+                                    Firma Adi Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">YETKILI KISI</label>
+                                <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                 <input name="yetkili" [(ngModel)]="yetkili" required #yetkil="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi">
                                 <div *ngIf="yetkil.errors && (yetkil.dirty || yetkil.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yetkil.errors.required">
-                                    Yetkili Bos Birakilamaz!
+                                    Yetkili Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -49,17 +49,17 @@
                                 <input name="eposta" [(ngModel)]="eposta" required #epost="ngModel" type="email" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
                                 <div *ngIf="epost.errors && (epost.dirty || epost.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!epost.errors.required">
-                                    E-Posta Bos Birakilamaz!
+                                    E-Posta Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">VERGI DAIRESI</label>
+                                <label for="formGroupExampleInput2">VERGİ DAİRESİ</label>
                                 <input name="vergi" [(ngModel)]="vergi"  required #verg="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Vergi Dairesi">
                                 <div *ngIf="verg.errors && (verg.dirty || verg.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!verg.errors.required">
-                                    Vergi Bos Birakilamaz!
+                                    Vergi Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -67,7 +67,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                     
-                                  <label for="">SEHIR</label>
+                                  <label for="">ŞEHİR</label>
                                   <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2">
                                     <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                   </select>
@@ -80,7 +80,7 @@
                               </div>
                               <div *ngIf="parol.errors && (parol.dirty || parol.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!parol.errors.required">
-                                    Parola Bos Birakilamaz!
+                                    Parola Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -90,7 +90,7 @@
                                 </label>
                                 <div *ngIf="sozlesmeerror" class="alert alert-danger" style="margin-top: 5px;">
                                   <div >
-                                    Guvenlik Sozlesmesini Kabul Etmelisiniz!
+                                    Güvenlik Sözleşmesini Kabul Etmelisiniz!
                                   </div>
                                 </div>                          
                               </div>
@@ -101,27 +101,27 @@
                                 <input name="telefon" [(ngModel)]="telefon" required #tel="ngModel" type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon">
                                 <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!tel.errors.required">
-                                    Telefon Bos Birakilamaz!
+                                    Telefon Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">YETKILI KISI TELEFON</label>
+                                <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
                                 <input name="yettel" [(ngModel)]="yettel" required #yet="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi Telefon">
                                 <div *ngIf="yet.errors && (yet.dirty || yet.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yet.errors.required">
-                                    Yetkili Bos Birakilamaz!
+                                    Yetkili Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label for="formGroupExampleInput2">VERGI / TC KIMLIK NO</label>
+                                <label for="formGroupExampleInput2">VERGİ / TC KİMLİK NO</label>
                                 <input name="tckimlik" [(ngModel)]="tckimlik" required #tckim="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="TC Kimlik No">
                                 <div *ngIf="tckim.errors && (tckim.dirty || tckim.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!tckim.errors.required">
-                                    Vergi Bos Birakilamaz!
+                                    Vergi Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -131,14 +131,14 @@
                                 <input name="address" [(ngModel)]="address" required #adres="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Adres">
                                 <div *ngIf="adres.errors && (adres.dirty || adres.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!adres.errors.required">
-                                    Adres Bos Birakilamaz!
+                                    Adres Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
                               </div>
                               <div class="form-group">
                                 <div class="dropdown">
-                                  <label for="" >ILCE</label>
+                                  <label for="" >İLÇE</label>
                                   <select id="" class="form-control" name="cname" [ngModel]="cname">
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                    
@@ -150,7 +150,7 @@
                                 <input name="parola2" [(ngModel)]="parola2" required #partwo="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola Tekrar">
                                 <div *ngIf="partwo.errors && (partwo.dirty || partwo.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!partwo.errors.required">
-                                    Parola Bos Birakilamaz!
+                                    Parola Boş Bırakılamaz!
                                   </div>
                                   
                                 </div>
@@ -159,7 +159,7 @@
                           <div class="row text-center" >
                             <div class="col-xs-12">
                                 <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" data-toggle="modal" data-target="#somemod" [disabled]="!f.form.valid">KAYIT OL</button>
-                                <h5 style="color: #747574;">Zaten hesabiniz var mi?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giris Yapin</a></h5>  
+                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giriş Yapın</a></h5>  
                             </div>
                           </div>
                         </form>
@@ -201,8 +201,8 @@
       <div class="modal-footer" style="text-align: center;">
         <div class="btn-group">
 
-          <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEC</a>
-          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GONDER</a>
+          <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GÖNDER</a>
         
         </div>
       </div>

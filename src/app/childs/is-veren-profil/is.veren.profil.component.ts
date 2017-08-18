@@ -54,6 +54,9 @@ export class IsVerenProfilComponent {
   smsNumber: any=0;
   pphoto: any;
 
+  operation: any = {};
+  operationfault: any = {};
+
 	constructor(private elRef : ElementRef, private _post: PostService, private router: Router, private _pub: Pub, private route: ActivatedRoute, private location: Location) { 
 		jQuery(document).ready(function () {
 			jQuery('.myCheckbox').click(function() {
@@ -232,9 +235,16 @@ export class IsVerenProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+
+              setTimeout(()=>{ 
+               location.reload();
+              }, 5000);
             }else{
               //give error
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             console.log(success);
             
@@ -268,10 +278,16 @@ export class IsVerenProfilComponent {
                     (success)=> {
                       
                       if(this.responser(success)){
-                        location.reload();
+                        this.operation.status = success.status;
+                        this.operation.text = success.userMessage;
+                        setTimeout(()=>{ 
+                           location.reload();
+                          }, 5000);
                       }else{
                         //give a message
-                        console.log(success)
+                        
+                        this.operationfault.status = success.status;
+                        this.operationfault.text = success.userMessage;
                       }
                       
                     }
@@ -282,11 +298,16 @@ export class IsVerenProfilComponent {
                    }
                 )
               }else{
-                location.reload();
+                this.operation.status = success.status;
+                this.operation.text = success.userMessage;
+                setTimeout(()=>{ 
+                   location.reload();
+                  }, 5000);
               }
              // location.reload();
             }else{
-              //give error
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             console.log(success);
             
@@ -314,10 +335,14 @@ export class IsVerenProfilComponent {
         (success)=> {
           
           if(this.responser(success)){
-            //this.router.navigate([uri]);
-            location.reload();
+            this.operation.status = success.status;
+            this.operation.text = success.userMessage;
+            setTimeout(()=>{ 
+               location.reload();
+              }, 5000);
           }else{
-            //give a message
+            this.operationfault.status = success.status;
+            this.operationfault.text = success.userMessage;
           }
           
         }
@@ -349,10 +374,16 @@ export class IsVerenProfilComponent {
           (success)=> {
             
             if(this.responser(success)){
-              this.router.navigate([uri]);
+              //this.router.navigate([uri]);
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+                 location.reload();
+                }, 5000);
             }else{
               //give a message
-              console.log(success);
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
@@ -400,7 +431,8 @@ export class IsVerenProfilComponent {
 
             }else{
               //give a message
-              console.log(success);
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }

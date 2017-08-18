@@ -12,6 +12,13 @@
             <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İş Veren Profil</a>
         </div>
     </div>
+    <!-- MESSAGE SERVICE -->
+    <div class="alert alert-success" *ngIf="operation.status">
+      <strong>{{operation.status}}!</strong>&nbsp;&nbsp;{{operation.text}}
+    </div>
+    <div class="alert alert-danger" *ngIf="operationfault.status">
+      <strong>{{operationfault.status}}!</strong>&nbsp;&nbsp; {{operationfault.text}}
+    </div>
     <div class="row text-center toogle" style="margin-top: 20px;">
       <div class="col-xs-12">
         <div class="btn-group btn-group-lg">

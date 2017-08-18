@@ -273,7 +273,9 @@ export class AramaComponent {
   	console.log(this.filterGender + " "+ this.highAge + " "+ this.lowAge + " "+ this.filterDriver.length + " "+ this.filterMilitary.length + " "+ this.filterEducation.length);
 
   	let result = [];
-  	let temp = this.profiles.data;
+  	//let temp = this.profiles.data;
+  	let temp = this.filterClear;
+  	
 
   	
 

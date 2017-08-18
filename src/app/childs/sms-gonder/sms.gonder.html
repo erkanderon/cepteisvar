@@ -13,10 +13,10 @@
         </div>
     </div>
     <div class="alert alert-success" *ngIf="operation">
-      <strong>SMS Gonderildi!</strong> Giden SMS'lerim sayfasini Kontrol Edebilirsiniz..
+      <strong>SMS Gönderildi!</strong> Giden SMS'lerim sayfasini Kontrol Edebilirsiniz..
     </div>
     <div class="alert alert-danger" *ngIf="operationfault.status">
-    <strong>SMS Gonderilemedi!</strong> {{operationfault.text}}
+    <strong>SMS Gönderilemedi!</strong> {{operationfault.text}}
   </div>
 
     <div class="row">
@@ -31,13 +31,13 @@
           <form style="margin-top: 20px;" #frm="ngForm" novalidate>
             <div class="form-group opti" *ngIf="balance.data">
               <label for="exampleTextarea" style="margin-bottom: 0px; margin-top: 10px;">SMS İçeriği:</label>
-              <div class="hesap">HESABIMDA TANIMLI SMS KREDISI: {{balance.data.ACCOUNT_BALANCE}}</div>
+              <div class="hesap">HESABIMDA TANIMLI SMS KREDİSİ: {{balance.data.ACCOUNT_BALANCE}}</div>
               <textarea class="form-control" id="exampleTextarea" placeholder="Lütfen adaylara göndermek istediğiniz SMS içeriğini buraya giriniz." rows="3" style="height:150px;" name="text" [(ngModel)]="text" (change)="showPayment($event)"></textarea>
             </div>
             
 
             <div class="row text-center" style="margin-bottom: 40px;">
-              <button class="btn btn-success" style="font-size: 9px; border-radius: 0px;  color: black; background: #fff200; border-color: #fff200; margin: 0px 30px;" data-toggle="modal" data-target="#smsOnay">SMS KREDISI ILE ODE</button>
+              <button class="btn btn-success" style="font-size: 9px; border-radius: 0px;  color: black; background: #fff200; border-color: #fff200; margin: 0px 30px;" data-toggle="modal" data-target="#smsOnay">SMS KREDİSİ İLE ÖDE</button>
             </div>
           </form>
         </div>
