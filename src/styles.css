@@ -410,3 +410,16 @@ footer .aciklama h5{
     color: #010101 !important;
 }
 /* NGX PAGINATION END */
+
+
+
+.c-btn{
+	text-align: left !important;
+	color: black;
+	border-radius: 0px !important;
+    box-shadow: none !important;
+}
+.c-token{
+	background: #fff200 !important;
+	color: black !important;
+}

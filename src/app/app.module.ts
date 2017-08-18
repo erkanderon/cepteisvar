@@ -28,6 +28,7 @@ import { DuyurularRightSideComponent } from './childs/duyurular-rightside/duyuru
 import { DuyuruComponent } from './childs/duyuru/duyuru.component';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 import { AboutUsComponent } from './childs/hakkimizda/hakkimizda.component';
 import { ContactUsComponent } from './childs/iletisim/iletisim.component';
@@ -107,6 +108,8 @@ const appRoutes : Routes = [
     FlashMessagesModule,
     OwlModule,
     NgxPaginationModule,
+    AngularMultiSelectModule,
+
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAfjFE_rSuwj5D8Q13rVC48aSaWzOUZXDk'

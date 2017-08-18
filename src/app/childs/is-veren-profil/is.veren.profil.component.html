@@ -412,7 +412,7 @@
                                 <div *ngFor="let bsk of basketDetail.data" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
 
                                   <div class="thumbnail" style=" margin: 10px 30px;">
-                                      <img class="group list-group-image" src="assets/images/Employee1.png" alt="" />
+                                      <img class="group list-group-image" src="{{bsk.PHOTO_URL}}" onerror="this.src='/assets/images/resimyok.png';" alt="" />
                                       <input *ngIf="!bsk.COMMENTED_STATUS" type="checkbox" style="position: absolute; -ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); padding: 10px; top: 100px; left: 0px; right: 20px;" (change)="addModel($event, bsk.MEMBER_ID)">
                                       <div class="caption">
                                           <div class="row" style="margin: 0px 0px 0px 0px;">
@@ -429,7 +429,7 @@
                                                   <i class="fa fa-bookmark-o" aria-hidden="true"></i>
                                                   Mesleki Yeterlilik
                                                   <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                  {{bsk.CITY_NAME}}-Bagcilar
+                                                  {{bsk.CITY_NAME}}-{{bsk.COUNTY_NAME}}
                                               </div>
                                               <p class="group inner list-group-item-text">
                                                   {{bsk.PRIMARY_JOB_DESCRIPTION}}</p>

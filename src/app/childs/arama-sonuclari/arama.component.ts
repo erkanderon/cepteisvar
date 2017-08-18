@@ -31,8 +31,12 @@ export class AramaComponent {
 	genders: any; education:any; military: any; driver:any;
 	p: number = 1;
 
+	driverList: any = {}; selectedDrivers: any = {}; driverSettings: any = {};
+	militaryList: any = {}; selectedMilitary: any = {}; militarySettings: any = {};
+	educationList: any = {}; selectedEducation: any = {}; educationSettings: any = {};
 
-	filterClear: any = {};
+
+	filterClear: any = {}; kucuk:any; buyuk:any;
 	filterParams: any = {}; homePageMembers:any = [];
 	filterEducation: any=[]; filterMilitary: any=[]; filterDriver:any =[]; filterGender: any; highAge: any; lowAge: any;
 
@@ -73,13 +77,55 @@ export class AramaComponent {
 	}
 
 	ngOnInit() {
-		
+
+// DRIVER SELECTION SETTINGS START
+			this.driverList = [];
+	        this.selectedDrivers = [];
+	        this.driverSettings = {
+	                              singleSelection: false, 
+	                              text:"Ehliyet Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class"
+	        };
+
+// DRIVER SELECTION END
+
+// MILITARY SELECTION SETTINGS START
+			this.militaryList = [];
+	        this.selectedMilitary = [];
+	        this.militarySettings = {
+	                              singleSelection: false, 
+	                              text:"Askerlik Durumu Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class"
+	        };
+
+// MILITARY SELECTION END
+
+// EDUCATION SELECTION SETTINGS START
+			this.educationList = [];
+	        this.selectedEducation = [];
+	        this.educationSettings = {
+	                              singleSelection: false, 
+	                              text:"Eğitim Durumu Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class"
+	        };
+
+// EDUCATION SELECTION END
+
 		this.il = -10;
 		this.jobcat = -10;
 		this.cinsiyet = 4;
 
 		this.genders = this._pub.getGenderTypes().then(genders => this.genders = genders);
-		this.education = this._pub.getEducationTypes().then(education => this.education = education);
+		this._pub.getEducationTypes().then(education => this.setEducation(education));
 
 	  	if(!this._pub.getSearchModel() && !this._pub.getSearchParams()){
 	  		console.log("burdayim");
@@ -94,13 +140,101 @@ export class AramaComponent {
   			this.islogged = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='business');
   		}
 
-  		this.military = this._pub.getMilitaryChoices().then(military => this.military = military);
+  		this._pub.getMilitaryChoices().then(military => this.setMilitary(military));
   		this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
   		this.cities = this._pub.getCities().then(cities => this.cities = cities);
-  		this.driver = this._pub.getDriverLicenseTypes().then(driver => this.driver = driver);
+  		this._pub.getDriverLicenseTypes().then(driver => this.setDriver(driver));
   		this._pub.getHomepageMembers().then(profiles => this.setHomePageProfiles(profiles));
 	    
 	}
+// DRIVER SELECTION START
+	onDriverSelect(item:any){
+        this.filterDriver.push(item.id);
+    }
+    OnDriverDeSelect(item:any){
+        let index = this.filterDriver.indexOf(item.id, 0);
+		if (index > -1) {
+		   this.filterDriver.splice(index, 1);
+		}
+    }
+    onDriverSelectAll(items: any){
+        for(let k of items){
+        	this.filterDriver.push(k.id);
+        }
+    }
+    onDriverDeSelectAll(items: any){
+        this.filterDriver = [];
+    }
+// DRIVER SELECTION END
+
+// MILITARY SELECTION START
+	onMilitarySelect(item:any){
+
+        this.filterMilitary.push(item.id);
+
+    }
+    onMilitaryDeSelect(item:any){
+        let index = this.filterMilitary.indexOf(item.id, 0);
+		if (index > -1) {
+		   this.filterMilitary.splice(index, 1);
+		}
+    }
+    onMilitarySelectAll(items: any){
+        for(let k of items){
+        	this.filterMilitary.push(k.id);
+        }
+    }
+    onMilitaryDeSelectAll(items: any){
+        this.filterMilitary = [];
+    }
+// MILITARY SELECTION END
+
+// EDUCATION SELECTION START
+	onEduSelect(item:any){
+        this.filterEducation.push(item.id);
+    }
+    onEduDeSelect(item:any){
+        let index = this.filterEducation.indexOf(item.id, 0);
+		if (index > -1) {
+		   this.filterEducation.splice(index, 1);
+		}
+    }
+    onEduSelectAll(items: any){
+        for(let k of items){
+        	this.filterEducation.push(k.id);
+        }
+    }
+    onEduDeSelectAll(items: any){
+        this.filterEducation = [];
+    }
+// EDUCATION SELECTION END
+
+    setDriver(param){
+    	this.driver = param;
+
+    	for(let i of param.data){
+    		this.driverList.push({"id":i.ID,"itemName":i.LICENSE_TYPE})
+
+    	}
+    }
+
+    setEducation(param){
+    	this.education = param;
+
+    	for(let i of param.data){
+    		this.educationList.push({"id":i.TYPE_ID,"itemName":i.EDUCATION_LEVEL})
+
+    	}
+    }
+
+    setMilitary(param){
+    	this.military = param;
+
+    	for(let i of param.data){
+    		this.militaryList.push({"id":i.TYPE,"itemName":i.STATUS})
+
+    	}
+    }
 
 	addToModel(val, user){
 
@@ -188,48 +322,16 @@ export class AramaComponent {
 
   clearFilter(){
   	
+  	this.cinsiyet = '4';
+  	this.kucuk = null;
+  	this.buyuk = null;
+  	this.selectedDrivers = [];
+  	this.selectedMilitary = [];
+  	this.selectedEducation = [];
   	this.profiles.data = this.filterClear;
   }
   clearGender(){
   	this.cinsiyet = '4';
-  }
-  setEdu(event, obj){
-
-  	if(event.target.checked){
-		this.filterEducation.push(obj);
-	}else{
-		let index = this.filterEducation.indexOf(obj, 0);
-		if (index > -1) {
-		   this.filterEducation.splice(index, 1);
-		}
-	}
-	
-  }
-
-  setMil(event, obj){
-
-  	if(event.target.checked){
-		this.filterMilitary.push(obj);
-	}else{
-		let index = this.filterMilitary.indexOf(obj, 0);
-		if (index > -1) {
-		   this.filterMilitary.splice(index, 1);
-		}
-	}
-	
-  }
-
-  setDri(event, obj){
-
-  	if(event.target.checked){
-		this.filterDriver.push(obj);
-	}else{
-		let index = this.filterDriver.indexOf(obj, 0);
-		if (index > -1) {
-		   this.filterDriver.splice(index, 1);
-		}
-	}
-	
   }
 
   setAgeLow(event){
@@ -237,6 +339,7 @@ export class AramaComponent {
   	if(event !== null){
   		
   		this.lowAge = parseInt(event);
+
   	}else{
   		
   		this.lowAge = undefined;
