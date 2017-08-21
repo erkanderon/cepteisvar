@@ -37,6 +37,9 @@ export class IsArayanProfilComponent {
   military: any = {};
   isim: any=""; dtarihi: any=""; telefon: any=""; sd: any=""; askerlik: any=""; tecrube: any=""; gizlilik: any=""; soyad: any=""; cinsiyet: any=""; adres: any=""; educate: any=""; ilce: any=""; ehliyet: any=""; secenek: any=""; certificate: any=""; 
 
+  p: number = 1;
+  c: number = 1;
+
   param: any;
   sub: any;
   foo: any;

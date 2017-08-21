@@ -82,7 +82,7 @@ export class SMSGonderComponent {
 		let uri = '/is-veren-profil';
 		let send = new CreateBasketModel(this.userModel, this.basket, fav.value.text);		
 
-		if(parseInt(this.balance.data.ACCOUNT_BALANCE)!==0){
+		if(parseInt(this.balance.data.ACCOUNT_BALANCE)>=parseInt(this.willPay)){
 
 			this._post.createCompanyBasket(JSON.stringify(send)).then(
 			  //used Arrow function here

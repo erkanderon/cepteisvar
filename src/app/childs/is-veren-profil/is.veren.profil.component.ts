@@ -42,6 +42,9 @@ export class IsVerenProfilComponent {
   sepetid: any;
   model: any = [];
 
+  p: number = 1;
+  c: number = 1;
+
   param: any;
   sub: any;
   foo: any;

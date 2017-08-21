@@ -304,7 +304,7 @@
                             </div>
                           </div>
                           <div *ngIf="comments.data">
-                            <div class="row" *ngFor="let yorum of comments.data">
+                            <div class="row" *ngFor="let yorum of comments.data | paginate: { itemsPerPage: 5, currentPage: c , id: 'mesaj'}">
                               <div class="col-xs-12">
                                 <div class="row timel">
                                   <div class="col-xs-6">
@@ -323,6 +323,11 @@
                                     <h5>{{yorum.C_COMMENT}}</h5>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                            <div class="row text-center" style="margin-top: 20px;">
+                              <div class="col-xs-12">
+                                  <pagination-controls id="mesaj" (pageChange)="c = $event"></pagination-controls>
                               </div>
                             </div>
                           </div>
@@ -346,7 +351,7 @@
                             </div>
                           </div>
                           <div *ngIf="sms.data">
-                            <div class="row" *ngFor="let sms of sms.data">
+                            <div class="row" *ngFor="let sms of sms.data | paginate: { itemsPerPage: 5, currentPage: p , id: 'forwarded'}">
                               <div class="col-xs-12">
                                 <div class="row timel">
                                   <div class="col-xs-6">
@@ -365,6 +370,11 @@
                                     <h5>{{sms.SMS_TEXT}}</h5>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                            <div class="row text-center" style="margin-top: 20px;">
+                              <div class="col-xs-12">
+                                  <pagination-controls id="forwarded" (pageChange)="p = $event"></pagination-controls>
                               </div>
                             </div>
                           </div>
