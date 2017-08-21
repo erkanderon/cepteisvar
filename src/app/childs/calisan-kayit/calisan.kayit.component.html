@@ -48,7 +48,7 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">AD</label>
-                                <input type="text" [ngModel]="isim" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adinizi Giriniz" #ad="ngModel" required>
+                                <input type="text" [ngModel]="isim" name="isim" class="form-control" id="formGroupExampleInput" placeholder="Adınızı Giriniz" #ad="ngModel" required>
                                 <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!ad.errors.required">
                                     Ad Boş Bırakılamaz!
@@ -69,7 +69,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
-                                <input type="number" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="" #cont="ngModel" required>
+                                <input type="number" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Telefon Numarası" #cont="ngModel" required>
                                 <div *ngIf="cont.errors && (cont.dirty || cont.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!cont.errors.required">
                                     Telefon Boş Bırakılamaz!
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                       <label for="">TECRÜBE</label>
-                                      <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrube" #tecr="ngModel" required>
+                                      <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrübe" #tecr="ngModel" required>
                                       <div *ngIf="tecr.errors && (tecr.dirty || tecr.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                         <div [hidden]="!tecr.errors.required">
                                           Tecrube Boş Bırakılamaz!
@@ -165,7 +165,7 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">SOYAD</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" [ngModel]="soyad" placeholder="Soyadinizi Giriniz" name="soyad" #soad="ngModel" required>
+                                <input type="text" class="form-control" id="formGroupExampleInput" [ngModel]="soyad" placeholder="Soyadınızı Giriniz" name="soyad" #soad="ngModel" required>
                                 <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!soad.errors.required">
                                     Soyad Boş Bırakılamaz!
@@ -183,7 +183,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">ADRES</label>
-                                <input type="text" name="adres" class="form-control" [ngModel]="adres" id="formGroupExampleInput2" placeholder="" #res="ngModel" required>
+                                <input type="text" name="adres" class="form-control" [ngModel]="adres" id="formGroupExampleInput2" placeholder="Adres" #res="ngModel" required>
                                 <div *ngIf="res.errors && (res.dirty || res.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!res.errors.required">
                                     Adres Boş Bırakılamaz!
@@ -236,7 +236,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
-                                <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanizi Tekrar Giriniz" #par2="ngModel" required>
+                                <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanızı Tekrar Giriniz" #par2="ngModel" required>
                                 <div *ngIf="par2.errors && (par2.dirty || par2.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!par2.errors.required">
                                     Parola Boş Bırakılamaz!
@@ -251,7 +251,7 @@
                         <div class="row text-center">
                             <div class="col-xs-12">
                                 <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" data-toggle="modal" data-target="#somemod" [disabled]="!f.form.valid">KAYIT OL</button>
-                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giriş Yapın</a> </h5> 
+                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7; color: blue;" href>Giriş Yapın</a> </h5> 
                             </div>
                         </div>
                     

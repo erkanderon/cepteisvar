@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-xs-3 text-center" *ngIf="state === 1">
 
-                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEC'" [dropBoxMessage]="'Buraya Surukleyebilirsin'"></image-upload>
+                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
                             </div>
                             <div class="col-xs-3 text-center"></div>
                             <div class="col-xs-6">
@@ -381,7 +381,7 @@
                                       </div>
                                       <div class="col-xs-4">
                                         <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->
-                                        <p>GONDERİ STATÜSÜ:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
+                                        <p>SMS DURUMU:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
                                       </div>
                                       <div class="col-xs-4" >
                                         <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KİŞİYE GÖNDERİLDİ</p></a>
@@ -412,7 +412,7 @@
                                 <div *ngFor="let bsk of basketDetail.data" class="item  col-xs-4 col-lg-4 list-group-item" style="background: #f7f7f7;">
 
                                   <div class="thumbnail" style=" margin: 10px 30px;">
-                                      <img class="group list-group-image" src="{{bsk.PHOTO_URL}}" onerror="this.src='/assets/images/resimyok.png';" alt="" />
+                                      <img class="group list-group-image" src="{{bsk.PHOTO_URL}}" onerror="this.src='/assets/images/resimyok.png';" alt="" style="width: 250px;height: 200px;"/>
                                       <input *ngIf="!bsk.COMMENTED_STATUS" type="checkbox" style="position: absolute; -ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); padding: 10px; top: 100px; left: 0px; right: 20px;" (change)="addModel($event, bsk.MEMBER_ID)">
                                       <div class="caption">
                                           <div class="row" style="margin: 0px 0px 0px 0px;">

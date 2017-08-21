@@ -26,7 +26,7 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">FİRMA / KİŞİ ADI</label>
-                                <input name="firma"  [(ngModel)]="firma" #firm="ngModel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Firma Adi / Kisi Adi" required>
+                                <input name="firma"  [(ngModel)]="firma" #firm="ngModel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Firma Adı / Kişi Adı" required>
                                 <div *ngIf="firm.errors && (firm.dirty || firm.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!firm.errors.required">
                                     Firma Adi Boş Bırakılamaz!
@@ -36,7 +36,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
-                                <input name="yetkili" [(ngModel)]="yetkili" required #yetkil="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi">
+                                <input name="yetkili" [(ngModel)]="yetkili" required #yetkil="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi">
                                 <div *ngIf="yetkil.errors && (yetkil.dirty || yetkil.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yetkil.errors.required">
                                     Yetkili Boş Bırakılamaz!
@@ -108,7 +108,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
-                                <input name="yettel" [(ngModel)]="yettel" required #yet="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kisi Telefon">
+                                <input name="yettel" [(ngModel)]="yettel" required #yet="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi Telefon">
                                 <div *ngIf="yet.errors && (yet.dirty || yet.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yet.errors.required">
                                     Yetkili Boş Bırakılamaz!
@@ -159,7 +159,7 @@
                           <div class="row text-center" >
                             <div class="col-xs-12">
                                 <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" data-toggle="modal" data-target="#somemod" [disabled]="!f.form.valid">KAYIT OL</button>
-                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7;" href>Giriş Yapın</a></h5>  
+                                <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7; color: blue;" href>Giriş Yapın</a></h5>  
                             </div>
                           </div>
                         </form>

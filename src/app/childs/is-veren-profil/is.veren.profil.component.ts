@@ -393,6 +393,9 @@ export class IsVerenProfilComponent {
             this.router.navigate(['/home']);
          }
       )
+    }else{
+      this.operationfault.status = "Yeni Parola Hatası";
+      this.operationfault.text = "Parolalar Eşleşmiyor.";
     }
     
   }
