@@ -35,30 +35,45 @@
                     <div class="col-xs-12" style="margin-top: 20px;">
                         <form #searchForm="ngForm">
                             <div class="form-group">
-                                <select  name="jobcat" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required id="" class="form-control">
-                                    <option [value]="-10" disabled hidden>Kategori Seçiniz</option>
-                                    <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
-                                </select>
-                            </div>
-                            <div class="row" style="margin-bottom: 15px;">
-                                   <div class="col-lg-12">
-                                 <div class="button-group">
-                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">İş Seçiniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
-                                    <ul class="dropdown-menu" style="width: 300px; height: 200px; overflow: auto">
-                                      <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of jobs.data" ><input (change)="addToSearchModel($event, jbs.ID)" type="checkbox" [value]="jbs.ID" />&nbsp;{{jbs.JOB_NAME}}</a></li>
-                                      
-                                    </ul>
+                                <div class="button-group">
+                                    <angular2-multiselect [data]="jobCategoryList" [(ngModel)]="selectedjobCategory" 
+                                        [settings]="jobCategorySettings" 
+                                        (onSelect)="onJobCategorySelect($event)" name="selectedjobCategory">
+                                    </angular2-multiselect>
+                                    
                                 </div>
-                                    </div>
                             </div>
+                            
                             <div class="form-group">
+                                <div class="button-group">
+                                    <angular2-multiselect [data]="jobList" [(ngModel)]="selectedJob" 
+                                        [settings]="jobSettings" 
+                                        (onSelect)="onJobSelect($event)" 
+                                        (onDeSelect)="OnJobDeSelect($event)"
+                                        (onSelectAll)="onJobSelectAll($event)"
+                                        (onDeSelectAll)="onJobDeSelectAll($event)" name="selectedJob">
+                                    </angular2-multiselect>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="button-group">
+                                    <angular2-multiselect [data]="cityList" [(ngModel)]="selectedCity" 
+                                        [settings]="citySettings" 
+                                        (onSelect)="onCitySelect($event)"  name="selectedCity">
+                                    </angular2-multiselect>
+                                    
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
                                 
                               <select class="form-control " id="inlineFormCustomSelect" required [(ngModel)]="il" name="il">
                                 <option [value]="-10" disabled hidden>Şehir Seçiniz</option>
                                 <option [value]="city.CITY_ID" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
                               </select>
                               
-                            </div>
+                            </div>-->
                             <hr>
                             <div class="form-group" style="padding: 10px 20px 40px 20px;">
                                 <button href class="btn btn-default col-xs-6 isveren" style="color:#fff200;" (click)="clearSearch()">TEMİZLE</button>
@@ -84,9 +99,7 @@
                                     <angular2-multiselect [data]="genderList" [(ngModel)]="selectedGender" 
                                         [settings]="genderSettings" 
                                         (onSelect)="onGenSelect($event)" 
-                                        (onDeSelect)="onGenDeSelect($event)"
-                                        (onSelectAll)="onGenSelectAll($event)"
-                                        (onDeSelectAll)="onGenDeSelectAll($event)" name="selectedGender">
+                                         name="selectedGender">
                                     </angular2-multiselect>
                                     
                                 </div>

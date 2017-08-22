@@ -35,6 +35,10 @@ export class AramaComponent {
 	militaryList: any = {}; selectedMilitary: any = {}; militarySettings: any = {};
 	educationList: any = {}; selectedEducation: any = {}; educationSettings: any = {};
 	genderList: any = {}; selectedGender: any = {}; genderSettings: any = {};
+	jobList: any = {}; selectedJob: any = {}; jobSettings: any = {};
+	cityList: any = {}; selectedCity: any = {}; citySettings: any = {};
+
+	jobCategoryList: any = {}; selectedjobCategory: any = {}; jobCategorySettings: any = {};
 
 
 	filterClear: any = {}; kucuk:any; buyuk:any;
@@ -93,6 +97,36 @@ export class AramaComponent {
 
 // GENDER SELECTION END
 
+// JOB CATEGORY SELECTION SETTINGS START
+
+			this.jobCategoryList = [];
+	        this.selectedjobCategory = [];
+	        this.jobCategorySettings = {
+	                              singleSelection: true, 
+	                              text:"İş Kategorisi Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: false,
+	                              classes:"myclass custom-class"
+	        };
+
+// JOB CATEGORY SELECTION END
+
+// CITY SELECTION SETTINGS START
+
+			this.cityList = [];
+	        this.selectedCity = [];
+	        this.citySettings = {
+	                              singleSelection: true, 
+	                              text:"İl Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: false,
+	                              classes:"myclass custom-class"
+	        };
+
+// JOB CATEGORY SELECTION END
+
 // DRIVER SELECTION SETTINGS START
 			this.driverList = [];
 	        this.selectedDrivers = [];
@@ -106,6 +140,20 @@ export class AramaComponent {
 	        };
 
 // DRIVER SELECTION END
+
+// JOB SELECTION SETTINGS START
+			this.jobList = [];
+	        this.selectedJob = [];
+	        this.jobSettings = {
+	                              singleSelection: false, 
+	                              text:"İş Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class"
+	        };
+
+// JOB SELECTION END
 
 // MILITARY SELECTION SETTINGS START
 			this.militaryList = [];
@@ -156,8 +204,8 @@ export class AramaComponent {
   		}
 
   		this._pub.getMilitaryChoices().then(military => this.setMilitary(military));
-  		this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
-  		this.cities = this._pub.getCities().then(cities => this.cities = cities);
+  		this._pub.getJobCategories().then(jobcategory => this.setJobCategory(jobcategory));
+  		this._pub.getCities().then(cities => this.setCity(cities));
   		this._pub.getDriverLicenseTypes().then(driver => this.setDriver(driver));
   		this._pub.getHomepageMembers().then(profiles => this.setHomePageProfiles(profiles));
 	    
@@ -181,6 +229,29 @@ export class AramaComponent {
         this.filterDriver = [];
     }
 // DRIVER SELECTION END
+
+// JOB SELECTION START
+	onJobSelect(item:any){
+		console.log(item);
+        this.searchIsModel.push(item.id);
+        console.log(this.searchIsModel);
+    }
+    OnJobDeSelect(item:any){
+    	console.log(item);
+        let index = this.searchIsModel.indexOf(item.id, 0);
+		if (index > -1) {
+		   this.searchIsModel.splice(index, 1);
+		}
+    }
+    onJobSelectAll(items: any){
+        for(let k of items){
+        	this.searchIsModel.push(k.id);
+        }
+    }
+    onJobDeSelectAll(items: any){
+        this.searchIsModel = [];
+    }
+// JOB SELECTION END
 
 // MILITARY SELECTION START
 	onMilitarySelect(item:any){
@@ -227,17 +298,24 @@ export class AramaComponent {
 // GENDER SELECTION START
 	onGenSelect(item:any){
         this.filterGender = item.id;
-        console.log(item)
     }
-    onGenDeSelect(item:any){
-        console.log(item)
+    
+// GENDER SELECTION END
+
+// CITY SELECTION START
+	onCitySelect(item:any){
+        //this.filterGender = item.id;
+
+        console.log(this.selectedCity[0]);
     }
-    onGenSelectAll(items: any){
-        console.log(items);
+    
+// CITY SELECTION END
+
+// JOB CATEGORY SELECTION START
+	onJobCategorySelect(item:any){
+        this._pub.getJobFieldList(item.id).then(jobs => this.setJob(jobs));
     }
-    onGenDeSelectAll(items: any){
-        console.log(items);
-    }
+    
 // GENDER SELECTION END
 
     setDriver(param){
@@ -245,6 +323,24 @@ export class AramaComponent {
 
     	for(let i of param.data){
     		this.driverList.push({"id":i.ID,"itemName":i.LICENSE_TYPE})
+
+    	}
+    }
+
+    setCity(param){
+    	this.cities = param;
+
+    	for(let i of param.data){
+    		this.cityList.push({"id":i.CITY_ID,"itemName":i.CITY_NAME})
+
+    	}
+    }
+
+    setJob(param){
+    	this.jobs = param;
+
+    	for(let i of param.data){
+    		this.jobList.push({"id":i.ID,"itemName":i.JOB_NAME});
 
     	}
     }
@@ -275,6 +371,14 @@ export class AramaComponent {
 
     	}
     }
+    setJobCategory(param){
+    	this.jobcategory = param;
+
+    	for(let i of param.data){
+    		this.jobCategoryList.push({"id":i.CATEGORY_ID,"itemName":i.CATEGORY_NAME})
+
+    	}
+    }
 
 	addToModel(val, user){
 
@@ -288,12 +392,6 @@ export class AramaComponent {
 		}
 	}
 
-	onJobChange(newValue) {
-    
-    	this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
-
-  	}
-
   	setProfiles(param){
   		this.profiles = param;
   		this.filterClear = param.data;
@@ -305,6 +403,9 @@ export class AramaComponent {
   		console.log(this.homePageMembers);
   	}
   	clearSearch(){
+  		this.selectedJob = [];
+  		this.selectedCity = [];
+  		this.selectedjobCategory = [];
   		this.profiles.data = this.homePageMembers;
   	}
 
@@ -346,7 +447,7 @@ export class AramaComponent {
 	// SEARCH PERSON
   searchPerson(fav: NgForm) {
     
-    let model = new SearchModel(parseInt(fav.value.il), this.searchIsModel, null );
+    let model = new SearchModel(parseInt(this.selectedCity[0].id), this.searchIsModel, null );
 
     console.log(model);
 
