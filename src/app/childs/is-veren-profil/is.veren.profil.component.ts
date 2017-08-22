@@ -331,7 +331,7 @@ export class IsVerenProfilComponent {
     let userid = this.getWillCommentedUser();
     let sepet = this.getSepetId();
     let uri = '/home';
-    let model = new InsertCommentModel(companyid, fav.value.comment, parseInt(fav.value.performans), userid, sepet);
+    let model = new InsertCommentModel(companyid, fav.value.comment, 10, userid, sepet);
 
     this._post.createComment(JSON.stringify(model)).then(
         //used Arrow function here

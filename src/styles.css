@@ -225,7 +225,7 @@ footer .duyuru .input-group, footer .duyuru .row, footer .duyuru input, footer .
 footer .acik p{
 	color: white;
 	margin: 0px 0px 5px 0px;
-	font-size: 10px;
+	font-size: 11px !important;
 }
 footer .aciklama h5{
 	color: #fff100;
@@ -425,4 +425,8 @@ footer .aciklama h5{
 .c-token{
 	background: #fff200 !important;
 	color: black !important;
+}
+
+.fa-angle-down, .fa-angle-up{
+	top: inherit !important;
 }

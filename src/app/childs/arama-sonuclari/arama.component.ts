@@ -34,6 +34,7 @@ export class AramaComponent {
 	driverList: any = {}; selectedDrivers: any = {}; driverSettings: any = {};
 	militaryList: any = {}; selectedMilitary: any = {}; militarySettings: any = {};
 	educationList: any = {}; selectedEducation: any = {}; educationSettings: any = {};
+	genderList: any = {}; selectedGender: any = {}; genderSettings: any = {};
 
 
 	filterClear: any = {}; kucuk:any; buyuk:any;
@@ -78,12 +79,26 @@ export class AramaComponent {
 
 	ngOnInit() {
 
+// GENDER SELECTION SETTINGS START
+			this.genderList = [];
+	        this.selectedGender = [];
+	        this.genderSettings = {
+	                              singleSelection: true, 
+	                              text:"Cinsiyet Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: false,
+	                              classes:"myclass custom-class"
+	        };
+
+// GENDER SELECTION END
+
 // DRIVER SELECTION SETTINGS START
 			this.driverList = [];
 	        this.selectedDrivers = [];
 	        this.driverSettings = {
 	                              singleSelection: false, 
-	                              text:"Ehliyet Seçiniz",
+	                              text:"Ehliyet Sınıfı Seçiniz",
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
@@ -124,7 +139,7 @@ export class AramaComponent {
 		this.jobcat = -10;
 		this.cinsiyet = 4;
 
-		this.genders = this._pub.getGenderTypes().then(genders => this.genders = genders);
+		this._pub.getGenderTypes().then(genders => this.setGender(genders));
 		this._pub.getEducationTypes().then(education => this.setEducation(education));
 
 	  	if(!this._pub.getSearchModel() && !this._pub.getSearchParams()){
@@ -209,11 +224,36 @@ export class AramaComponent {
     }
 // EDUCATION SELECTION END
 
+// GENDER SELECTION START
+	onGenSelect(item:any){
+        this.filterGender = item.id;
+        console.log(item)
+    }
+    onGenDeSelect(item:any){
+        console.log(item)
+    }
+    onGenSelectAll(items: any){
+        console.log(items);
+    }
+    onGenDeSelectAll(items: any){
+        console.log(items);
+    }
+// GENDER SELECTION END
+
     setDriver(param){
     	this.driver = param;
 
     	for(let i of param.data){
     		this.driverList.push({"id":i.ID,"itemName":i.LICENSE_TYPE})
+
+    	}
+    }
+
+    setGender(param){
+    	this.genders = param;
+
+    	for(let i of param.data){
+    		this.genderList.push({"id":i.TYPE_ID,"itemName":i.GENDER})
 
     	}
     }
@@ -326,6 +366,7 @@ export class AramaComponent {
   	this.kucuk = null;
   	this.buyuk = null;
   	this.selectedDrivers = [];
+  	this.selectedGender = [];
   	this.selectedMilitary = [];
   	this.selectedEducation = [];
   	this.profiles.data = this.filterClear;

@@ -332,15 +332,15 @@
                               <div class="row" *ngFor="let cmt of comments.data | paginate: { itemsPerPage: 5, currentPage: c , id: 'yorumlar'}">
                                 <div class="col-xs-12">
                                   <div class="row timel">
-                                    <div class="col-xs-6">
-                                      <p><strong>{{cmt.REGISTERED_DATE}}</strong></p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                      <div class="ratings-widget" style="padding: 0px;">
-                                        <div  style="float: right;">
-                                            
-                                        </div>
+                                    <div style="margin:10px 0px;">
+                                      <div class="col-xs-4">
+                                        <p><strong>{{cmt.REGISTERED_DATE}}</strong></p>
                                       </div>
+                                      <div class="col-xs-4" style="float: right;">
+                                        <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->
+                                        <p style="float: right;">YORUM DURUMU:&nbsp;<i *ngIf="cmt.APPROVAL_STATUS===1" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="cmt.APPROVAL_STATUS===0" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
+                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="row yorum">
@@ -352,7 +352,7 @@
                               </div>
                               <div class="row text-center" style="margin-top: 20px;">
                                 <div class="col-xs-12">
-                                    <pagination-controls id="yorumlar" (pageChange)="c = $event"></pagination-controls>
+                                    <pagination-controls id="yorumlar" (pageChange)="c = $event" nextLabel="İleri" previousLabel ="Geri"></pagination-controls>
                                 </div>
                               </div>
                           </div>
@@ -390,7 +390,7 @@
                                         <p>SMS DURUMU:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
                                       </div>
                                       <div class="col-xs-4" >
-                                        <a  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  &nbsp;</span><strong>{{sms.TOTAL_SENT_SMS}} </strong>KİŞİYE GÖNDERİLDİ</p></a>
+                                        <button  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none; float: right;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  </span> <strong>{{sms.TOTAL_SENT_SMS}} </strong>KİŞİYE GÖNDERİLDİ</p></button>
                                       </div>
                                     </div>
                                   </div>
@@ -405,7 +405,7 @@
                             </div>
                             <div class="row text-center" style="margin-top: 20px;">
                                 <div class="col-xs-12">
-                                    <pagination-controls id="gidensmsler" (pageChange)="p = $event"></pagination-controls>
+                                    <pagination-controls id="gidensmsler" (pageChange)="p = $event" nextLabel="İleri" previousLabel ="Geri"></pagination-controls>
                                 </div>
                             </div>
                           </div>
@@ -457,10 +457,10 @@
                                                         <strong>BU ADAY İÇİN YORUM YAPTINIZ</strong>
                                                       </div>
                                                       <div *ngIf="bsk.COMMENTED_STATUS===2">
-                                                        <strong></strong>
+                                                        <strong>YORUM YAPMAK ISTEMIYORUM</strong>
                                                       </div>
                                                       <div *ngIf="bsk.COMMENTED_STATUS===3">
-                                                        <strong></strong>
+                                                        <strong>BU ADAY ILE CALISMADIK</strong>
                                                       </div>
                                                       
                                               </div>
@@ -850,19 +850,7 @@
       <div class="modal-body">
         <form #makecomment="ngForm">
           <div class="form-group">
-              <label for="">PERFORMANS</label>
-              <select id="" name="performans" class="form-control" [ngModel]="performans">
-                <option  value="1">1</option>
-                <option  value="2">2</option>
-                <option  value="3">3</option>
-                <option  value="4">4</option>
-                <option  value="5">5</option>
-                <option  value="6">6</option>
-                <option  value="7">7</option>
-                <option  value="8">8</option>
-                <option  value="9">9</option>
-                <option  value="10">10</option>
-              </select>
+              
           </div>
           <div class="form-group">
             <label for="exampleTextarea">YORUMUNUZ</label>
@@ -875,7 +863,7 @@
           <div class="col-xs-12">
               <div class="btn-group">
                 <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
-                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="makeComment(makecomment)">KAYDET</a>
+                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="makeComment(makecomment)" data-dismiss="modal">KAYDET</a>
               </div>
           </div>
         </div>
