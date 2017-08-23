@@ -27,10 +27,15 @@ export class HomeComponent {
 	jobcategory: any={};
 	model: any = [];
 
+	
+
 	il: any; jobcat: any;
 	searchIsModel: any=[];
 
 	ismember: any =false;
+	mobileAdvertise: any;
+
+	@ViewChild('myModal') myModal;
 
 
 	 jobCategoryList: any = {}; selectedjobCategory: any = {}; jobCategorySettings: any = {};
@@ -82,6 +87,8 @@ export class HomeComponent {
 
 	}
 	ngOnInit() {
+
+		this.mobileAdvertise = this._pub.getAdvertise();
 
 // JOB CATEGORY SELECTION SETTINGS START
 
@@ -145,11 +152,20 @@ export class HomeComponent {
 
 	    console.log(this.profiles)
 	}
-	ngAfterContentInit() {
+	ngAfterViewInit() {
 
 	jQuery(".owl-prev" ).has("i").addClass("fa");
 
 	}
+	openModel(){
+		jQuery("#mmodal").modal('show');
+	}
+	closeMobile(){
+		this.mobileAdvertise = 0;
+		this._pub.mobileAdvertise = 0;
+	}
+
+
 	formatFields(f) {
 	  	this.obj = {};
 	  	if(f.data){
@@ -198,7 +214,9 @@ export class HomeComponent {
 
 	setJobCategory(param){
     	this.jobcategory = param;
-
+    	if(this.mobileAdvertise===1){
+    		this.openModel();
+    	}
     	for(let i of param.data){
     		this.jobCategoryList.push({"id":i.CATEGORY_ID,"itemName":i.CATEGORY_NAME})
 

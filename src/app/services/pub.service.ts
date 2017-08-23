@@ -19,6 +19,8 @@ export class Pub {
 
 	public bankQueryResult: any={};
 
+	public mobileAdvertise: any=1;
+
 	constructor(private http: Http) { 
 		
 	}
@@ -262,6 +264,9 @@ export class Pub {
     }
     getBankResult() {
     	return this.bankQueryResult;
+    }
+    getAdvertise() {
+    	return this.mobileAdvertise;
     }
 
 	
