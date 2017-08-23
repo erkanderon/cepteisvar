@@ -22,6 +22,7 @@ export class IsverenKayitComponent {
   epost: any;
   sozlesmeerror: any=false;
 
+
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router,) { 
 		jQuery(document).ready(function () {
 
@@ -29,6 +30,10 @@ export class IsverenKayitComponent {
   		});
 	}
 	ngOnInit() {
+
+
+
+
 	    this.cities = this._pub.getCities().then(cities => this.cities = cities);
 	    this.areas = this._pub.getCompanyBusinessArea().then(areas => this.areas = areas);
 	    console.log(this.cities)

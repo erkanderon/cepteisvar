@@ -32,6 +32,11 @@ export class HomeComponent {
 
 	ismember: any =false;
 
+
+	 jobCategoryList: any = {}; selectedjobCategory: any = {}; jobCategorySettings: any = {};
+	 jobList: any = {}; selectedJob: any = {}; jobSettings: any = {};
+	 cityList: any = {}; selectedCity: any = {}; citySettings: any = {}; citySelect: any = {};
+
 	
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _flashMessagesService: FlashMessagesService) { 
@@ -78,6 +83,51 @@ export class HomeComponent {
 	}
 	ngOnInit() {
 
+// JOB CATEGORY SELECTION SETTINGS START
+
+			this.jobCategoryList = [];
+	        this.selectedjobCategory = [];
+	        this.jobCategorySettings = {
+	                              singleSelection: true, 
+	                              text:"İş Kategorisi Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class"
+	        };
+
+// JOB CATEGORY SELECTION END
+
+// JOB SELECTION SETTINGS START
+			this.jobList = [];
+	        this.selectedJob = [];
+	        this.jobSettings = {
+	                              singleSelection: false, 
+	                              text:"İş Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: true,
+	                              classes:"myclass custom-class",
+	                              badgeShowLimit: 1
+	        };
+
+// JOB SELECTION END
+
+// CITY SELECTION SETTINGS START
+
+			this.cityList = [];
+	        this.selectedCity = [];
+	        this.citySettings = {
+	                              singleSelection: true, 
+	                              text:"İl Seçiniz",
+	                              selectAllText:'Hepsini Seç',
+	                              unSelectAllText:'Hepsini Sil',
+	                              enableSearchFilter: false,
+	                              classes:"myclass custom-class"
+	        };
+
+// JOB CATEGORY SELECTION END
+
 		this.ismember = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='member');
 
 		//this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000000 });
@@ -85,9 +135,9 @@ export class HomeComponent {
 		this.il = -10;
 		this.jobcat = -10;
 
-	    this.cities = this._pub.getCities().then(cities => this.cities = cities);
+	    this._pub.getCities().then(cities => this.setCity(cities));
 	    this.education = this._pub.getEducationTypes().then(education => this.education = education);
-	    this.jobcategory = this._pub.getJobCategories().then(jobcategory => this.jobcategory = jobcategory);
+	    this._pub.getJobCategories().then(jobcategory => this.setJobCategory(jobcategory));
 	    this.profiles = this._pub.getHomepageMembers().then(profiles => this.profiles = profiles);
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
 	    this.news = this._pub.getNews().then(res => this.news = res);
@@ -110,11 +160,68 @@ export class HomeComponent {
 		return this.obj;
 	}
 
-	onJobChange(newValue) {
-    
-    	this.jobs = this._pub.getJobFieldList(newValue).then(jobs => this.jobs = jobs);
+// JOB CATEGORY SELECTION START
+	onJobCategorySelect(item:any){
+       this._pub.getJobFieldList(item.id).then(jobs => this.setJob(jobs));
+    }
+// JOB SELECTION START
+	onJobSelect(item:any){
+		console.log(item);
+        this.searchIsModel.push(item.id);
+        console.log(this.searchIsModel);
+    }
+    OnJobDeSelect(item:any){
+    	console.log(item);
+        let index = this.searchIsModel.indexOf(item.id, 0);
+		if (index > -1) {
+		   this.searchIsModel.splice(index, 1);
+		}
+    }
+    onJobSelectAll(items: any){
+        for(let k of items){
+        	this.searchIsModel.push(k.id);
+        }
+    }
+    onJobDeSelectAll(items: any){
+        this.searchIsModel = [];
+    }
+// JOB SELECTION END
 
-  	}
+// CITY SELECTION START
+	onCitySelect(item:any){
+        //this.filterGender = item.id;
+
+        this.citySelect = this.selectedCity[0];
+    }
+    
+// CITY SELECTION END
+
+	setJobCategory(param){
+    	this.jobcategory = param;
+
+    	for(let i of param.data){
+    		this.jobCategoryList.push({"id":i.CATEGORY_ID,"itemName":i.CATEGORY_NAME})
+
+    	}
+    }
+    setJob(param){
+    	this.jobs = param;
+
+    	for(let i of param.data){
+    		this.jobList.push({"id":i.ID,"itemName":i.JOB_NAME});
+
+    	}
+    }
+    setCity(param){
+    	this.cities = param;
+
+    	for(let i of param.data){
+    		this.cityList.push({"id":i.CITY_ID,"itemName":i.CITY_NAME})
+
+    	}
+    }
+
+	
 	checkUser(){
 		/*this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		console.log(this.islogged);
@@ -161,26 +268,19 @@ export class HomeComponent {
 			this.router.navigate(['/calisan-giris']);
 		}
 	}
-	addToModel(val, jid){
-
-		if(val.target.checked){
-			this.searchIsModel.push(jid);
-		}else{
-			let index = this.searchIsModel.indexOf(jid, 0);
-			if (index > -1) {
-			   this.searchIsModel.splice(index, 1);
-			}
-		}
-	}
+	
 	search(fav: NgForm) {
 
-		console.log(this.cities);
-
+		//console.log(this.cities);
+		console.log(fav.value.selectedjobCategory);
 	
-	    if(!parseInt(fav.value.il)===false && !parseInt(fav.value.jobcat)===false && this.searchIsModel.length != 0){ 
+	    if(fav.value.selectedjobCategory.length!==0 && fav.value.selectedCity.length!==0 && this.searchIsModel.length != 0){ 
 
-	    	this._pub.searchParams = new SearchModel(parseInt(fav.value.il), this.searchIsModel, null)
-	    	this._pub.searchModel = parseInt(fav.value.jobcat);
+	    	this._pub.searchParams = new SearchModel(parseInt(this.citySelect.id), this.searchIsModel, null);
+	    	this._pub.searchModel = {};
+	    	this._pub.searchModel.city = this.citySelect;
+	    	this._pub.searchModel.category = this.selectedjobCategory[0];
+	    	this._pub.searchModel.joblist = this.selectedJob;
 	    	this.router.navigate( ['/calisan-arama']);
 	    }else{
 	    	//Give Message Not Valid Form

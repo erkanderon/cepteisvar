@@ -1,6 +1,11 @@
 .thumbnail{
 	padding: 0px !important;
 }
+.pure-checkbox label{
+	font-size: 13px !important;
+	font-weight: 100 !important;
+}
+
 #grayOutDiv
 {
     background-color: #333;

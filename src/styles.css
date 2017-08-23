@@ -5,6 +5,48 @@ body{
 
     margin: 0 auto;
 }
+.homeselect .list-filter input{
+	color: black !important;
+}
+.homeselect .pure-checkbox label{
+	font-weight: 100 !important;
+	font-size: 13px !important;
+}
+.selected-list button span{
+	white-space: nowrap !important;
+    
+    text-overflow: ellipsis !important;
+    /*max-width: 180px !important;*/
+}
+.selected-list button{
+	display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px !important;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.c-btn{
+	text-align: left !important;
+	color: black;
+	border-radius: 0px !important;
+    box-shadow: none !important;
+}
+.c-token{
+	background: #fff200 !important;
+	color: black !important;
+}
+
+.fa-angle-down, .fa-angle-up{
+	top: inherit;
+}
 .file-upload .upload span{
 	color: black !important;
 }
@@ -415,18 +457,4 @@ footer .aciklama h5{
 /* NGX PAGINATION END */
 
 
-
-.c-btn{
-	text-align: left !important;
-	color: black;
-	border-radius: 0px !important;
-    box-shadow: none !important;
-}
-.c-token{
-	background: #fff200 !important;
-	color: black !important;
-}
-
-.fa-angle-down, .fa-angle-up{
-	top: inherit !important;
-}
+/* NOTIFICATION*/

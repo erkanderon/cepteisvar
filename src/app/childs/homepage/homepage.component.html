@@ -62,41 +62,43 @@
 	    				<div class="col-md-12 text-center tab-content" style="margin-top: 20px;">
 	    					<form id="1a" class="form-inline tab-pane active" #searchPerson="ngForm">
 
-							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
+	    						<div class="input-group mb-3 mr-sm-3 mb-sm-2 col-md-3">
 
-							    <select id="" name="jobcat" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" required >
-								    
-								    <option [value]="-10" disabled hidden>Kategori Seçiniz</option>
-                					<option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
-
-
-              
-								</select>
+							    
+	                                <div class="button-group homeselect">
+	                                    <angular2-multiselect [data]="jobCategoryList" [(ngModel)]="selectedjobCategory" 
+	                                        [settings]="jobCategorySettings" 
+	                                        (onSelect)="onJobCategorySelect($event)" name="selectedjobCategory">
+	                                    </angular2-multiselect>
+	                                    
+	                                </div>
+	                            
 								
+							    </div>
+
+							 
+							  <div class="row input-group mb-3 mr-sm-3 mb-sm-2 col-md-3">
+							       
+                                <div class="button-group homeselect">
+                                    <angular2-multiselect [data]="jobList" [(ngModel)]="selectedJob" 
+                                        [settings]="jobSettings" 
+                                        (onSelect)="onJobSelect($event)" 
+                                        (onDeSelect)="OnJobDeSelect($event)"
+                                        (onSelectAll)="onJobSelectAll($event)"
+                                        (onDeSelectAll)="onJobDeSelectAll($event)" name="selectedJob">
+                                    </angular2-multiselect>
+                                    
+                                </div>
+                            
 							  </div>
-							  	
-							  <!--<div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-							    <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" name="meslek2" [ngModel]="meslek2">
-							    	<option selected>Meslek Seciniz</option>
-								    <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
-								</select>
-							  </div> -->
-							  <div class="row input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-							       <div class="col-lg-12">
-							     <div class="button-group">
-							        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"><!--<span class="glyphicon glyphicon-cog"></span>--><label style="float: left; font-weight: 100;">İş Seçiniz</label> <span class="caret" style="float: right; margin-top: 7px;"></span></button>
-									<ul class="dropdown-menu" style="width: 300px; height: 200px; overflow: auto">
-									  <li><a class="small" data-value="option1" tabIndex="-1" *ngFor="let jbs of jobs.data" ><input (change)="addToModel($event, jbs.ID)" type="checkbox" [value]="jbs.ID" />&nbsp;{{jbs.JOB_NAME}}</a></li>
-									  
-									</ul>
-								</div>
-									</div>
-							  </div>
-							  <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-2">
-								  <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0 " id="" required [ngModel]="il" name="il">
-								  	<option [value]="-10" disabled hidden>Şehir Seçiniz</option>
-								    <option [value]="city.CITY_ID" *ngFor="let city of cities.data">{{city.CITY_NAME}}</option>
-								  </select>
+							  <div class="input-group mb-3 mr-sm-3 mb-sm-2 col-md-3">
+								    <div class="button-group homeselect">
+	                                    <angular2-multiselect [data]="cityList" [(ngModel)]="selectedCity" 
+	                                        [settings]="citySettings" 
+	                                        (onSelect)="onCitySelect($event)"  name="selectedCity">
+	                                    </angular2-multiselect>
+	                                    
+	                                </div>
 							  </div>
 							  
 							  <button type="submit" class="form-control search" (click)="search(searchPerson)"><i class="fa fa-search fa-2x" style="color:black; font-size: 16px;" aria-hidden="true"></i></button>
@@ -116,9 +118,7 @@
 	</div>
 
 	<!-- Neden Cepte Is Var -->
-
-	<flash-messages></flash-messages>
-  
+	  
 
 	<!-- NEDEN CEPTE IS VAR? -->
 

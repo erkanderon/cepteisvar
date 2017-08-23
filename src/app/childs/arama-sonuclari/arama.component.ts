@@ -26,7 +26,6 @@ export class AramaComponent {
 	jobs: any={};
 	cities: any;
 	searchIsModel: any=[];
-	il: any; jobcat: any; cinsiyet: any;
 
 	genders: any; education:any; military: any; driver:any;
 	p: number = 1;
@@ -136,7 +135,8 @@ export class AramaComponent {
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
-	                              classes:"myclass custom-class"
+	                              classes:"myclass custom-class",
+	                              badgeShowLimit: 1
 	        };
 
 // DRIVER SELECTION END
@@ -150,7 +150,8 @@ export class AramaComponent {
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
-	                              classes:"myclass custom-class"
+	                              classes:"myclass custom-class",
+	                              badgeShowLimit: 1
 	        };
 
 // JOB SELECTION END
@@ -164,7 +165,8 @@ export class AramaComponent {
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
-	                              classes:"myclass custom-class"
+	                              classes:"myclass custom-class",
+	                              badgeShowLimit: 1
 	        };
 
 // MILITARY SELECTION END
@@ -178,14 +180,12 @@ export class AramaComponent {
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
-	                              classes:"myclass custom-class"
+	                              classes:"myclass custom-class",
+	                              badgeShowLimit: 1
 	        };
 
 // EDUCATION SELECTION END
 
-		this.il = -10;
-		this.jobcat = -10;
-		this.cinsiyet = 4;
 
 		this._pub.getGenderTypes().then(genders => this.setGender(genders));
 		this._pub.getEducationTypes().then(education => this.setEducation(education));
@@ -196,6 +196,11 @@ export class AramaComponent {
 	    }else{
 	    	console.log("degilim");
 	    	console.log(this._pub.getSearchParams());
+	    	console.log(this._pub.getSearchModel());
+	    	this.selectedCity.push(this._pub.getSearchModel().city);
+	    	this.selectedjobCategory.push(this._pub.getSearchModel().category);
+	    	this.onJobCategorySelect(this._pub.getSearchModel().category);
+	    	this.selectedJob = this._pub.getSearchModel().joblist;
 	    	this._post.searchWorker(this._pub.getSearchParams()).then(profiles => this.setProfiles(profiles));
 
 	    }
@@ -463,7 +468,7 @@ export class AramaComponent {
 
   clearFilter(){
   	
-  	this.cinsiyet = '4';
+  	
   	this.kucuk = null;
   	this.buyuk = null;
   	this.selectedDrivers = [];
@@ -473,7 +478,7 @@ export class AramaComponent {
   	this.profiles.data = this.filterClear;
   }
   clearGender(){
-  	this.cinsiyet = '4';
+  	
   }
 
   setAgeLow(event){
