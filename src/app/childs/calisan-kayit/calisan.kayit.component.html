@@ -79,10 +79,13 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">E-POSTA</label>
-                                <input type="email" name="eposta" [ngModel]="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta" #eps="ngModel" required>
+                                <input type="email" name="eposta" [ngModel]="eposta" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta" #eps="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                                 <div *ngIf="eps.errors && (eps.dirty || eps.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!eps.errors.required">
                                     E-Posta Boş Bırakılamaz!
+                                  </div>
+                                  <div [hidden]="!eps.errors.pattern">Email format gösterildiği şekilde olmalıdır. 
+                                    <small><b>joe@abc.com</b></small>
                                   </div>
                                   
                                 </div>
@@ -90,7 +93,7 @@
                               <div class="form-group">
                                   <div class="dropdown">
                                     <label for="">ŞEHİR</label>
-                                    <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)">
+                                    <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
                                       <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                     </select>
                                   </div>
@@ -98,7 +101,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                     <label for="">İŞ KATEGORİNİZ</label>
-                                    <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)">
+                                    <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)" required>
                                       <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
                                     </select>
                                 </div>
@@ -107,7 +110,7 @@
                                    <div class="col-xs-6"> 
                                       <div class="dropdown">
                                         <label for="">BİRİNCİL MESLEK</label>
-                                        <select id="" class="form-control" name="meslek" [ngModel]="meslek">
+                                        <select id="" class="form-control" name="meslek" [ngModel]="meslek" required>
                                           <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
                                         </select>
                                       </div>
@@ -126,7 +129,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="">ASKERLİK DURUMU</label>
-                                  <select id="" class="form-control" name="askerlik" [ngModel]="askerlik">
+                                  <select id="" class="form-control" name="askerlik" [ngModel]="askerlik" required>
                                     <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
                                   </select>
                                 </div>
@@ -176,7 +179,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="">CİNSİYET</label>
-                                  <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet">
+                                  <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet" required>
                                     <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
                                   </select>
                                 </div>
@@ -194,7 +197,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="">EĞİTİM DURUMU</label>
-                                  <select id="" class="form-control" name="educate" [ngModel]="educate">
+                                  <select id="" class="form-control" name="educate" [ngModel]="educate" required>
                                     <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
                                     
                                   </select>
@@ -203,7 +206,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="">İLÇE</label>
-                                  <select id="" class="form-control" name="ilce" [ngModel]="ilce">
+                                  <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                   </select>
                                 </div>
@@ -228,7 +231,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="formGroupExampleInput2">EHLİYET DURUMUNUZ</label>
-                                  <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet">
+                                  <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet" required>
                                       <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
                                       
                                   </select>

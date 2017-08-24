@@ -63,15 +63,15 @@
                   <div class="form-group">
                     <label for="formGroupExampleInput"><h4>TELEFON NUMARANIZ</h4></label>
                     <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon Numarasi" name="oldtel" [(ngModel)]="oldtel" #oltel="ngModel" required>
-                    <div *ngIf="oltel.errors && (oltel.dirty || oltel.touched)" class="alert alert-danger" style="margin-top: 5px;" minlength="11" maxlength="11">
+                    <div *ngIf="oltel.errors && (oltel.dirty || oltel.touched)" class="alert alert-danger" style="margin-top: 5px;" minlength="10" maxlength="10">
                       <div [hidden]="!oltel.errors.required">
                         Telefon Boş Bırakılamaz!
                       </div>
                       <div [hidden]="!oltel.errors.minlength">
-                        Telefon 11 karakterden oluşmalı.
+                        Telefon 10 karakterden oluşmalı.
                       </div>
                       <div [hidden]="!oltel.errors.maxlength">
-                        Telefon 11 karakterden oluşmalı.
+                        Telefon 10 karakterden oluşmalı.
                       </div>
                       
                     </div>

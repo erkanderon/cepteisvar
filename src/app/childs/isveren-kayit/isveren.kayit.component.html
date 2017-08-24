@@ -46,11 +46,14 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">E-POSTA</label>
-                                <input name="eposta" [(ngModel)]="eposta" required #epost="ngModel" type="email" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta">
+                                <input name="eposta" [(ngModel)]="eposta" required #epost="ngModel" type="email" class="form-control" id="formGroupExampleInput2" placeholder="E-Posta" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                                 <div *ngIf="epost.errors && (epost.dirty || epost.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!epost.errors.required">
                                     E-Posta Boş Bırakılamaz!
                                   </div>
+                                  <div [hidden]="!epost.errors.pattern">Email format gösterildiği şekilde olmalıdır. 
+                                    <small><b>joe@abc.com</b></small>
+                                 </div>
                                   
                                 </div>
                               </div>
@@ -68,7 +71,7 @@
                                 <div class="dropdown">
                                     
                                   <label for="">ŞEHİR</label>
-                                  <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2">
+                                  <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2" required>
                                     <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
                                   </select>
                                 </div>
@@ -98,11 +101,15 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">TELEFON</label>
-                                <input name="telefon" [(ngModel)]="telefon" required #tel="ngModel" type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon">
+                                <input name="telefon" [(ngModel)]="telefon" required #tel="ngModel" type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon" minlength="10">
                                 <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!tel.errors.required">
                                     Telefon Boş Bırakılamaz!
                                   </div>
+                                  <div [hidden]="!tel.errors.minlength">
+                                    Telefon 10 haneli olmalidir!
+                                  </div>
+                                  
                                   
                                 </div>
                               </div>
@@ -139,7 +146,7 @@
                               <div class="form-group">
                                 <div class="dropdown">
                                   <label for="" >İLÇE</label>
-                                  <select id="" class="form-control" name="cname" [ngModel]="cname">
+                                  <select id="" class="form-control" name="cname" [ngModel]="cname" required>
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
                                    
                                   </select>
