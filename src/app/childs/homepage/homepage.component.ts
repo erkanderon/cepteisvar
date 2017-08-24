@@ -6,6 +6,7 @@ import {Return} from '../../models/return.model';
 import {NgForm} from '@angular/forms';
 import { SearchModel } from '../../models/searchModel';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { AfterViewInit } from '@angular/core';
 declare var jQuery : any;
 
 @Component({
@@ -14,7 +15,7 @@ declare var jQuery : any;
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomeComponent {
+export class HomeComponent{
 	cities: any;
 	education: any;
 	jobs: any={};
@@ -152,17 +153,20 @@ export class HomeComponent {
 
 	    console.log(this.profiles)
 	}
-	ngAfterViewInit() {
+	ngAfterViewChecked() {
 
 	jQuery(".owl-prev" ).has("i").addClass("fa");
+		
 
 	}
 	openModel(){
 		jQuery("#mmodal").modal('show');
+		//this.fileInput.nativeElement.click()
 	}
 	closeMobile(){
 		this.mobileAdvertise = 0;
 		this._pub.mobileAdvertise = 0;
+		console.log(this.mobileAdvertise);
 	}
 
 
@@ -214,9 +218,7 @@ export class HomeComponent {
 
 	setJobCategory(param){
     	this.jobcategory = param;
-    	if(this.mobileAdvertise===1){
-    		this.openModel();
-    	}
+    	
     	for(let i of param.data){
     		this.jobCategoryList.push({"id":i.CATEGORY_ID,"itemName":i.CATEGORY_NAME})
 
@@ -232,6 +234,14 @@ export class HomeComponent {
     }
     setCity(param){
     	this.cities = param;
+    	if(this.mobileAdvertise===1){
+    		setTimeout(()=>{ 
+               this.openModel();
+            }, 500);
+
+            
+    		
+    	}
 
     	for(let i of param.data){
     		this.cityList.push({"id":i.CITY_ID,"itemName":i.CITY_NAME})

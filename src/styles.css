@@ -458,3 +458,6 @@ footer .aciklama h5{
 
 
 /* NOTIFICATION*/
+.list-group-item input{
+	top: 10px !important;
+}
