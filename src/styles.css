@@ -13,11 +13,50 @@ body{
 	font-size: 13px !important;
 }
 .selected-list button span{
-	white-space: nowrap !important;
+	/*white-space: nowrap !important;
     
-    text-overflow: ellipsis !important;
+    text-overflow: ellipsis !important;*/
     /*max-width: 180px !important;*/
+    /*white-space: nowrap;
+    width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
 }
+
+.selected-list button span span{
+
+	white-space: nowrap;
+    width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.homeselect .selected-list button span span{
+
+	white-space: nowrap;
+    width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.homeselect .c-token .c-label{
+
+	white-space: nowrap;
+    width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.c-list .c-token .c-label{
+
+	white-space: nowrap;
+    width: 11em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
 .selected-list button{
 	display: block;
     width: 100%;
@@ -460,4 +499,7 @@ footer .aciklama h5{
 /* NOTIFICATION*/
 .list-group-item input{
 	top: 10px !important;
+}
+.list-group-item .sepbuton{
+	margin: 0px !important;
 }
