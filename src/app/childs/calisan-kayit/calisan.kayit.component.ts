@@ -79,6 +79,10 @@ export class CalisanKayitComponent {
 			return false;
 		}
 	}
+	openModel(){
+		jQuery("#somemod").modal('show');
+		//this.fileInput.nativeElement.click()
+	}
 	onSubmit(f: NgForm) {
     	//console.log(f.value.yetkili);  // { first: '', last: '' }
     	//console.log(f.valid);  // false
@@ -90,6 +94,7 @@ export class CalisanKayitComponent {
     	console.log(pers);
     	if(f.value.sozles){
 	    	if(f.valid && f.value.parola===f.value.parola2 && !!pers){
+	    		this.openModel();
 	    		this._pservice.insertNewMemberAccount(JSON.stringify(pers)).then(
 				    //used Arrow function here
 				    (success)=> {

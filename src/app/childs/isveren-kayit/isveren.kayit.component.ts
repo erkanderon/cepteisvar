@@ -58,6 +58,10 @@ export class IsverenKayitComponent {
 			return false;
 		}
 	}
+	openModel(){
+		jQuery("#somemod").modal('show');
+		//this.fileInput.nativeElement.click()
+	}
 	onSubmit(f: NgForm) {
     	//console.log(f.value.yetkili);  // { first: '', last: '' }
     	//console.log(f.valid);  // false
@@ -67,6 +71,7 @@ export class IsverenKayitComponent {
     	this.epost = f.value.eposta;
     	if(f.value.sozles){
 	    	if(f.valid && f.value.parola===f.value.parola2 && !!comp){
+	    		this.openModel();
 	    		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
 				    //used Arrow function here
 				    (success)=> {

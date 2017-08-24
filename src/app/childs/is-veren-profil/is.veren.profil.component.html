@@ -159,14 +159,9 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">E-POSTA</label>
                                   <div class="">
-                                    <input type="email" [ngModel]="mail" name="mail" class="form-control" id="firma" #eposta="ngModel" required>
+                                    <p class="form-control-static">{{profile.data[0].EMAIL}}</p>
                                   </div>
-                                  <div *ngIf="eposta.errors && (eposta.dirty || eposta.touched)" class="alert alert-danger" style="margin-top: 5px;">
-                                    <div [hidden]="!eposta.errors.required">
-                                      E-Posta Boş Bırakılamaz!
-                                    </div>
-                                    
-                                  </div>
+                                  
                                 </div>
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">VERGİ ADRESİ</label>

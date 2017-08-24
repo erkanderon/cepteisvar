@@ -4,12 +4,12 @@
 		<section id="main_content" style="margin-top: -20px;">
     <div class="row text-center" style="background-color: #f7f7f7; min-height: 70px; margin: 0px 0px;">
         <div class="col-xs-12">
-            <h3>İŞ ARAYAN KAYIT</h3>
+            <h3>ÇALIŞAN KAYIT</h3>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-xs-12">
-            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> İş Arayan Kayıt</a>
+            <a class="btn btn-default" style="background-color: #f7f7f7; margin-top: -15px;">Anasayfa >> Çalışan Kayıt</a>
         </div>
     </div>
     <!-- MESSAGE SERVICE -->
@@ -250,7 +250,7 @@
 
                         <div class="row text-center">
                             <div class="col-xs-12">
-                                <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" data-toggle="modal" data-target="#somemod" [disabled]="!f.form.valid">KAYIT OL</button>
+                                <button (click)="onSubmit(f)" class="btn btn-default" style="background: #fff100; border-color: #fff100; padding: 10px 50px;" [disabled]="!f.form.valid">KAYIT OL</button>
                                 <h5 style="color: #747574;">Zaten hesabınız var mı?<a class="btn btn-default" style="border:none; background: #f7f7f7; color: blue;" routerLink="/calisan-giris">Giriş Yapın</a> </h5> 
                             </div>
                         </div>
@@ -272,7 +272,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-center">CEP TELEFONU DOGRULAMA</h4>
+        <h4 class="modal-title text-center">CEP TELEFONU DOĞRULAMA</h4>
       </div>
       <div class="modal-body">
         <p>Cep Telefonu numaranızda değişiklik yapmak istediğiniz için yeni numaranızı
@@ -290,8 +290,8 @@
       <div class="modal-footer" style="text-align: center;">
         <div class="btn-group">
 
-          <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
-          <a type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GÖNDER</a>
+          <a type="button" class="btn isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+          <a type="button" class="btn calisan" style="min-width: 100px;" data-dismiss="modal" (click)="validate(kod)">GÖNDER</a>
         
         </div>
       </div>
