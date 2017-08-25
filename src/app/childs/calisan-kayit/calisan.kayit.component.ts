@@ -32,6 +32,7 @@ export class CalisanKayitComponent {
   education: any;
   epost: any;
   sozlesmeerror: any=false;
+  parolaerror: any=false;
 
   operation: any={};
   operationfault: any={};
@@ -93,31 +94,36 @@ export class CalisanKayitComponent {
 
     	console.log(pers);
     	if(f.value.sozles){
-	    	if(f.valid && f.value.parola===f.value.parola2 && !!pers){
-	    		this.openModel();
-	    		this._pservice.insertNewMemberAccount(JSON.stringify(pers)).then(
-				    //used Arrow function here
-				    (success)=> {
-				      
-				      if(this.responser(success)){
-				      	//this.router.navigate(['/calisan-giris']);
-				      	this.operation.status = success.status;
-						this.operation.text = success.userMessage;
+    		if(f.value.parola===f.value.parola2){
+		    	if(f.valid && !!pers){
+		    		this.openModel();
+		    		this._pservice.insertNewMemberAccount(JSON.stringify(pers)).then(
+					    //used Arrow function here
+					    (success)=> {
+					      
+					      if(this.responser(success)){
+					      	//this.router.navigate(['/calisan-giris']);
+					      	this.operation.status = success.status;
+							this.operation.text = success.userMessage;
 
-						
-				      }else{
-				      	this.operationfault.status = success.status;
-              			this.operationfault.text = success.userMessage;
-				      }
-				      
-				    }
-				).catch(
-				   //used Arrow function here
-				   (err)=> {
-				      this.router.navigate(['/home']);
-				   }
-				)
-	    	}
+							
+					      }else{
+					      	this.operationfault.status = success.status;
+	              			this.operationfault.text = success.userMessage;
+					      }
+					      
+					    }
+					).catch(
+					   //used Arrow function here
+					   (err)=> {
+					      this.router.navigate(['/home']);
+					   }
+					)
+		    	}
+		    }else{
+		    	
+		    	this.parolaerror = true;
+		    }
 	    }else{
 	    	this.sozlesmeerror = true;
 	    }

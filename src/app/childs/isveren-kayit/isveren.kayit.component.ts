@@ -21,6 +21,7 @@ export class IsverenKayitComponent {
   areas: any;
   epost: any;
   sozlesmeerror: any=false;
+  parolaerror: any=false;
 
 
     constructor(private elRef : ElementRef, private _pub: Pub, private _pservice: PostService, private router: Router,) { 
@@ -70,23 +71,27 @@ export class IsverenKayitComponent {
     	
     	this.epost = f.value.eposta;
     	if(f.value.sozles){
-	    	if(f.valid && f.value.parola===f.value.parola2 && !!comp){
-	    		this.openModel();
-	    		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
-				    //used Arrow function here
-				    (success)=> {
-				      
-				      console.log("oldu")
-				      //this.router.navigate(['/isveren-giris']);
-				    }
-				).catch(
-				   //used Arrow function here
-				   (err)=> {
-				      console.log("olmadi");
-				      //this.router.navigate(['/home']);
-				   }
-				)
-	    	}
+    		if(f.value.parola===f.value.parola2){
+		    	if(f.valid  && !!comp){
+		    		this.openModel();
+		    		this._pservice.insertNewCompanyAccount(JSON.stringify(comp)).then(
+					    //used Arrow function here
+					    (success)=> {
+					      
+					      console.log("oldu")
+					      //this.router.navigate(['/isveren-giris']);
+					    }
+					).catch(
+					   //used Arrow function here
+					   (err)=> {
+					      console.log("olmadi");
+					      //this.router.navigate(['/home']);
+					   }
+					)
+		    	}
+		    }else{
+		    	this.parolaerror = true;
+		    }
     	}else{
     		this.sozlesmeerror = true;
     	}

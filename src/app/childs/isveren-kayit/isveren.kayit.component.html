@@ -68,7 +68,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                     
                                   <label for="">ŞEHİR</label>
                                   <select id="" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" name="sel2" required>
@@ -79,14 +79,22 @@
                               
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA</label>
-                                <input name="parola" [ngModel]="parola" required #parol="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola">
+                                <input name="parola" [ngModel]="parola" required #parol="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola" minlength="5">
                               </div>
                               <div *ngIf="parol.errors && (parol.dirty || parol.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!parol.errors.required">
                                     Parola Boş Bırakılamaz!
                                   </div>
+                                  <div [hidden]="!parol.errors.minlength">
+                                    Parola en az 5 haneli olmalidir!
+                                  </div>
                                   
+                              </div>
+                              <div *ngIf="parolaerror" class="alert alert-danger" style="margin-top: 5px;">
+                                <div >
+                                  Parolalar Eşleşmedi!
                                 </div>
+                              </div> 
                               <div class="form-group">
                                 <label class="form-check-label txt">
                                   <input class="form-check-input" type="checkbox" style="font-size:600px;" name="sozles" [(ngModel)]="sozles"> <a href="https://www.cepteisvar.com/agreements/hizmet.html" target="_blank">Hizmet Sözleşmesi</a> , <a href="https://www.cepteisvar.com/agreements/guvenlik.html" target="_blank">Gizlilik ve Güvenlik Politikası</a> ve <a href="https://www.cepteisvar.com/agreements/mesafeli.html" target="_blank">Mesafeli Satış Sözleşmesi'ni</a> onayliyorum.
@@ -101,24 +109,38 @@
                           <div class="col-xs-6" style="padding: 0px 50px;">
                               <div class="form-group">
                                 <label for="formGroupExampleInput">TELEFON</label>
-                                <input name="telefon" [(ngModel)]="telefon" required #tel="ngModel" type="number" class="form-control" id="formGroupExampleInput" placeholder="Telefon" minlength="10">
+                                <input name="telefon" [(ngModel)]="telefon" required #tel="ngModel" type="text" class="form-control" id="formGroupExampleInput" placeholder="Telefon" minlength="10" maxlength="10" pattern="[0-9]*">
                                 <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!tel.errors.required">
                                     Telefon Boş Bırakılamaz!
                                   </div>
                                   <div [hidden]="!tel.errors.minlength">
+                                    Telefon 10 haneli olmalidir!  <small><b>(Örn:5xxxxxxxxx)</b></small>
+                                  </div>
+                                  <div [hidden]="!tel.errors.maxlength">
                                     Telefon 10 haneli olmalidir!
                                   </div>
-                                  
+                                  <div [hidden]="!tel.errors.pattern">
+                                    Telefon hanesi sayılardan oluşmalıdır!
+                                  </div>                                  
                                   
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
-                                <input name="yettel" [(ngModel)]="yettel" required #yet="ngModel" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi Telefon">
+                                <input name="yettel" [(ngModel)]="yettel" required #yet="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi Telefon" minlength="10" maxlength="10" pattern="[0-9]*">
                                 <div *ngIf="yet.errors && (yet.dirty || yet.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yet.errors.required">
-                                    Yetkili Boş Bırakılamaz!
+                                    Telefon Boş Bırakılamaz!
+                                  </div>
+                                  <div [hidden]="!yet.errors.minlength">
+                                    Telefon 10 haneli olmalidir!  <small><b>(Örn:5xxxxxxxxx)</b></small>
+                                  </div>
+                                  <div [hidden]="!yet.errors.maxlength">
+                                    Telefon 10 haneli olmalidir!
+                                  </div>
+                                  <div [hidden]="!yet.errors.pattern">
+                                    Telefon hanesi sayılardan oluşmalıdır!
                                   </div>
                                   
                                 </div>
@@ -144,7 +166,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="" >İLÇE</label>
                                   <select id="" class="form-control" name="cname" [ngModel]="cname" required>
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
@@ -154,10 +176,13 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
-                                <input name="parola2" [(ngModel)]="parola2" required #partwo="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola Tekrar">
+                                <input name="parola2" [(ngModel)]="parola2" required #partwo="ngModel" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Parola Tekrar" minlength="5">
                                 <div *ngIf="partwo.errors && (partwo.dirty || partwo.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!partwo.errors.required">
                                     Parola Boş Bırakılamaz!
+                                  </div>
+                                  <div [hidden]="!partwo.errors.minlength">
+                                    Parola en az 5 haneli olmalidir!
                                   </div>
                                   
                                 </div>

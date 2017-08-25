@@ -23,6 +23,10 @@ body{
     text-overflow: ellipsis;*/
 }
 
+form select{
+	-webkit-appearance: menulist-button;
+}
+
 .selected-list button span span{
 
 	white-space: nowrap;

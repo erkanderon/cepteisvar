@@ -1,5 +1,5 @@
 export class AppSettings {
-   public static API_ENDPOINT='http://cepteisvar.cboxpay.com:8888/cepteisvarprod/webapi';
+   public static API_ENDPOINT='http://cepteisvar.cboxpay.com:8888/cepteisvar/webapi';
    //public static API_ENDPOINT='https://www.cepteisvar.com:8888/cepteisvarprod/webapi';
    public static grant_type="password";
    public static grant_type2="refresh_token";

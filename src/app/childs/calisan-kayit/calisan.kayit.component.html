@@ -54,6 +54,7 @@
                                     Ad Boş Bırakılamaz!
                                   </div>
                                   
+                                  
                                 </div>
                               </div>
                               
@@ -69,10 +70,19 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
-                                <input type="number" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Telefon Numarası" #cont="ngModel" required>
+                                <input type="text" [ngModel]="contact" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Telefon Numarası" #cont="ngModel" required minlength="10" maxlength="10" pattern="[0-9]*">
                                 <div *ngIf="cont.errors && (cont.dirty || cont.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!cont.errors.required">
                                     Telefon Boş Bırakılamaz!
+                                  </div>
+                                  <div [hidden]="!cont.errors.minlength">
+                                    Telefon 10 haneli olmalidir!
+                                  </div>
+                                  <div [hidden]="!cont.errors.maxlength">
+                                    Telefon 10 haneli olmalidir!
+                                  </div>
+                                  <div [hidden]="!cont.errors.pattern">
+                                    Telefon hanesi sayılardan oluşmalıdır!
                                   </div>
                                   
                                 </div>
@@ -91,7 +101,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                  <div class="dropdown">
+                                  <div class="">
                                     <label for="">ŞEHİR</label>
                                     <select id="" name="sd" class="form-control" [ngModel]="sd" (ngModelChange)="onChange($event)" required>
                                       <option  *ngFor="let city of cities.data" [value]="city.CITY_ID">{{city.CITY_NAME}}</option>
@@ -99,7 +109,7 @@
                                   </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                     <label for="">İŞ KATEGORİNİZ</label>
                                     <select id="" name="jobcat" class="form-control" [ngModel]="is" (ngModelChange)="onJobChange($event)" required>
                                       <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
@@ -108,7 +118,7 @@
                               </div>
                               <div class="form-group row">
                                    <div class="col-xs-6"> 
-                                      <div class="dropdown">
+                                      <div class="">
                                         <label for="">BİRİNCİL MESLEK</label>
                                         <select id="" class="form-control" name="meslek" [ngModel]="meslek" required>
                                           <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
@@ -116,18 +126,23 @@
                                       </div>
                                     </div>
                                     <div class="col-xs-6">
-                                      <label for="">TECRÜBE</label>
-                                      <input type="text" name="tecrube" [ngModel]="tecrube" class="form-control" id="formGroupExampleInput2" placeholder="Tecrübe" #tecr="ngModel" required>
-                                      <div *ngIf="tecr.errors && (tecr.dirty || tecr.touched)" class="alert alert-danger" style="margin-top: 5px;">
-                                        <div [hidden]="!tecr.errors.required">
-                                          Tecrube Boş Bırakılamaz!
+                                        <label for="formGroupExampleInput2">TECRUBE</label>
+                                        <!--<div class="">
+                                          <input type="text" class="form-control" id="firma" name="tecrube" [ngModel]="tecrube" [value]="profile.data[0].WORKING_EXPERIENCE" required>
+                                        </div>-->
+                                        <div class="">
+                                          <select id="" class="form-control" name="tecrube" [ngModel]="tecrube" required>
+                                            
+                                            <option value="0-3 YIL">0-3 YIL</option>
+                                            <option value="3-5 YIL">3-5 YIL</option>
+                                            <option value="5-10 YIL">5-10 YIL</option>
+                                            <option value="10+ YIL">10+ YIL</option>
+                                          </select>
                                         </div>
-                                        
-                                      </div>
                                     </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="">ASKERLİK DURUMU</label>
                                   <select id="" class="form-control" name="askerlik" [ngModel]="askerlik" required>
                                     <option *ngFor="let mlt of military.data" [value]="mlt.TYPE">{{mlt.STATUS}}</option>
@@ -136,12 +151,20 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA</label>
-                                <input type="password" name="parola" [ngModel]="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola" #par="ngModel" required>
+                                <input type="password" name="parola" [ngModel]="parola" class="form-control" id="formGroupExampleInput2" placeholder="Parola" #par="ngModel" required minlength="5">
                                 <div *ngIf="par.errors && (par.dirty || par.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!par.errors.required">
                                     Parola Boş Bırakılamaz!
                                   </div>
+                                  <div [hidden]="!par.errors.minlength">
+                                    Parola en az 5 haneli olmalidir!
+                                  </div>
                                   
+                                </div>
+                                <div *ngIf="parolaerror" class="alert alert-danger" style="margin-top: 5px;">
+                                  <div >
+                                    Parolalar Eşleşmedi!
+                                  </div>
                                 </div>
 
                               </div>
@@ -177,7 +200,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="">CİNSİYET</label>
                                   <select id="" class="form-control" name="cinsiyet" [ngModel]="cinsiyet" required>
                                     <option  *ngFor="let gndr of genders.data" [value]="gndr.TYPE_ID">{{gndr.GENDER}}</option>
@@ -195,7 +218,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="">EĞİTİM DURUMU</label>
                                   <select id="" class="form-control" name="educate" [ngModel]="educate" required>
                                     <option *ngFor="let edu of education.data" [value]="edu.TYPE_ID">{{edu.EDUCATION_LEVEL}}</option>
@@ -204,7 +227,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="">İLÇE</label>
                                   <select id="" class="form-control" name="ilce" [ngModel]="ilce" required>
                                     <option  *ngFor="let st of ct.data" [value]="st.COUNTY_ID">{{st.COUNTY_NAME}}</option>
@@ -212,7 +235,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                     <label for="">İŞ KATEGORİNİZ</label>
                                     <select id="" name="digercat" class="form-control" [ngModel]="digercat" (ngModelChange)="onJobChangeDiger($event)">
                                       <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
@@ -220,7 +243,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="">DİĞER MESLEK</label>
                                   <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
                                     <option [value]="0">Seciniz</option>
@@ -229,7 +252,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="dropdown">
+                                <div class="">
                                   <label for="formGroupExampleInput2">EHLİYET DURUMUNUZ</label>
                                   <select id="" class="form-control" name="ehliyet" [ngModel]="ehliyet" required>
                                       <option *ngFor="let drv of driver.data" [value]="drv.ID">{{drv.LICENSE_TYPE}}</option>
@@ -239,10 +262,13 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">PAROLA TEKRAR</label>
-                                <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanızı Tekrar Giriniz" #par2="ngModel" required>
+                                <input type="password" name="parola2" [ngModel]="parola2" class="form-control" id="formGroupExampleInput2" placeholder="Parolanızı Tekrar Giriniz" #par2="ngModel" required minlength="5">
                                 <div *ngIf="par2.errors && (par2.dirty || par2.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!par2.errors.required">
                                     Parola Boş Bırakılamaz!
+                                  </div>
+                                  <div [hidden]="!par2.errors.minlength">
+                                    Parola en az 5 haneli olmalidir!
                                   </div>
                                   
                                 </div>
