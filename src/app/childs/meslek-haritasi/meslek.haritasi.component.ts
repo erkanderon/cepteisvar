@@ -1,5 +1,6 @@
 import { ElementRef, Component } from '@angular/core';
 declare var jQuery : any;
+declare var snfVtiih: any;
 
 @Component({
   moduleId: module.id,
@@ -9,11 +10,19 @@ declare var jQuery : any;
 })
 export class MeslekHaritasiComponent {
 
+	
+
+
 	constructor(private elRef : ElementRef) { 
 		jQuery(document).ready(function () {
-
+			
   		});
 	}
+
+	
+	
+	
+
   
   	
 }

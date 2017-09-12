@@ -57,6 +57,8 @@ export class IsVerenProfilComponent {
   smsNumber: any=0;
   pphoto: any;
 
+  basketData: any = {};
+
   operation: any = {};
   operationfault: any = {};
 
@@ -86,7 +88,6 @@ export class IsVerenProfilComponent {
     this.promotions = this._pub.getSMSPromotions().then(promotions => this.promotions = promotions);
     this.smsfee = this._pub.getSMSFee().then(smsfee => this.smsfee = smsfee);
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
-		this.basket = this.getBasketData();
 
 	}
 
@@ -95,6 +96,7 @@ export class IsVerenProfilComponent {
 	    if(res.data){
 	      this.comments = this._post.getCompanyComments({"P_COMPANY_ID": res.data[0].COMPANY_ID}).then(comments => this.comments = comments);
 	      this.sms = this._post.getCompanyBasket({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
+        this.basketData = this._post.getMyOpenBasket({"p_company_id": res.data[0].COMPANY_ID}).then(res => this.setBasketData(res));
         this.onChange(res.data[0].CITY_ID);
 
         this.cn = res.data[0].COMPANY_NAME;
@@ -116,6 +118,15 @@ export class IsVerenProfilComponent {
 	      
 	    }
 	  }
+  }
+  setBasketData(res){
+  
+    if(!res.data){
+      this.basket = [];
+    }else{
+      this.basket = res.data;
+      console.log(this.basket)
+    }
   }
 	getBasketData(){
 		let model = [];
@@ -451,12 +462,37 @@ export class IsVerenProfilComponent {
   }
 
   removeFromSepet(user){
-    let index = this.basket.indexOf(user, 0);
+    /*let index = this.basket.indexOf(user, 0);
     if (index > -1) {
        this.basket.splice(index, 1);
-    }
-    this._pub.sepetModel = this.basket;
-    this.basket = this.getBasketData();
+    }*/
+    //this._pub.sepetModel = this.basket;
+
+    this._post.deleteFromMyOpenBasket({ "p_company_id": this.cid, "p_basket_id": user.BASKET_ID, "p_member_id": [user.MEMBER_ID]}).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              //this.router.navigate([uri]);
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              this.basketData = this._post.getMyOpenBasket({"p_company_id": this.cid}).then(res => this.setBasketData(res));
+              /*setTimeout(()=>{ 
+                 location.reload();
+                }, 3000);*/
+            }else{
+              //give a message
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
+            }
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
   }
   
   	

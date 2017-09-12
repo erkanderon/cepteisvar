@@ -333,3 +333,28 @@
 
 
 <footer-comp></footer-comp>
+
+
+<div id="mmodal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" style="text-align: center;font-weight: 900;">Sepet Uyarısı</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="line-height: 1.5; text-align: center; word-spacing: 2px;" *ngIf="sepetExistMessage">{{sepetExistMessage}}</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="row text-center">
+                  <div class="col-xs-12">
+                      <div class="btn-group">
+                        <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="addToExistingSepet()" data-dismiss="modal">EKLE</a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

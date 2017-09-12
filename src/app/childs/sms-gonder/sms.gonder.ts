@@ -18,6 +18,8 @@ export class SMSGonderComponent {
 
 	company = {};
 	basket:any = {};
+	basketid:any = 0;
+	basketData:any = {};
 	sms:any={};
 	userModel: any={};
 	balance:any={};
@@ -40,7 +42,7 @@ export class SMSGonderComponent {
 		this.company = new PreviewCompanyModel(localStorage.getItem('user'));
 		this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.getop(res));
 
-		this.basket = this.getBasketData();
+		//this.basket = this.getBasketData();
 	}
 
 	getop(res){
@@ -49,11 +51,22 @@ export class SMSGonderComponent {
 	      this.sms = this._post.getCompanySMS({"p_company_id": res.data[0].COMPANY_ID}).then(sms => this.sms = sms);
 
 	      this.userModel = res.data[0].COMPANY_ID;
+	      this.basketData = this._post.getMyOpenBasket({"p_company_id": res.data[0].COMPANY_ID}).then(res => this.setBasketData(res));
 
 	      this.balance = this._post.previewAccountBalance({ "p_email": res.data[0].EMAIL}).then(balance => this.balance = balance);
 	      
 	    }
 	    console.log(this.sms);
+	}
+
+	setBasketData(res){
+  
+		if(!res.data){
+		  this.basket = [];
+		}else{
+		  this.basket = res.data;
+		  this.basketid = res.data[0].BASKET_ID;
+		}
 	}
 
 	getBasketData(){
@@ -80,11 +93,11 @@ export class SMSGonderComponent {
 	sendSMS(fav: NgForm) {
 
 		let uri = '/is-veren-profil';
-		let send = new CreateBasketModel(this.userModel, this.basket, fav.value.text);		
-
+		let send = new CreateBasketModel(this.userModel, this.basketid, fav.value.text);		
+		console.log(send);
 		if(parseInt(this.balance.data.ACCOUNT_BALANCE)>=parseInt(this.willPay)){
 
-			this._post.createCompanyBasket(JSON.stringify(send)).then(
+			this._post.paySmsBasket(JSON.stringify(send)).then(
 			  //used Arrow function here
 			  (success)=> {
 			    
@@ -104,12 +117,13 @@ export class SMSGonderComponent {
 			      //give a message
 			      this.operationfault.status = true;
 				  this.operationfault.text = success.userMessage;
+				  
 			      //this.operationText = success.userMessage;
 			      /*setTimeout(()=>{ 
 				   this.router.navigate([uri, {foo: "profil"}]);
 				  }, 3000);*/
 			    }
-			    
+			    console.log(success);
 			  }
 			).catch(
 			 //used Arrow function here

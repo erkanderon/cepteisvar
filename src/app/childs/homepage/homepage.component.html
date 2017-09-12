@@ -57,7 +57,7 @@
 
 
 			</div>
-			<div class="header-text hidden-xs col-xs-12" style="margin-top: -220px;" *ngIf="!ismember">
+			<div class="header-text hidden-xs col-xs-12" style="margin-top: -220px;" > <!--*ngIf="!ismember"-->
 	    		<div class="container-fluid" style="padding: 0px 100px 0px 100px;">
 	    			<div class="row form-carousel" style="padding: 10px 10px 0px 10px; min-height: 150px; font-size:18px;">
 	    				<!--<div class="col-md-6">
@@ -195,7 +195,7 @@
 		</div>
 	</div>
 	<!-- Kimler IS Ariyor? -->
-	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;" *ngIf="!islogged">
+	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;">
 		<div class="row">
 			<div class="col-xs-12" style="margin-bottom: 20px;">
 				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.KIM1">{{fields.KIM1}}</h3>
@@ -448,5 +448,31 @@
 	<!-- FIRMALAR ROW Finish -->
 </section>
 <footer-comp></footer-comp>
+
+
+
+<div id="sepetmodal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" style="text-align: center;font-weight: 900;">Sepet Uyarısı</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="line-height: 1.5; text-align: center; word-spacing: 2px;" *ngIf="sepetExistMessage">{{sepetExistMessage}}</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="row text-center">
+                  <div class="col-xs-12">
+                      <div class="btn-group">
+                        <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
+                        <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="addToExistingSepet()" data-dismiss="modal">EKLE</a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 

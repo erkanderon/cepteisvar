@@ -8,6 +8,7 @@ import {NgForm} from '@angular/forms';
 import { SearchModel } from '../../models/searchModel';
 declare var jQuery : any;
 declare var List : any;
+import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
 
 @Component({
   moduleId: module.id,
@@ -19,6 +20,7 @@ declare var List : any;
 export class AramaComponent {
 
 	profiles: any = {};
+	company = {};
 	model: any = [];
 	saveUsername: any = false;
 	islogged:any = false;
@@ -43,6 +45,8 @@ export class AramaComponent {
 	filterClear: any = {}; kucuk:any; buyuk:any;
 	filterParams: any = {}; homePageMembers:any = [];
 	filterEducation: any=[]; filterMilitary: any=[]; filterDriver:any =[]; filterGender: any; highAge: any; lowAge: any;
+
+	sepetExistMessage: any = "OK"; sepetMemberIds: any=[]; companyId: any=0;
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
@@ -413,13 +417,94 @@ export class AramaComponent {
   		this.selectedjobCategory = [];
   		this.profiles.data = this.homePageMembers;
   	}
+  	responser(obj) {
+	    if(obj.code === 200){
+	      return true;
+	    }else{
+	      return false;
+	    }
+	}
 
 	createSepet(){
+
 		
+
+		let peopleId = [];
 		this._pub.sepetModel = this.model;
-		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		if(!this.model.length){
+			//this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		}else{
+			for(let j in this.model){
+				peopleId.push(this.model[j].USER_ID);
+				
+			}
+			this.company = new PreviewCompanyModel(localStorage.getItem('user'));
+			this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.createSepetService(res, peopleId));
+		}
+		//this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
 
 	}
+	createSepetService(comp, ids){
+		this.sepetMemberIds = ids;
+		this.companyId = comp.data[0].COMPANY_ID;
+
+		this._post.createCompanyBasket({ "p_company_id": this.companyId, "p_member_id": ids }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else if(success.code===920){
+              //give error
+              this.sepetExistMessage = success.userMessage;
+              this.openModel();
+              console.log(success);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+	addToExistingSepet(){
+		this._post.getMyOpenBasket({"p_company_id": this.companyId}).then(res => this.addPersonToOpenBasket(res));
+
+		
+	}
+	addPersonToOpenBasket(res){
+		let id = res.data[0].BASKET_ID
+		console.log(res);
+
+
+		this._post.addToMyOpenBasket({ "p_company_id": this.companyId, "p_basket_id": id, "p_member_id": this.sepetMemberIds }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+	openModel(){
+					jQuery("#mmodal").modal('show');
+					
+				}
 	directSms(user){
 		if(this.islogged){
 			this.model.push(user);

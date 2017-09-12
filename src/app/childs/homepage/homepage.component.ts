@@ -1,8 +1,10 @@
 import { ElementRef, Component , ViewChild } from '@angular/core';
 import { Pub } from '../../services/pub.service';
 import { AuthService } from '../../services/auth.service';
+import { PostService } from '../../services/post.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Return} from '../../models/return.model';
+import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
 import {NgForm} from '@angular/forms';
 import { SearchModel } from '../../models/searchModel';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -28,7 +30,8 @@ export class HomeComponent{
 	jobcategory: any={};
 	model: any = [];
 
-	
+	company:any = {};
+	sepetExistMessage: any = "OK"; sepetMemberIds: any=[]; companyId: any=0;
 
 	il: any; jobcat: any;
 	searchIsModel: any=[];
@@ -45,7 +48,7 @@ export class HomeComponent{
 
 	
 
-	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _flashMessagesService: FlashMessagesService) { 
+	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _flashMessagesService: FlashMessagesService, private _post: PostService) { 
 
 		// JQuery Defines
 		jQuery(document).ready(function () {
@@ -168,6 +171,13 @@ export class HomeComponent{
 		this._pub.mobileAdvertise = 0;
 		console.log(this.mobileAdvertise);
 	}
+	responser(obj) {
+	    if(obj.code === 200){
+	      return true;
+	    }else{
+	      return false;
+	    }
+	}
 
 
 	formatFields(f) {
@@ -227,6 +237,7 @@ export class HomeComponent{
     setJob(param){
     	this.jobs = param;
 
+    	this.jobList = [];
     	for(let i of param.data){
     		this.jobList.push({"id":i.ID,"itemName":i.JOB_NAME});
 
@@ -281,11 +292,87 @@ export class HomeComponent{
 		}
 	}
 	createSepet(){
+
 		
+
+		let peopleId = [];
 		this._pub.sepetModel = this.model;
-		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		if(!this.model.length){
+			//this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		}else{
+			for(let j in this.model){
+				peopleId.push(this.model[j].USER_ID);
+				
+			}
+			this.company = new PreviewCompanyModel(localStorage.getItem('user'));
+			this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.createSepetService(res, peopleId));
+		}
+		//this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
 
 	}
+	createSepetService(comp, ids){
+		this.sepetMemberIds = ids;
+		this.companyId = comp.data[0].COMPANY_ID;
+
+		this._post.createCompanyBasket({ "p_company_id": this.companyId, "p_member_id": ids }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else if(success.code===920){
+              //give error
+              this.sepetExistMessage = success.userMessage;
+              this.openSepetModel();
+              console.log(success);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+	addToExistingSepet(){
+		this._post.getMyOpenBasket({"p_company_id": this.companyId}).then(res => this.addPersonToOpenBasket(res));
+
+		
+	}
+	addPersonToOpenBasket(res){
+		let id = res.data[0].BASKET_ID
+		console.log(res);
+
+
+		this._post.addToMyOpenBasket({ "p_company_id": this.companyId, "p_basket_id": id, "p_member_id": this.sepetMemberIds }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+
+	openSepetModel(){
+		jQuery("#sepetmodal").modal('show');
+		
+	}
+	
 	checkMember(){
 		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
 		

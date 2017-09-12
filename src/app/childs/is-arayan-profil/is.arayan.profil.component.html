@@ -165,13 +165,29 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">AD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" required>
+                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="^[a-zA-Z]*$">
+                                    </div>
+                                    <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!ad.errors.required">
+                                        Ad Boş Bırakılamaz!
+                                      </div>
+                                      <div [hidden]="!soad.errors.pattern">
+                                        Ad Hanesi Harflerden Oluşmalıdır!
+                                      </div>
+                                      
+                                      
                                     </div>
                                   </div>
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
                                     <div class="">
-                                      <input type="date" class="form-control" id="firma" name="dtarihi" [ngModel]="dtarihi" [value]="profile.data[0].BDAY" required>
+                                      <input type="date" class="form-control" id="firma" name="dtarihi" [ngModel]="dtarihi" [value]="profile.data[0].BDAY" #dtarih="ngModel" required>
+                                    </div>
+                                    <div *ngIf="dtarih.errors && (dtarih.dirty || dtarih.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!dtarih.errors.required">
+                                        Doğum Tarihi Boş Bırakılamaz!
+                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -183,7 +199,20 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">TELEFON NUMARASI</label>
                                     <div class="">
-                                      <input type="number" class="form-control" id="firma" name="telefon" [ngModel]="telefon" [value]="profile.data[0].EMAIL" required>
+                                      <input type="text" class="form-control" id="firma" name="telefon" [ngModel]="telefon" [value]="profile.data[0].EMAIL" #cont="ngModel" required minlength="10" maxlength="10" pattern="[0-9]*">
+                                    </div>
+                                    <div *ngIf="cont.errors && (cont.dirty || cont.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!cont.errors.required">
+                                        Telefon Boş Bırakılamaz!
+                                      </div>
+                                      <div [hidden]="!cont.errors.minlength">
+                                        Telefon 10 haneli olmalidir!  <small><b>(Örn:5xxxxxxxxx)</b></small>
+                                      </div>
+                                      
+                                      <div [hidden]="!cont.errors.pattern">
+                                        Telefon hanesi sayılardan oluşmalıdır!
+                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -204,7 +233,7 @@
                                           </div>
                                         </div>
                                         <div class="col-xs-6">
-                                          <label for="formGroupExampleInput2">TECRUBE</label>
+                                          <label for="formGroupExampleInput2">TECRÜBE</label>
                                           <!--<div class="">
                                             <input type="text" class="form-control" id="firma" name="tecrube" [ngModel]="tecrube" [value]="profile.data[0].WORKING_EXPERIENCE" required>
                                           </div>-->
@@ -229,8 +258,17 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SOYAD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1">
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="^[a-zA-Z]*$">
 
+                                    </div>
+                                    <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!soad.errors.required">
+                                        Soyad Boş Bırakılamaz!
+                                      </div>
+                                      <div [hidden]="!soad.errors.pattern">
+                                        Soyad Hanesi Harflerden Oluşmalıdır!
+                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -247,7 +285,13 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">ADRES</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" [ngModel]="adres" name="adres" [value]="profile.data[0].SURNAME" required>
+                                      <input type="text" class="form-control" id="firma" [ngModel]="adres" name="adres" [value]="profile.data[0].SURNAME" #res="ngModel" required>
+                                    </div>
+                                    <div *ngIf="res.errors && (res.dirty || res.touched)" class="alert alert-danger" style="margin-top: 5px;">
+                                      <div [hidden]="!res.errors.required">
+                                        Adres Boş Bırakılamaz!
+                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -282,7 +326,7 @@
                                     <div class="btn-group">
 
                                       <a type="button" (click)="setNumber(0)" class="btn btn-default isveren" style="min-width: 100px;">VAZGEÇ</a>
-                                      <a type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editMemberForm(editmember)">KAYDET</a> <!-- data-toggle="modal" data-target="#myModal" -->
+                                      <button type="button" class="btn btn-default calisan" style="min-width: 100px;"  (click)="editMemberForm(editmember)" [disabled]="!editmember.form.valid">KAYDET</button> <!-- data-toggle="modal" data-target="#myModal" -->
                                     
                                     </div>
                                 </div>
@@ -408,27 +452,27 @@
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanız</label>
-                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #newestpass="ngModel" required minlength="5">
+                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #newestpass="ngModel" required minlength="6">
                             </div>
                             <div *ngIf="newestpass.errors && (newestpass.dirty || newestpass.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!newestpass.errors.required">
                                     Yeni Parolanız Boş Bırakılamaz!
                                   </div>
                                   <div [hidden]="!newestpass.errors.minlength">
-                                    Yeni Parola Tekrar Alanı 5 Karakterden Fazla Olmalı!
+                                    Parola en az 6 haneli olmalidir!
                                   </div>
                                   
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanızı Tekrar Giriniz</label>
-                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newpasstek="ngModel" required minlength="5">
+                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newpasstek="ngModel" required minlength="6">
                             </div>
                             <div *ngIf="newpasstek.errors && (newpasstek.dirty || newpasstek.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!newpasstek.errors.required">
                                     Yeni Parola Tekrar Alanı Boş Bırakılamaz!
                                   </div>
                                   <div [hidden]="!newpasstek.errors.minlength">
-                                    Yeni Parola Tekrar Alanı 5 Karakterden Fazla Olmalı!
+                                    Parola en az 6 haneli olmalidir!
                                   </div>
                                   
                             </div>

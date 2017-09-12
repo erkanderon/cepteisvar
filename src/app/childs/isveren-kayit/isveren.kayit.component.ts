@@ -79,13 +79,13 @@ export class IsverenKayitComponent {
 					    (success)=> {
 					      
 					      console.log("oldu")
-					      //this.router.navigate(['/isveren-giris']);
+					      this.router.navigate(['/isveren-giris']);
 					    }
 					).catch(
 					   //used Arrow function here
 					   (err)=> {
 					      console.log("olmadi");
-					      //this.router.navigate(['/home']);
+					      this.router.navigate(['/home']);
 					   }
 					)
 		    	}

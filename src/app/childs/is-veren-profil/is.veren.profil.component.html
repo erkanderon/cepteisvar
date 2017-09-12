@@ -147,11 +147,14 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required >
+                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required pattern="^[a-zA-Z]*$">
                                   </div>
                                   <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!person.errors.required">
                                       Yetkili Kişi Boş Bırakılamaz!
+                                    </div>
+                                    <div [hidden]="!vergi.errors.pattern">
+                                      Yetkili Kişi Harflerden Oluşmalıdır!
                                     </div>
                                     
                                   </div>
@@ -166,11 +169,14 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">VERGİ ADRESİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required>
+                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required pattern="^[a-zA-Z]*$">
                                   </div>
                                   <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!vergi.errors.required">
                                       Vergi Adresi Boş Bırakılamaz!
+                                    </div>
+                                    <div [hidden]="!vergi.errors.pattern">
+                                      Vergi Hanesi Harflerden Oluşmalıdır!
                                     </div>
                                     
                                   </div>
@@ -189,11 +195,18 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">TELEFON</label>
                                   <div class="">
-                                    <input type="number" [ngModel]="tel" name="tel" class="form-control" id="firma" #telefon="ngModel" required>
+                                    <input type="text" [ngModel]="tel" name="tel" class="form-control" id="firma" #telefon="ngModel" required minlength="10" maxlength="10" pattern="[0-9]*">
                                   </div>
                                   <div *ngIf="telefon.errors && (telefon.dirty || telefon.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!telefon.errors.required">
                                       Telefon Boş Bırakılamaz!
+                                    </div>
+                                    <div [hidden]="!tel.errors.minlength">
+                                    Telefon 10 haneli olmalidir!  <small><b>(Örn:5xxxxxxxxx)</b></small>
+                                    </div>
+                                    
+                                    <div [hidden]="!tel.errors.pattern">
+                                      Telefon hanesi sayılardan oluşmalıdır!
                                     </div>
                                     
                                   </div>
@@ -201,11 +214,18 @@
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">YETKİLİ KİŞİ TELEFON</label>
                                     <div class="">
-                                      <input type="number" [ngModel]="rpn" name="rpn" class="form-control" id="firma" #yetkilitel="ngModel" required>
+                                      <input type="text" [ngModel]="rpn" name="rpn" class="form-control" id="firma" #yetkilitel="ngModel" required minlength="10" maxlength="10" pattern="[0-9]*">
                                     </div>
                                     <div *ngIf="yetkilitel.errors && (yetkilitel.dirty || yetkilitel.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!yetkilitel.errors.required">
                                         Telefon Boş Bırakılamaz!
+                                      </div>
+                                      <div [hidden]="!tel.errors.minlength">
+                                      Telefon 10 haneli olmalidir!  <small><b>(Örn:5xxxxxxxxx)</b></small>
+                                      </div>
+                                      
+                                      <div [hidden]="!tel.errors.pattern">
+                                        Telefon hanesi sayılardan oluşmalıdır!
                                       </div>
                                       
                                     </div>
@@ -213,11 +233,14 @@
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">VERGİ / TC KİMLİK NO</label>
                                     <div class="">
-                                      <input type="number" [ngModel]="taxn" name="taxn" class="form-control" id="firma" #tckimlik="ngModel" required>
+                                      <input type="text" [ngModel]="taxn" name="taxn" class="form-control" id="firma" #tckimlik="ngModel" required pattern="[0-9]*">
                                     </div>
                                     <div *ngIf="tckimlik.errors && (tckimlik.dirty || tckimlik.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!tckimlik.errors.required">
                                         Vergi Boş Bırakılamaz!
+                                      </div>
+                                      <div [hidden]="!tckimlik.errors.pattern">
+                                        Vergi hanesi sayılardan oluşmalıdır!
                                       </div>
                                       
                                     </div>
@@ -494,20 +517,26 @@
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolaniz</label>
-                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #new="ngModel" required>
+                              <input type="password" class="form-control" [(ngModel)]="newpass" name="newpass" id="formGroupExampleInput2" placeholder="Yeni Parola" #new="ngModel" minlength="6" required>
                               <div *ngIf="new.errors && (new.dirty || new.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                 <div [hidden]="!new.errors.required">
                                   Yeni Parolaniz Boş Bırakılamaz!
+                                </div>
+                                <div [hidden]="!partwo.errors.minlength">
+                                    Parola en az 6 haneli olmalidir!
                                 </div>
                                 
                               </div>
                             </div>
                             <div class="form-group">
                               <label for="formGroupExampleInput2">Yeni Parolanizi Tekrar Giriniz</label>
-                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newagain="ngModel" required>
+                              <input type="password" class="form-control" [(ngModel)]="newpass2" name="newpass2" id="formGroupExampleInput2" placeholder="Tekrar Giriniz" #newagain="ngModel" minlength="6" required>
                               <div *ngIf="newagain.errors && (newagain.dirty || newagain.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                 <div [hidden]="!newagain.errors.required">
                                   Yeni Parolaniz Boş Bırakılamaz!
+                                </div>
+                                <div [hidden]="!partwo.errors.minlength">
+                                    Parola en az 6 haneli olmalidir!
                                 </div>
                                 
                               </div>
@@ -607,7 +636,7 @@
                                             <div class="group inner list-group-item-text text-center">
                                                 
                                                         <div style="margin: 0 auto; display: table; ">
-                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', sepet.USER_ID]">PROFİLİ GÖRÜNTÜLE</a>
+                                                        <a class="btn btn-success btn-group-lg" style=" width: 120px; font-size: 9px; border-radius: 0px;  color: white; background: black; border-color:black; float: left;" [routerLink]="['/calisan-profil', sepet.MEMBER_ID]">PROFİLİ GÖRÜNTÜLE</a>
                                                         
                                                     </div>
                                                     
