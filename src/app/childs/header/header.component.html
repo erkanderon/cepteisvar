@@ -3,15 +3,15 @@
   		<div class="" style="background-color: #020102; font-size: 10px">
   			<div style="">
   				<div class="row" style="min-width: 900px;">
-	  				<div class="col-md-6">
-	  					<div class="left-panel ">
+	  				<div class="col-md-6" style="padding: 5px 10px;">
+	  					<div class="left-panel " style="font-size: 11px;">
 		  					<a href="" *ngIf="fields.HAK1" routerLink="/hakkimizda">{{fields.HAK1}} </a>|
 		  					<a href="" *ngIf="fields.ILE1" routerLink="/iletisim">{{fields.ILE1}} </a>|
 		  					<a href="cepteisvar@cepteisvar.com">MAIL: CEPTEISVAR@CEPTEISVAR.COM</a>
 		  				</div>
 	  				</div>
-	  				<div class="col-md-6">
-	  					<div class="right-panel">
+	  				<div class="col-md-6" style="padding: 5px 10px;">
+	  					<div class="right-panel" style="font-size: 13px;">
 		  					<a href="https://www.facebook.com/cepteisvar"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 		  					<a href="https://www.twitter.com/cepteisvar"><i class="fa fa-twitter" aria-hidden="true"></i> </a>
 		  					
@@ -28,18 +28,22 @@
 		  					<a routerLink="/home" style="text-decoration:none;"><img style="padding-top: 5px;" src="assets/images/logo-light.png" class="img img-responsive"></a>
 		  				</div>
 		  				<div class="col-xs-7 tab text-center" style="vertical-align: center;">
-		  					<a class="btn btn-default active" routerLink="/home" *ngIf="fields.ANA1" > {{fields.ANA1}}</a>
-		  					<span ><a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1">{{fields.KIM1}}</a></span> <!-- *ngIf="!islogged" -->
-		  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1">{{fields.MES1}}</a>
-		  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1">{{fields.DUY1}}</a>
+		  					<div class="headerbuttons" style="padding: 1px 0px; background: black; border: 1px solid black; margin: 0px 30px; color: white;">
+			  					<a class="btn btn-default" routerLink="/home" *ngIf="fields.ANA1" style="color: white;" > {{fields.ANA1}}</a>
+			  					<span ><a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1" style="color: white;">{{fields.KIM1}}</a></span> <!-- *ngIf="!islogged" -->
+			  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1" style="color: white;">{{fields.MES1}}</a>
+			  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1" style="color: white;">{{fields.DUY1}}</a>
+			  				</div>
 		  				</div>
 		  				<div class="col-xs-3 but" *ngIf="!checkUser">
-		  					<div style="float:left;" *ngIf="fields.LOG1">
-		  						<a routerLink="/isveren-giris" class="btn btn-info isveren" >{{fields.LOG1}}</a>
-		  					</div>
-		  					<div  class="btn btn-info calisan" *ngIf="fields.LOG2" style="float:left;">
-		  						<a  routerLink="/calisan-giris" >{{fields.LOG2}}</a>
-		  					</div>
+		  					<div style="padding: 2px 1px;">
+			  					<div style="float:left;" *ngIf="fields.LOG1">
+			  						<a routerLink="/isveren-giris" class="btn btn-info isveren" >{{fields.LOG1}}</a>
+			  					</div>
+			  					<div  class="btn btn-info calisan" *ngIf="fields.LOG2" style="float:left;">
+			  						<a  routerLink="/calisan-giris" >{{fields.LOG2}}</a>
+			  					</div>
+			  				</div>
 		  				</div>
 		  				<div class="col-xs-3 but" *ngIf="checkUser">
 		  					<div style="float:left;">

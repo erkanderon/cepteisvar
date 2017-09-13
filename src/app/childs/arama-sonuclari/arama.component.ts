@@ -21,6 +21,7 @@ export class AramaComponent {
 
 	profiles: any = {};
 	company = {};
+	companyIdSearch: any = null;
 	model: any = [];
 	saveUsername: any = false;
 	islogged:any = false;
@@ -28,6 +29,7 @@ export class AramaComponent {
 	jobs: any={};
 	cities: any;
 	searchIsModel: any=[];
+	restricted: any = false;
 
 	genders: any; education:any; military: any; driver:any;
 	p: number = 1;
@@ -210,6 +212,11 @@ export class AramaComponent {
 	    }
 	    if(!!localStorage.getItem('userrole')){
   			this.islogged = (this._auth.isLoggedIn())&&(localStorage.getItem('userrole')==='business');
+
+  			if(this.islogged){
+  				this.company = new PreviewCompanyModel(localStorage.getItem('user'));
+				this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.setCompanyId(res));
+  			}
   		}
 
   		this._pub.getMilitaryChoices().then(military => this.setMilitary(military));
@@ -218,6 +225,10 @@ export class AramaComponent {
   		this._pub.getDriverLicenseTypes().then(driver => this.setDriver(driver));
   		this._pub.getHomepageMembers().then(profiles => this.setHomePageProfiles(profiles));
 	    
+	}
+
+	setCompanyId(res){
+		this.companyIdSearch = res.data[0].COMPANY_ID;
 	}
 // DRIVER SELECTION START
 	onDriverSelect(item:any){
@@ -534,14 +545,32 @@ export class AramaComponent {
 		}
 	}
 
+	getArrayModelLength(param) {
+	    try {
+	    	
+	        	return [param.id];
+	        
+	    }
+	    catch (e) {
+	        return [];
+	    }
+	}
+	checker(value) {
+		if(value){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
 	// SEARCH PERSON
   searchPerson(fav: NgForm) {
     
-    let model = new SearchModel(parseInt(this.selectedCity[0].id), this.searchIsModel, null );
+    //let model = new SearchModel(parseInt(this.selectedCity[0].id), this.searchIsModel, null );
+    let model = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), this.searchIsModel, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, this.checker(fav.value.restricted));
+    
 
     console.log(model);
-
-
     this._post.searchWorker(JSON.stringify(model)).then(profiles => this.setProfiles(profiles));
     
   }

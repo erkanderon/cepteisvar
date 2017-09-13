@@ -24,7 +24,7 @@
 	<div class="container-fluid" style="">
 		<div class="row">
 			<!-- Carousel -->
-	    	<div id="carousel-example-generic" class="carousel slide col-xs-12" data-ride="carousel">
+	    	<div id="carousel-example-generic" class="carousel slide col-xs-12" data-ride="carousel" style="display: none;">
 				<!-- Indicators -->
 				
 					<ol class="carousel-indicators">
@@ -56,6 +56,19 @@
 				<!-- Wrapper for slides -->
 
 
+			</div>
+			<div class="headBanner">
+				<owl-carousel
+				 [options]="{items: 1, dots: true, loop: true, autoplay: true, navigation: false}"
+				 [items]="bannerImages"
+				 [carouselClasses]="['owl-theme', 'row', 'sliding']">
+
+					 <div class="item" *ngFor="let image of bannerImages;let i = index">
+					     <!--<div class="thumbnail-image" [ngStyle]="{'background': 'url(image)no-repeat scroll center center / 80px 80px'}"></div> -->
+					     <img src="{{image}}" class="img img-responsive" width="304" height="236" style="width: 100%;">
+					     
+					 </div>
+				</owl-carousel>
 			</div>
 			<div class="header-text hidden-xs col-xs-12" style="margin-top: -220px;" > <!--*ngIf="!ismember"-->
 	    		<div class="container-fluid" style="padding: 0px 100px 0px 100px;">
@@ -134,66 +147,7 @@
 	<!-- Neden Cepte Is Var -->
 	  
 
-	<!-- NEDEN CEPTE IS VAR? -->
-
-	<div class="container-fluid neden">
-		<div style="row text-center">
-			<div class="col-md-12">
-				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.NED2">{{fields.NED2}}</h3>
-				<img class="img img-responsive" style="margin: 0 auto;" src='assets/images/HeaderBottomLine.png'>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3">
-				<div class="impl">
-					<img class="img img-responsive" src="assets/images/dogrukisiicon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
-					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.TRU1"><strong>{{fields.TRU1}}</strong></h4></span>
-					<p>CepteIsVar, aradığınız pozisyona uygun en doğru kişiye ulaşmanızı sağlar. Çünkü kime ulaşmak istediğinizi kendiniz bulursunuz.</p>
-				</div>
-			</div>
-			<div class="col-xs-3">
-				<div class="impl">
-					<img class="img img-responsive" src="assets/images/BeklemekYokIcon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
-					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.WAI1"><strong>{{fields.WAI1}}</strong></h4></span>
-					<p>CepteIsVar'da ihtiyacınız olan personele ulaşmak için beklemenize gerek yok. Doğru kişiye istediğiniz zaman ulaşabilirsiniz.</p>
-				</div>
-			</div>
-			<div class="col-xs-3">
-				<div class="impl">
-					<img class="img img-responsive" src="assets/images/SadeceSMS.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
-					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.MES2"><strong>{{fields.MES2}}</strong></h4></span>
-					<p>Binlerce kişiye 1 SMS ile anında ulaşabileceksiniz. CepteIsVar iletişim yolu olarak SMS sistemini kullanır. Bu yüzden doğru kişiye ulaşmak cok hızlıdır.</p>
-				</div>
-			</div>
-			<div class="col-xs-3">
-				<div class="impl">
-					<img class="img img-responsive" src="assets/images/UygunFiyat.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
-					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.PRI1"><strong>{{fields.PRI1}}</strong></h4></span>
-					<p>CepteIsVar'da aradiğiniz kişiye ulaşmak için yüksek ücretler ödemezsiniz. Çok ucuza doğru kişiye anında ulaşırsınız.</p>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="    padding: 15px;">
-			<div style="width: 750px; margin: 0 auto; display: table;" *ngIf="statistics.data">
-               <img class="img img-responsive" src="assets/images/StatsBG.png">
-	               <div class="row text-center" style="margin-top: -135px; color:white;">
-                       <div class="col-xs-4">
-                                      <img class="img img-responsive" style="margin: 0 auto; width: 30%;" src="assets/images/kayitliisveren.png">
-                                      <h3>{{statistics.data[0].TOTAL_COMPANIES}}
-                                                      <strong *ngIf="fields.KAY1"><p>{{fields.KAY1}}</p></strong>
-                                      </h3></div>
-                       <div class="col-xs-4">
-                                      <img class="img img-responsive" style="margin: 0 auto; width: 35%;" src="assets/images/isarayan.png">
-                                      <h3>{{statistics.data[0].TOTAL_JOB_SEEKERS}} <strong *ngIf="fields.KAY2"><p>{{fields.KAY2}}</p></strong></h3>
-                       </div>
-                       <div class="col-xs-4">
-                                      <img class="img img-responsive" style="margin: 0 auto; width: 27%;" src="assets/images/eslesme.png">
-                                      <h3>{{statistics.data[0].ESLESME}} <strong *ngIf="fields.ESL1"><p>{{fields.ESL1}}</p></strong></h3>
-                       </div>
-	               </div>
-				</div>
-		</div>
-	</div>
+	
 	<!-- Kimler IS Ariyor? -->
 	<div class="container-fluid kimler" style="margin-top: 20px; min-height: 680px !important;">
 		<div class="row">
@@ -209,7 +163,7 @@
 			
 			<!--<div id="ss" style="font-size: 1vw;" *ngIf="!!profiles"> -->
 			<owl-carousel
-				[options]='{items: 4, dots: false, navigation: false, nav: true, navText : ["GERİ", "İLERİ"]}'
+				[options]='{items: 4, dots: false, navigation: false, nav: true, autoplay: true, navText : ["GERİ", "İLERİ"]}'
 				[items]="profiles.data"
 				[carouselClasses]="['owl-theme', 'row', 'sliding']">
 
@@ -292,6 +246,67 @@
 			<div class="col-xs-1"></div>
 		</div>
 		<!-- BANNER END -->
+	</div>
+
+	<!-- NEDEN CEPTE IS VAR? -->
+
+	<div class="container-fluid neden">
+		<div style="row text-center">
+			<div class="col-md-12">
+				<h3 class="text-center" style="color: #1c1510;" *ngIf="fields.NED2">{{fields.NED2}}</h3>
+				<img class="img img-responsive" style="margin: 0 auto;" src='assets/images/HeaderBottomLine.png'>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/dogrukisiicon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.TRU1"><strong>{{fields.TRU1}}</strong></h4></span>
+					<p>CepteIsVar, aradığınız pozisyona uygun en doğru kişiye ulaşmanızı sağlar. Çünkü kime ulaşmak istediğinizi kendiniz bulursunuz.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/BeklemekYokIcon.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.WAI1"><strong>{{fields.WAI1}}</strong></h4></span>
+					<p>CepteIsVar'da ihtiyacınız olan personele ulaşmak için beklemenize gerek yok. Doğru kişiye istediğiniz zaman ulaşabilirsiniz.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/SadeceSMS.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.MES2"><strong>{{fields.MES2}}</strong></h4></span>
+					<p>Binlerce kişiye 1 SMS ile anında ulaşabileceksiniz. CepteIsVar iletişim yolu olarak SMS sistemini kullanır. Bu yüzden doğru kişiye ulaşmak cok hızlıdır.</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="impl">
+					<img class="img img-responsive" src="assets/images/UygunFiyat.png" style="color:black; float: left; margin-top: 5px; width: 15%;" aria-hidden="true">
+					<span><h4 style="margin-left: 40px; color: #372121;" *ngIf="fields.PRI1"><strong>{{fields.PRI1}}</strong></h4></span>
+					<p>CepteIsVar'da aradiğiniz kişiye ulaşmak için yüksek ücretler ödemezsiniz. Çok ucuza doğru kişiye anında ulaşırsınız.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="    padding: 15px;">
+			<div style="width: 750px; margin: 0 auto; display: table;" *ngIf="statistics.data">
+               <img class="img img-responsive" src="assets/images/StatsBG.png">
+	               <div class="row text-center" style="margin-top: -135px; color:white;">
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 30%;" src="assets/images/kayitliisveren.png">
+                                      <h3>{{statistics.data[0].TOTAL_COMPANIES}}
+                                                      <strong *ngIf="fields.KAY1"><p>{{fields.KAY1}}</p></strong>
+                                      </h3></div>
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 35%;" src="assets/images/isarayan.png">
+                                      <h3>{{statistics.data[0].TOTAL_JOB_SEEKERS}} <strong *ngIf="fields.KAY2"><p>{{fields.KAY2}}</p></strong></h3>
+                       </div>
+                       <div class="col-xs-4">
+                                      <img class="img img-responsive" style="margin: 0 auto; width: 27%;" src="assets/images/eslesme.png">
+                                      <h3>{{statistics.data[0].ESLESME}} <strong *ngIf="fields.ESL1"><p>{{fields.ESL1}}</p></strong></h3>
+                       </div>
+	               </div>
+				</div>
+		</div>
 	</div>
 	<!-- Populer Meslekler -->
 	<div class="container-fluid neden" style="margin-top: 20px;">

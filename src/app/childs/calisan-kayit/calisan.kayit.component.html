@@ -32,16 +32,7 @@
                             </div>
                             <div class="col-xs-3"></div>
                             <div class="col-xs-6">
-                              <div class="form-group txt">
-                                <label class="form-check-label">
-                                  <input class="form-check-input" name="secenek" [ngModel]="secenek" type="checkbox" style="font-size:600px;" > Profilimin CepteIşVar anasayfasında <strong>"Kimler İş Arıyor"</strong> bölümünde gösterilmesini istiyorum. 
-                                </label>
-                                <div class="form-group">
-                                  <label class="form-check-label">
-                                    <input name="certificate" [ngModel]="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiğinde işverenime sunabilirim.
-                                  </label>
-                                </div>
-                              </div>
+                              
 
                             </div>
                         </div>
@@ -170,9 +161,19 @@
                               </div>
 
                               <div class="form-group txt">
-                                <label class="form-check-label">
-                                  <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px;" name="gizlilik" > SMS Almak İstemiyorum.
+                                <label class="form-check-label" style="display: none;">
+                                  <input class="form-check-input" [ngModel]="gizlilik" type="checkbox" style="font-size:600px; " name="gizlilik" > SMS Almak İstemiyorum.
                                 </label>
+                              </div>
+                              <div class="form-group txt">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" name="secenek" [ngModel]="secenek" type="checkbox" style="font-size:600px;" > Profilimin CepteIşVar anasayfasında <strong>"Kimler İş Arıyor"</strong> bölümünde gösterilmesini istiyorum. 
+                                </label>
+                                <div class="form-group">
+                                  <label class="form-check-label">
+                                    <input name="certificate" [ngModel]="certificate" class="form-check-input" type="checkbox" style="font-size:600px;"> Mesleki Yeterlilik Sertifikam var ve gerektiğinde işverenime sunabilirim.
+                                  </label>
+                                </div>
                               </div>
                               <div class="form-group">
                                 <label class="form-check-label txt">
@@ -184,6 +185,7 @@
                                     Güvenlik Sözleşmesini Kabul Etmelisiniz!
                                   </div>
                                 </div>
+
                                 
                               </div>
                               

@@ -29,6 +29,7 @@ export class HomeComponent{
 	islogged: any=false;
 	jobcategory: any={};
 	model: any = [];
+	bannerImages: any = ['assets/images/cepteban1.png', 'assets/images/banner2.png', 'assets/images/banner3.png'];
 
 	company:any = {};
 	sepetExistMessage: any = "OK"; sepetMemberIds: any=[]; companyId: any=0;
@@ -45,6 +46,7 @@ export class HomeComponent{
 	 jobCategoryList: any = {}; selectedjobCategory: any = {}; jobCategorySettings: any = {};
 	 jobList: any = {}; selectedJob: any = {}; jobSettings: any = {};
 	 cityList: any = {}; selectedCity: any = {}; citySettings: any = {}; citySelect: any = {};
+	 companyIdSearch: any = {};
 
 	
 
@@ -153,6 +155,7 @@ export class HomeComponent{
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
 	    this.news = this._pub.getNews().then(res => this.news = res);
 	    this.statistics = this._pub.getJobStatistics().then(res => this.statistics = res);
+	    this.checkCompanySearch();
 
 	    console.log(this.profiles)
 	}
@@ -280,6 +283,20 @@ export class HomeComponent{
 			this.router.navigate(['/isveren-giris']);
 		}
 	}
+	checkCompanySearch(){
+		let loggedcomp = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		
+		
+		if(loggedcomp){
+			let cmpy = new PreviewCompanyModel(localStorage.getItem('user'));
+			this._post.previewCompanyAccount(JSON.stringify(cmpy)).then(res => this.setCompanyId(res));
+		}else{
+			this.companyIdSearch = null;
+		}
+	}
+	setCompanyId(res){
+		this.companyIdSearch = res.data[0].COMPANY_ID;
+	}
 	checkCompanyForSMS(user){
 		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		
@@ -383,23 +400,35 @@ export class HomeComponent{
 			this.router.navigate(['/calisan-giris']);
 		}
 	}
+
+	getArrayModelLength(param) {
+	    try {
+	    	
+	        	return [param.id];
+	        
+	    }
+	    catch (e) {
+	        return [];
+	    }
+	}
 	
 	search(fav: NgForm) {
 
 		//console.log(this.cities);
 		console.log(fav.value.selectedjobCategory);
 	
-	    if(fav.value.selectedjobCategory.length!==0 && fav.value.selectedCity.length!==0 && this.searchIsModel.length != 0){ 
+	    /*if(fav.value.selectedjobCategory.length!==0 && fav.value.selectedCity.length!==0 && this.searchIsModel.length != 0){ */
 
-	    	this._pub.searchParams = new SearchModel(parseInt(this.citySelect.id), this.searchIsModel, null);
+	    	this._pub.searchParams = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), this.searchIsModel, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, 1);
 	    	this._pub.searchModel = {};
 	    	this._pub.searchModel.city = this.citySelect;
 	    	this._pub.searchModel.category = this.selectedjobCategory[0];
 	    	this._pub.searchModel.joblist = this.selectedJob;
+	    	
 	    	this.router.navigate( ['/calisan-arama']);
-	    }else{
+	    /*}else{
 	    	//Give Message Not Valid Form
-	    }
+	    }*/
 	 
 	      
 	    

@@ -261,6 +261,7 @@ header{
 	font-size: 12px;
 }
 #menutab .tab a:active{
+	color: #fff200 !important;
 	border-bottom: 1px solid #fff200;
 }
 
@@ -506,4 +507,31 @@ footer .aciklama h5{
 }
 .list-group-item .sepbuton{
 	margin: 0px !important;
+}
+
+.headerbuttons a{
+	color: white;
+	background-color: black !important;
+}
+.headerbuttons a:hover{
+	color: white !important;
+	background-color: black !important;
+}
+
+.headBanner{
+	position: sticky;
+}
+.headBanner .owl-dots .owl-dot{
+	border: 1px solid black;
+    background: black;
+}
+.headBanner .owl-dots .owl-dot span{
+    background: white;
+}
+.headBanner .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
+	background: #fff200;
+}
+.headBanner .owl-dots{
+	margin-top: -30px !important;
+    position: inherit;
 }

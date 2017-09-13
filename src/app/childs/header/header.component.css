@@ -111,6 +111,7 @@ header{
 	font-size: 12px;
 }
 #menutab .tab a:active{
+	color: #fff200 !important;
 	border-bottom: 1px solid #fff200;
 }
 
@@ -190,7 +191,7 @@ header{
 
 #menutab .tab a:hover, #menutab .tab a:active{
 	text-decoration: none;
-	color: black;
+	color: #fff200 !important;
 	border-bottom: 1px solid #fff200;
 }
 #menutab .btn{
