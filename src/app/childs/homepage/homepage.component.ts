@@ -408,7 +408,7 @@ export class HomeComponent{
 	        
 	    }
 	    catch (e) {
-	        return [];
+	        return [0];
 	    }
 	}
 	

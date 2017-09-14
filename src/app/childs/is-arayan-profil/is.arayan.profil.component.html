@@ -165,7 +165,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">AD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="^[a-zA-Z]*$">
+                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
                                     </div>
                                     <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!ad.errors.required">
@@ -258,7 +258,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SOYAD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="^[a-zA-Z]*$">
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
 
                                     </div>
                                     <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">

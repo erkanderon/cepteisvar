@@ -552,7 +552,7 @@ export class AramaComponent {
 	        
 	    }
 	    catch (e) {
-	        return [];
+	        return [0];
 	    }
 	}
 	checker(value) {

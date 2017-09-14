@@ -147,7 +147,7 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required pattern="^[a-zA-Z]*$">
+                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
                                   </div>
                                   <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!person.errors.required">
@@ -169,7 +169,7 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">VERGİ ADRESİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required pattern="^[a-zA-Z]*$">
+                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
                                   </div>
                                   <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!vergi.errors.required">
