@@ -203,8 +203,9 @@ export class AramaComponent {
 	    	console.log("degilim");
 	    	console.log(this._pub.getSearchParams());
 	    	console.log(this._pub.getSearchModel());
+	    	
 	    	this.selectedCity.push(this._pub.getSearchModel().city);
-	    	this.selectedjobCategory.push(this._pub.getSearchModel().category);
+	    	this.selectedjobCategory = this._pub.getSearchModel().category;
 	    	this.onJobCategorySelect(this._pub.getSearchModel().category);
 	    	this.selectedJob = this._pub.getSearchModel().joblist;
 	    	this._post.searchWorker(this._pub.getSearchParams()).then(profiles => this.setProfiles(profiles));
@@ -333,7 +334,10 @@ export class AramaComponent {
 
 // JOB CATEGORY SELECTION START
 	onJobCategorySelect(item:any){
-        this._pub.getJobFieldList(item.id).then(jobs => this.setJob(jobs));
+		if(item.id){
+			this._pub.getJobFieldList(item.id).then(jobs => this.setJob(jobs));
+		}
+        
     }
     
 // GENDER SELECTION END
@@ -526,11 +530,11 @@ export class AramaComponent {
 		
 	}
 	canSeeProfile(id){
-		if(this.islogged){
+		/*if(this.islogged){*/
 			this.router.navigate(['/calisan-profil', id]);
-		}else{
+		/*}else{
 			this.router.navigate(['/isveren-giris']);
-		}
+		}*/
 		
 	}
 	addToSearchModel(val, jid){
@@ -557,22 +561,30 @@ export class AramaComponent {
 	}
 	checker(value) {
 		if(value){
-			return 1;
-		}else{
 			return 0;
+		}else{
+			return 1;
 		}
 	}
 
 	// SEARCH PERSON
   searchPerson(fav: NgForm) {
-    
-    //let model = new SearchModel(parseInt(this.selectedCity[0].id), this.searchIsModel, null );
-    let model = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), this.searchIsModel, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, this.checker(fav.value.restricted));
+    let srchmdl = [0];
+
+    if(this.searchIsModel.length===0){
+    	srchmdl = [0]
+    }else{
+    	srchmdl = this.searchIsModel;
+    }
+
+    if(!this.companyIdSearch){ this.companyIdSearch = 0;}
+    //let model = new SearchModel(parseInt(this.selectedCity[0].id), srchmdl, null );
+    let model = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), srchmdl, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, this.checker(fav.value.restricted));
     
 
     console.log(model);
     this._post.searchWorker(JSON.stringify(model)).then(profiles => this.setProfiles(profiles));
-    
+    //this._post.searchWorker(JSON.stringify(model)).then(profiles => console.log(profiles));
   }
 
 

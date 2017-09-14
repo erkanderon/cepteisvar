@@ -115,11 +115,22 @@ export class IsArayanProfilComponent {
         this.secenek = !res.data[0].HOMEPAGE_ACTIVE;
         this.certificate = !res.data[0].CERTIFICATE;
 
+
+        this._post.getMemberPhotoStatus({ "p_userid": res.data[0].USER_ID }).then(res => this.checkPhoto(res));
         console.log(res);
 
         this.pphoto = this._post.getProfilePhoto(4000, res.data[0].USER_ID);
         
       }
+    }
+  }
+  checkPhoto(res){
+    if(res.data==='1'){
+      //gec
+      console.log('gec')
+    }else{
+      //photo modal cikar
+      console.log('photo modal cikar')
     }
   }
   navigateParam(par){

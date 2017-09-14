@@ -132,7 +132,7 @@ export class PostService {
 	    let options = new RequestOptions({ headers: headers });
 	    let token = localStorage.getItem('user_access_token');
 	    
-	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/show-member-private-info?access_token='+token, param, options)
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/show-member-private-info', param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(
@@ -257,7 +257,7 @@ export class PostService {
 	    let options = new RequestOptions({ headers: headers });
 	    let token = localStorage.getItem('user_access_token');
 	    
-	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-user-comments-other?access_token='+token, param, options)
+	    return this.http.post(AppSettings.API_ENDPOINT+'/app/get-user-comments-other', param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(
@@ -553,6 +553,30 @@ export class PostService {
 	    let token = localStorage.getItem('user_access_token');
 	    
 	    return this.http.post(AppSettings.API_ENDPOINT+'/app/set-no-comment-for-users?access_token='+token, param, options)
+	    .toPromise()
+	      .then(response => response.json())
+	      .then(
+			    //used Arrow function here
+			    (success)=> {
+			      
+			      return success;
+			    }
+			).catch(
+			   //used Arrow function here
+			   (err)=> {
+			      console.log(err);
+			      this.router.navigate(['/home']);
+			   }
+			)
+
+	}
+	// GET MEMBER PHOTO STATUS
+	getMemberPhotoStatus(param): Promise<any> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+	    let token = localStorage.getItem('user_access_token');
+	    
+	    return this.http.post(AppSettings.API_ENDPOINT+'/acc/get-member-photo-status?access_token='+token, param, options)
 	    .toPromise()
 	      .then(response => response.json())
 	      .then(

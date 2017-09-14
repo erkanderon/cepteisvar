@@ -99,6 +99,8 @@ export class IsVerenProfilComponent {
         this.basketData = this._post.getMyOpenBasket({"p_company_id": res.data[0].COMPANY_ID}).then(res => this.setBasketData(res));
         this.onChange(res.data[0].CITY_ID);
 
+        
+
         this.cn = res.data[0].COMPANY_NAME;
         this.rp = res.data[0].CONTACT_PERSON;
         this.mail = res.data[0].EMAIL;
@@ -119,6 +121,7 @@ export class IsVerenProfilComponent {
 	    }
 	  }
   }
+  
   setBasketData(res){
   
     if(!res.data){

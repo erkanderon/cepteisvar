@@ -45,10 +45,16 @@
                                           <p class="form-control-static">{{profile.data[0].NAME}}</p>
                                         </div>
                                       </div>
-                                      <div class="form-group">
+                                      <div class="form-group" *ngIf="islogged">
                                         <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].BDAY}}</p>
+                                        </div>
+                                      </div>
+                                      <div class="form-group" *ngIf="!islogged">
+                                        <label for="formGroupExampleInput2">YAŞ</label>
+                                        <div class="">
+                                          <p class="form-control-static">{{profile.data[0].AGE}}</p>
                                         </div>
                                       </div>
                                       <div class="form-group">
@@ -85,10 +91,16 @@
                                       
                                   </div>
                                   <div class="col-xs-6" style="padding: 0px 50px;">
-                                      <div class="form-group">
+                                      <div class="form-group" *ngIf="islogged">
                                         <label for="formGroupExampleInput2">SOYAD</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].SURNAME}}</p>
+                                        </div>
+                                      </div>
+                                      <div class="form-group" *ngIf="!islogged">
+                                        <label for="formGroupExampleInput2">SOYAD</label>
+                                        <div class="">
+                                          <p class="form-control-static">{{profile.data[0].SURNAME.charAt(0)}}</p>
                                         </div>
                                       </div>
                                       <div class="form-group">

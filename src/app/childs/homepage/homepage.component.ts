@@ -274,14 +274,14 @@ export class HomeComponent{
 		}*/
 	}
 	checkCompany(param){
-		this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
+		/*this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		
 		console.log(this.islogged);
-		if(this.islogged){
+		if(this.islogged){*/
 			this.router.navigate(['/calisan-profil', param]);
-		}else{
+		/*}else{
 			this.router.navigate(['/isveren-giris']);
-		}
+		}*/
 	}
 	checkCompanySearch(){
 		let loggedcomp = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='business');
@@ -419,12 +419,23 @@ export class HomeComponent{
 	
 	    /*if(fav.value.selectedjobCategory.length!==0 && fav.value.selectedCity.length!==0 && this.searchIsModel.length != 0){ */
 
-	    	this._pub.searchParams = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), this.searchIsModel, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, 1);
+	    	let srchmdl = [0];
+
+	    	if(this.searchIsModel.length===0){
+		    	srchmdl = [0]
+		    }else{
+		    	srchmdl = this.searchIsModel;
+		    }
+
+		    if(!this.companyIdSearch){ this.companyIdSearch = 0;}
+
+	    	this._pub.searchParams = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), srchmdl, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, 1);
 	    	this._pub.searchModel = {};
 	    	this._pub.searchModel.city = this.citySelect;
-	    	this._pub.searchModel.category = this.selectedjobCategory[0];
+	    	this._pub.searchModel.category = this.selectedjobCategory;
 	    	this._pub.searchModel.joblist = this.selectedJob;
 	    	
+	    	console.log(this._pub.searchParams);
 	    	this.router.navigate( ['/calisan-arama']);
 	    /*}else{
 	    	//Give Message Not Valid Form

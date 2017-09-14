@@ -47,12 +47,14 @@ export class CalisanProfilComponent {
 	    //this.news = this._pub.getNews().then(res => this.news = res);
 
 	    //console.log(this.new);
+	    this.islogged = this._authService.isLoggedIn()&&localStorage.getItem('userrole')==='business';
   	}
 
   	getProfile(id){
   		this.profile = this._post.showMemberPrivateAccount({ "p_member_id": this.id}).then(res => this.getop(res));
   	}
   	getop(res){
+  		console.log(res);
   		if(res){
 	    	if(res.data){
 	    		this.profile = res;

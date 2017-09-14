@@ -57,13 +57,13 @@ export class HeaderComponent {
     }
   }
   checkPerson(){
-    this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
+    /*this.islogged = (this._auth.isLoggedIn()&&localStorage.getItem('userrole')==='member');
     console.log(this.islogged);
-    if(!this.islogged){
+    if(!this.islogged){*/
       this.router.navigate(['/calisan-arama']);
-    }else{
+    /*}else{
       this.router.navigate(['/isveren-giris']);
-    }
+    }*/
   }
   
 }
