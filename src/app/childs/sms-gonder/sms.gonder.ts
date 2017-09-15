@@ -26,6 +26,8 @@ export class SMSGonderComponent {
 	operation: any=false;
 	operationfault: any={};
 
+	loading: any = true;
+
 	lengthChar: any=0;
 	willPay: any=0;
 
@@ -92,6 +94,8 @@ export class SMSGonderComponent {
 	// CHANGE PASSWORD
 	sendSMS(fav: NgForm) {
 
+		this.loading = false;
+
 		let uri = '/is-veren-profil';
 		let send = new CreateBasketModel(this.userModel, this.basketid, fav.value.text);		
 		console.log(send);
@@ -105,6 +109,7 @@ export class SMSGonderComponent {
 
 			    	this._pub.sepetModel ={};
 			    	this.operation = true;
+			    	this.loading = true;
 
 			    	/*setTimeout(()=>{ 
 					   this.router.navigate([uri, {foo: "profil"}]);
@@ -117,7 +122,7 @@ export class SMSGonderComponent {
 			      //give a message
 			      this.operationfault.status = true;
 				  this.operationfault.text = success.userMessage;
-				  
+				  this.loading = true;
 			      //this.operationText = success.userMessage;
 			      /*setTimeout(()=>{ 
 				   this.router.navigate([uri, {foo: "profil"}]);
@@ -129,14 +134,17 @@ export class SMSGonderComponent {
 			 //used Arrow function here
 			 (err)=> {
 			    this.router.navigate(['/home']);
+			    this.loading = true;
 			 }
 			)
 		}else{
 			this.operationfault.status = true;
 			this.operationfault.text = " Hesabınızda yeterli miktarda SMS kredisi bulunmamaktadır. Lütfen Hesabım sayfasından SMS kredisi satın alınız."
+			this.loading = true;
 		}
 }
 	showPayment(e){
+		
 		
     	let newValue = e.target.value;
 
@@ -150,10 +158,11 @@ export class SMSGonderComponent {
 
 			    	this.lengthChar = success.data.SMS_PAGE_SIZE;
 			    	this.willPay = success.data.AMOUNT;
-
+			  
 			    }else{
 			      //give a message
 			      console.log(success);
+			      
 			    }
 			    
 			  }
@@ -161,11 +170,13 @@ export class SMSGonderComponent {
 			 //used Arrow function here
 			 (err)=> {
 			    this.router.navigate(['/home']);
+			    
 			 }
 			)
 		}else{
 			this.lengthChar = 0;
 			this.willPay = 0;
+			
 		}
 
 

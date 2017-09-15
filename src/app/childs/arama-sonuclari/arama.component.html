@@ -218,7 +218,21 @@
                                     </span>SEPETE EKLE</a>
                                 </div>
                             </div>
-                            <div id="products" class="row list-group" style="margin: 0px;" *ngIf="profiles.data">
+                            
+                            <div id="products" class="row list-group parentLoaderDiv" style="margin: 0px;" *ngIf="profiles.data">
+                                <div class="centeredOverlay" style="" *ngIf="profileLoader">
+                                    
+                                    
+                                    <spinner-component [spinnerShow]="profileLoader">
+                                        <div class="firildak">
+                                            <div class="double-bounce1"></div>
+                                            <div class="double-bounce2"></div>
+                                          </div>
+                                          <div class="row text-center" style="margin-top: 60px; font-size: 14px;">
+                                            <p style="">ARANIYOR</p>
+                                          </div>
+                                    </spinner-component>
+                                </div>
                                 <ul class="row list" style="padding: 0px 0px;">
                                 <li *ngFor="let profile of profiles.data | paginate: { itemsPerPage: 9, currentPage: p }"><div class="item  col-xs-4 col-lg-4">
                                     <input *ngIf="islogged" type="checkbox" style="top: 0px; left: 18px; position: absolute;" (change)="addToModel($event, profile)">
@@ -296,6 +310,7 @@
                           </div>
                           
                         </div>
+                        
                         <div *ngIf="profiles.data">
                             <div class="row" *ngIf="profiles.data.length === 0">
                             <div class="col-md-6 col-md-offset-3 text-center">
@@ -366,3 +381,8 @@
         </div>
     </div>
 </div>
+
+
+
+
+

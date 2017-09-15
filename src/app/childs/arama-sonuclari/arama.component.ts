@@ -50,6 +50,8 @@ export class AramaComponent {
 
 	sepetExistMessage: any = "OK"; sepetMemberIds: any=[]; companyId: any=0;
 
+	profileLoader: any = false;
+
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
 		jQuery(document).ready(function () {
@@ -429,7 +431,7 @@ export class AramaComponent {
   	setProfiles(param){
   		this.profiles = param;
   		this.filterClear = param.data;
-  		console.log(this.profiles);
+  		this.profileLoader = false;
   	}
   	setHomePageProfiles(param){
 
@@ -591,7 +593,8 @@ export class AramaComponent {
     //let model = new SearchModel(parseInt(this.selectedCity[0].id), srchmdl, null );
     let model = new SearchModel(this.getArrayModelLength(this.selectedCity[0]), srchmdl, this.getArrayModelLength(this.selectedjobCategory[0]), this.companyIdSearch, this.checker(fav.value.restricted));
     
-
+    this.profileLoader = true;
+    
     console.log(model);
     this._post.searchWorker(JSON.stringify(model)).then(profiles => this.setProfiles(profiles));
     //this._post.searchWorker(JSON.stringify(model)).then(profiles => console.log(profiles));

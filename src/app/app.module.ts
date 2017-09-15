@@ -27,6 +27,8 @@ import { DuyurularComponent } from './childs/duyurular/duyurular.component';
 import { DuyurularRightSideComponent } from './childs/duyurular-rightside/duyurular.rightside';
 import { DuyuruComponent } from './childs/duyuru/duyuru.component';
 
+import { SpinnerComponentModule } from 'ng2-component-spinner';
+
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
@@ -110,6 +112,7 @@ const appRoutes : Routes = [
     OwlModule,
     NgxPaginationModule,
     AngularMultiSelectModule,
+    SpinnerComponentModule,
 
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
