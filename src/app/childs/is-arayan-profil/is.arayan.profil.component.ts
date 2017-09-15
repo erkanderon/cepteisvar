@@ -44,11 +44,15 @@ export class IsArayanProfilComponent {
   sub: any;
   foo: any;
   fileImage: any = false;
+  userImageFirst: any = false;
   pphoto: any;
   notequal: any =false;
 
   operation: any = {};
   operationfault: any = {};
+
+  photoOperation: any = false;
+  photoOperationfault: any = false;
 
 
 	constructor(
@@ -117,7 +121,6 @@ export class IsArayanProfilComponent {
 
 
         this._post.getMemberPhotoStatus({ "p_userid": res.data[0].USER_ID }).then(res => this.checkPhoto(res));
-        console.log(res);
 
         this.pphoto = this._post.getProfilePhoto(4000, res.data[0].USER_ID);
         
@@ -127,11 +130,16 @@ export class IsArayanProfilComponent {
   checkPhoto(res){
     if(res.data==='1'){
       //gec
-      console.log('gec')
+      console.log('gec');
+      this.openModel();
     }else{
       //photo modal cikar
       console.log('photo modal cikar')
     }
+  }
+  openModel(){
+    jQuery("#photommodal").modal({"backdrop": "static"});
+    //this.fileInput.nativeElement.click()
   }
   navigateParam(par){
     this.activaTab(par);
@@ -142,7 +150,15 @@ export class IsArayanProfilComponent {
   }
   imageUploaded(event){
     this.fileImage = event.file;
-    console.log(this.fileImage);
+  }
+  imageRemoved(event){
+    this.fileImage = false;
+  }
+  imageRemovedFirstTime(event){
+    this.userImageFirst = false;
+  }
+  imageUploadedFirstTime(event){
+    this.userImageFirst = event.file;
   }
   onChange(newValue) {
       
@@ -268,6 +284,42 @@ export class IsArayanProfilComponent {
       )
     }
       
+  }
+
+  loadPhoto(){
+
+    let userid = this.profile.data[0].USER_ID;
+
+    if(this.userImageFirst){
+      this._post.uploadPhoto(userid, 4000, this.userImageFirst)
+      .then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              
+              this.photoOperation = success.userMessage;
+              setTimeout(()=>{ 
+                jQuery("#photommodal").modal('hide');
+              }, 2000);
+              setTimeout(()=>{ 
+                location.reload();
+              }, 4000);
+              
+            }else{
+              this.photoOperationfault = success.userMessage;
+            }
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            //this.router.navigate(['/home']);
+         }
+      )
+    }else{
+      this.photoOperationfault = "Fotoğrafınızı Yüklemeniz Gerekmektedir.";
+    }
   }
 
   changeJob1(f: NgForm) {

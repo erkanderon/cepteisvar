@@ -6,6 +6,8 @@ import { AuthService } from '../../services/auth.service';
 import { PreviewMemberModel } from '../../models/previewMemberAccount.model';
 import { PostService } from '../../services/post.service';
 
+import { PreviewCompanyModel } from '../../models/previewCompanyAccount.model';
+
 
 
 @Component({
@@ -25,6 +27,8 @@ export class CalisanProfilComponent {
 	comments: any={};
 	model: any=[];
 	islogged: any=false;
+
+	company: any; companyId: any; sepetExistMessage: any = false; sepetMemberIds: any = [];
 
 	constructor( private route: ActivatedRoute, private _pub: Pub, private router: Router, private _post: PostService, private _authService: AuthService) { 
 
@@ -63,6 +67,17 @@ export class CalisanProfilComponent {
 	    	}
 	    }
   	}
+  	responser(obj) {
+	    if(obj.code === 200){
+	      return true;
+	    }else{
+	      return false;
+	    }
+	}
+	openModel(){
+					jQuery("#mmodal").modal('show');
+					
+				}
   	checkCompanyForSMS(user){
 		this.islogged = (this._authService.isLoggedIn()&&localStorage.getItem('userrole')==='business');
 		
@@ -76,9 +91,77 @@ export class CalisanProfilComponent {
 	}
 	createSepet(){
 		
+		let peopleId = [];
 		this._pub.sepetModel = this.model;
-		this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		if(!this.model.length){
+			//this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+		}else{
+			for(let j in this.model){
+				peopleId.push(this.model[j].USER_ID);
+				
+			}
+			this.company = new PreviewCompanyModel(localStorage.getItem('user'));
+			this._post.previewCompanyAccount(JSON.stringify(this.company)).then(res => this.createSepetService(res, peopleId));
+		}
 
 	}
+	createSepetService(comp, ids){
+		this.sepetMemberIds = ids;
+		this.companyId = comp.data[0].COMPANY_ID;
+
+		this._post.createCompanyBasket({ "p_company_id": this.companyId, "p_member_id": ids }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else if(success.code===920){
+              //give error
+              this.sepetExistMessage = success.userMessage;
+              this.openModel();
+              console.log(success);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+	addToExistingSepet(){
+		this._post.getMyOpenBasket({"p_company_id": this.companyId}).then(res => this.addPersonToOpenBasket(res));
+
+		
+	}
+	addPersonToOpenBasket(res){
+		let id = res.data[0].BASKET_ID
+		console.log(res);
+
+
+		this._post.addToMyOpenBasket({ "p_company_id": this.companyId, "p_basket_id": id, "p_member_id": this.sepetMemberIds }).then(
+          //used Arrow function here
+          (success)=> {
+            
+            if(this.responser(success)){
+              this.router.navigate(['/is-veren-profil',{ foo: "sepetim" }]);
+            }else{
+            	console.log(success);
+            }
+            
+            
+          }
+      ).catch(
+         //used Arrow function here
+         (err)=> {
+            this.router.navigate(['/home']);
+         }
+      )
+	}
+
 
 }

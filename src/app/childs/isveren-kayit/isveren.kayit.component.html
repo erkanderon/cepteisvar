@@ -53,7 +53,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
-                                <input name="yetkili" [(ngModel)]="yetkili" required #yetkil="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi" pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)" required>
+                                <input name="yetkili" [(ngModel)]="yetkili" required #yetkil="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Yetkili Kişi" pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)" required>
                                 <div *ngIf="yetkil.errors && (yetkil.dirty || yetkil.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!yetkil.errors.required">
                                     Yetkili Boş Bırakılamaz!
@@ -97,7 +97,7 @@
                               
                               <div class="form-group">
                                 <label for="formGroupExampleInput2">VERGİ DAİRESİ</label>
-                                <input name="vergi" [(ngModel)]="vergi"  required #verg="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Vergi Dairesi" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
+                                <input name="vergi" [(ngModel)]="vergi"  required #verg="ngModel" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Vergi Dairesi" required pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)">
                                 <div *ngIf="verg.errors && (verg.dirty || verg.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                   <div [hidden]="!verg.errors.required">
                                     Vergi Boş Bırakılamaz!

@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-xs-3 text-center" *ngIf="state === 1">
 
-                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
+                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
                             </div>
                             <div class="col-xs-3 text-center"></div>
                             <div class="col-xs-6">
@@ -147,7 +147,7 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">YETKİLİ KİŞİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
+                                    <input type="text" [ngModel]="rp" name="rp" class="form-control" id="firma" #person="ngModel" required pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)">
                                   </div>
                                   <div *ngIf="person.errors && (person.dirty || person.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!person.errors.required">
@@ -169,7 +169,7 @@
                                 <div class="form-group">
                                   <label for="formGroupExampleInput2">VERGİ ADRESİ</label>
                                   <div class="">
-                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
+                                    <input type="text" [ngModel]="ta" name="ta" class="form-control" id="firma" #vergi="ngModel" required pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)">
                                   </div>
                                   <div *ngIf="vergi.errors && (vergi.dirty || vergi.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                     <div [hidden]="!vergi.errors.required">

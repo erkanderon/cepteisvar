@@ -150,6 +150,9 @@ export class IsVerenProfilComponent {
     this.fileImage = event.file;
     console.log(this.fileImage);
   }
+  imageRemoved(event){
+    this.fileImage = false;
+  }
   activaTab(tab){
     jQuery(tab).tab('show');
   };

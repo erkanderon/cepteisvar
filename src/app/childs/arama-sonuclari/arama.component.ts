@@ -204,10 +204,20 @@ export class AramaComponent {
 	    	console.log(this._pub.getSearchParams());
 	    	console.log(this._pub.getSearchModel());
 	    	
-	    	this.selectedCity.push(this._pub.getSearchModel().city);
+	    	if(Object.keys(this._pub.getSearchModel().city).length!==0){
+	    		this.selectedCity.push(this._pub.getSearchModel().city);
+	    	}else{
+	    		this.selectedCity = [];
+	    	}
+
+	    	if(this._pub.getSearchModel().category.length!==0){
+	    		this.onJobCategorySelect(this._pub.getSearchModel().category[0]);
+	    	}else{
+	    		this.selectedjobCategory = [];
+	    	}
 	    	this.selectedjobCategory = this._pub.getSearchModel().category;
-	    	this.onJobCategorySelect(this._pub.getSearchModel().category);
 	    	this.selectedJob = this._pub.getSearchModel().joblist;
+	    	console.log(this._pub.getSearchModel().category);
 	    	this._post.searchWorker(this._pub.getSearchParams()).then(profiles => this.setProfiles(profiles));
 
 	    }

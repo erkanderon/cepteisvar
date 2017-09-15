@@ -45,7 +45,8 @@
                             </div>
                             <div class="col-xs-3 text-center" *ngIf="state === 1">
 
-                              <image-upload [max]="1" (onFileUploadFinish)="imageUploaded($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
+                              <image-upload 
+                              [max]="1" (onFileUploadFinish)="imageUploaded($event)" (onRemove)="imageRemoved($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
                             </div>
                             <div class="col-xs-3"></div>
                             <div class="col-xs-6">
@@ -165,7 +166,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">AD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
+                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                                     </div>
                                     <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!ad.errors.required">
@@ -258,7 +259,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SOYAD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="(^[a-zA-Z]+$)|(^[a-zA-Z]+ [a-zA-Z]+$)">
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 
                                     </div>
                                     <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">
@@ -686,6 +687,40 @@
     </div>
 
   </div>
+</div>
+
+<div id="photommodal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="image-gallery-title">Profil Fotoğraf Yükle</h4>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="photoOperationfault" class="alert alert-danger" style="margin-top: 5px;">
+                  <div>
+                    {{photoOperationfault}}!
+                  </div>
+                  
+                </div>
+                <div *ngIf="photoOperation" class="alert alert-success" style="margin-top: 5px;">
+                  <div>
+                    {{photoOperation}}!
+                  </div>
+                  
+                </div>
+                <image-upload [max]="1" (onFileUploadFinish)="imageUploadedFirstTime($event)" (onRemove)="imageRemovedFirstTime($event)" (onRemove)="imageRemovedFirstTime($event)" [buttonCaption]="'DOSYA SEÇ'" [dropBoxMessage]="'Buraya Sürükleyebilirsin'"></image-upload>
+            </div>
+            <div class="modal-footer">
+              <div class="row text-center">
+                <div class="col-xs-12">
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="loadPhoto()">YÜKLE</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer-comp></footer-comp>
