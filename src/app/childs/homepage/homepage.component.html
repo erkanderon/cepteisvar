@@ -136,7 +136,9 @@
 							</div>
 	    				</div>
 	    				<div class="col-md-12 text-center calisir">
-	    					<a class="btn" style="background: #373637; margin-top: 20px; text-decoration: none; color: white;" href="https://youtu.be/XybFxOpwxIA" target="_blank">Nasıl Çalışır?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>
+	    					<!--<a class="btn" style="background: #373637; margin-top: 20px; text-decoration: none; color: white;" href="https://youtu.be/XybFxOpwxIA" target="_blank">Nasıl Çalışır?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>-->
+	    					
+	    					<a class="btn" style="background: #373637; margin-top: 20px; text-decoration: none; color: white;" (click)="openYoutubeVideo()">Nasıl Çalışır?<span style="color:yellow; margin-left: 10px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></a>
 	    				</div>
 	    			</div>
 	    		</div>
@@ -199,7 +201,8 @@
 		                        <div class="row" style="margin-bottom: 20px; font-size: 12px;">
 		                        	<div class="col-xs-12">
 				                        <p class="group inner list-group-item-text" style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
-				                            {{profile.DESCRIPTION}}</p>
+				                            Diğer Meslek: {{profile.SECONDARY_JOB}}
+				                        </p>
 				                    </div>
 				                </div>
 
@@ -317,53 +320,14 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-desktop fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP2">{{fields.POP2}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-bank fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP3">{{fields.POP3}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-money fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP4">{{fields.POP4}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class="btn-default pop-but zimki">
-					<i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP5">{{fields.POP5}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-tachometer fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP6">{{fields.POP6}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-briefcase fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP7">{{fields.POP7}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-gavel fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP8">{{fields.POP8}}</h4>
-				</a>
-			</div>
-			<div class="col-xs-3">
-				<a class=" btn-default pop-but zimki">
-					<i class="fa fa-tags fa-3x" aria-hidden="true"></i>
-					<h4 *ngIf="fields.POP9">{{fields.POP9}}</h4>
-				</a>
+			<div *ngIf="popJobs.data">
+				<div class="col-xs-3" *ngFor="let popj of popJobs.data;">
+					<a class="btn-default pop-but zimki" (click)="searchPopularJob(popj.CATEGORY_ID, popj.JOB_ID, popj.JOB_NAME, popj.CATEGORY_NAME)" >
+						<div [innerHtml]="popj.JOB_ICON"></div>
+						<!--<i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>-->
+						<h4>{{popj.JOB_NAME}}</h4>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -486,6 +450,22 @@
                   </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="youtubemodal" class="modal fade">
+    <div class="modal-dialog" style="width: 600px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="closeVideo()" style="color: black;"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="image-gallery-title"></h4>
+            </div>
+            <div class="modal-body" style="padding: 0px; display: grid;">
+                <iframe class="yutu" width="100%;" height="500px;" src="https://www.youtube.com/embed/XybFxOpwxIA" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+            
         </div>
     </div>
 </div>

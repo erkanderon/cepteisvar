@@ -37,6 +37,9 @@ export class IsArayanProfilComponent {
   military: any = {};
   isim: any=""; dtarihi: any=""; telefon: any=""; sd: any=""; askerlik: any=""; tecrube: any=""; gizlilik: any=""; soyad: any=""; cinsiyet: any=""; adres: any=""; educate: any=""; ilce: any=""; ehliyet: any=""; secenek: any=""; certificate: any=""; 
 
+  loading: any =true;
+  issecimizorunludur: any = true;
+
   p: number = 1;
   c: number = 1;
 
@@ -323,38 +326,56 @@ export class IsArayanProfilComponent {
   }
 
   changeJob1(f: NgForm) {
+    
 
-    let userid = this.profile.data[0].USER_ID;
-    let secjob = this.profile.data[0].SECONDARY_JOB_ID;
-    let secjobdesc = this.profile.data[0].SECONDARY_JOB_DESCRIPTION;
-    let job = new ChangeJobModel(userid, f.value.meslek,secjob,f.value.desc1,secjobdesc)
+    this.loading = false;
 
-    console.log(job);
+    
 
-    this._post.changeJob(JSON.stringify(job)).then(
-          //used Arrow function here
-          (success)=> {
-            
-            if(this.responser(success)){
-              this.operation.status = success.status;
-              this.operation.text = success.userMessage;
-              setTimeout(()=>{ 
-               location.reload();
-              }, 3000);
-            }else{
-              this.operationfault.status = success.status;
-              this.operationfault.text = success.userMessage;
+      jQuery('#job1').modal('hide');
+
+      let userid = this.profile.data[0].USER_ID;
+      let secjob = this.profile.data[0].SECONDARY_JOB_ID;
+      let secjobdesc = this.profile.data[0].SECONDARY_JOB_DESCRIPTION;
+      let job = new ChangeJobModel(userid, f.value.meslek,secjob,f.value.desc1,secjobdesc)
+
+      
+
+      //console.log(job);
+
+      this._post.changeJob(JSON.stringify(job)).then(
+            //used Arrow function here
+            (success)=> {
+              
+              if(this.responser(success)){
+                this.operation.status = success.status;
+                this.operation.text = success.userMessage;
+                setTimeout(()=>{ 
+                  location.reload();
+                 
+                }, 3000);
+                this.loading = true;
+              }else{
+                this.operationfault.status = success.status;
+                this.operationfault.text = success.userMessage;
+                this.loading = true;
+              }
+              
             }
-            
-          }
-      ).catch(
-         //used Arrow function here
-         (err)=> {
-            this.router.navigate(['/home']);
-         }
-      )
+        ).catch(
+           //used Arrow function here
+           (err)=> {
+              this.loading = true;
+              this.router.navigate(['/home']);
+           }
+        )
+
+    
+    
   }
   removeJob1() {
+
+    this.loading = false;
 
     let userid = this.profile.data[0].USER_ID;
     let secjob = this.profile.data[0].SECONDARY_JOB_ID;
@@ -371,9 +392,12 @@ export class IsArayanProfilComponent {
               this.operation.status = success.status;
               this.operation.text = success.userMessage;
               setTimeout(()=>{ 
+                
                location.reload();
               }, 3000);
+              this.loading = true;
             }else{
+              this.loading = true;
               this.operationfault.status = success.status;
               this.operationfault.text = success.userMessage;
             }
@@ -382,11 +406,14 @@ export class IsArayanProfilComponent {
       ).catch(
          //used Arrow function here
          (err)=> {
+            this.loading = true;
             this.router.navigate(['/home']);
          }
       )
   }
   removeJob2() {
+
+    this.loading = false;
 
     let userid = this.profile.data[0].USER_ID;
     let prmjob = this.profile.data[0].PRIMARY_JOB_ID;
@@ -403,18 +430,25 @@ export class IsArayanProfilComponent {
               this.operation.status = success.status;
               this.operation.text = success.userMessage;
               setTimeout(()=>{ 
+              
                location.reload();
+
               }, 3000);
+              this.loading = true;
             }else{
+            this.loading = true;
               this.operationfault.status = success.status;
               this.operationfault.text = success.userMessage;
             }
+            
             
           }
       ).catch(
          //used Arrow function here
          (err)=> {
+            this.loading = true;
             this.router.navigate(['/home']);
+
          }
       )
   }
@@ -427,6 +461,8 @@ export class IsArayanProfilComponent {
 
     console.log(job);
 
+    this.loading = false;
+
     this._post.changeJob(JSON.stringify(job)).then(
           //used Arrow function here
           (success)=> {
@@ -436,16 +472,22 @@ export class IsArayanProfilComponent {
               this.operation.text = success.userMessage;
               setTimeout(()=>{ 
                location.reload();
+               
               }, 3000);
+              this.loading = true;
+
             }else{
               this.operationfault.status = success.status;
               this.operationfault.text = success.userMessage;
+              this.loading = true;
             }
+            
             
           }
       ).catch(
          //used Arrow function here
          (err)=> {
+            this.loading = true;
             this.router.navigate(['/home']);
          }
       )

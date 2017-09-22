@@ -74,7 +74,7 @@ const appRoutes : Routes = [
   { path: 'webapi/payment/result', component: PaymentResult, data: { title: 'PaymentResult'} },
   { path: 'calisan-profil/:id', component: CalisanProfilComponent, data: { title: 'CalisanProfilComponent'} },
   /*{ path: '', redirectTo: 'login', pathMatch: 'full'},*/
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'calisan-arama' }
 ];
 
 @NgModule({

@@ -153,7 +153,7 @@
                                     <div [hidden]="!person.errors.required">
                                       Yetkili Kişi Boş Bırakılamaz!
                                     </div>
-                                    <div [hidden]="!vergi.errors.pattern">
+                                    <div [hidden]="!person.errors.pattern">
                                       Yetkili Kişi Harflerden Oluşmalıdır!
                                     </div>
                                     
@@ -353,6 +353,9 @@
                                     <div style="margin:10px 0px;">
                                       <div class="col-xs-4">
                                         <p><strong>{{cmt.REGISTERED_DATE}}</strong></p>
+                                      </div>
+                                      <div class="col-xs-4">
+                                        <p>{{cmt.NAME}} {{cmt.SURNAME}}</p>
                                       </div>
                                       <div class="col-xs-4" style="float: right;">
                                         <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->

@@ -31,7 +31,7 @@
 		  					<div class="headerbuttons" style="padding: 1px 0px; background: black; border: 1px solid black; margin: 0px 30px; color: white;">
 			  					<a class="btn btn-default" routerLink="/home" *ngIf="fields.ANA1" style="color: white;" > {{fields.ANA1}}</a>
 			  					<span ><a (click)="checkPerson()" class="btn btn-default" *ngIf="fields.KIM1" style="color: white;">{{fields.KIM1}}</a></span> <!-- *ngIf="!islogged" -->
-			  					<a routerLink="/meslek-haritasi" class="btn btn-default" *ngIf="fields.MES1" style="color: white;">{{fields.MES1}}</a>
+			  					<a href="/map/try.html" class="btn btn-default" *ngIf="fields.MES1" style="color: white;"  target="_blank">{{fields.MES1}}</a>
 			  					<a routerLink="/duyurular" class="btn btn-default" *ngIf="fields.DUY1" style="color: white;">{{fields.DUY1}}</a>
 			  				</div>
 		  				</div>

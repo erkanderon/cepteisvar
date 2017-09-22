@@ -111,9 +111,9 @@ export class SMSGonderComponent {
 			    	this.operation = true;
 			    	this.loading = true;
 
-			    	/*setTimeout(()=>{ 
-					   this.router.navigate([uri, {foo: "profil"}]);
-					  }, 3000);*/
+			    	setTimeout(()=>{ 
+					   this.router.navigate([uri, {foo: "smslerim"}]);
+					  }, 3000);
 				      
 				    
 			     	

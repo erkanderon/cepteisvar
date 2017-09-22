@@ -29,6 +29,7 @@ export class HomeComponent{
 	islogged: any=false;
 	jobcategory: any={};
 	model: any = [];
+	popJobs: any = {};
 	bannerImages: any = ['assets/images/cepteban1.png', 'assets/images/banner2.png', 'assets/images/banner3.png'];
 
 	company:any = {};
@@ -94,7 +95,8 @@ export class HomeComponent{
 	}
 	ngOnInit() {
 
-		this.mobileAdvertise = this._pub.getAdvertise();
+		this.mobileAdvertise = localStorage.getItem('mobileAdvertise');
+		console.log(this.mobileAdvertise);
 
 // JOB CATEGORY SELECTION SETTINGS START
 
@@ -155,13 +157,14 @@ export class HomeComponent{
 	    this.fields = this._pub.getFieldList().then(res => this.fields = this.formatFields(res));
 	    this.news = this._pub.getNews().then(res => this.news = res);
 	    this.statistics = this._pub.getJobStatistics().then(res => this.statistics = res);
+	    this.popJobs = this._pub.listPopularJobs().then(res => this.popJobs = res);
 	    this.checkCompanySearch();
 
 	    console.log(this.profiles)
 	}
 	ngAfterViewChecked() {
 
-	jQuery(".owl-prev" ).has("i").addClass("fa");
+		jQuery(".owl-prev" ).has("i").addClass("fa");
 		
 
 	}
@@ -169,10 +172,23 @@ export class HomeComponent{
 		jQuery("#mmodal").modal('show');
 		//this.fileInput.nativeElement.click()
 	}
+	openYoutubeVideo(){
+		jQuery("#youtubemodal").modal('show');
+		//this.fileInput.nativeElement.click()
+	}
+	
 	closeMobile(){
 		this.mobileAdvertise = 0;
 		this._pub.mobileAdvertise = 0;
+		localStorage.setItem("mobileAdvertise", "1");
 		console.log(this.mobileAdvertise);
+	}
+	closeVideo(){
+		
+		  jQuery('iframe').attr('src', jQuery('iframe').attr('src'));
+		    //jQuery('.yutu').stopVideo();
+		  
+		
 	}
 	responser(obj) {
 	    if(obj.code === 200){
@@ -248,7 +264,7 @@ export class HomeComponent{
     }
     setCity(param){
     	this.cities = param;
-    	if(this.mobileAdvertise===1){
+    	if(this.mobileAdvertise!=="1"){
     		setTimeout(()=>{ 
                this.openModel();
             }, 500);
@@ -434,8 +450,9 @@ export class HomeComponent{
 	    	this._pub.searchModel.city = this.citySelect;
 	    	this._pub.searchModel.category = this.selectedjobCategory;
 	    	this._pub.searchModel.joblist = this.selectedJob;
+
+	    	console.log(this._pub.searchModel)
 	    	
-	    	console.log(this._pub.searchParams);
 	    	this.router.navigate( ['/calisan-arama']);
 	    /*}else{
 	    	//Give Message Not Valid Form
@@ -443,5 +460,18 @@ export class HomeComponent{
 	 
 	      
 	    
+	}
+	searchPopularJob(categoryId, jobId, jobName, categoryName){
+
+		if(!this.companyIdSearch){ this.companyIdSearch = 0;}
+		this._pub.searchParams = new SearchModel([0], [jobId], [categoryId], this.companyIdSearch, 1);
+		this._pub.searchModel = {};
+		this._pub.searchModel.city = {};
+		this._pub.searchModel.category = [{id: categoryId, itemName: categoryName}];
+		this._pub.searchModel.joblist = [{id: jobId, itemName: jobName}];
+
+		console.log(this._pub.searchModel);
+
+		this.router.navigate( ['/calisan-arama']);
 	}
 }

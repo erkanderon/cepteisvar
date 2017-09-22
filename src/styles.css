@@ -594,7 +594,7 @@ footer .aciklama h5{
 .sc-center{
 	width: 4em !important;
     height: 4em !important;
-    top: 20% !important;
+    top: 0 !important;
 }
 
 
@@ -751,4 +751,21 @@ footer .aciklama h5{
 @keyframes rotation {
    from {transform: rotate(0deg);}
    to {transform: rotate(359deg);}
+}
+
+/*.c-btn span:nth-child(2){
+  display: none;
+} */
+
+.cbox .c-btn span:nth-child(2){
+  display: none;
+}
+
+    
+.thumbnail>img, .thumbnail a>img {
+    min-height: 250px !important;
+}
+.sc-background {
+    
+    background-color: rgba(255,255,255,1) !important;
 }

@@ -23,6 +23,9 @@ export class CalisanGirisComponent {
     loginState: any=1;
     notequal: any=false;
 
+    operation: any = {};
+    operationfault: any = {};
+
   constructor(
   	private _authService: AuthService,
   	private route: ActivatedRoute,
@@ -74,16 +77,24 @@ export class CalisanGirisComponent {
           (success)=> {
             
             if(this.responser(success)){
-              location.reload();
+              
+              this.operation.status = success.status;
+              this.operation.text = success.userMessage;
+              setTimeout(()=>{ 
+               location.reload();
+              }, 5000);
             }else{
               //give a message
-              console.log(success);
+              this.operationfault.status = success.status;
+              this.operationfault.text = success.userMessage;
             }
             
           }
       ).catch(
          //used Arrow function here
          (err)=> {
+            this.operationfault.status = err.status;
+            this.operationfault.text = err.userMessage;
             this.router.navigate(['/home']);
          }
       )

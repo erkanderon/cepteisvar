@@ -166,7 +166,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">AD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                      <input type="text" class="form-control" id="firma" [ngModel]="isim" name="isim" [value]="profile.data[0].NAME" #ad="ngModel" required pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)">
                                     </div>
                                     <div *ngIf="ad.errors && (ad.dirty || ad.touched)" class="alert alert-danger" style="margin-top: 5px;">
                                       <div [hidden]="!ad.errors.required">
@@ -259,7 +259,7 @@
                                   <div class="form-group">
                                     <label for="formGroupExampleInput2">SOYAD</label>
                                     <div class="">
-                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                      <input type="text" class="form-control" id="firma" name="soyad" [ngModel]="soyad" [value]="profile.data[0].SURNAME" required aria-describedby="basic-addon1" #soad="ngModel" required pattern="(^[a-zA-ZğüşöçİĞÜŞÖÇ]+$)|(^[a-zA-ZğüşöçİĞÜŞÖÇ]+ [a-zA-ZğüşöçİĞÜŞÖÇ]+$)">
 
                                     </div>
                                     <div *ngIf="soad.errors && (soad.dirty || soad.touched)" class="alert alert-danger" style="margin-top: 5px;">
@@ -354,6 +354,9 @@
                                 <div class="row timel">
                                   <div class="col-xs-6">
                                     <p style="margin-top: 10px;"><strong>{{yorum.REGISTERED_DATE}}</strong></p>
+                                  </div>
+                                  <div class="col-xs-4" style="float: right;">
+                                    <p style="float: right; margin-top: 10px;">{{yorum.COMPANY_NAME}}</p>
                                   </div>
                                   <div class="col-xs-6">
                                     <div class="ratings-widget" style="padding: 0px;">
@@ -602,11 +605,11 @@
         <h4 class="modal-title">MESLEK DÜZENLE</h4>
       </div>
       <div class="modal-body">
-        <form #meslek="ngForm">
+        <form #meslek1="ngForm">
           <div class="form-group" *ngIf="jobcategory.data">
             <div class="dropdownPopup">
-              <label for="">IŞ KATEGORİNİZ</label>
-              <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
+              <label for="">İŞ KATEGORİNİZ</label>
+              <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)" >
                 <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
               </select>
             </div>
@@ -614,14 +617,23 @@
           <div class="form-group"> 
             <div class="dropdownPopup">
               <label for="">BİRİNCİL MESLEK</label>
-              <select id="" class="form-control" name="meslek" [ngModel]="meslek">
+              
+              <select id="" name="meslek" class="form-control" [ngModel]="meslek" required>
                 <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
               </select>
             </div>
+            
           </div>
           <div class="form-group">
             <label for="exampleTextarea">İŞ AÇIKLAMASI</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc1" name="desc1" [maxLength]="120"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="3" #isaciklama="ngModel" [(ngModel)]="desc1" name="desc1" [maxLength]="120" required></textarea>
+          </div>
+          <div *ngIf="isaciklama.errors && (isaciklama.dirty || isaciklama.touched)" class="alert alert-danger" style="margin-top: 5px;">
+            <div [hidden]="!isaciklama.errors.required">
+              İş Açıklaması Boş Bırakılamaz!
+            </div>
+            
+            
           </div>
         </form>
       <div class="modal-footer">
@@ -629,7 +641,7 @@
           <div class="col-xs-12">
               <div class="btn-group">
                 <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
-                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changeJob1(meslek)">KAYDET</a>
+                <button type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changeJob1(meslek1)" [disabled]="!meslek1.form.valid">KAYDET</button>
               </div>
           </div>
         </div>
@@ -654,7 +666,7 @@
         <form #meslekother="ngForm">
           <div class="form-group">
             <div class="dropdownPopup">
-                <label for="">IŞ KATEGORİNİZ</label>
+                <label for="">İŞ KATEGORİNİZ</label>
                 <select id="" name="jobcat" class="form-control" [ngModel]="jobcat" (ngModelChange)="onJobChange($event)">
                   <option  *ngFor="let jbct of jobcategory.data" [value]="jbct.CATEGORY_ID">{{jbct.CATEGORY_NAME}}</option>
                 </select>
@@ -663,14 +675,21 @@
           <div class="form-group"> 
             <div class="dropdownPopup">
               <label for="">DİĞER MESLEK</label>
-              <select id="" class="form-control" name="meslek2" [ngModel]="meslek2">
+              <select id="" class="form-control" name="meslek2" [ngModel]="meslek2" required>
                 <option  *ngFor="let jbs of jobs.data" [value]="jbs.ID">{{jbs.JOB_NAME}}</option>
               </select>
             </div>
           </div>
           <div class="form-group">
             <label for="exampleTextarea">İŞ AÇIKLAMASI</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc2" name="desc2" [maxLength]="120"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="desc2" #isaciklama2="ngModel" name="desc2" [maxLength]="120" required></textarea>
+          </div>
+          <div *ngIf="isaciklama2.errors && (isaciklama2.dirty || isaciklama2.touched)" class="alert alert-danger" style="margin-top: 5px;">
+            <div [hidden]="!isaciklama2.errors.required">
+              İş Açıklaması Boş Bırakılamaz!
+            </div>
+            
+            
           </div>
         </form>
       </div>
@@ -679,7 +698,7 @@
           <div class="col-xs-12">
               <div class="btn-group">
                 <a type="button" class="btn btn-default isveren" style="min-width: 100px;" data-dismiss="modal">VAZGEÇ</a>
-                <a type="button" class="btn btn-default calisan" style="min-width: 100px;" (click)="changeJob2(meslekother)">KAYDET</a>
+                <button type="button" class="btn btn-default calisan" style="min-width: 100px;" data-dismiss="modal" (click)="changeJob2(meslekother)" [disabled]="!meslekother.form.valid">KAYDET</button>
               </div>
           </div>
         </div>
@@ -724,3 +743,14 @@
 </div>
 
 <footer-comp></footer-comp>
+
+<div *ngIf="!loading">
+  <div class="http">
+      <div class="loading">
+  <div class="http">
+  <div class="spinner"></div>
+    
+   </div>
+      </div>
+  </div>
+</div>

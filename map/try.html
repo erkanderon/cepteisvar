@@ -1,0 +1,218 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Cepteişvar Türkiye Haritası</title>
+<script src="./vtiih/jquery-1.10.1.min.js" type="text/javascript"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="./vtiih/vtiih.css" rel="stylesheet" type="text/css" />
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+<script src="./vtiih/vtiih-min.js" type="text/javascript"></script>
+<script src="./vtiih/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+<style>
+	#__Komsular{
+	display: none !important;
+	}
+	/*#etiketler rect{
+	width: 140px !important;
+	}*/
+	.btn-label {position: relative;left: -12px;display: inline-block;padding: 12px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+	.btn-labeled {padding-top: 0;padding-bottom: 0;}
+	.btn { margin-bottom:10px; }
+</style>
+
+</head>
+	<body>
+		<div class="container">
+			<div class="row" style="">
+				<div class="col-xs-12 text-center" style="margin-top: 20px;">
+					<button type="button" id="turnback" class="btn btn-labeled btn-warning">
+						<span class="btn-label" >
+						<i class="glyphicon glyphicon-chevron-left"></i>
+						</span>
+						Turkiye Haritasi
+					</button>
+				</div>
+				<div class="col-xs-12">
+					<div id="harita"></div>
+				</div>
+				
+			</div>
+			<div id="liste"></div>
+		</div>
+		<div style="display: none;"><p>Son Aktif Olan Sehir : <span id="aktif" style="color:Red" ></span></p>
+			<p>Son Pasif Olan Sehir : <span id="pasif" style="color:Red"></span></p>
+			<p>Son Seçimi Iptal Edilen Sehir : <span id="iptal" style="color:Red"></span></p>
+			<p>Seçili Olan Sehirler : <span id="secili" style="color:Red"></span></p>
+		</div>
+		
+<script>
+
+	var cityData = null;
+	var aktifyer = null;
+	var countyData = null;
+	var hrt = null;
+
+	$(document).ready( function(){
+							hrt = new snfVtiih();
+
+							hrt.SetProperty("olay_aktif", fAktif);  // nesneye Aktif olay fonksiynunun atanmasi
+							hrt.SetProperty("olay_pasif", fPasif);
+							hrt.SetProperty("komsular_acik", false);
+							hrt.SetProperty('çoklu_seçim', false);
+
+							hrt.Yukle("Türkiye", "harita", "liste", "Renklendir(false)", parseData() ); 
+							$('#turnback').css( "display", "none" );
+						}
+	
+	);
+
+	$('#harita').on( "click", function() {
+		
+		if( aktifyer == null )
+			return;
+		
+		$('#harita').css( "max-width", "600px" );
+		$('#turnback').css( "display", "inline-block" );
+		
+		hrt.SetProperty("olay_aktif", null);  // nesneye Aktif olay fonksiynunun atanmasi
+		hrt.SetProperty("olay_pasif", null);
+		hrt.SetProperty("komsular_acik", false);
+		hrt.Yukle(aktifyer, "harita","liste","Renklendir(false)", parseCityJob() );
+		
+	});
+	
+	$('#turnback').on( "click", function() {
+		window.location.reload(true);
+	});
+
+	function getIdOfCity(name){
+	
+		let cityName = null;
+		for(var i=0; i < cityData.length;i++){
+
+			cityName = cityData[i].CITY_NAME.toLocaleLowerCase('tr-TR');
+			
+			if( (cityName.charAt(0).toLocaleUpperCase('tr-TR') + cityName.slice(1)) === name){
+				return cityData[i].CITY_ID;
+			}
+		}
+		
+		return -1;
+	}
+
+	function updateLabelsCity(){
+		//console.log('updateLabels working');
+		if( cityData == undefined || cityData == null  ){
+			return;
+		}
+		
+		if( $('#harita svg')[0] == undefined ){
+			setTimeout(updateLabelsCity, 1000);
+			return;
+		}
+	
+		for(var i=0; i<cityData.length;i++){
+			
+			let cityTag = "#harita #et" + cityData[i].CITY_NAME.toLocaleLowerCase('tr-TR').charAt(0).toLocaleUpperCase('tr-TR') + cityData[i].CITY_NAME.toLocaleLowerCase('tr-TR').slice(1) + " text";
+						
+			$(cityTag).empty();
+			$(cityTag).text( cityData[i].CITY_NAME + " (" + cityData[i].WORKER_COUNT + ")" );
+			
+		}
+	}
+	
+	function updateLabelsCounty(){
+		//console.log('updateLabels working');
+		if( countyData == undefined || countyData == null  ){
+			return;
+		}
+		
+		if( $('#harita svg ' + '#et' + countyData[0].COUNTY_NAME.toLocaleLowerCase('tr-TR').charAt(0).toLocaleUpperCase('tr-TR') + countyData[0].COUNTY_NAME.toLocaleLowerCase('tr-TR').slice(1) + " text")[0] == undefined ){
+			setTimeout(updateLabelsCounty, 1000);
+			return;
+		}
+	
+		for(let j = 0; j < countyData.length; j++){
+									
+			let countyName = countyData[j].COUNTY_NAME.split(' ')[0];
+			let countyTag = "#etiketler #et" + countyName.toLocaleLowerCase('tr-TR').charAt(0).toLocaleUpperCase('tr-TR') + countyName.toLocaleLowerCase('tr-TR').slice(1) + " text";
+
+			$(countyTag).empty();
+			$(countyTag).text( countyName + " (" + countyData[j].WORKER_COUNT + ")" );
+		}
+	}
+
+
+	function parseData(){
+		$.ajax({type: "GET",
+				url: "http://cepteisvar.cboxpay.com:8888/cepteisvar/webapi/app/get-all-city-job-counts",
+				complete: function(data, status){
+								
+								if(data.responseJSON.code != 200){
+									return;
+								}
+								
+								cityData = data.responseJSON.data;
+								setTimeout(updateLabelsCity, 1000);
+							}
+				}
+		);
+		
+	}
+
+	function parseCityJob(){
+	
+		if(aktifyer == null)
+			return;
+	
+		$.ajax({type: "POST",
+				url: "http://cepteisvar.cboxpay.com:8888/cepteisvar/webapi/app/list-inside-city-job-counts",
+				data: '{ "p_city_id":' + getIdOfCity(aktifyer) + ' }',
+				contentType: "application/json",
+				complete: function (data, status) {
+								let response = data.responseJSON.data;
+								
+								if(data.responseJSON.code == 200){
+								
+									countyData = data.responseJSON.data;
+									setTimeout(updateLabelsCounty, 1000);
+									
+								}else{
+									window.location.reload(true);
+								}
+
+							}
+				}
+		);
+	}
+
+	
+
+	function fAktif(n, s) {
+		// aktif olay fonksiyonu.
+		document.getElementById("aktif").innerHTML = s;
+		aktifyer = s;
+		//console.log(getIdOfCity(aktifyer));
+	}
+	
+	function fPasif(n, s) {
+		// pasif olay fonksiyonu.
+		document.getElementById("pasif").innerHTML = s;
+		//console.log('FPASIF This is n:'+n);
+		//console.log('This is s:'+s);
+	}
+	
+/*	function fIptal(n, s) {
+		// Iptal olay fonksiyonu.
+		document.getElementById("iptal").innerHTML = s;
+		//console.log(n, s);
+		//fSecimler(n, s); // görüntülenen seçili alanini güncellemek için
+		//console.log('FIPTAL This is n:'+n);
+		//console.log('This is s:'+s);
+	}
+*/
+
+</script>
+	</body>
+</html>

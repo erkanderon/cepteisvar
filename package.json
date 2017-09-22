@@ -30,6 +30,7 @@
     "angular2-image-upload": "^0.6.6",
     "angular2-select2": "^1.0.0",
     "core-js": "^2.4.1",
+    "ng2-component-spinner": "^0.2.1",
     "ng2-dropdown-multiselect": "^1.2.0",
     "ng2-owl-carousel": "^0.1.15",
     "ng2-select": "^1.2.0",

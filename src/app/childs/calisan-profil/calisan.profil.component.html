@@ -45,13 +45,8 @@
                                           <p class="form-control-static">{{profile.data[0].NAME}}</p>
                                         </div>
                                       </div>
-                                      <div class="form-group" *ngIf="islogged">
-                                        <label for="formGroupExampleInput2">DOĞUM TARİHİ</label>
-                                        <div class="">
-                                          <p class="form-control-static">{{profile.data[0].BDAY}}</p>
-                                        </div>
-                                      </div>
-                                      <div class="form-group" *ngIf="!islogged">
+                                      
+                                      <div class="form-group">
                                         <label for="formGroupExampleInput2">YAŞ</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].AGE}}</p>
@@ -91,13 +86,8 @@
                                       
                                   </div>
                                   <div class="col-xs-6" style="padding: 0px 50px;">
-                                      <div class="form-group" *ngIf="islogged">
-                                        <label for="formGroupExampleInput2">SOYAD</label>
-                                        <div class="">
-                                          <p class="form-control-static">{{profile.data[0].SURNAME}}</p>
-                                        </div>
-                                      </div>
-                                      <div class="form-group" *ngIf="!islogged">
+                                      
+                                      <div class="form-group">
                                         <label for="formGroupExampleInput2">SOYAD</label>
                                         <div class="">
                                           <p class="form-control-static">{{profile.data[0].SURNAME.charAt(0)}}</p>
@@ -163,12 +153,15 @@
                                   </div>
                                 </div>
                                 <div *ngIf="comments.data">
-                                  <div class="row">
+                                  <div class="row" *ngFor="let cmts of comments.data;">
                                     <div class="col-xs-12">
-                                      <div class="row timel">
+                                      <div class="row timel" style="padding: 10px 0px 0px 0px;">
                                         <div class="col-xs-6">
-                                          <p><strong>{{comments.data[0].REGISTERED_DATE}}</strong></p>
+                                          <p><strong>{{cmts.REGISTERED_DATE}}</strong></p>
                                         </div>
+                                          <div class="col-xs-4" style="float: right;">
+                                            <p style="float: right;">{{cmts.COMPANY_NAME}}</p>
+                                          </div>
                                         <div class="col-xs-6">
                                           <div class="ratings-widget" style="padding: 0px;">
                                             <div  style="float: right;">
@@ -179,7 +172,7 @@
                                       </div>
                                       <div class="row yorum">
                                         <div class="col-xs-12">
-                                          <h5>{{comments.data[0].C_COMMENT}}</h5>
+                                          <h5>{{cmts.C_COMMENT}}</h5>
                                         </div>
                                       </div>
                                     </div>

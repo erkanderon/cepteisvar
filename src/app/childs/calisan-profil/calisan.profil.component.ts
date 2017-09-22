@@ -63,6 +63,7 @@ export class CalisanProfilComponent {
 	    	if(res.data){
 	    		this.profile = res;
 	    		this.comments = this._post.getMemberCommentsOthers({ "p_userid": this.id}).then(res => this.comments = res);
+	    		this._post.getMemberCommentsOthers({ "p_userid": this.id}).then(res => console.log(res));
 
 	    	}
 	    }

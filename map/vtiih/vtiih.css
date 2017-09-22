@@ -1,0 +1,66 @@
+﻿/*g text{
+	text-anchor: start;
+}*/
+
+.SehirEtiketi
+{
+    /* Şehir etiketlerindeki yazı görünümü */
+  font-family: Arial,sans-serif;           /* Yazı Fontu */
+  font-size:10px !important;             /* Yazı boyutu */
+  fill:white;                     /* Yazı rengi */
+  cursor:pointer;               /* üzerindeyken fare imleç şekli */
+}
+
+.EtiketCercevesi
+{
+    /* Etiket çerçeve ayarları */
+     stroke:white;              /* çerçeve rengi */
+     stroke-width:1;            /* Çerçeve Kalınlığı */
+     fill:black;                 /* Çerçeve dolgu rengi */
+     cursor:pointer;
+}
+
+.Harita
+{
+    /* harita varsayılanları */
+    stroke-width:1;       /* Sınır çizgi kalınlığı */
+    stroke:black;           /* Sınır çizgi rengi  */
+    fill: coral;            /* Dolgu rengi */
+    cursor:pointer;
+    
+}
+
+.MerkezNokta
+{
+    /* şehir merkezini gösterir küçük daire ayarları*/
+    stroke-width:0.25;      /* çizgi kalınlığı */
+    stroke:black;           /* çizgi rengi */
+    fill: black;            /* Dolgu rengi */
+    
+}
+
+.ListeUstunde
+{
+    /* Aktif şehrin listedeki görünümü*/
+    background-color:yellow;    
+    color:Black;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.ListeSecili
+{
+    /* seçili şehrin listedeki görünümü */
+    background-color:red;
+    cursor:pointer;
+   
+}
+#harita{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    text-align: center;
+}
+#harita svg{
+    max-height: 100vh;
+}

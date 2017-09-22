@@ -50,11 +50,13 @@ export class AramaComponent {
 
 	sepetExistMessage: any = "OK"; sepetMemberIds: any=[]; companyId: any=0;
 
-	profileLoader: any = false;
+	profileLoader: any = true;
 
 	constructor(private elRef : ElementRef, private _pub: Pub, private _auth: AuthService, private router: Router, private _post: PostService) {
 
 		jQuery(document).ready(function () {
+
+			
 
 
 			var options = [];
@@ -83,6 +85,7 @@ export class AramaComponent {
 
 		    jQuery('#list').click(function(event){event.preventDefault();jQuery('#products .item').addClass('list-group-item');});
 		    jQuery('#grid').click(function(event){event.preventDefault();jQuery('#products .item').removeClass('list-group-item');jQuery('#products .item').addClass('grid-group-item');});
+
 
 		    
 	  	});
@@ -158,7 +161,7 @@ export class AramaComponent {
 	                              selectAllText:'Hepsini Seç',
 	                              unSelectAllText:'Hepsini Sil',
 	                              enableSearchFilter: true,
-	                              classes:"myclass custom-class",
+	                              classes:"cbox",
 	                              badgeShowLimit: 1
 	        };
 
@@ -374,8 +377,10 @@ export class AramaComponent {
 
     setJob(param){
     	this.jobs = param;
-
+    	this.jobList = [];
+    	this.searchIsModel = [];
     	for(let i of param.data){
+
     		this.jobList.push({"id":i.ID,"itemName":i.JOB_NAME});
 
     	}
