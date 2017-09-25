@@ -62,9 +62,6 @@ export class IsArayanProfilComponent {
 		private _authService: AuthService, private router: Router, private _pub: Pub, private elRef : ElementRef, private _post: PostService, private route: ActivatedRoute, private location: Location) { 
 
 	  
-    if(!this._authService.isLoggedIn){
-      this._authService.logout();
-    }
 
     jQuery(document).ready(function () {
 
@@ -86,7 +83,16 @@ export class IsArayanProfilComponent {
         });
         
       });
+      this.member = new PreviewMemberModel(localStorage.getItem('user'));
+      this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.initialize(res));
+      //this.initialize();
 
+    
+    
+  }
+  initialize(res){
+    console.log(res);
+    this.profile = res;
     this.member = new PreviewMemberModel(localStorage.getItem('user'));
     this.profile = this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.profile = res);
     this.cities = this._pub.getCities().then(cities => this.cities = cities);
@@ -97,7 +103,6 @@ export class IsArayanProfilComponent {
     this.driver = this._pub.getDriverLicenseTypes().then(driver => this.driver = driver);
 
     this._post.previewMemberAccount(JSON.stringify(this.member)).then(res => this.getop(res));
-    
   }
   getop(res){
     if(res){

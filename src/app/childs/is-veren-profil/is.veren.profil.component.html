@@ -408,7 +408,8 @@
                                       </div>
                                       <div class="col-xs-4">
                                         <!--<p>GONDERI NO: <strong>{{sms.SEPETI_ID}}</strong></p>-->
-                                        <p>SMS DURUMU:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;"></i><span *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;"></span><span *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></span></p>
+
+                                        <p>SMS DURUMU:&nbsp;<i *ngIf="sms.SMS_SENT_STATUS==='PENDING VALIDATION'" class="fa fa-exclamation" aria-hidden="true" style="font-size: 13px; color: #ffa500;" title="Mesajınız Kontrol Ediliyor"></i><i *ngIf="sms.SMS_SENT_STATUS==='CANCELLED'" class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 13px;color: #FF0000;" title="Mesajınız Onaylanmadı"></i><i title="Mesajınız Gönderildi" *ngIf="sms.SMS_SENT_STATUS==='SENT'" class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px; color: #008000;"></i></p>
                                       </div>
                                       <div class="col-xs-4" >
                                         <button  (click)="setDetail(1, sms.SEPETI_ID)" style="text-decoration:none; float: right;"><p  style="float:right;"><span class="glyphicon glyphicon-user">  </span> <strong>{{sms.TOTAL_SENT_SMS}} </strong>KİŞİYE GÖNDERİLDİ</p></button>
@@ -901,4 +902,8 @@
 </div>
 
 <footer-comp></footer-comp>
+
+<div class="tooltip">Hover over me
+                                          <span class="tooltiptext">Tooltip text</span>
+                                        </div>
 

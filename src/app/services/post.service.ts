@@ -95,8 +95,9 @@ export class PostService {
 			).catch(
 			   //used Arrow function here
 			   (err)=> {
-			      console.log(err);
-			      this.router.navigate(['/home']);
+			      //console.log(err);
+			      return err;
+			      //this.router.navigate(['/home']);
 			   }
 			)
 

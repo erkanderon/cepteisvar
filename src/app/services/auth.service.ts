@@ -120,7 +120,12 @@ export class AuthService {
 				      localStorage.setItem("timestamp", new Date().toString());
 				      console.log("refreshed");
 				      this.loggedIn = true;
-				      return false;
+				      setTimeout(()=>{ 
+              
+		               return false;
+
+		              }, 3000);
+				      
 				   }
 				).catch(
 				   //used Arrow function here
